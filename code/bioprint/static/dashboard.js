@@ -1,8 +1,11 @@
 // dashboard.js — live view of login attempts. OWNER: Agent D (UI).
 //
-// The four signals (keystroke, pointer, bot, device) are shown side by side and never
-// added together: a bot flag and an unfamiliar rhythm are different accusations, and
-// "different device" is advisory context for the behaviour verdict, not a verdict itself.
+// The six signals (keystroke, pointer, bot, device, keypad, keypad_motor) are shown
+// side by side and never added together: a bot flag and an unfamiliar rhythm are
+// different accusations, "different device" is advisory context for the behaviour
+// verdict rather than a verdict itself, and the keypad's two halves are deliberately
+// split — the cognitive half crosses device classes, the motor half does not.
+// A signal a given attempt never produced is drawn as "not measured", not as zero.
 import {
   $, el, gauge, miniBars, badge, svgIcon, decisionInfo, markNav, featureLabel,
   fmt, fmtValue, relTime, direction, applyTheme, SIGNAL_LABEL, SIGNAL_BLURB, SIGNAL_VAR,
@@ -10,7 +13,15 @@ import {
 
 const POLL_MS = 2000;
 const NS = 'http://www.w3.org/2000/svg';
-const SERIES = ['keystroke', 'pointer', 'bot', 'device'];
+const SERIES = ['keystroke', 'pointer', 'bot', 'device', 'keypad', 'keypad_motor'];
+// Bars in the attempts table: the three that every attempt has, plus whatever
+// else that attempt actually carries. Six bars on every row would be noise.
+const MINI_BASE = ['keystroke', 'pointer', 'bot'];
+const miniNames = (signals = []) =>
+  MINI_BASE.concat(['device', 'keypad', 'keypad_motor'].filter((n) => signals.some((s) => s.name === n)));
+// The chart labels each line at its right-hand end, so those names must be short.
+const CHART_LABEL = { keypad: 'Keypad', keypad_motor: 'Keypad move' };
+const chartLabel = (n) => CHART_LABEL[n] || SIGNAL_LABEL[n] || n;
 
 // The device gauge (device agent) extends ui.js's tables here rather than editing
 // them: gauge() and the legend read SIGNAL_LABEL/SIGNAL_VAR by signal name.
@@ -34,6 +45,11 @@ let attempts = [];
 let lastKey = '';
 let seen = new Set();
 let first = true;
+// /api/users/<name> for whoever the shown attempt belongs to: enrollment state
+// and habits, which are per account rather than per attempt.
+let status = null;
+let statusUser = '';
+let statusAt = 0;
 
 userInput.value = user;
 followBtn.setAttribute('aria-pressed', String(follow));
@@ -63,6 +79,63 @@ async function poll() {
   } catch (err) {
     live.className = 'live err';
     liveText.textContent = `server unreachable (${err.message})`;
+  }
+}
+
+const STATUS_TTL_MS = 10_000;
+
+/** Account habits, refreshed lazily: they change at enrollment speed, not poll speed. */
+async function refreshStatus(name) {
+  if (!name) {
+    if (status) { status = null; statusUser = ''; renderHabits(); }
+    return;
+  }
+  if (name === statusUser && Date.now() - statusAt < STATUS_TTL_MS) return;
+  statusUser = name;
+  statusAt = Date.now();
+  let data = null;
+  try {
+    const res = await fetch(`/api/users/${encodeURIComponent(name)}`);
+    data = res.ok ? await res.json() : null;
+  } catch {
+    data = null; /* the attempts poll already reports an unreachable server */
+  }
+  if (name !== statusUser) return; // a later name won the race
+  status = data;
+  renderHabits();
+}
+
+/** Pills under the verdict: what this account has taught BioPrint so far. */
+function renderHabits() {
+  const box = $('habits');
+  if (!box) return;
+  box.replaceChildren();
+  const st = status;
+  if (!st || !st.username) return;
+  const add = (text, title) => box.append(el('span', { className: 'pill', title }, text));
+  add(`${st.enroll_count ?? 0} of ${st.enroll_target ?? 10} typing reps`,
+    'password repetitions that fitted the rhythm model');
+  if (st.pointer_enrolled) add('pointer profile ✓', 'enough clicked repetitions to fit a pointer model');
+  // Keypad habits (keypad agent): how far the scrambled-keypad enrollment got,
+  // and on what kind of device — a desktop template cannot score a phone.
+  if (Number.isFinite(st.keypad_target)) {
+    const n = st.keypad_count || 0;
+    add(st.keypad_enrolled ? `keypad ✓ ${n} of ${st.keypad_target}` : `keypad ${n} of ${st.keypad_target}`,
+      'scrambled-keypad captchas solved at enrollment');
+  }
+  if (st.keypad_device_class && st.keypad_device_class !== 'unknown') {
+    add(`keypad taught on ${st.keypad_device_class}`,
+      'the device class the keypad profile was enrolled on; the movement half only compares within it');
+  }
+  const h = st.habits;
+  if (h && h.keypad_runs) {
+    add(`keypad ${Math.round(h.keypad_mean_duration_ms || 0)} ms per run`, 'mean time from layout shown to the last tap');
+    const slips = h.keypad_errors || 0;
+    add(`${slips} keypad slip${slips === 1 ? '' : 's'}`, 'wrong digits tapped and backspaced across enrollment');
+  }
+  if (h && h.submissions) {
+    add(`corrects ${Math.round((h.correction_rate || 0) * 100)}%`, 'share of submissions where the password was fixed mid-way');
+    add(`wrong password ${Math.round((h.wrong_password_rate || 0) * 100)}%`, 'share of submissions with the wrong password');
   }
 }
 
@@ -168,7 +241,7 @@ function renderSignals(a) {
   box.replaceChildren();
   for (const name of SERIES) {
     const sig = (a && (a.signals || []).find((s) => s.name === name)) || {
-      name, available: false, score: 0, threshold: 1, flagged: false, reasons: ['not scored for this attempt'],
+      name, available: false, score: 0, threshold: 1, flagged: false, reasons: ['not measured for this attempt'],
     };
     const available = sig.available !== false;
     const card = el('div', { className: 'signal-card' });
@@ -212,7 +285,7 @@ function renderChart(rows) {
     return;
   }
 
-  const W = 900, H = 260, L = 44, R = 96, T = 16, B = 34;
+  const W = 900, H = 260, L = 44, R = 118, T = 16, B = 34;
   const ratios = data.flatMap((r) => (r.signals || []).filter((x) => x.available !== false).map((x) => (Number(x.score) || 0) / (Number(x.threshold) || 1)));
   const cap = Math.max(2, Math.min(3.2, Math.max(...ratios, 0) * 1.15));
   const x = (i) => (data.length === 1 ? (L + W - R) / 2 : L + (i * (W - L - R)) / (data.length - 1));
@@ -272,7 +345,7 @@ function renderChart(rows) {
   }
   for (const l of labels) {
     const t = s('text', { x: l.x, y: Math.min(l.y, H - B), fill: l.muted ? 'var(--muted)' : 'var(--ink-2)', 'font-size': 13, 'font-weight': 600 });
-    t.textContent = l.name === 'limit' ? 'limit' : SIGNAL_LABEL[l.name];
+    t.textContent = l.name === 'limit' ? 'limit' : chartLabel(l.name);
     svg.append(t);
   }
 
@@ -348,7 +421,7 @@ function renderTable(rows) {
       el('td', {}, when),
       el('td', {}, a.username),
       el('td', {}, badge(a.decision)),
-      el('td', {}, miniBars(a.signals || [])),
+      el('td', {}, miniBars(a.signals || [], miniNames(a.signals || []))),
       el('td', { className: 'reasons-cell hide-sm' }, (a.reasons || []).slice(0, 2).join('; ')),
       el('td', { className: 'hide-sm' }, `${fmt(a.latency_ms, 1)} ms`),
       el('td', {}, labelCell),
@@ -377,6 +450,8 @@ function select(id) {
 function render() {
   if (follow) selectedId = attempts.length ? attempts[0].id : null;
   const a = current();
+  refreshStatus(user || (a && a.username) || '');
+  renderHabits();
   renderVerdict(a);
   renderSignals(a);
   renderChart(attempts);

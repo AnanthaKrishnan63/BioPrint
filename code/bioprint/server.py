@@ -11,6 +11,8 @@ import hashlib
 import hmac
 import json
 import os
+import random
+import re
 import secrets
 import statistics
 import time
@@ -21,10 +23,12 @@ from fastapi import FastAPI, HTTPException, Request, Response
 from fastapi.staticfiles import StaticFiles
 
 import db
-from contracts import (STEP_UP_SAMPLES, STEP_UP_WINDOW_S, AttemptIn, EnrollOut, FeatureVector, LoginOut,
-                       RegisterIn, SignalResult, StepUpIn)
-from engine import bot, device, features, pointer, scorer
-from engine.decide import decide
+from contracts import (KEYPAD_BLANK, KEYPAD_CHALLENGE_TTL_S, KEYPAD_COLS, KEYPAD_DIGITS, KEYPAD_ENROLL_RUNS,
+                       KEYPAD_ROWS, KEYPAD_STEPUP_RUNS, KEYPAD_TARGET_LEN, STEP_UP_SAMPLES, STEP_UP_WINDOW_S,
+                       AttemptIn, EnrollOut, FeatureVector, KeypadChallenge, KeypadEnrollOut, KeypadIn, KeypadRun,
+                       LoginOut, RegisterIn, SignalResult, StepUpIn)
+from engine import bot, device, features, keypad, pointer, scorer
+from engine.decide import decide, decide_keypad
 
 ENROLL_TARGET = 10  # counted repetitions
 # The first repetition is a practice run: stored raw (still useful for replay
@@ -259,22 +263,29 @@ def login(body: AttemptIn, response: Response) -> LoginOut:
         signals.append(bot.check(body.sample, kv, prior, len(body.password)))
         if signals[-1].flagged:
             return finish(*decide(signals))
+        routing = _keypad_routing(u, body.sample.env)
         if retype:
+            if features.is_virtual_keyboard(body.sample) and routing["keypad_enrolled"] and signals[0].flagged:
+                # A touch keyboard gives no timing, but the keypad works on any
+                # device: route there instead of asking for a retype that cannot help.
+                signals.append(SignalResult(name="keystroke", available=False, reasons=[retype]))
+                return finish(*decide(signals, **routing))
             return finish("retype", [retype])
 
         signals.append(scorer.score(ks_model, kv.values, "keystroke"))
         signals.append(_pointer_signal(u, pv))
 
-        return finish(*decide(signals))
+        return finish(*decide(signals, **routing))
 
 
-def _pending_step_up(conn, user_id: int):
-    """The attempts row a step-up answers: the user's latest "step_up" decision,
-    recent enough, and not already settled by a later allow or block."""
+def _pending_step_up(conn, user_id: int, decision: str = "step_up"):
+    """The attempts row a step-up answers: the user's latest "step_up" (or
+    "keypad") decision, recent enough, and not already settled by a later allow
+    or block."""
     since = (datetime.now(timezone.utc) - timedelta(seconds=STEP_UP_WINDOW_S)).isoformat(timespec="milliseconds")
     row = conn.execute(
-        "SELECT * FROM attempts WHERE user_id = ? AND decision = 'step_up' AND created_at >= ?"
-        " ORDER BY id DESC LIMIT 1", (user_id, since)).fetchone()
+        "SELECT * FROM attempts WHERE user_id = ? AND decision = ? AND created_at >= ?"
+        " ORDER BY id DESC LIMIT 1", (user_id, decision, since)).fetchone()
     if not row:
         return None
     settled = conn.execute(
@@ -360,9 +371,186 @@ def login_step_up(body: StepUpIn, response: Response) -> LoginOut:
             reasons=[f"median of {len(scores)} samples ({listed}) vs limit {thr:.1f}"] + nearest.reasons))
         signals.append(_pointer_signal(u, pvs[0] if pvs else None))
 
-        decision, reasons = decide(signals, after_step_up=True)
+        decision, reasons = decide(signals, after_step_up=True, **_keypad_routing(u, body.samples[-1].env))
         headline = f"new device: median of {len(scores)} samples {median:.1f} vs limit {thr:.1f}"
         return finish(decision, [headline] + reasons)
+
+
+# ---------------------------------------------------------------- scrambled keypad
+
+MOBILE_UA = re.compile(r"Android|iPhone|iPad|Mobile", re.I)
+
+
+def _env_class(env: dict) -> str:
+    """The device class a browser environment implies, before any keypad run
+    exists: a phone or tablet is "touch", everything else "mouse". A touch-screen
+    laptop used with a mouse counts as "mouse", which is what its keypad runs
+    will say too."""
+    if not isinstance(env, dict):
+        return "unknown"
+    if env.get("ua_mobile") is True or MOBILE_UA.search(str(env.get("ua", ""))):
+        return "touch"
+    return "mouse"
+
+
+def _keypad_routing(u, env: dict) -> dict:
+    """Keyword arguments for decide(): can the keypad be asked for, and is this a
+    different kind of device from the one it was enrolled on?"""
+    if not u["keypad_model"]:
+        return {"keypad_enrolled": False, "new_class": False}
+    enrolled = json.loads(u["keypad_model"]).get("device_class", "unknown")
+    now = _env_class(env)
+    return {"keypad_enrolled": True, "new_class": enrolled != "unknown" and now != "unknown" and now != enrolled}
+
+
+def _new_challenge(conn, username: str) -> KeypadChallenge:
+    cells = KEYPAD_COLS * KEYPAD_ROWS
+    layout = list(range(KEYPAD_DIGITS)) + [KEYPAD_BLANK] * (cells - KEYPAD_DIGITS)
+    random.shuffle(layout)
+    target: list[int] = []
+    while len(target) < KEYPAD_TARGET_LEN:
+        d = random.randrange(KEYPAD_DIGITS)
+        if len(target) >= 2 and target[-1] == d and target[-2] == d:
+            continue  # three in a row is a dull captcha and a degenerate sample
+        target.append(d)
+    now = datetime.now(timezone.utc)
+    ch = KeypadChallenge(id=secrets.token_urlsafe(12), layout=layout, target=target,
+                         expires_at=(now + timedelta(seconds=KEYPAD_CHALLENGE_TTL_S)).isoformat(timespec="milliseconds"))
+    conn.execute("INSERT INTO keypad_challenges (id, username, layout, target, created_at, expires_at)"
+                 " VALUES (?, ?, ?, ?, ?, ?)",
+                 (ch.id, username, json.dumps(layout), json.dumps(target), db.now(), ch.expires_at))
+    conn.execute("DELETE FROM keypad_challenges WHERE expires_at < ?",
+                 ((now - timedelta(days=1)).isoformat(timespec="milliseconds"),))
+    return ch
+
+
+def _check_run(conn, username: str, run: KeypadRun) -> str | None:
+    """Why this run cannot be used, or None. Consumes the challenge."""
+    row = conn.execute("SELECT * FROM keypad_challenges WHERE id = ?", (run.challenge_id,)).fetchone()
+    if not row or row["username"] != username:
+        return "unknown keypad challenge"
+    if row["used"]:
+        return "this keypad challenge was already answered"
+    if row["expires_at"] < db.now():
+        return "this keypad challenge expired; solve a fresh one"
+    conn.execute("UPDATE keypad_challenges SET used = 1 WHERE id = ?", (run.challenge_id,))
+    if run.layout != json.loads(row["layout"]) or run.target != json.loads(row["target"]):
+        return "the keypad layout or target does not match the one issued"
+    if not run.completed or keypad.entered_digits(run) != run.target:
+        return "the digits entered did not match the target"
+    return None
+
+
+def _store_run(conn, user_id: int, kind: str, run: KeypadRun, status: str = "ok",
+               attempt_id: int | None = None) -> tuple[int, list[FeatureVector], list[FeatureVector]]:
+    cog, motor = keypad.tap_vectors(run) if status == "ok" else ([], [])
+    cur = conn.execute(
+        "INSERT INTO keypad_runs (user_id, kind, attempt_id, created_at, run_json, cog_vectors, motor_vectors,"
+        " device_class, status) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)",
+        (user_id, kind, attempt_id, db.now(), run.model_dump_json(),
+         json.dumps([v.model_dump() for v in cog]), json.dumps([v.model_dump() for v in motor]),
+         keypad.device_class(run), status))
+    return cur.lastrowid, cog, motor
+
+
+def _enroll_runs(conn, user_id: int) -> list[KeypadRun]:
+    return [KeypadRun.model_validate_json(r[0]) for r in conn.execute(
+        "SELECT run_json FROM keypad_runs WHERE user_id = ? AND kind = 'enroll' AND status = 'ok' ORDER BY id",
+        (user_id,))]
+
+
+@app.post("/api/keypad/challenge")
+def keypad_challenge(body: dict) -> KeypadChallenge:
+    username = str(body.get("username", ""))[:64]
+    with db.connect() as conn:
+        if not username or not _user(conn, username):
+            raise HTTPException(404, "unknown user")
+        return _new_challenge(conn, username)
+
+
+@app.post("/api/enroll/keypad")
+def enroll_keypad(body: KeypadIn) -> KeypadEnrollOut:
+    """One solved captcha per call. After KEYPAD_ENROLL_RUNS accepted runs the
+    keypad profile is fitted and the account can be stepped up on a new device."""
+    if len(body.runs) != 1:
+        raise HTTPException(400, "enroll one keypad run per call")
+    run = body.runs[0]
+    with db.connect() as conn:
+        u = _user(conn, body.username)
+        if not u:
+            raise HTTPException(404, "unknown user")
+        runs = _enroll_runs(conn, u["id"])
+        enrolled = u["keypad_model"] is not None
+
+        def reject(reason: str, status: str) -> KeypadEnrollOut:
+            _store_run(conn, u["id"], "enroll", run, status)
+            return KeypadEnrollOut(accepted=False, count=len(runs), target=KEYPAD_ENROLL_RUNS, enrolled=enrolled,
+                                   device_class=keypad.device_class(run), reasons=[reason])
+
+        if not db.check_password(body.password, u["pw_salt"], u["pw_hash"]):
+            return reject("wrong password", "wrong_password")
+        if why := _check_run(conn, body.username, run):
+            return reject(why, "bad_challenge" if "challenge" in why or "issued" in why else "incomplete")
+        _, cog, _ = _store_run(conn, u["id"], "enroll", run)
+        if not cog:
+            return reject("no usable taps in this run", "incomplete")
+        runs.append(run)
+        reasons: list[str] = []
+        if len(runs) >= KEYPAD_ENROLL_RUNS and not enrolled:
+            profile = keypad.fit_profile(runs)
+            conn.execute("UPDATE users SET keypad_model = ? WHERE id = ?", (json.dumps(profile.to_dict()), u["id"]))
+            enrolled = True
+            reasons.append(f"keypad profile built from {len(runs)} runs on a {profile.device_class} device")
+    return KeypadEnrollOut(accepted=True, count=len(runs), target=KEYPAD_ENROLL_RUNS, enrolled=enrolled,
+                           device_class=keypad.device_class(run), reasons=reasons)
+
+
+@app.post("/api/login/keypad")
+def login_keypad(body: KeypadIn, response: Response) -> LoginOut:
+    """Answer to a "keypad" decision: KEYPAD_STEPUP_RUNS solved captchas. The
+    keypad's cognitive score decides; movement is advisory; a bot flag blocks."""
+    t0 = time.perf_counter()
+    signals: list[SignalResult] = []
+
+    with db.connect() as conn:
+        u = _user(conn, body.username)
+
+        def finish(decision, reasons, run_ids: list[int] = ()) -> LoginOut:
+            out = _record(conn, response, t0, u, None, body.username, decision, reasons, signals)
+            for rid in run_ids:
+                conn.execute("UPDATE keypad_runs SET attempt_id = ? WHERE id = ?", (out.attempt_id, rid))
+            return out
+
+        if not u:
+            return finish("unknown_user", ["no such account"])
+        if not db.check_password(body.password, u["pw_salt"], u["pw_hash"]):
+            ids = [_store_run(conn, u["id"], "stepup", r, "wrong_password")[0] for r in body.runs]
+            return finish("wrong_password", ["wrong password"], ids)
+        pending = _pending_step_up(conn, u["id"], "keypad")
+        if not pending or u["keypad_model"] is None:
+            raise HTTPException(409, "no keypad check is pending for this account; sign in first")
+        if len(body.runs) != KEYPAD_STEPUP_RUNS:
+            raise HTTPException(400, f"{KEYPAD_STEPUP_RUNS} keypad runs are needed")
+
+        # The pending attempt's own signals (device, keystroke) travel with the verdict.
+        carried = [SignalResult.model_validate(s) for s in json.loads(pending["signals"])
+                   if s["name"] in ("keystroke",)]
+        signals.append(device.check(body.runs[-1].env, _enrolled_envs(conn, u["id"])))
+        signals.append(keypad.bot_check(body.runs))
+        if signals[-1].flagged:
+            ids = [_store_run(conn, u["id"], "stepup", r)[0] for r in body.runs]
+            return finish(*decide_keypad(signals), ids)
+
+        bad = [why for r in body.runs if (why := _check_run(conn, body.username, r))]
+        if bad:
+            ids = [_store_run(conn, u["id"], "stepup", r, "incomplete")[0] for r in body.runs]
+            return finish("retype", [f"the keypad checks could not be used: {bad[0]}; please solve them again"], ids)
+        ids = [_store_run(conn, u["id"], "stepup", r)[0] for r in body.runs]
+
+        profile = keypad.Profile.from_dict(json.loads(u["keypad_model"]))
+        cog, motor = keypad.score_runs(profile, body.runs)
+        signals += [cog, motor] + carried
+        return finish(*decide_keypad(signals), ids)
 
 
 @app.get("/api/session")
@@ -434,9 +622,21 @@ def user_status(username: str) -> dict:
             "wrong_password_rate": (h["wrong_password"] or 0) / h["submissions"] if h["submissions"] else 0.0,
             "mean_corrections": h["mean_corrections"],
         }
+        kp_n = conn.execute("SELECT COUNT(*) FROM keypad_runs WHERE user_id = ? AND kind = 'enroll' AND status = 'ok'",
+                            (u["id"],)).fetchone()[0]
+        kp_class = json.loads(u["keypad_model"])["device_class"] if u["keypad_model"] else "unknown"
+        kp_runs = [KeypadRun.model_validate_json(r[0]) for r in conn.execute(
+            "SELECT run_json FROM keypad_runs WHERE user_id = ? AND kind = 'enroll'", (u["id"],))]
+    kp_stats = [keypad.run_stats(r) for r in kp_runs]
+    habits["keypad_runs"] = len(kp_stats)
+    habits["keypad_errors"] = sum(st.get("errors", 0) for st in kp_stats)
+    habits["keypad_mean_duration_ms"] = (sum(st.get("duration_ms", 0.0) for st in kp_stats) / len(kp_stats)
+                                         if kp_stats else 0.0)
     return {"username": username, "enroll_count": max(0, n - WARMUP_REPS), "enroll_target": ENROLL_TARGET,
             "warmup_reps": WARMUP_REPS, "pointer_enrolled": u["pointer_model"] is not None, "habits": habits,
-            "enrolled": u["keystroke_model"] is not None}
+            "enrolled": u["keystroke_model"] is not None,
+            "keypad_enrolled": u["keypad_model"] is not None, "keypad_count": kp_n,
+            "keypad_target": KEYPAD_ENROLL_RUNS, "keypad_device_class": kp_class}
 
 
 app.mount("/", StaticFiles(directory=Path(__file__).parent / "static", html=True), name="static")

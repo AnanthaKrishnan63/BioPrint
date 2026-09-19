@@ -55,6 +55,9 @@ export const DECISION = {
   retype: { tone: 'retype', icon: 'retype', word: 'Retype', title: 'Please type your password again' },
   // Not a verdict: the rhythm matched but the device is new, so more typings are asked for.
   step_up: { tone: 'stepup', icon: 'fingerprint', word: 'More rhythm', title: 'New device — let’s hear a bit more of your rhythm' },
+  // Also not a verdict: the rhythm cannot settle it (new device class, or a score
+  // too close to its limit), so the scrambled keypad is asked for instead.
+  keypad: { tone: 'stepup', icon: 'fingerprint', word: 'Keypad check', title: 'New device — two quick keypad checks will settle it' },
   wrong_password: { tone: 'other', icon: 'info', word: 'Wrong password', title: 'That password is not right' },
   unknown_user: { tone: 'other', icon: 'info', word: 'No such account', title: 'No account with that name' },
   not_enrolled: { tone: 'other', icon: 'info', word: 'Not enrolled', title: 'This account has not finished enrolling' },
@@ -62,13 +65,31 @@ export const DECISION = {
 export const decisionInfo = (d) =>
   DECISION[d] || { tone: 'other', icon: 'info', word: d || 'unknown', title: d || 'unknown' };
 
-export const SIGNAL_LABEL = { keystroke: 'Typing rhythm', pointer: 'Pointer movement', bot: 'Bot / replay' };
+export const SIGNAL_LABEL = {
+  keystroke: 'Typing rhythm',
+  pointer: 'Pointer movement',
+  bot: 'Bot / replay',
+  keypad: 'Keypad: search & cadence',
+  keypad_motor: 'Keypad: movement',
+};
 export const SIGNAL_BLURB = {
   keystroke: 'How long each key is held and the gaps between them.',
   pointer: 'How the mouse travelled to the button and clicked it.',
   bot: 'Signs of a script: untrusted events, automation flags, replayed timing.',
+  keypad: 'How fast you find and reach each digit on a keypad that is shuffled every time — a cognitive habit, so it compares across any device, phone included.',
+  keypad_motor: 'How the pointer or finger actually travels to each key: path, speed, overshoot. Only comparable on the same kind of device as enrollment, so it is advisory.',
 };
-export const SIGNAL_VAR = { keystroke: 'var(--series-1)', pointer: 'var(--series-2)', bot: 'var(--series-3)' };
+export const SIGNAL_VAR = {
+  keystroke: 'var(--series-1)',
+  pointer: 'var(--series-2)',
+  bot: 'var(--series-3)',
+  keypad: 'var(--series-5)',
+  keypad_motor: 'var(--series-6)',
+};
+/** Column heads for the compact bars in the attempts table. */
+export const SIGNAL_SHORT = {
+  keystroke: 'Key', pointer: 'Ptr', bot: 'Bot', device: 'Dev', keypad: 'Pad', keypad_motor: 'Mov',
+};
 
 // ------------------------------------------------------------------ numbers
 export const fmt = (n, digits = 1) =>
@@ -175,15 +196,20 @@ export function gauge(sig, { compact = false } = {}) {
   return root;
 }
 
-const SHORT = { keystroke: 'Key', pointer: 'Ptr', bot: 'Bot' };
+const MINI_DEFAULT = ['keystroke', 'pointer', 'bot'];
 
-/** Tiny per-signal bars for the attempts table. Still three separate bars. */
-export function miniBars(signals = []) {
+/**
+ * Tiny per-signal bars for the attempts table. Still one bar per signal, never
+ * merged. `names` lets the caller add the signals that exist on this attempt
+ * (device, keypad, keypad_motor) without every row growing to six bars.
+ */
+export function miniBars(signals = [], names = MINI_DEFAULT) {
   const wrap = el('div', { className: 'minibars' });
-  for (const nm of ['keystroke', 'pointer', 'bot']) {
+  for (const nm of names) {
     const sig = signals.find((s) => s.name === nm);
     const track = el('div', { className: 'gauge-track' });
-    let label = `${SIGNAL_LABEL[nm]}: not scored`;
+    const nice = SIGNAL_LABEL[nm] || nm;
+    let label = `${nice}: not measured`;
     if (sig) {
       const thr = Number(sig.threshold) || 1;
       const score = Number(sig.score) || 0;
@@ -197,12 +223,12 @@ export function miniBars(signals = []) {
       mark.style.left = clamp(thr);
       track.append(fill, mark);
       label = available
-        ? `${SIGNAL_LABEL[nm]}: ${fmt(score)} of limit ${fmt(thr)}${sig.flagged ? ', over the limit' : ''}`
-        : `${SIGNAL_LABEL[nm]}: no data`;
+        ? `${nice}: ${fmt(score)} of limit ${fmt(thr)}${sig.flagged ? ', over the limit' : ''}`
+        : `${nice}: no data`;
     }
     track.setAttribute('role', 'img');
     track.setAttribute('aria-label', label);
-    wrap.append(el('div', { className: 'minibar', title: label }, el('span', {}, SHORT[nm]), track));
+    wrap.append(el('div', { className: 'minibar', title: label }, el('span', {}, SIGNAL_SHORT[nm] || nm.slice(0, 3)), track));
   }
   return wrap;
 }

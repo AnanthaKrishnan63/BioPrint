@@ -31,6 +31,8 @@
   --series-2: #eb6834; /* pointer */
   --series-3: #1baf7a; /* bot */
   --series-4: #8a5cd6; /* device */
+  --series-5: #b5457b; /* keypad (search + cadence) */
+  --series-6: #0e8f9e; /* keypad motor (movement) */
 
   --radius: 14px;
   --shadow: 0 1px 2px rgba(0, 0, 0, .04), 0 8px 24px rgba(0, 0, 0, .06);
@@ -64,6 +66,8 @@
     --series-2: #d95926;
     --series-3: #199e70;
     --series-4: #a07fe6;
+    --series-5: #de74a6;
+    --series-6: #2fb3c2;
     --shadow: 0 1px 2px rgba(0, 0, 0, .4), 0 8px 24px rgba(0, 0, 0, .35);
   }
 }
@@ -165,7 +169,7 @@ a { color: var(--accent); }
 }
 .progress span.done { background: var(--good); }
 .progress span.current { background: color-mix(in srgb, var(--accent) 45%, var(--neutral-wash)); }
-.progress-label { display: flex; justify-content: space-between; margin-top: .45rem; font-size: .88rem; color: var(--ink-2); }
+.progress-label { display: flex; justify-content: space-between; gap: .75rem; flex-wrap: wrap; margin-top: .45rem; font-size: .88rem; color: var(--ink-2); }
 .foot-note { font-size: .88rem; color: var(--ink-2); margin: 0; }
 .foot-note.err { color: var(--bad-ink); font-weight: 600; }
 
@@ -208,6 +212,60 @@ a { color: var(--accent); }
 /* Mini signal rows inside the login result */
 .sig-mini { margin-top: .7rem; display: grid; gap: .45rem; }
 .result-next { margin-top: .6rem; font-size: .88rem; color: var(--muted); }
+
+/* ---------------------------------------------------------------- scrambled keypad */
+/* Mounted inside the card, in place of the fields. Sized so the 3-wide grid and
+   the fixed backspace fit a 360px phone with the page's 16px gutter, and every
+   key stays at least 64px tall (Apple/Material minimum target). */
+/* The keypad phase hides the fields and the button and mounts the widget in
+   their place: the card stays where it is, nothing on the page jumps. */
+.card.keypad-on .field,
+.card.keypad-on #hint,
+.card.keypad-on #submit { display: none; }
+.card.keypad-on .card-head { height: auto; }
+#keypad-mount[hidden] { display: none; }
+.kp { display: grid; gap: .65rem; margin-top: .4rem; }
+.kp-prompt { margin: 0; font-size: .85rem; color: var(--muted); }
+.kp-target {
+  display: flex; justify-content: center; gap: .4rem;
+  padding: .5rem .5rem; border-radius: 12px;
+  background: var(--surface-2); border: 1px solid var(--line);
+}
+.kp-target-d {
+  font-size: 1.95rem; font-weight: 800; line-height: 1.15;
+  font-variant-numeric: tabular-nums; letter-spacing: .02em;
+}
+.kp-entry { display: grid; grid-template-columns: repeat(6, 1fr); gap: .3rem; }
+.kp-slot {
+  height: 2.5rem; display: flex; align-items: center; justify-content: center;
+  border-radius: 9px; border: 1px solid var(--line-strong); background: var(--surface);
+  font-size: 1.25rem; font-weight: 700; font-variant-numeric: tabular-nums;
+  transition: background .18s, border-color .18s, color .18s;
+}
+.kp-slot.next { border-color: var(--accent); box-shadow: inset 0 -3px 0 var(--accent); }
+.kp-slot.filled { background: var(--good-wash); border-color: color-mix(in srgb, var(--good) 45%, transparent); color: var(--good-ink); }
+/* A wrong digit stays red until it is backspaced: the correction is data. */
+.kp-slot.bad { background: var(--bad-wash); border-color: color-mix(in srgb, var(--bad) 60%, transparent); color: var(--bad-ink); }
+.kp-grid { display: grid; gap: .45rem; touch-action: manipulation; }
+.kp-key {
+  font: inherit; font-size: 1.85rem; font-weight: 700; font-variant-numeric: tabular-nums;
+  min-height: 68px; border-radius: 12px; cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  border: 1px solid var(--line-strong); background: var(--surface); color: var(--ink);
+  touch-action: manipulation; user-select: none; -webkit-user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+.kp-key:hover:not(:disabled) { background: var(--surface-2); }
+/* Pressed state is driven by pointerdown, not :active — the press is the measurement. */
+.kp-key.held { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); }
+.kp-key.kp-blank { background: transparent; border-color: transparent; cursor: default; }
+/* The backspace never moves: last column, its own row under the grid. */
+.kp-back { grid-column: -2; }
+.kp-back svg { width: 26px; height: 26px; }
+.kp-ok .kp-slot { background: var(--good); border-color: var(--good); color: #fff; }
+.kp-ok .kp-key { opacity: .5; }
+.kp-progress { margin: .55rem 0 0; font-size: .88rem; color: var(--ink-2); font-weight: 600; }
+.kp-cancel { margin-top: .5rem; font-size: .88rem; }
 
 /* ---------------------------------------------------------------- welcome page */
 .welcome { padding-bottom: 1.75rem; }
@@ -275,7 +333,10 @@ a { color: var(--accent); }
 .panel h2 { margin: 0 0 .75rem; font-size: 1.05rem; text-transform: uppercase; letter-spacing: .05em; color: var(--ink-2); }
 .hero { display: grid; grid-template-columns: minmax(15rem, .85fr) 2.4fr; gap: 1.25rem; }
 @media (max-width: 900px) { .hero { grid-template-columns: 1fr; } }
+.verdict-col { display: grid; gap: .75rem; align-content: start; min-width: 0; }
 .verdict { display: grid; gap: .5rem; align-content: start; }
+.habits { display: flex; gap: .4rem; flex-wrap: wrap; font-size: .85rem; }
+.habits:empty { display: none; }
 .verdict-badge {
   display: inline-flex; align-items: center; gap: .6rem;
   font-size: 2.1rem; font-weight: 800; letter-spacing: -.01em; line-height: 1.1;
@@ -291,8 +352,9 @@ a { color: var(--accent); }
 .verdict li { margin: .2rem 0; }
 .signals { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
 @media (max-width: 900px) { .signals { grid-template-columns: 1fr; } }
-/* four gauges (device added): 4 across on wide screens, 2x2 on laptops, stacked on phones */
-.signals { grid-template-columns: repeat(4, 1fr); }
+/* six gauges (device + the two keypad halves): 3x2 on wide screens, 2x3 on
+   laptops, stacked on phones. Six across would make each gauge unreadable. */
+.signals { grid-template-columns: repeat(3, 1fr); }
 @media (max-width: 1200px) { .signals { grid-template-columns: repeat(2, 1fr); } }
 @media (max-width: 700px) { .signals { grid-template-columns: 1fr; } }
 .signal-card { border: 1px solid var(--line); border-radius: 12px; padding: .9rem 1rem; display: grid; gap: .6rem; align-content: start; }

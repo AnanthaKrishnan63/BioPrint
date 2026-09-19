@@ -25,7 +25,8 @@ CREATE TABLE IF NOT EXISTS users (
     pw_hash         BLOB    NOT NULL,
     created_at      TEXT    NOT NULL,
     keystroke_model TEXT,               -- JSON from scorer.Model.to_dict(); NULL until enrolled
-    pointer_model   TEXT                -- JSON; NULL if too few enrollment samples had pointer data
+    pointer_model   TEXT,               -- JSON; NULL if too few enrollment samples had pointer data
+    keypad_model    TEXT                -- JSON from engine.keypad.Profile.to_dict(); NULL until the keypad runs are done
 );
 
 CREATE TABLE IF NOT EXISTS samples (    -- RAW. One per enrollment repetition or login attempt.
@@ -38,6 +39,29 @@ CREATE TABLE IF NOT EXISTS samples (    -- RAW. One per enrollment repetition or
     pointer_vector   TEXT,              -- JSON FeatureVector, derived
     status           TEXT    NOT NULL DEFAULT 'ok',  -- ok | retype | wrong_password
     corrections      INTEGER            -- Backspace/Delete/arrow presses in the password field
+);
+
+CREATE TABLE IF NOT EXISTS keypad_challenges (  -- issued layouts; a run must answer one of these
+    id          TEXT    PRIMARY KEY,
+    username    TEXT    NOT NULL,
+    layout      TEXT    NOT NULL,      -- JSON list[int]
+    target      TEXT    NOT NULL,      -- JSON list[int]
+    created_at  TEXT    NOT NULL,
+    expires_at  TEXT    NOT NULL,
+    used        INTEGER NOT NULL DEFAULT 0
+);
+
+CREATE TABLE IF NOT EXISTS keypad_runs (    -- RAW. One per scrambled-keypad captcha, enrollment or step-up.
+    id            INTEGER PRIMARY KEY,
+    user_id       INTEGER NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+    kind          TEXT    NOT NULL CHECK (kind IN ('enroll', 'stepup')),
+    attempt_id    INTEGER REFERENCES attempts(id) ON DELETE SET NULL,
+    created_at    TEXT    NOT NULL,
+    run_json      TEXT    NOT NULL,    -- contracts.KeypadRun, verbatim
+    cog_vectors   TEXT,                -- JSON list[FeatureVector], one per tap, derived
+    motor_vectors TEXT,                -- JSON list[FeatureVector], one per tap, derived
+    device_class  TEXT    NOT NULL DEFAULT 'unknown',
+    status        TEXT    NOT NULL DEFAULT 'ok'  -- ok | incomplete | wrong_password | bad_challenge
 );
 
 CREATE TABLE IF NOT EXISTS attempts (   -- one per /api/login call, including failures
@@ -76,6 +100,7 @@ def connect():
 MIGRATIONS = [
     ("samples", "status", "TEXT NOT NULL DEFAULT 'ok'"),
     ("samples", "corrections", "INTEGER"),
+    ("users", "keypad_model", "TEXT"),
 ]
 
 

@@ -5,6 +5,7 @@
 // the approach to the button, so the button must sit in the same place every time.
 import { createCapture } from './capture.js';
 import { createPointerCapture } from './pointer.js';
+import { createKeypad } from './keypad.js';
 import { collectEnv } from './probe.js';
 import { $, el, gauge, svgIcon, decisionInfo, markNav, applyTheme, fmt } from './ui.js';
 
@@ -138,6 +139,11 @@ let sessionUser = null;
 // pointer features depend on the geometry not changing. Null when not stepping up.
 const STEP_UP_SAMPLES = 3;
 let stepUp = null; // { username, samples: [] }
+// A scrambled-keypad phase in progress: the tail of enrollment, or the answer to
+// a "keypad" login decision. Same card, fields hidden, widget in their place.
+const KEYPAD_ENROLL_RUNS = 6; // contracts.KEYPAD_ENROLL_RUNS
+const KEYPAD_STEPUP_RUNS = 2; // contracts.KEYPAD_STEPUP_RUNS
+let keypadPhase = null; // { kind, creds, count, target, runs, widget, note, bad }
 
 const COPY = {
   login: {
@@ -160,6 +166,7 @@ const COPY = {
 function setMode(next, { keepResult = false } = {}) {
   mode = next;
   stepUp = null; // switching modes abandons a step-up; the server forgets it in 10 minutes
+  endKeypad(); // …and abandons a keypad phase, for the same reason
   const copy = COPY[next];
   title.textContent = copy.title;
   sub.textContent = copy.sub;
@@ -179,14 +186,38 @@ function setMode(next, { keepResult = false } = {}) {
 const enrollButtonLabel = () =>
   `${COPY.enroll.button} ${Math.min(enrollState.count + 1, enrollState.target)} of ${enrollState.target}`;
 
+/** A done/current/todo bar of `total` segments, `done` of them filled. */
+function progressBar(done, total, label) {
+  const bar = el('div', { className: 'progress', role: 'img' });
+  bar.setAttribute('aria-label', label);
+  for (let i = 0; i < total; i++) {
+    bar.append(el('span', { className: i < done ? 'done' : i === done ? 'current' : '' }));
+  }
+  return bar;
+}
+
 function renderFoot() {
   foot.replaceChildren();
-  if (mode === 'enroll') {
-    const bar = el('div', { className: 'progress', role: 'img' });
-    bar.setAttribute('aria-label', `${enrollState.count} of ${enrollState.target} repetitions saved`);
-    for (let i = 0; i < enrollState.target; i++) {
-      bar.append(el('span', { className: i < enrollState.count ? 'done' : i === enrollState.count ? 'current' : '' }));
+  if (keypadPhase) {
+    const { count, target, kind, note, bad } = keypadPhase;
+    const n = Math.min(count + 1, target);
+    foot.append(
+      progressBar(count, target, `${count} of ${target} keypad checks done`),
+      el('div', { className: 'progress-label' },
+        el('span', {}, `Keypad check ${n} of ${target}`),
+        el('span', {}, count >= target ? 'checking…' : 'tap the digits shown')),
+      el('p', { className: bad ? 'foot-note err' : 'foot-note', role: bad ? 'alert' : null }, note),
+    );
+    if (kind === 'login') {
+      const cancel = el('a', { href: './index.html#login', className: 'kp-cancel' }, 'Cancel and sign in again');
+      cancel.addEventListener('click', (e) => { e.preventDefault(); setMode('login'); });
+      foot.append(el('p', { className: 'foot-note' }, cancel));
     }
+    return;
+  }
+  if (mode === 'enroll') {
+    const bar = progressBar(enrollState.count, enrollState.target,
+      `${enrollState.count} of ${enrollState.target} repetitions saved`);
     const label = el(
       'div',
       { className: 'progress-label' },
@@ -204,11 +235,7 @@ function renderFoot() {
     );
   } else if (stepUp) {
     const n = stepUp.samples.length;
-    const bar = el('div', { className: 'progress', role: 'img' });
-    bar.setAttribute('aria-label', `${n} of ${STEP_UP_SAMPLES} extra typings heard`);
-    for (let i = 0; i < STEP_UP_SAMPLES; i++) {
-      bar.append(el('span', { className: i < n ? 'done' : i === n ? 'current' : '' }));
-    }
+    const bar = progressBar(n, STEP_UP_SAMPLES, `${n} of ${STEP_UP_SAMPLES} extra typings heard`);
     const label = el(
       'div',
       { className: 'progress-label' },
@@ -273,6 +300,7 @@ function renderLogin(data, rtt) {
     allow: 'Your typing rhythm matched the profile enrolled for this account.',
     block: 'The password was correct, but the behaviour was not. BioPrint blocked this on behaviour alone — no code, no second device.',
     step_up: `Your rhythm matched, but this browser does not look like the one you enrolled on. Type your password ${STEP_UP_SAMPLES} more times below so we can hear more of it — the decision is made from typing alone.`,
+    keypad: `This browser is new, and typing alone cannot settle it. Solve ${KEYPAD_STEPUP_RUNS} scrambled keypads below — how you hunt for a digit and reach it travels between devices in a way a password's rhythm does not.`,
     retype: 'There is nothing to compare when the password is corrected mid-way. Type it again, straight through.',
     wrong_password: 'Check the password and try again.',
     unknown_user: 'Create the account first, then enroll your rhythm.',
@@ -293,8 +321,8 @@ function renderLogin(data, rtt) {
     icon: info.icon,
     heading: data.decision === 'allow' ? `Welcome back, ${user}` : info.title,
     body: bodies[data.decision] || '',
-    // The step-up card stays calm: the device details are on the dashboard.
-    reasons: data.decision === 'step_up' ? [] : data.reasons || [],
+    // The step-up and keypad cards stay calm: the device details are on the dashboard.
+    reasons: data.decision === 'step_up' || data.decision === 'keypad' ? [] : data.reasons || [],
     signals: (data.signals || []).filter((s) => s.available !== false || s.name === 'pointer'),
     meta,
     actions,
@@ -322,6 +350,14 @@ async function doRegister(creds) {
       enrollState.count = st.enroll_count || 0;
       enrollState.last = 'Picking up where you left off — use the same password.';
       setMode('enroll');
+      return;
+    }
+    // Password reps are done but the keypad half is not: pick that up instead.
+    // The password just typed is not checked here — the runs carry it and the
+    // server rejects them if it is wrong.
+    if (st && st.enrolled && keypadLeft(st)) {
+      enrollState.count = st.enroll_count || enrollState.target;
+      enterKeypad('enroll', creds, { count: st.keypad_count || 0, target: st.keypad_target });
       return;
     }
     showResult({
@@ -369,19 +405,25 @@ async function doEnrollRep(creds) {
   submit.textContent = enrollButtonLabel();
   renderFoot();
 
-  if (data.enrolled) {
-    const user = creds.username;
-    showResult({
-      tone: 'allow',
-      icon: 'check',
-      heading: 'Your rhythm is enrolled',
-      body: `BioPrint fitted a profile for ${user} from ${data.count} repetitions. From now on a login has to match it.`,
-      actions: [
-        el('a', { href: `./dashboard.html?user=${encodeURIComponent(user)}` }, 'Open the dashboard →'),
-      ],
-    });
-    setMode('login', { keepResult: true }); // never focuses or clicks the button itself
-  }
+  // The rhythm is learned, but enrollment is not over: the keypad checks are what
+  // let this account be recognised on a device it has never typed on. The success
+  // card waits until they are done.
+  if (data.enrolled) enterKeypad('enroll', creds);
+}
+
+/** The end of enrollment: rhythm fitted and the keypad checks solved. */
+function showEnrolled(user, reps) {
+  showResult({
+    tone: 'allow',
+    icon: 'check',
+    heading: 'Your rhythm is enrolled',
+    body: `BioPrint fitted a profile for ${user} from ${reps} repetitions, and learned how you work a scrambled keypad. From now on a login has to match it.`,
+    actions: [
+      el('a', { href: './index.html#login' }, 'Sign in →'),
+      el('a', { href: `./dashboard.html?user=${encodeURIComponent(user)}` }, 'Open the dashboard →'),
+    ],
+  });
+  setMode('login', { keepResult: true }); // never focuses or clicks the button itself
 }
 
 // An allow is a real login: the server has set the session cookie. Give the
@@ -418,6 +460,10 @@ function afterVerdict(creds, data, rtt) {
     result.append(el('p', { className: 'result-next', id: 'stepup-progress' }, stepUpLine()));
     renderFoot();
     password.focus();
+  } else if (data.decision === 'keypad') {
+    // The verdict card stays up (it explains why) while the keypad takes the form's place.
+    result.append(el('p', { className: 'result-next' }, `${KEYPAD_STEPUP_RUNS} keypads to go`));
+    enterKeypad('login', creds);
   }
 }
 
@@ -474,9 +520,183 @@ async function doStepUpRep(creds) {
   afterVerdict(creds, data, rtt);
 }
 
+// ---------------------------------------------------------------- keypad phase
+// The scrambled keypad takes over the same card: the fields and the button are
+// hidden (.keypad-on) and the widget is mounted where they were, so nothing
+// jumps around the page. Two callers:
+//   enroll — after the password reps, KEYPAD_ENROLL_RUNS captchas, one POST each.
+//   login  — a "keypad" decision, KEYPAD_STEPUP_RUNS captchas, both posted at once.
+const KEYPAD_COPY = {
+  enroll: {
+    title: 'One more thing',
+    sub: 'Six quick keypad checks teach BioPrint how you find and tap digits, so it can recognise you on a new device too.',
+    note: 'The digits move every time, so there is nothing to memorise — we time how you find and reach each one.',
+  },
+  login: {
+    title: 'Two quick keypad checks',
+    sub: 'This browser is new. Tap the digits shown: how you hunt for each one is the check, and it works the same on a phone.',
+    note: 'No code and no second device — this is still you, measured.',
+  },
+};
+
+const keypadLeft = (st) =>
+  Number.isFinite(st.keypad_target) && (st.keypad_count || 0) < st.keypad_target;
+
+function keypadMount() {
+  let m = $('keypad-mount');
+  if (!m) {
+    m = el('div', { id: 'keypad-mount' });
+    card.insertBefore(m, foot); // between the (hidden) button and the card foot
+  }
+  m.hidden = false;
+  return m;
+}
+
+function enterKeypad(kind, creds, { count = 0, target } = {}) {
+  endKeypad();
+  keypadPhase = {
+    kind,
+    creds,
+    count,
+    target: target || (kind === 'enroll' ? KEYPAD_ENROLL_RUNS : KEYPAD_STEPUP_RUNS),
+    runs: [],
+    widget: null,
+    note: KEYPAD_COPY[kind].note,
+    bad: false,
+  };
+  title.textContent = KEYPAD_COPY[kind].title;
+  sub.textContent = KEYPAD_COPY[kind].sub;
+  card.classList.add('keypad-on');
+  keypadMount();
+  renderFoot();
+  nextKeypad();
+}
+
+function endKeypad() {
+  if (!keypadPhase) return;
+  if (keypadPhase.widget) keypadPhase.widget.destroy();
+  keypadPhase = null;
+  card.classList.remove('keypad-on');
+  const m = $('keypad-mount');
+  if (m) {
+    m.replaceChildren();
+    m.hidden = true;
+  }
+}
+
+const keypadBusy = (text) => keypadMount().replaceChildren(el('p', { className: 'foot-note' }, text));
+
+/** Ask for a fresh layout and render it. Every captcha is a new challenge. */
+async function nextKeypad() {
+  const kp = keypadPhase;
+  keypadBusy('Shuffling a new keypad…');
+  // The probe is independent of the challenge, so pay for both at once.
+  const [res, env] = await Promise.all([
+    api('/api/keypad/challenge', { username: kp.creds.username }),
+    collectEnv(),
+  ]);
+  if (keypadPhase !== kp) return; // cancelled while we waited
+  if (!res.ok || !res.data || !res.data.id) {
+    // A server without the keypad routes must not strand a finished enrollment.
+    if (kp.kind === 'enroll' && (res.status === 404 || res.status === 405)) {
+      const user = kp.creds.username;
+      endKeypad();
+      showEnrolled(user, enrollState.count);
+      return;
+    }
+    kp.bad = true;
+    kp.note = (res.data && res.data.detail) || 'Could not fetch a keypad.';
+    const again = el('button', { type: 'button', className: 'btn btn-ghost' }, 'Try again');
+    again.addEventListener('click', () => nextKeypad());
+    keypadMount().replaceChildren(again);
+    renderFoot();
+    return;
+  }
+  kp.widget = createKeypad(keypadMount(), { challenge: res.data, env, onDone: onKeypadRun });
+  renderFoot();
+}
+
+/** One captcha solved. Enrollment posts each run; a login collects both, then posts. */
+async function onKeypadRun(run) {
+  const kp = keypadPhase;
+  if (!kp) return;
+  if (kp.widget) {
+    kp.widget.destroy();
+    kp.widget = null;
+  }
+  keypadBusy('Checking…');
+  if (kp.kind === 'enroll') return enrollKeypadRun(kp, run);
+
+  kp.runs.push(run);
+  kp.count = kp.runs.length;
+  renderFoot();
+  if (kp.runs.length < kp.target) return nextKeypad();
+
+  const creds = kp.creds;
+  const { ok, status, data, rtt } = await api('/api/login/keypad', { ...creds, runs: kp.runs });
+  if (keypadPhase !== kp) return;
+  endKeypad();
+  setMode('login', { keepResult: true });
+  if (!ok) {
+    showResult(status === 409
+      ? { tone: 'other', icon: 'info', heading: 'That check has lapsed', body: 'Sign in again and we will pick it up from there.' }
+      : { tone: 'other', icon: 'info', heading: 'Could not reach the checker', body: (data && data.detail) || 'Unknown error.' });
+    return;
+  }
+  // The response is an ordinary login verdict: allow lands on the welcome page.
+  afterVerdict(creds, data, rtt);
+}
+
+async function enrollKeypadRun(kp, run) {
+  const { ok, status, data } = await api('/api/enroll/keypad', { ...kp.creds, runs: [run] });
+  if (keypadPhase !== kp) return;
+  if (!ok) {
+    if (status === 401 || status === 403) {
+      endKeypad();
+      setMode('register');
+      showResult({
+        tone: 'other', icon: 'info', heading: 'That password is not right',
+        body: 'The keypad checks are added to an existing account, so the password has to match it.',
+      });
+      return;
+    }
+    kp.bad = true;
+    kp.note = (data && data.detail) || 'The server rejected that keypad.';
+    renderFoot();
+    return nextKeypad();
+  }
+  const why = (data.reasons && data.reasons[0]) || '';
+  // The server answers a wrong password with accepted=false, not an error status.
+  // Looping on a new challenge would never get anywhere: send them back instead.
+  if (!data.accepted && /password/i.test(why)) {
+    endKeypad();
+    setMode('register');
+    showResult({
+      tone: 'other', icon: 'info', heading: 'That password is not right',
+      body: 'The keypad checks are added to an existing account, so the password has to match it.',
+    });
+    return;
+  }
+  kp.target = data.target || kp.target;
+  kp.count = data.count;
+  kp.bad = !data.accepted;
+  kp.note = data.accepted
+    ? KEYPAD_COPY.enroll.note
+    // A rejected run must be unmissable, exactly like a rejected typing rep.
+    : `✕ Not saved — ${why || 'that keypad could not be used'}.`;
+  renderFoot();
+  if (data.enrolled) {
+    const user = kp.creds.username;
+    endKeypad();
+    showEnrolled(user, enrollState.count);
+    return;
+  }
+  nextKeypad();
+}
+
 card.addEventListener('submit', async (e) => {
   e.preventDefault();
-  if (busy) return;
+  if (busy || keypadPhase) return; // no fields are visible during a keypad phase
   const creds = { username: username.value.trim(), password: password.value };
   if (!creds.username || !creds.password) {
     hint.className = 'hint-row warn';

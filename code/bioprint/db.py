@@ -34,8 +34,10 @@ CREATE TABLE IF NOT EXISTS samples (    -- RAW. One per enrollment repetition or
     kind             TEXT    NOT NULL CHECK (kind IN ('enroll', 'login')),
     created_at       TEXT    NOT NULL,
     sample_json      TEXT    NOT NULL,  -- contracts.Sample, verbatim
-    keystroke_vector TEXT,              -- JSON FeatureVector, derived
-    pointer_vector   TEXT               -- JSON FeatureVector, derived
+    keystroke_vector TEXT,              -- JSON FeatureVector, derived; NULL when status != 'ok'
+    pointer_vector   TEXT,              -- JSON FeatureVector, derived
+    status           TEXT    NOT NULL DEFAULT 'ok',  -- ok | retype | wrong_password
+    corrections      INTEGER            -- Backspace/Delete/arrow presses in the password field
 );
 
 CREATE TABLE IF NOT EXISTS attempts (   -- one per /api/login call, including failures
@@ -69,9 +71,21 @@ def connect():
         conn.close()
 
 
+# Columns added after the first databases existed. CREATE TABLE IF NOT EXISTS
+# never alters an existing table, so each is added here if missing.
+MIGRATIONS = [
+    ("samples", "status", "TEXT NOT NULL DEFAULT 'ok'"),
+    ("samples", "corrections", "INTEGER"),
+]
+
+
 def init_db() -> None:
     with connect() as conn:
         conn.executescript(SCHEMA)
+        for table, column, decl in MIGRATIONS:
+            have = {r[1] for r in conn.execute(f"PRAGMA table_info({table})")}
+            if column not in have:
+                conn.execute(f"ALTER TABLE {table} ADD COLUMN {column} {decl}")
 
 
 # scrypt from the standard library: no extra dependency, and a slow hash is the

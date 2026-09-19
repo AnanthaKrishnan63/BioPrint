@@ -192,3 +192,11 @@ def keystroke_vector(keystrokes: list[Keystroke]) -> FeatureVector:
 def template_codes(vector: FeatureVector) -> list[str]:
     """The key sequence a keystroke vector was built from, recovered from its H.* names."""
     return [n[2:].rsplit("#", 1)[0] for n in vector.names if n.startswith("H.")]
+
+
+def correction_count(sample: Sample) -> int:
+    """Backspace/Delete/caret presses in the password field: how often a person
+    notices and fixes a slip. Kept per sample so correction habits can be studied
+    (and, later, scored) even though a corrected sample is never aligned."""
+    return sum(1 for e in sample.keystrokes
+               if e.type == "down" and e.field == "password" and e.code in CORRECTION)

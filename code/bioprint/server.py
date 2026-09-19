@@ -45,11 +45,23 @@ def _vectors(conn, user_id: int, column: str, kind: str | None = None,
     return [FeatureVector.model_validate_json(r[0]) for r in conn.execute(q, args)]
 
 
+def _store_sample(conn, user_id: int, kind: str, sample, kv, pv, status: str = "ok") -> int:
+    """Every submission is stored, including the rejected ones: how often a person
+    slips and fixes it, or submits a wrong password without noticing, is data."""
+    cur = conn.execute(
+        "INSERT INTO samples (user_id, kind, created_at, sample_json, keystroke_vector, pointer_vector,"
+        " status, corrections) VALUES (?, ?, ?, ?, ?, ?, ?, ?)",
+        (user_id, kind, db.now(), sample.model_dump_json(), kv.model_dump_json() if kv else None,
+         pv.model_dump_json() if pv else None, status, features.correction_count(sample)),
+    )
+    return cur.lastrowid
+
+
 def _enroll_rows(conn, user_id: int) -> list[tuple[FeatureVector, FeatureVector | None]]:
     """Every accepted enrollment sample in order: (keystroke vector, pointer vector or None)."""
     rows = conn.execute(
         "SELECT keystroke_vector, pointer_vector FROM samples"
-        " WHERE user_id = ? AND kind = 'enroll' ORDER BY id", (user_id,)).fetchall()
+        " WHERE user_id = ? AND kind = 'enroll' AND status = 'ok' ORDER BY id", (user_id,)).fetchall()
     return [(FeatureVector.model_validate_json(k), FeatureVector.model_validate_json(p) if p else None)
             for k, p in rows]
 
@@ -80,24 +92,20 @@ def enroll(body: AttemptIn) -> EnrollOut:
         rows = _enroll_rows(conn, u["id"])
         count = max(0, len(rows) - WARMUP_REPS)
 
-        def reject(reason: str) -> EnrollOut:
+        def reject(reason: str, status: str) -> EnrollOut:
+            _store_sample(conn, u["id"], "enroll", body.sample, None, None, status)
             return EnrollOut(accepted=False, count=count, target=ENROLL_TARGET,
                              enrolled=u["keystroke_model"] is not None, reasons=[reason])
 
         if not db.check_password(body.password, u["pw_salt"], u["pw_hash"]):
-            return reject("wrong password")
+            return reject("wrong password", "wrong_password")
         template = features.template_codes(rows[0][0]) if rows else None
         if why := features.needs_retype(body.sample, template):
-            return reject(why)
+            return reject(why, "retype")
 
         kv = features.keystroke_vector(features.password_keystrokes(body.sample))
         pv = pointer.pointer_vector(body.sample)
-        conn.execute(
-            "INSERT INTO samples (user_id, kind, created_at, sample_json, keystroke_vector, pointer_vector)"
-            " VALUES (?, 'enroll', ?, ?, ?, ?)",
-            (u["id"], db.now(), body.sample.model_dump_json(), kv.model_dump_json(),
-             pv.model_dump_json() if pv else None),
-        )
+        _store_sample(conn, u["id"], "enroll", body.sample, kv, pv)
         rows.append((kv, pv))
         warmup = len(rows) <= WARMUP_REPS
         count = len(rows) - WARMUP_REPS
@@ -141,6 +149,7 @@ def login(body: AttemptIn) -> LoginOut:
         if not u:
             return finish("unknown_user", ["no such account"])
         if not db.check_password(body.password, u["pw_salt"], u["pw_hash"]):
+            sample_id = _store_sample(conn, u["id"], "login", body.sample, None, None, "wrong_password")
             return finish("wrong_password", ["wrong password"])
         if u["keystroke_model"] is None:
             return finish("not_enrolled", ["account has not finished enrollment"])
@@ -151,13 +160,7 @@ def login(body: AttemptIn) -> LoginOut:
         kv = None if retype else features.keystroke_vector(features.password_keystrokes(body.sample))
         pv = pointer.pointer_vector(body.sample)
 
-        cur = conn.execute(
-            "INSERT INTO samples (user_id, kind, created_at, sample_json, keystroke_vector, pointer_vector)"
-            " VALUES (?, 'login', ?, ?, ?, ?)",
-            (u["id"], db.now(), body.sample.model_dump_json(), kv.model_dump_json() if kv else None,
-             pv.model_dump_json() if pv else None),
-        )
-        sample_id = cur.lastrowid
+        sample_id = _store_sample(conn, u["id"], "login", body.sample, kv, pv, "retype" if retype else "ok")
 
         # Bot check runs even when the sample is unscorable: a script that fumbles
         # the password is still a script.
@@ -216,9 +219,25 @@ def user_status(username: str) -> dict:
         u = _user(conn, username)
         if not u:
             raise HTTPException(404, "unknown user")
-        n = conn.execute("SELECT COUNT(*) FROM samples WHERE user_id = ? AND kind = 'enroll'", (u["id"],)).fetchone()[0]
+        n = conn.execute("SELECT COUNT(*) FROM samples WHERE user_id = ? AND kind = 'enroll' AND status = 'ok'",
+                         (u["id"],)).fetchone()[0]
+        # Correction habits across every submission, accepted or not.
+        h = conn.execute(
+            """SELECT COUNT(*) AS submissions,
+                      SUM(status = 'retype') AS corrected,
+                      SUM(status = 'wrong_password') AS wrong_password,
+                      COALESCE(AVG(corrections), 0) AS mean_corrections
+               FROM samples WHERE user_id = ?""", (u["id"],)).fetchone()
+        habits = {
+            "submissions": h["submissions"],
+            "corrected": h["corrected"] or 0,               # slipped and fixed it
+            "wrong_password": h["wrong_password"] or 0,     # slipped and did not notice
+            "correction_rate": (h["corrected"] or 0) / h["submissions"] if h["submissions"] else 0.0,
+            "wrong_password_rate": (h["wrong_password"] or 0) / h["submissions"] if h["submissions"] else 0.0,
+            "mean_corrections": h["mean_corrections"],
+        }
     return {"username": username, "enroll_count": max(0, n - WARMUP_REPS), "enroll_target": ENROLL_TARGET,
-            "warmup_reps": WARMUP_REPS,
+            "warmup_reps": WARMUP_REPS, "pointer_enrolled": u["pointer_model"] is not None, "habits": habits,
             "enrolled": u["keystroke_model"] is not None}
 
 

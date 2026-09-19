@@ -152,6 +152,10 @@ def needs_retype(sample: Sample, template_codes: list[str] | None = None) -> str
     a paste anywhere in the form, including the username, and pasting the password
     leaves no key events at all, which the first check below already catches.
     """
+    # Pasting fires no key events for the text, so there is no rhythm to compare.
+    # Checked first: otherwise the Ctrl+V keys read as "keys differ from enrollment".
+    if sample.meta.had_paste:
+        return "the password was pasted; please type it, we compare the rhythm"
     ks = password_keystrokes(sample)
     if not ks:
         return "no keystrokes in the password field"

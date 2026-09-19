@@ -15,7 +15,7 @@ from fastapi.staticfiles import StaticFiles
 
 import db
 from contracts import AttemptIn, EnrollOut, FeatureVector, LoginOut, RegisterIn, SignalResult
-from engine import bot, features, pointer, scorer
+from engine import bot, device, features, pointer, scorer
 from engine.decide import decide
 
 ENROLL_TARGET = 10  # counted repetitions
@@ -173,6 +173,9 @@ def login(body: AttemptIn) -> LoginOut:
             return finish("retype", [retype])
 
         signals.append(scorer.score(ks_model, kv.values, "keystroke"))
+        enrolled_envs = [json.loads(r[0])["env"] for r in conn.execute(
+            "SELECT sample_json FROM samples WHERE user_id = ? AND kind = 'enroll' AND status = 'ok'", (u["id"],))]
+        signals.append(device.check(body.sample.env, enrolled_envs))
         if u["pointer_model"] and pv:
             signals.append(scorer.score(scorer.Model.from_dict(json.loads(u["pointer_model"])), pv.values, "pointer"))
         else:

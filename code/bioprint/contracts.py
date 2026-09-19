@@ -94,7 +94,7 @@ class Contribution(BaseModel):
 class SignalResult(BaseModel):
     """Uniform result for every signal. Signals are never merged into one number here."""
 
-    name: Literal["keystroke", "pointer", "bot"]
+    name: Literal["keystroke", "pointer", "bot", "device"]
     available: bool = True  # False: not enough data to judge (e.g. no pointer used)
     score: float = 0.0  # larger = less like the owner (or more bot-like)
     threshold: float = 1.0

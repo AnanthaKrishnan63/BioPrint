@@ -29,4 +29,9 @@ def decide(signals: list[SignalResult]) -> tuple[Decision, list[str]]:
     if pt and pt.available and pt.flagged:
         reasons.append("pointer movement was unusual (not decisive on its own)")
 
+    dv = by.get("device")
+    if dv and dv.available and dv.flagged:
+        reasons.append("this looks like a different device from enrollment (advisory)")
+        reasons += dv.reasons
+
     return "allow", reasons or ["typing rhythm matches the account owner"]

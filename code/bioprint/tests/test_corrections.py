@@ -56,3 +56,14 @@ def test_migration_adds_columns_to_an_old_database(tmp_path, monkeypatch):
     with sqlite3.connect(old) as c:
         cols = {r[1] for r in c.execute("PRAGMA table_info(samples)")}
     assert {"status", "corrections"} <= cols
+
+
+def test_pasted_password_asks_to_type_it(client):
+    client.post("/api/register", json={"username": "a", "password": PASSWORD})
+    for i in range(11):
+        client.post("/api/enroll", json={"username": "a", "password": PASSWORD, "sample": make_sample(seed=i)})
+    from test_bot import human_env
+    pasted = make_sample(codes=["ControlLeft", "KeyV"], seed=7, env=human_env())
+    pasted["meta"]["had_paste"] = True
+    r = client.post("/api/login", json={"username": "a", "password": PASSWORD, "sample": pasted}).json()
+    assert r["decision"] == "retype" and "pasted" in r["reasons"][0]

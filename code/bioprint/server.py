@@ -12,15 +12,17 @@ import hmac
 import json
 import os
 import secrets
+import statistics
 import time
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
 from fastapi import FastAPI, HTTPException, Request, Response
 from fastapi.staticfiles import StaticFiles
 
 import db
-from contracts import AttemptIn, EnrollOut, FeatureVector, LoginOut, RegisterIn, SignalResult
+from contracts import (STEP_UP_SAMPLES, STEP_UP_WINDOW_S, AttemptIn, EnrollOut, FeatureVector, LoginOut,
+                       RegisterIn, SignalResult, StepUpIn)
 from engine import bot, device, features, pointer, scorer
 from engine.decide import decide
 
@@ -185,6 +187,40 @@ def enroll(body: AttemptIn) -> EnrollOut:
                      warmup=warmup, reasons=reasons)
 
 
+def _record(conn, response: Response, t0: float, user, sample_id: int | None, username: str,
+            decision, reasons: list[str], signals: list[SignalResult]) -> LoginOut:
+    """Store one attempts row and apply the decision to the session cookie.
+
+    Only an allow signs the browser in. A block also signs it out: whoever is at
+    this keyboard just failed the behaviour check, so any session they inherited
+    (unlocked laptop, stolen cookie) ends here. Everything else, step_up included,
+    leaves the cookie alone.
+    """
+    latency = (time.perf_counter() - t0) * 1000
+    cur = conn.execute(
+        "INSERT INTO attempts (user_id, sample_id, username, created_at, decision, reasons, signals, latency_ms)"
+        " VALUES (?, ?, ?, ?, ?, ?, ?, ?)",
+        (user["id"] if user else None, sample_id, username, db.now(), decision, json.dumps(reasons),
+         json.dumps([s.model_dump() for s in signals]), latency),
+    )
+    if decision == "allow":
+        start_session(response, username)
+    elif decision == "block":
+        end_session(response)
+    return LoginOut(decision=decision, reasons=reasons, signals=signals, latency_ms=latency, attempt_id=cur.lastrowid)
+
+
+def _enrolled_envs(conn, user_id: int) -> list[dict]:
+    return [json.loads(r[0])["env"] for r in conn.execute(
+        "SELECT sample_json FROM samples WHERE user_id = ? AND kind = 'enroll' AND status = 'ok'", (user_id,))]
+
+
+def _pointer_signal(u, pv) -> SignalResult:
+    if u["pointer_model"] and pv:
+        return scorer.score(scorer.Model.from_dict(json.loads(u["pointer_model"])), pv.values, "pointer")
+    return SignalResult(name="pointer", available=False, reasons=["no pointer data to compare"])
+
+
 @app.post("/api/login")
 def login(body: AttemptIn, response: Response) -> LoginOut:
     t0 = time.perf_counter()
@@ -195,22 +231,7 @@ def login(body: AttemptIn, response: Response) -> LoginOut:
         u = _user(conn, body.username)
 
         def finish(decision, reasons) -> LoginOut:
-            latency = (time.perf_counter() - t0) * 1000
-            cur = conn.execute(
-                "INSERT INTO attempts (user_id, sample_id, username, created_at, decision, reasons, signals, latency_ms)"
-                " VALUES (?, ?, ?, ?, ?, ?, ?, ?)",
-                (u["id"] if u else None, sample_id, body.username, db.now(), decision, json.dumps(reasons),
-                 json.dumps([s.model_dump() for s in signals]), latency),
-            )
-            # Only an allow signs the browser in. A block also signs it out: whoever
-            # is at this keyboard just failed the behaviour check, so any session
-            # they inherited (unlocked laptop, stolen cookie) ends here.
-            if decision == "allow":
-                start_session(response, body.username)
-            elif decision == "block":
-                end_session(response)
-            return LoginOut(decision=decision, reasons=reasons, signals=signals,
-                            latency_ms=latency, attempt_id=cur.lastrowid)
+            return _record(conn, response, t0, u, sample_id, body.username, decision, reasons, signals)
 
         if not u:
             return finish("unknown_user", ["no such account"])
@@ -235,19 +256,113 @@ def login(body: AttemptIn, response: Response) -> LoginOut:
         signals.append(bot.check(body.sample, kv, prior, len(body.password)))
         if signals[-1].flagged:
             return finish(*decide(signals))
+        # The device axis needs no keystrokes, so a retype still gets it: mobile
+        # keyboards send an empty event.code and every phone login is a retype today.
+        signals.append(device.check(body.sample.env, _enrolled_envs(conn, u["id"])))
         if retype:
             return finish("retype", [retype])
 
         signals.append(scorer.score(ks_model, kv.values, "keystroke"))
-        enrolled_envs = [json.loads(r[0])["env"] for r in conn.execute(
-            "SELECT sample_json FROM samples WHERE user_id = ? AND kind = 'enroll' AND status = 'ok'", (u["id"],))]
-        signals.append(device.check(body.sample.env, enrolled_envs))
-        if u["pointer_model"] and pv:
-            signals.append(scorer.score(scorer.Model.from_dict(json.loads(u["pointer_model"])), pv.values, "pointer"))
-        else:
-            signals.append(SignalResult(name="pointer", available=False, reasons=["no pointer data to compare"]))
+        signals.append(_pointer_signal(u, pv))
 
         return finish(*decide(signals))
+
+
+def _pending_step_up(conn, user_id: int):
+    """The attempts row a step-up answers: the user's latest "step_up" decision,
+    recent enough, and not already settled by a later allow or block."""
+    since = (datetime.now(timezone.utc) - timedelta(seconds=STEP_UP_WINDOW_S)).isoformat(timespec="milliseconds")
+    row = conn.execute(
+        "SELECT * FROM attempts WHERE user_id = ? AND decision = 'step_up' AND created_at >= ?"
+        " ORDER BY id DESC LIMIT 1", (user_id, since)).fetchone()
+    if not row:
+        return None
+    settled = conn.execute(
+        "SELECT 1 FROM attempts WHERE user_id = ? AND id > ? AND decision IN ('allow', 'block') LIMIT 1",
+        (user_id, row["id"])).fetchone()
+    return None if settled else row
+
+
+@app.post("/api/login/stepup")
+def login_step_up(body: StepUpIn, response: Response) -> LoginOut:
+    """Answer to a "step_up" decision: STEP_UP_SAMPLES more typings of the password.
+
+    The pending attempt's keystroke score is read back from attempts.signals; the
+    median of it and the new scores is judged against the same threshold. Same
+    evidence, more of it: no code, no second device.
+    """
+    t0 = time.perf_counter()
+    signals: list[SignalResult] = []
+    sample_id = None
+
+    with db.connect() as conn:
+        u = _user(conn, body.username)
+
+        def finish(decision, reasons) -> LoginOut:
+            return _record(conn, response, t0, u, sample_id, body.username, decision, reasons, signals)
+
+        if not u:
+            return finish("unknown_user", ["no such account"])
+        if not db.check_password(body.password, u["pw_salt"], u["pw_hash"]):
+            for sample in body.samples:
+                sample_id = _store_sample(conn, u["id"], "login", sample, None, None, "wrong_password")
+            return finish("wrong_password", ["wrong password"])
+        pending = _pending_step_up(conn, u["id"])
+        if not pending or u["keystroke_model"] is None:
+            raise HTTPException(409, "no step-up is pending for this account; sign in first")
+        first = next((s for s in json.loads(pending["signals"]) if s["name"] == "keystroke" and s.get("available", True)),
+                     None)
+        if not first:
+            raise HTTPException(409, "the pending attempt has no keystroke score; sign in again")
+
+        ks_model = scorer.Model.from_dict(json.loads(u["keystroke_model"]))
+        template = features.template_codes(FeatureVector(names=ks_model.names, values=ks_model.center))
+
+        retypes: list[str] = []
+        bots: list[SignalResult] = []
+        scored: list[SignalResult] = []
+        pvs = []
+        for sample in body.samples:
+            retype = features.needs_retype(sample, template)
+            kv = None if retype else features.keystroke_vector(features.password_keystrokes(sample))
+            pv = pointer.pointer_vector(sample)
+            sample_id = _store_sample(conn, u["id"], "login", sample, kv, pv, "retype" if retype else "ok")
+            prior = [v.values for v in _vectors(conn, u["id"], "keystroke_vector", exclude_id=sample_id)
+                     if kv and v.names == kv.names]
+            bots.append(bot.check(sample, kv, prior, len(body.password)))
+            if retype:
+                retypes.append(retype)
+            else:
+                scored.append(scorer.score(ks_model, kv.values, "keystroke"))
+            if pv:
+                pvs.append(pv)
+
+        # One bot signal for the batch: the worst of the three.
+        signals.append(max(bots, key=lambda b: (b.flagged, b.score)))
+        if signals[-1].flagged:
+            return finish(*decide(signals))
+        signals.append(device.check(body.samples[-1].env, _enrolled_envs(conn, u["id"])))
+        if retypes:
+            # Simplest honest answer: the whole batch again, straight through.
+            return finish("retype", [f"{len(retypes)} of the {len(body.samples)} samples could not be used: "
+                                     f"{retypes[0]}; please type all {STEP_UP_SAMPLES} again"])
+
+        scores = [float(first["score"])] + [s.score for s in scored]
+        median = float(statistics.median(scores))
+        thr = ks_model.threshold
+        # Explain with the sample nearest the median: its contributions are the
+        # ones the verdict rests on.
+        nearest = min(scored, key=lambda s: abs(s.score - median))
+        listed = ", ".join(f"{x:.1f}" for x in scores)
+        signals.append(SignalResult(
+            name="keystroke", score=median, threshold=thr, flagged=median > thr,
+            contributions=nearest.contributions,
+            reasons=[f"median of {len(scores)} samples ({listed}) vs limit {thr:.1f}"] + nearest.reasons))
+        signals.append(_pointer_signal(u, pvs[0] if pvs else None))
+
+        decision, reasons = decide(signals, after_step_up=True)
+        headline = f"new device: median of {len(scores)} samples {median:.1f} vs limit {thr:.1f}"
+        return finish(decision, [headline] + reasons)
 
 
 @app.get("/api/session")

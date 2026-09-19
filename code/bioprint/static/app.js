@@ -133,6 +133,11 @@ let mode = 'login';
 // Who the server says is signed in on this browser (null if nobody). Only used
 // for the "Continue" note under the sign-in form; the form itself never changes.
 let sessionUser = null;
+// A "step_up" decision in progress: the server wants STEP_UP_SAMPLES more typings
+// of the password from this same form. Same fields, same button, same place —
+// pointer features depend on the geometry not changing. Null when not stepping up.
+const STEP_UP_SAMPLES = 3;
+let stepUp = null; // { username, samples: [] }
 
 const COPY = {
   login: {
@@ -154,6 +159,7 @@ const COPY = {
 
 function setMode(next, { keepResult = false } = {}) {
   mode = next;
+  stepUp = null; // switching modes abandons a step-up; the server forgets it in 10 minutes
   const copy = COPY[next];
   title.textContent = copy.title;
   sub.textContent = copy.sub;
@@ -196,6 +202,21 @@ function renderFoot() {
     foot.append(
       el('p', { className: 'foot-note' }, 'Already set up? ', el('a', { href: './index.html#login' }, 'Sign in'), '.'),
     );
+  } else if (stepUp) {
+    const n = stepUp.samples.length;
+    const bar = el('div', { className: 'progress', role: 'img' });
+    bar.setAttribute('aria-label', `${n} of ${STEP_UP_SAMPLES} extra typings heard`);
+    for (let i = 0; i < STEP_UP_SAMPLES; i++) {
+      bar.append(el('span', { className: i < n ? 'done' : i === n ? 'current' : '' }));
+    }
+    const label = el(
+      'div',
+      { className: 'progress-label' },
+      el('span', {}, `${n} of ${STEP_UP_SAMPLES} more typings`),
+      el('span', {}, n < STEP_UP_SAMPLES ? 'same password, your usual pace' : 'checking…'),
+    );
+    foot.append(bar, label, el('p', { className: 'foot-note' },
+      'New device, so BioPrint listens a little longer. No code, no other device — just your rhythm.'));
   } else {
     foot.append(
       el('p', { className: 'foot-note' }, 'New here? ', el('a', { href: './index.html#enroll' }, 'Create an account'), ' and teach BioPrint your rhythm.'),
@@ -251,6 +272,7 @@ function renderLogin(data, rtt) {
   const bodies = {
     allow: 'Your typing rhythm matched the profile enrolled for this account.',
     block: 'The password was correct, but the behaviour was not. BioPrint blocked this on behaviour alone — no code, no second device.',
+    step_up: `Your rhythm matched, but this browser does not look like the one you enrolled on. Type your password ${STEP_UP_SAMPLES} more times below so we can hear more of it — the decision is made from typing alone.`,
     retype: 'There is nothing to compare when the password is corrected mid-way. Type it again, straight through.',
     wrong_password: 'Check the password and try again.',
     unknown_user: 'Create the account first, then enroll your rhythm.',
@@ -271,7 +293,8 @@ function renderLogin(data, rtt) {
     icon: info.icon,
     heading: data.decision === 'allow' ? `Welcome back, ${user}` : info.title,
     body: bodies[data.decision] || '',
-    reasons: data.reasons || [],
+    // The step-up card stays calm: the device details are on the dashboard.
+    reasons: data.decision === 'step_up' ? [] : data.reasons || [],
     signals: (data.signals || []).filter((s) => s.available !== false || s.name === 'pointer'),
     meta,
     actions,
@@ -375,6 +398,12 @@ async function doLogin(creds) {
     showResult({ tone: 'other', icon: 'info', heading: 'Could not reach the checker', body: (data && data.detail) || 'Unknown error.' });
     return;
   }
+  afterVerdict(creds, data, rtt);
+}
+
+// Show a login verdict and act on it: allow lands on the signed-in page, block
+// drops the session, step_up starts collecting more typings from this same form.
+function afterVerdict(creds, data, rtt) {
   renderLogin(data, rtt);
   if (data.decision === 'allow') {
     sessionUser = creds.username;
@@ -383,7 +412,66 @@ async function doLogin(creds) {
   } else if (data.decision === 'block') {
     sessionUser = null; // the server cleared the cookie too
     renderFoot();
+  } else if (data.decision === 'step_up') {
+    stepUp = { username: creds.username, samples: [] };
+    submit.textContent = stepUpButtonLabel();
+    result.append(el('p', { className: 'result-next', id: 'stepup-progress' }, stepUpLine()));
+    renderFoot();
+    password.focus();
   }
+}
+
+const stepUpLine = () => `${stepUp.samples.length} of ${STEP_UP_SAMPLES} more typings heard`;
+const stepUpButtonLabel = () =>
+  `Type again ${Math.min(stepUp.samples.length + 1, STEP_UP_SAMPLES)} of ${STEP_UP_SAMPLES}`;
+
+function endStepUp() {
+  stepUp = null;
+  submit.textContent = COPY.login.button;
+  renderFoot();
+}
+
+// One more typing for a pending step-up. The first two are only collected; the
+// third sends all three to the server, which adds the original attempt's score
+// and judges the median of the four.
+async function doStepUpRep(creds) {
+  await settle();
+  const sample = await buildSample();
+  resetCapture();
+  stepUp.samples.push(sample);
+  const line = $('stepup-progress');
+  if (line) line.textContent = stepUpLine();
+  if (stepUp.samples.length < STEP_UP_SAMPLES) {
+    submit.textContent = stepUpButtonLabel();
+    renderFoot();
+    password.focus();
+    return;
+  }
+  renderFoot();
+  const { ok, status, data, rtt } = await api('/api/login/stepup', { ...creds, samples: stepUp.samples });
+  if (!ok) {
+    endStepUp();
+    if (status === 409) {
+      showResult({ tone: 'other', icon: 'info', heading: 'That step-up has lapsed',
+        body: 'Sign in again and we will pick it up from there.' });
+    } else {
+      showResult({ tone: 'other', icon: 'info', heading: 'Could not reach the checker', body: (data && data.detail) || 'Unknown error.' });
+    }
+    return;
+  }
+  if (data.decision === 'retype' || data.decision === 'wrong_password') {
+    // The step-up is still pending on the server: start the three again.
+    stepUp.samples = [];
+    renderLogin(data, rtt);
+    result.append(el('p', { className: 'result-next', id: 'stepup-progress' }, `Start again — ${stepUpLine()}`));
+    submit.textContent = stepUpButtonLabel();
+    renderFoot();
+    password.focus();
+    return;
+  }
+  stepUp = null;
+  submit.textContent = COPY.login.button;
+  afterVerdict(creds, data, rtt);
 }
 
 card.addEventListener('submit', async (e) => {
@@ -401,7 +489,11 @@ card.addEventListener('submit', async (e) => {
   try {
     if (mode === 'register') await doRegister(creds);
     else if (mode === 'enroll') await doEnrollRep(creds);
-    else await doLogin(creds);
+    else if (stepUp && stepUp.username === creds.username) await doStepUpRep(creds);
+    else {
+      if (stepUp) endStepUp(); // a different username is a fresh sign-in
+      await doLogin(creds);
+    }
   } finally {
     busy = false;
     submit.removeAttribute('aria-busy');

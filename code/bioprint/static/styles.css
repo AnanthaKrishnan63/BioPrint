@@ -180,6 +180,9 @@ a { color: var(--accent); }
 .result.allow { background: var(--good-wash); border-color: color-mix(in srgb, var(--good) 40%, transparent); }
 .result.block { background: var(--bad-wash); border-color: color-mix(in srgb, var(--bad) 45%, transparent); }
 .result.retype, .result.info { background: var(--warn-wash); border-color: color-mix(in srgb, var(--warn) 55%, transparent); }
+/* step_up: calm, neutral — a request for more evidence, not a warning */
+.result.stepup { background: var(--neutral-wash); border-color: color-mix(in srgb, var(--accent) 40%, transparent); }
+.result.stepup .result-icon { color: var(--accent); }
 .result-head { display: flex; gap: .7rem; align-items: flex-start; }
 .result-icon { flex: none; width: 30px; height: 30px; }
 .result.allow .result-icon { color: var(--good-ink); }
@@ -221,6 +224,7 @@ a { color: var(--accent); }
 .welcome-facts dd.tone-allow { color: var(--good-ink); font-weight: 600; }
 .welcome-facts dd.tone-block { color: var(--bad-ink); font-weight: 600; }
 .welcome-facts dd.tone-retype, .welcome-facts dd.tone-other { color: var(--warn-ink); font-weight: 600; }
+.welcome-facts dd.tone-stepup { color: var(--accent); font-weight: 600; }
 .welcome-actions { margin-top: 1.1rem; display: grid; gap: .6rem; }
 .welcome-actions .btn-primary { margin-top: 0; text-align: center; text-decoration: none; }
 .welcome-actions .btn-ghost { width: 100%; font-size: 1rem; padding: .7rem 1rem; }
@@ -280,6 +284,7 @@ a { color: var(--accent); }
 .verdict-badge.allow { color: var(--good-ink); }
 .verdict-badge.block { color: var(--bad-ink); }
 .verdict-badge.retype, .verdict-badge.other { color: var(--warn-ink); }
+.verdict-badge.stepup { color: var(--accent); }
 .verdict-sub { color: var(--ink-2); font-size: 1rem; }
 .verdict-stats { display: flex; gap: .5rem; flex-wrap: wrap; margin-top: .25rem; }
 .verdict ul { margin: .25rem 0 0; padding-left: 1.2rem; font-size: 1.05rem; }
@@ -339,6 +344,7 @@ a { color: var(--accent); }
 .badge.allow { background: var(--good-wash); color: var(--good-ink); }
 .badge.block { background: var(--bad-wash); color: var(--bad-ink); }
 .badge.retype, .badge.other { background: var(--warn-wash); color: var(--warn-ink); }
+.badge.stepup { background: var(--neutral-wash); color: var(--accent); }
 .badge svg { width: 14px; height: 14px; }
 .minibars { display: grid; gap: 3px; min-width: 9rem; }
 .minibar { display: grid; grid-template-columns: 1.1rem 1fr; align-items: center; gap: .35rem; font-size: .72rem; color: var(--muted); font-weight: 700; }

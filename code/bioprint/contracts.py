@@ -71,6 +71,25 @@ class AttemptIn(BaseModel):
     sample: Sample
 
 
+STEP_UP_SAMPLES = 3  # extra typings asked for after a "step_up" decision
+STEP_UP_WINDOW_S = 10 * 60  # a pending step_up attempt older than this is forgotten
+
+
+class StepUpIn(BaseModel):
+    """Body of /api/login/stepup: the answer to a "step_up" decision.
+
+    There is no token. The server re-checks the password and takes the user's most
+    recent login attempt with decision "step_up" (within STEP_UP_WINDOW_S, and not
+    followed by an allow/block) as the pending first sample. Its stored keystroke
+    score joins the three new ones; the median of the four is the verdict.
+    This is more of the same behavioural evidence, not a second factor.
+    """
+
+    username: str = Field(min_length=1, max_length=64)
+    password: str = Field(min_length=1, max_length=128)
+    samples: list[Sample] = Field(min_length=STEP_UP_SAMPLES, max_length=STEP_UP_SAMPLES)
+
+
 # ---------------------------------------------------------------- engine outputs
 
 
@@ -103,7 +122,10 @@ class SignalResult(BaseModel):
     reasons: list[str] = Field(default_factory=list)  # human-readable, shown as-is
 
 
-Decision = Literal["allow", "block", "retype", "wrong_password", "unknown_user", "not_enrolled"]
+# "step_up": password right, rhythm right, but the device looks new. Not a login
+# yet: the browser is asked for STEP_UP_SAMPLES more typings (POST /api/login/stepup)
+# and the median keystroke score of all four decides allow/block.
+Decision = Literal["allow", "block", "step_up", "retype", "wrong_password", "unknown_user", "not_enrolled"]
 
 
 class LoginOut(BaseModel):

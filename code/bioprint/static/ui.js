@@ -53,6 +53,8 @@ export const DECISION = {
   allow: { tone: 'allow', icon: 'check', word: 'Allowed', title: 'Welcome back' },
   block: { tone: 'block', icon: 'block', word: 'Blocked', title: 'Blocked — that is not how this account types' },
   retype: { tone: 'retype', icon: 'retype', word: 'Retype', title: 'Please type your password again' },
+  // Not a verdict: the rhythm matched but the device is new, so more typings are asked for.
+  step_up: { tone: 'stepup', icon: 'fingerprint', word: 'More rhythm', title: 'New device — let’s hear a bit more of your rhythm' },
   wrong_password: { tone: 'other', icon: 'info', word: 'Wrong password', title: 'That password is not right' },
   unknown_user: { tone: 'other', icon: 'info', word: 'No such account', title: 'No account with that name' },
   not_enrolled: { tone: 'other', icon: 'info', word: 'Not enrolled', title: 'This account has not finished enrolling' },

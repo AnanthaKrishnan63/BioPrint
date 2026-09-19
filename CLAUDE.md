@@ -170,6 +170,15 @@ a real contribution.
 - **Do not align event streams by sequence shape** (`difflib`). Typing repeats the
   same keys constantly, so one dropped event makes a shape matcher lock onto the
   wrong repetition and invent dozens of losses. Anchor on **time**.
+- **`pkill -f "uvicorn … --port 8000"` kills your own shell**, because the shell's
+  command line contains that string. Find the PID from `ss -ltnp` and kill that.
+- **Bind the demo server to `127.0.0.1`** unless a specific device needs it. On
+  campus wifi `0.0.0.0` exposes register/enroll/login and the dashboard to
+  thousands of clients with no rate limit. Set `BIOPRINT_SECRET` so sessions
+  survive restarts.
+- **Never `git commit` chained after `pytest … | tail`**: the pipe's exit status
+  is `tail`'s, so a failing suite still commits. Use `set -o pipefail` or check
+  the summary line first.
 - `code/typing/README.md` points research notes at `~/.yoyo/arshad_mfsdsai/big_idea/`;
   that path is stale — the notes are in `research/big_idea/` here.
 - `code/typing/verify/__pycache__` at the source was root-owned from a sudo run

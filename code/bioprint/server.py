@@ -95,6 +95,16 @@ def end_session(response: Response) -> None:
     response.delete_cookie(SESSION_COOKIE, path="/")
 
 
+def _tag_ip(request: Request, *envs: dict) -> None:
+    """The client address goes into each env as env["ip"]: a context attribute
+    for engine.device, and part of the raw record. Behind the phone's USB
+    tunnel both ends are localhost, so it only carries information on a LAN."""
+    ip = request.client.host if request.client else None
+    for env in envs:
+        if isinstance(env, dict):
+            env["ip"] = ip
+
+
 def _user(conn, username: str):
     return conn.execute("SELECT * FROM users WHERE username = ?", (username,)).fetchone()
 
@@ -149,7 +159,8 @@ def register(body: RegisterIn) -> dict:
 
 
 @app.post("/api/enroll")
-def enroll(body: AttemptIn) -> EnrollOut:
+def enroll(body: AttemptIn, request: Request) -> EnrollOut:
+    _tag_ip(request, body.sample.env)
     with db.connect() as conn:
         u = _user(conn, body.username)
         if not u:
@@ -226,8 +237,9 @@ def _pointer_signal(u, pv) -> SignalResult:
 
 
 @app.post("/api/login")
-def login(body: AttemptIn, response: Response) -> LoginOut:
+def login(body: AttemptIn, request: Request, response: Response) -> LoginOut:
     t0 = time.perf_counter()
+    _tag_ip(request, body.sample.env)
     signals: list[SignalResult] = []
     sample_id = None
 
@@ -295,7 +307,7 @@ def _pending_step_up(conn, user_id: int, decision: str = "step_up"):
 
 
 @app.post("/api/login/stepup")
-def login_step_up(body: StepUpIn, response: Response) -> LoginOut:
+def login_step_up(body: StepUpIn, request: Request, response: Response) -> LoginOut:
     """Answer to a "step_up" decision: STEP_UP_SAMPLES more typings of the password.
 
     The pending attempt's keystroke score is read back from attempts.signals; the
@@ -303,6 +315,7 @@ def login_step_up(body: StepUpIn, response: Response) -> LoginOut:
     evidence, more of it: no code, no second device.
     """
     t0 = time.perf_counter()
+    _tag_ip(request, *(s.env for s in body.samples))
     signals: list[SignalResult] = []
     sample_id = None
 
@@ -469,12 +482,13 @@ def keypad_challenge(body: dict) -> KeypadChallenge:
 
 
 @app.post("/api/enroll/keypad")
-def enroll_keypad(body: KeypadIn) -> KeypadEnrollOut:
+def enroll_keypad(body: KeypadIn, request: Request) -> KeypadEnrollOut:
     """One solved captcha per call. After KEYPAD_ENROLL_RUNS accepted runs the
     keypad profile is fitted and the account can be stepped up on a new device."""
     if len(body.runs) != 1:
         raise HTTPException(400, "enroll one keypad run per call")
     run = body.runs[0]
+    _tag_ip(request, run.env)
     with db.connect() as conn:
         u = _user(conn, body.username)
         if not u:
@@ -506,10 +520,11 @@ def enroll_keypad(body: KeypadIn) -> KeypadEnrollOut:
 
 
 @app.post("/api/login/keypad")
-def login_keypad(body: KeypadIn, response: Response) -> LoginOut:
+def login_keypad(body: KeypadIn, request: Request, response: Response) -> LoginOut:
     """Answer to a "keypad" decision: KEYPAD_STEPUP_RUNS solved captchas. The
     keypad's cognitive score decides; movement is advisory; a bot flag blocks."""
     t0 = time.perf_counter()
+    _tag_ip(request, *(r.env for r in body.runs))
     signals: list[SignalResult] = []
 
     with db.connect() as conn:

@@ -27,6 +27,40 @@ uvicorn server:app --reload                       # http://localhost:8000
 
 Tests (128, ~15 s): `python -m pytest -q`
 
+## Share BioPrint on college Wi-Fi
+
+Keep the normal localhost server on port 8000 for the host. From the repository
+root, start a separate, restricted participant interface:
+
+```bash
+LAN_HOST=10.128.13.117 bash code/bioprint/run-lan.sh
+```
+
+Replace the address with your current Wi-Fi IPv4 address (`hostname -I`).
+Participants open `https://<LAN_HOST>:8443/index.html#enroll` on the same network.
+The browser first asks for invitation credentials: username `participant`, with
+the random password stored in `code/bioprint/.lan/invite-password`. Share that
+password privately with participants; it is separate from their BioPrint account.
+
+HTTPS uses a self-signed, seven-day certificate. Verify its SHA-256 fingerprint
+against the launcher's output through an in-person or trusted channel before
+accepting the certificate on a participant device. Do not blindly bypass a
+certificate warning. Campus Wi-Fi may isolate clients; if connection fails, use
+a private hotspot rather than disabling the firewall or forwarding router ports.
+
+The LAN interface requires the invitation for every request, binds only to the
+chosen address, disables proxy-header trust, and limits requests and body size.
+It blocks the dashboard, labeling, API documentation, and database downloads.
+Signed-in users can retrieve only their own latest attempt. Enrollment status
+omits behavioral statistics. Review all participants from `http://localhost:8000`.
+Both instances use the existing `bioprint.db` by default.
+
+Use **demo-only passwords**: the existing research database retains physical key
+codes from password entry. Invitation holders can submit registrations and
+authentication attempts; this is a controlled demo, not a hardened public service.
+Stop sharing with Ctrl-C. To rotate the invitation, stop the server, delete only
+`.lan/invite-password`, and restart. `.lan/` is private and ignored by Git.
+
 ## The demo
 
 1. **Genuine**: the owner enrols, then signs in → allowed, ~80 ms.

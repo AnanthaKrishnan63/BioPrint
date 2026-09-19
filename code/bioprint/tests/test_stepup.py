@@ -10,6 +10,7 @@ and judge the median of the four keystroke scores. Same evidence, more of it.
 from __future__ import annotations
 
 import pytest
+from engine import device
 from helpers import PASSWORD, make_sample
 from test_bot import human_env
 
@@ -17,7 +18,7 @@ COOKIE = "bioprint_session"
 FONTS = ["Arial", "DejaVu Sans", "DejaVu Sans Mono", "Liberation Mono", "Noto Sans", "Ubuntu"]
 
 HOME = human_env(fonts=list(FONTS))
-# fonts 13.9 + time zone 3.04 + GPU 3.4 = 20.3 bits: far over the 6-bit limit.
+# fonts 13.9 + time-zone country 3.04 + GPU family 2.0 (+ renderer string at browser weight): far over the 6-bit limit.
 OTHER = human_env(fonts=["Arial", "Calibri", "Segoe UI", "Tahoma"], timezone="Europe/London",
                   webgl_renderer="ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero)))")
 
@@ -221,5 +222,7 @@ def test_retype_attempt_still_carries_the_device_signal(client):
     body = login(client, typo).json()
     assert body["decision"] == "retype", body
     dv = signal(body, "device")
-    assert dv["available"] and dv["flagged"] and dv["score"] == pytest.approx(13.9 + 3.04 + 3.4)
+    # fonts + time-zone country + GPU family at full weight, the renderer string at browser weight
+    assert dv["available"] and dv["flagged"]
+    assert dv["score"] == pytest.approx(13.9 + 3.04 + 2.0 + 3.4 * device.BROWSER_WEIGHT)
     assert not any(s["name"] == "keystroke" for s in body["signals"])  # rhythm itself is not scored

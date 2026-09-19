@@ -47,6 +47,9 @@ def bits(attr: str) -> float:
     return next(a.bits for a in device.ATTRIBUTES if a.key == attr)
 
 
+W = device.BROWSER_WEIGHT  # browser-group attributes count at this fraction of their bits
+
+
 def changed(result) -> dict[str, float]:
     return {c.feature.removeprefix("device."): c.deviation for c in result.contributions}
 
@@ -81,12 +84,15 @@ def test_gpu_fonts_timezone_changed_flags_with_the_published_bits():
                 fonts=["Arial", "Calibri", "Segoe UI", "Tahoma", "Verdana"], timezone="Europe/London")
     r = device.check(other, enrolled())
     assert r.flagged
-    assert changed(r) == {"fonts": 13.9, "webgl_renderer": 3.4, "timezone": 3.04}
-    assert r.score == pytest.approx(13.9 + 3.4 + 3.04)
+    # hardware at full weight; the browser-formatted renderer string at a quarter
+    assert changed(r) == {"fonts": 13.9, "gpu_family": 2.0, "timezone": 3.04, "webgl_renderer": pytest.approx(3.4 * W)}
+    assert r.score == pytest.approx(13.9 + 2.0 + 3.04 + 3.4 * W)
     # contributions are ordered by weight and the reasons say what moved, in English
-    assert [c.feature for c in r.contributions] == ["device.fonts", "device.webgl_renderer", "device.timezone"]
-    assert any("GPU renderer changed" in s and "SwiftShader" in s and "+3.4 bits" in s for s in r.reasons)
-    assert any("time zone changed: Asia/Kolkata -> Europe/London" in s for s in r.reasons)
+    assert [c.feature for c in r.contributions] == ["device.fonts", "device.timezone", "device.gpu_family",
+                                                     "device.webgl_renderer"]
+    assert any("GPU renderer string changed" in s and "SwiftShader" in s and f"+3.4 bits x {W:g}" in s for s in r.reasons)
+    assert any("GPU vendor family changed: intel -> swiftshader" in s for s in r.reasons)
+    assert any("time zone country changed: IN -> GB" in s for s in r.reasons)
     assert any("installed fonts changed" in s and "+4" in s and "-9" in s for s in r.reasons)
     assert "more than a browser update explains" in r.reasons[0]
 
@@ -100,7 +106,7 @@ def test_a_whole_different_laptop_is_far_over_the_limit():
               fonts=["Arial", "Helvetica", "Helvetica Neue", "Menlo", "Monaco"], canvas_hash="0badf00d",
               audio_hash="35.74996")
     r = device.check(mac, enrolled())
-    assert r.flagged and r.score > 30
+    assert r.flagged and r.score > 25
     assert sum(c.deviation for c in r.contributions) == pytest.approx(r.score)
 
 
@@ -116,7 +122,7 @@ def test_one_new_monitor_alone_does_not_flag():
 
 def test_version_only_ua_change_is_small():
     r = device.check(env(ua=CHROME_UA.replace("128.0.6613.84", "129.0.6668.58")), enrolled())
-    assert changed(r) == {"ua_version": 0.5}
+    assert changed(r) == {"ua_version": pytest.approx(0.5 * W)}
     assert not r.flagged
     assert "consistent with an update" in r.reasons[0]
 
@@ -130,14 +136,16 @@ def test_grease_brand_churn_is_free():
 def test_browser_family_change_costs_more_than_a_version():
     firefox = "Mozilla/5.0 (X11; Linux x86_64; rv:130.0) Gecko/20100101 Firefox/130.0"
     r = device.check(env(ua=firefox, ua_brands=None, has_window_chrome=False), enrolled())
-    assert changed(r)["ua_family"] == 4.0 and changed(r)["ua_brands"] == 1.0
+    assert changed(r)["ua_family"] == pytest.approx(4.0 * W) and changed(r)["ua_brands"] == pytest.approx(1.0 * W)
     assert "ua_version" in changed(r)
+    assert not r.flagged
+    assert "same machine, different browser: Chrome -> Firefox" in r.reasons[1]
 
 
 def test_update_with_new_canvas_stays_under_the_limit():
     """The worst honest update: version bump plus a re-rendered canvas = 5.5 < 6."""
     r = device.check(env(ua=CHROME_UA.replace("128.0.6613.84", "129.0.6668.58"), canvas_hash="1234abcd"), enrolled())
-    assert r.score == pytest.approx(5.5) and not r.flagged
+    assert r.score == pytest.approx(5.5 * W) and not r.flagged
 
 
 # ---------------------------------------------------------------- majority logic
@@ -196,7 +204,7 @@ def test_null_is_a_value_absent_is_not():
     """Chrome reports deviceMemory; Firefox reports null. Enrolled on one, logging in
     on the other IS a difference. A key the probe never sent is not."""
     r = device.check(env(device_memory=None), enrolled())
-    assert changed(r) == {"device_memory": 1.5}
+    assert changed(r) == {"device_memory": pytest.approx(1.5 * W)}  # counted, in the browser group
     no_key = {k: v for k, v in env().items() if k != "device_memory"}
     assert device.check(no_key, enrolled()).score == 0.0
 
@@ -234,7 +242,9 @@ def test_never_a_single_hashed_id():
     for c in r.contributions:
         key = c.feature.removeprefix("device.")
         assert c.feature.startswith("device.") and key in {a.key for a in device.ATTRIBUTES}
-        assert c.deviation == bits(key) and (c.value, c.expected) == (1.0, 0.0)
+        assert c.value == bits(key) and c.expected == 0.0
+        assert c.deviation == pytest.approx(bits(key) * device.GROUP_WEIGHT[
+            next(a.group for a in device.ATTRIBUTES if a.key == key)])
 
 
 def test_weights_add_up_to_a_full_fingerprint_and_the_threshold_is_a_small_slice():
@@ -248,3 +258,94 @@ def test_weights_add_up_to_a_full_fingerprint_and_the_threshold_is_a_small_slice
 def test_result_is_json_serialisable_for_the_dashboard():
     r = device.check(env(fonts=FONTS[:3], timezone="UTC"), enrolled())
     json.dumps(r.model_dump())
+
+
+# ---------------------------------------------------------------- groups and weights (lead's call, 2026-09-19)
+
+
+FIREFOX_SAME_LAPTOP = dict(
+    ua="Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:155.0) Gecko/20100101 Firefox/155.0",
+    ua_brands=None, uach_platform=None, device_memory=None, languages=["en-GB"], has_window_chrome=False,
+    webgl_vendor="Intel", webgl_renderer="Intel(R) HD Graphics, or similar", timezone="Asia/Calcutta",
+    canvas_hash="77b2c1f9", audio_hash="35.74997")
+
+
+def test_another_browser_on_the_same_laptop_is_the_same_device():
+    """The real case that motivated the split: Chrome enrollment, Firefox login,
+    one laptop. Panopticlick counted it as 20.8 bits; the hardware group is 0."""
+    r = device.check(env(**FIREFOX_SAME_LAPTOP), enrolled())
+    assert not r.flagged
+    assert r.score < device.THRESHOLD_BITS
+    assert "same machine, different browser: Chrome -> Firefox" in r.reasons[1]
+    assert "0.0 hardware" in r.reasons[0]
+    # the only hardware-group key that moved is one Firefox does not report, and
+    # it was charged at browser weight
+    assert changed(r)["device_memory"] == pytest.approx(1.5 * W)
+
+
+def test_time_zone_alias_is_the_same_country():
+    assert device.tz_country("Asia/Calcutta") == device.tz_country("Asia/Kolkata") == "IN"
+    assert device.check(env(timezone="Asia/Calcutta"), enrolled()).score == 0.0
+
+
+def test_same_offset_different_country_still_counts():
+    """Kolkata and Colombo share +05:30; an offset comparison would miss the move."""
+    assert changed(device.check(env(timezone="Asia/Colombo"), enrolled())) == {"timezone": 3.04}
+
+
+def test_unknown_zone_compares_as_a_string():
+    assert device.tz_country("Mars/Olympus") == "Mars/Olympus"
+    assert device.tz_country("../../etc/passwd") == "../../etc/passwd"
+    assert changed(device.check(env(timezone="Mars/Olympus"), enrolled())) == {"timezone": 3.04}
+
+
+def test_not_reported_is_the_browsers_doing_not_the_machines():
+    """Chromium-only APIs missing in Firefox: counted, but in the browser group."""
+    r = device.check(env(device_memory=None, ua_brands=None, uach_platform=None), enrolled())
+    assert changed(r) == {"device_memory": pytest.approx(1.5 * W), "ua_brands": pytest.approx(1.0 * W),
+                          "uach_platform": pytest.approx(0.5 * W)}
+    assert not r.flagged
+
+
+def test_gpu_family_survives_firefox_sanitising_and_catches_a_real_change():
+    assert device.gpu_family("Intel(R) HD Graphics, or similar", None) == "intel"
+    assert device.gpu_family("ANGLE (NVIDIA, NVIDIA GeForce RTX 3060 Direct3D11 vs_5_0 ps_5_0)", "Google Inc.") == "nvidia"
+    sanitised = device.check(env(webgl_renderer="Intel(R) HD Graphics, or similar"), enrolled())
+    assert changed(sanitised) == {"webgl_renderer": pytest.approx(3.4 * W)}  # string moved, hardware did not
+    phone = device.check(env(webgl_renderer="Adreno (TM) 740", webgl_vendor="Qualcomm"), enrolled())
+    assert changed(phone) == {"gpu_family": 2.0, "webgl_renderer": pytest.approx(3.4 * W),
+                              "webgl_vendor": pytest.approx(1.0 * W)}
+
+
+def test_network_is_context_at_half_weight():
+    home = enrolled(ip="10.42.0.17")
+    assert device.check(env(ip="10.42.0.99"), home).score == 0.0  # same /24
+    r = device.check(env(ip="10.43.7.1"), home)
+    assert changed(r) == {"ip": 1.5} and not r.flagged
+    assert "same machine on a different network" in r.reasons[1]
+    assert device.check(env(ip="10.43.7.1"), enrolled()).score == 0.0  # no address at enrollment: no evidence
+    assert device.ip_network("2001:db8:1:2:3:4:5:6") == "2001:db8:1:2::/64"
+
+
+def test_a_phone_is_still_far_over_the_limit_on_hardware_alone():
+    phone = env(ua="Mozilla/5.0 (Android 17; Mobile; rv:156.0) Gecko/156.0 Firefox/156.0", ua_brands=None,
+                uach_platform=None, device_memory=None, platform="Linux armv81", screen_width=414,
+                screen_height=920, avail_width=414, avail_height=920, hardware_concurrency=8,
+                max_touch_points=5, webgl_vendor="Qualcomm", webgl_renderer="Adreno (TM) 740",
+                fonts=["Roboto"], plugins=0)
+    r = device.check(phone, enrolled())
+    hardware = sum(c.deviation for c in r.contributions
+                   if c.feature.removeprefix("device.") in {a.key for a in device.ATTRIBUTES if a.group == "hardware"})
+    assert r.flagged and hardware > device.THRESHOLD_BITS
+    assert not any("same machine" in s for s in r.reasons)
+
+
+def test_group_weights_are_what_was_agreed():
+    assert device.GROUP_WEIGHT == {"hardware": 1.0, "browser": W, "context": 0.5}
+    assert 0 < W < 0.5 < 1.0
+    # switching browser family alone can never cross the limit...
+    browser_total = sum(a.bits for a in device.ATTRIBUTES if a.group == "browser")
+    assert browser_total * W < device.THRESHOLD_BITS
+    # ... but with one new monitor on top it does
+    assert browser_total * W + bits("screen") + bits("avail_screen") > device.THRESHOLD_BITS
+    assert {a.group for a in device.ATTRIBUTES} == {"hardware", "browser", "context"}

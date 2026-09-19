@@ -3,6 +3,7 @@
 *.db
 *.db-journal
 *.jsonl
+*.csv          # CMU dataset is re-downloaded by eval/cmu.py
 
 __pycache__/
 *.pyc

@@ -6,8 +6,10 @@ dependencies:
   - fastapi
   - uvicorn
   - evdev          # reads /dev/input, for verify/evdev_logger.py
+  - numpy          # bioprint scoring
+  - pytest         # bioprint tests
+  - httpx          # fastapi TestClient
   # added as the research moves into analysis:
   # - pandas
-  # - numpy
   # - scikit-learn
   # - jupyterlab

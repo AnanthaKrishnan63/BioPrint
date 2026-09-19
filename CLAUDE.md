@@ -20,6 +20,29 @@ hackathon/
 where this ends, and the decision gates), `research/big_idea/00 Home.md` (the
 argument), `research/big_idea/10 Basics and Glossary.md` (acronyms, from scratch).
 
+## Current focus: BioPrint hackathon
+
+A 36-hour build of a website login that **blocks** a user who has the correct password
+but the wrong behaviour, and flags bots (ROOT 36 Event 2, brief in
+`ROOT 36 Problem Statements.pdf`). **Deadline ≈ 2026-09-21 00:00 local.** Plan, phases
+and file ownership: `research/big_idea/14 BioPrint Hackathon.md`.
+
+The app is `code/bioprint/`: `server.py` (API), `contracts.py` (pydantic models),
+`db.py` (`bioprint.db`), `engine/` (features, scorer, bot, pointer, decide),
+`static/` (pages + capture), `eval/` (CMU dataset EER), `tests/`.
+
+```bash
+cd code/bioprint && uvicorn server:app --reload
+python -m pytest code/bioprint/tests
+```
+
+**Hackathon overrides** (hackathon only; never carry them back into the research):
+- The product **blocks**. The brief forbids OTP or any friction fallback.
+- `event.code` **is** logged on the password field, so `bioprint.db` effectively
+  stores passwords by keycode. This was a deliberate choice; never reuse it in real work.
+- Bot/replay detection is a required signal, **kept separate** from the behaviour score.
+- The device-fingerprint axis is reduced to an automation probe feeding bot detection.
+
 ## The idea in one table
 
 "Different person" and "different computer" are two detections, and no single
@@ -111,6 +134,9 @@ pointer capture, the fingerprint collector, scoring/fusion, the active challenge
 > currently **zero identity features**. The plumbing is done; the features are not.
 
 ## Next steps, in order
+
+**During the hackathon, follow `research/big_idea/14 BioPrint Hackathon.md` instead.**
+The list below is the long-term research order.
 
 1. **Per-key dwell + per-digraph flight** over the 5 existing sessions. No new
    recording needed.

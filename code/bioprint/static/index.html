@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>BioPrint</title>
+<!-- STUB UI. OWNER: Agent D (UI) replaces this page, app.js and adds the dashboard. -->
+<style>
+  body { font: 16px system-ui, sans-serif; max-width: 28rem; margin: 3rem auto; padding: 0 1rem; }
+  form { display: grid; gap: .6rem; }
+  input, button { font: inherit; padding: .5rem; }
+  pre { background: #f4f4f4; padding: .75rem; white-space: pre-wrap; font-size: 13px; }
+</style>
+</head>
+<body>
+<h1>BioPrint</h1>
+<form id="card" autocomplete="off">
+  <input id="username" placeholder="username" autocomplete="off">
+  <input id="password" type="password" placeholder="password" autocomplete="off">
+  <button id="login" type="submit">Log in</button>
+  <button id="enroll" type="button">Enroll sample</button>
+  <button id="register" type="button">Register</button>
+</form>
+<pre id="out"></pre>
+<script type="module" src="./app.js"></script>
+</body>
+</html>

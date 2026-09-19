@@ -87,7 +87,7 @@ Measured on the public CMU dataset (51 people × 400 reps of `.tie5Roanl`,
 |---|---|---|
 | Published setup: 200 training reps | **6.9 %** | Killourhy & Maxion 2009 report 9.6 % for the same detector |
 | Product setup: 10 enrollment reps, tested on *later sessions* | 20 % | 10.7 % when the enrollee already types the string fluently |
-| Enrollment sweep 5 / 10 / 20 / 50 reps | 24.6 / 22.0 / 19.0 / 15.4 % | more reps buy a lot |
+| Enrollment sweep 5 / 10 / 20 / 50 reps | 25.6 / 20.2 / 15.6 / 11.8 % | more reps buy a lot |
 
 We report FRR at fixed FAR in the results JSON as well; EER alone hides which
 side an error lands on. Live attempts are labelled genuine / impostor / bot on

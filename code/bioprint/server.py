@@ -253,12 +253,12 @@ def login(body: AttemptIn, response: Response) -> LoginOut:
         # the password is still a script.
         prior = [v.values for v in _vectors(conn, u["id"], "keystroke_vector", exclude_id=sample_id)
                  if kv and v.names == kv.names]
+        # The device axis needs no keystrokes, so it runs first and every attempt
+        # carries it, however the attempt ends (bot, retype, block or allow).
+        signals.append(device.check(body.sample.env, _enrolled_envs(conn, u["id"])))
         signals.append(bot.check(body.sample, kv, prior, len(body.password)))
         if signals[-1].flagged:
             return finish(*decide(signals))
-        # The device axis needs no keystrokes, so a retype still gets it: mobile
-        # keyboards send an empty event.code and every phone login is a retype today.
-        signals.append(device.check(body.sample.env, _enrolled_envs(conn, u["id"])))
         if retype:
             return finish("retype", [retype])
 
@@ -338,10 +338,10 @@ def login_step_up(body: StepUpIn, response: Response) -> LoginOut:
                 pvs.append(pv)
 
         # One bot signal for the batch: the worst of the three.
+        signals.append(device.check(body.samples[-1].env, _enrolled_envs(conn, u["id"])))
         signals.append(max(bots, key=lambda b: (b.flagged, b.score)))
         if signals[-1].flagged:
             return finish(*decide(signals))
-        signals.append(device.check(body.samples[-1].env, _enrolled_envs(conn, u["id"])))
         if retypes:
             # Simplest honest answer: the whole batch again, straight through.
             return finish("retype", [f"{len(retypes)} of the {len(body.samples)} samples could not be used: "

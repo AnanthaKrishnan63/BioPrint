@@ -143,6 +143,13 @@ def password_keystrokes(sample: Sample) -> list[Keystroke]:
     return out
 
 
+def is_virtual_keyboard(sample: Sample) -> bool:
+    """Mobile keyboards (Android Firefox/Chrome IMEs) send keydown/keyup with an empty
+    or 'Unidentified' code and a 0 ms hold: a real person, but no desktop rhythm."""
+    downs = [e for e in sample.keystrokes if e.type == "down" and e.field == "password"]
+    return bool(downs) and all(e.code in ("", "Unidentified") for e in downs)
+
+
 def needs_retype(sample: Sample, template_codes: list[str] | None = None) -> str | None:
     """A reason string if this sample cannot be scored, else None.
 
@@ -156,6 +163,9 @@ def needs_retype(sample: Sample, template_codes: list[str] | None = None) -> str
     # Checked first: otherwise the Ctrl+V keys read as "keys differ from enrollment".
     if sample.meta.had_paste:
         return "the password was pasted; please type it, we compare the rhythm"
+    if is_virtual_keyboard(sample):
+        return ("typed on a touch keyboard, which reports no key timing; BioPrint profiles are "
+                "per device, so enrol on this phone to sign in from it")
     ks = password_keystrokes(sample)
     if not ks:
         return "no keystrokes in the password field"

@@ -24,7 +24,7 @@ import statistics
 from dataclasses import dataclass, field
 
 from contracts import Contribution, FeatureVector, Sample, SignalResult
-from engine.features import password_keystrokes
+from engine.features import password_keystrokes, is_virtual_keyboard
 
 THRESHOLD = 0.75  # one strong rule (1.0) or two weak tells (>= 0.4 each)
 STRONG = 1.0
@@ -172,6 +172,10 @@ def _key_count(sample: Sample, password_length: int, acc: _Acc) -> None:
 
 
 def _timing(sample: Sample, acc: _Acc) -> None:
+    # A touch keyboard reports 0 ms holds for every key: mechanical-looking, but
+    # human. There is no rhythm to judge either way, so no timing rule applies.
+    if is_virtual_keyboard(sample):
+        return
     ks = [k for k in password_keystrokes(sample) if k.code not in MODIFIERS]
     if not ks:
         return

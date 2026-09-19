@@ -1,0 +1,459 @@
+{
+ "keystrokes": [
+  {
+   "code": "",
+   "type": "down",
+   "t": 3609.0,
+   "field": "username",
+   "trusted": true
+  },
+  {
+   "code": "",
+   "type": "up",
+   "t": 3609.0,
+   "field": "username",
+   "trusted": true
+  },
+  {
+   "code": "",
+   "type": "down",
+   "t": 3753.0,
+   "field": "username",
+   "trusted": true
+  },
+  {
+   "code": "",
+   "type": "up",
+   "t": 3753.0,
+   "field": "username",
+   "trusted": true
+  },
+  {
+   "code": "",
+   "type": "down",
+   "t": 3899.0,
+   "field": "username",
+   "trusted": true
+  },
+  {
+   "code": "",
+   "type": "up",
+   "t": 3899.0,
+   "field": "username",
+   "trusted": true
+  },
+  {
+   "code": "",
+   "type": "down",
+   "t": 4006.0,
+   "field": "username",
+   "trusted": true
+  },
+  {
+   "code": "",
+   "type": "up",
+   "t": 4006.0,
+   "field": "username",
+   "trusted": true
+  },
+  {
+   "code": "",
+   "type": "down",
+   "t": 4272.0,
+   "field": "username",
+   "trusted": true
+  },
+  {
+   "code": "",
+   "type": "up",
+   "t": 4272.0,
+   "field": "username",
+   "trusted": true
+  },
+  {
+   "code": "",
+   "type": "down",
+   "t": 4360.0,
+   "field": "username",
+   "trusted": true
+  },
+  {
+   "code": "",
+   "type": "up",
+   "t": 4360.0,
+   "field": "username",
+   "trusted": true
+  },
+  {
+   "code": "",
+   "type": "down",
+   "t": 4528.0,
+   "field": "username",
+   "trusted": true
+  },
+  {
+   "code": "",
+   "type": "up",
+   "t": 4528.0,
+   "field": "username",
+   "trusted": true
+  },
+  {
+   "code": "",
+   "type": "down",
+   "t": 4608.0,
+   "field": "username",
+   "trusted": true
+  },
+  {
+   "code": "",
+   "type": "up",
+   "t": 4608.0,
+   "field": "username",
+   "trusted": true
+  },
+  {
+   "code": "",
+   "type": "down",
+   "t": 6467.0,
+   "field": "password",
+   "trusted": true
+  },
+  {
+   "code": "",
+   "type": "up",
+   "t": 6467.0,
+   "field": "password",
+   "trusted": true
+  },
+  {
+   "code": "",
+   "type": "down",
+   "t": 6595.0,
+   "field": "password",
+   "trusted": true
+  },
+  {
+   "code": "",
+   "type": "up",
+   "t": 6595.0,
+   "field": "password",
+   "trusted": true
+  },
+  {
+   "code": "",
+   "type": "down",
+   "t": 6825.0,
+   "field": "password",
+   "trusted": true
+  },
+  {
+   "code": "",
+   "type": "up",
+   "t": 6825.0,
+   "field": "password",
+   "trusted": true
+  },
+  {
+   "code": "",
+   "type": "down",
+   "t": 6999.0,
+   "field": "password",
+   "trusted": true
+  },
+  {
+   "code": "",
+   "type": "up",
+   "t": 6999.0,
+   "field": "password",
+   "trusted": true
+  },
+  {
+   "code": "",
+   "type": "down",
+   "t": 7199.0,
+   "field": "password",
+   "trusted": true
+  },
+  {
+   "code": "",
+   "type": "up",
+   "t": 7199.0,
+   "field": "password",
+   "trusted": true
+  },
+  {
+   "code": "",
+   "type": "down",
+   "t": 7305.0,
+   "field": "password",
+   "trusted": true
+  },
+  {
+   "code": "",
+   "type": "up",
+   "t": 7305.0,
+   "field": "password",
+   "trusted": true
+  },
+  {
+   "code": "",
+   "type": "down",
+   "t": 7450.0,
+   "field": "password",
+   "trusted": true
+  },
+  {
+   "code": "",
+   "type": "up",
+   "t": 7450.0,
+   "field": "password",
+   "trusted": true
+  },
+  {
+   "code": "",
+   "type": "down",
+   "t": 7656.0,
+   "field": "password",
+   "trusted": true
+  },
+  {
+   "code": "",
+   "type": "up",
+   "t": 7656.0,
+   "field": "password",
+   "trusted": true
+  }
+ ],
+ "pointer": [
+  {
+   "type": "enter",
+   "t": 2449.0,
+   "x": 302.8333435058594,
+   "y": 338.48333740234375,
+   "pointer_type": "touch",
+   "buttons": 1,
+   "target": "username",
+   "trusted": true
+  },
+  {
+   "type": "down",
+   "t": 2434.0,
+   "x": 302.8333435058594,
+   "y": 338.48333740234375,
+   "pointer_type": "touch",
+   "buttons": 1,
+   "target": "username",
+   "trusted": true
+  },
+  {
+   "type": "up",
+   "t": 2518.0,
+   "x": 302.8333435058594,
+   "y": 338.48333740234375,
+   "pointer_type": "touch",
+   "buttons": 0,
+   "target": "username",
+   "trusted": true
+  },
+  {
+   "type": "leave",
+   "t": 2534.0,
+   "x": 302.8333435058594,
+   "y": 338.48333740234375,
+   "pointer_type": "touch",
+   "buttons": 0,
+   "target": "username",
+   "trusted": true
+  },
+  {
+   "type": "enter",
+   "t": 5001.0,
+   "x": 284.04998779296875,
+   "y": 420.1333312988281,
+   "pointer_type": "touch",
+   "buttons": 1,
+   "target": "password",
+   "trusted": true
+  },
+  {
+   "type": "down",
+   "t": 4983.0,
+   "x": 284.04998779296875,
+   "y": 420.1333312988281,
+   "pointer_type": "touch",
+   "buttons": 1,
+   "target": "password",
+   "trusted": true
+  },
+  {
+   "type": "move",
+   "t": 5038.0,
+   "x": 283.2833251953125,
+   "y": 408.6333312988281,
+   "pointer_type": "touch",
+   "buttons": 1,
+   "target": "password",
+   "trusted": true
+  },
+  {
+   "type": "leave",
+   "t": 5049.0,
+   "x": 283.2833251953125,
+   "y": 408.6333312988281,
+   "pointer_type": "touch",
+   "buttons": 1,
+   "target": "password",
+   "trusted": true
+  },
+  {
+   "type": "enter",
+   "t": 5435.0,
+   "x": 286.3500061035156,
+   "y": 438.1499938964844,
+   "pointer_type": "touch",
+   "buttons": 1,
+   "target": "password",
+   "trusted": true
+  },
+  {
+   "type": "down",
+   "t": 5428.0,
+   "x": 286.3500061035156,
+   "y": 438.1499938964844,
+   "pointer_type": "touch",
+   "buttons": 1,
+   "target": "password",
+   "trusted": true
+  },
+  {
+   "type": "up",
+   "t": 5502.0,
+   "x": 286.3500061035156,
+   "y": 438.1499938964844,
+   "pointer_type": "touch",
+   "buttons": 0,
+   "target": "password",
+   "trusted": true
+  },
+  {
+   "type": "leave",
+   "t": 5511.0,
+   "x": 286.3500061035156,
+   "y": 438.1499938964844,
+   "pointer_type": "touch",
+   "buttons": 0,
+   "target": "password",
+   "trusted": true
+  },
+  {
+   "type": "enter",
+   "t": 7781.0,
+   "x": 302.8333435058594,
+   "y": 531.683349609375,
+   "pointer_type": "touch",
+   "buttons": 1,
+   "target": "submit",
+   "trusted": true
+  },
+  {
+   "type": "down",
+   "t": 7770.0,
+   "x": 302.8333435058594,
+   "y": 531.683349609375,
+   "pointer_type": "touch",
+   "buttons": 1,
+   "target": "submit",
+   "trusted": true
+  },
+  {
+   "type": "up",
+   "t": 7866.0,
+   "x": 302.8333435058594,
+   "y": 531.683349609375,
+   "pointer_type": "touch",
+   "buttons": 0,
+   "target": "submit",
+   "trusted": true
+  },
+  {
+   "type": "leave",
+   "t": 7873.0,
+   "x": 302.8333435058594,
+   "y": 531.683349609375,
+   "pointer_type": "touch",
+   "buttons": 0,
+   "target": "submit",
+   "trusted": true
+  }
+ ],
+ "env": {
+  "probe_version": 2,
+  "webdriver": false,
+  "ua": "Mozilla/5.0 (Android 17; Mobile; rv:156.0) Gecko/156.0 Firefox/156.0",
+  "ua_brands": null,
+  "ua_mobile": null,
+  "uach_platform": null,
+  "platform": "Linux armv81",
+  "plugins": 5,
+  "mime_types": 2,
+  "languages": [
+   "en-US"
+  ],
+  "outer_width": 414,
+  "outer_height": 491,
+  "inner_width": 414,
+  "inner_height": 845,
+  "screen_width": 414,
+  "screen_height": 920,
+  "avail_width": 414,
+  "avail_height": 920,
+  "color_depth": 24,
+  "hardware_concurrency": 8,
+  "device_memory": null,
+  "max_touch_points": 5,
+  "has_window_chrome": false,
+  "notification_permission": "default",
+  "permissions_notifications": null,
+  "timezone": "Asia/Kolkata",
+  "automation_globals": [],
+  "webgl_vendor": "ARM",
+  "webgl_renderer": "Mali-G51, or similar",
+  "fonts": [
+   "Noto Color Emoji",
+   "Noto Serif",
+   "Roboto",
+   "Source Sans Pro"
+  ],
+  "cookies_enabled": true,
+  "do_not_track": "unspecified",
+  "canvas_hash": "ff30d2cd",
+  "audio_hash": null,
+  "probe_ms": 192
+ },
+ "meta": {
+  "had_paste": false,
+  "viewport": "414x845@2.608695652173913",
+  "targets": {
+   "submit": [
+    44.76666259765625,
+    508.33331298828125,
+    324.4666748046875,
+    52.350006103515625
+   ],
+   "username": [
+    44.76666259765625,
+    323.6166687011719,
+    324.4666748046875,
+    49.149993896484375
+   ],
+   "password": [
+    44.76666259765625,
+    413.58331298828125,
+    324.4666748046875,
+    49.15000915527344
+   ]
+  },
+  "submit_via": "click"
+ }
+}

@@ -3,7 +3,8 @@
 *.db
 *.db-journal
 *.jsonl
-*.csv          # CMU dataset is re-downloaded by eval/cmu.py
+# CMU dataset: re-downloaded by code/bioprint/eval/cmu.py
+*.csv
 
 __pycache__/
 *.pyc

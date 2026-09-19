@@ -1,0 +1,14 @@
+# Behavioural recordings are personal data (GDPR Art. 9 / DPDP) and this repo is
+# shared with judges. Keep them local; back them up separately.
+*.db
+*.db-journal
+*.jsonl
+
+__pycache__/
+*.pyc
+node_modules/
+*.log
+
+# Obsidian workspace state
+research/.obsidian/workspace*.json
+.DS_Store

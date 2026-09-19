@@ -1,0 +1,13 @@
+name: bigidea
+channels:
+  - conda-forge
+dependencies:
+  - python=3.12
+  - fastapi
+  - uvicorn
+  - evdev          # reads /dev/input, for verify/evdev_logger.py
+  # added as the research moves into analysis:
+  # - pandas
+  # - numpy
+  # - scikit-learn
+  # - jupyterlab

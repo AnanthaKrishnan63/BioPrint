@@ -1,0 +1,6 @@
+{
+  "name": "typing-capture",
+  "private": true,
+  "type": "module",
+  "description": "Keystroke capture + typing speed. First brick of the account-holder-verification harness."
+}

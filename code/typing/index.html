@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Typing capture</title>
+<style>
+  :root {
+    color-scheme: light dark;
+    --bg: #fbfbfa; --fg: #1a1a18; --muted: #6b6b66;
+    --line: #e3e3df; --card: #fff; --accent: #2f6f4e; --warn: #9a3412;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg:#16161a; --fg:#e9e9e4; --muted:#9a9a92;
+            --line:#2c2c32; --card:#1e1e23; --accent:#6ee7a8; --warn:#fca66a; }
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; padding: 32px 16px; background: var(--bg); color: var(--fg);
+    font: 15px/1.5 ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  }
+  main { max-width: 760px; margin: 0 auto; }
+  h1 { font-size: 20px; margin: 0 0 4px; letter-spacing: -0.01em; }
+  .sub { color: var(--muted); margin: 0 0 24px; font-size: 13px; }
+
+  textarea {
+    width: 100%; min-height: 130px; padding: 14px; resize: vertical;
+    border: 1px solid var(--line); border-radius: 10px;
+    background: var(--card); color: var(--fg);
+    font: 15px/1.6 ui-monospace, SFMono-Regular, Menlo, monospace;
+  }
+  textarea:focus { outline: 2px solid var(--accent); outline-offset: 1px; }
+
+  .big { display: flex; gap: 32px; flex-wrap: wrap; margin: 20px 0 4px; }
+  .big div { min-width: 92px; }
+  .big b { display: block; font-size: 34px; font-weight: 600; line-height: 1.1;
+           font-variant-numeric: tabular-nums; }
+  .big span { color: var(--muted); font-size: 12px; text-transform: uppercase;
+              letter-spacing: 0.06em; }
+
+  .grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(128px, 1fr));
+    gap: 10px 20px; margin: 18px 0;
+    border-top: 1px solid var(--line); padding-top: 16px;
+  }
+  .grid div { display: flex; justify-content: space-between; gap: 8px; font-size: 13px; }
+  .grid span { color: var(--muted); }
+  .grid b { font-weight: 600; font-variant-numeric: tabular-nums; }
+
+  h2 { font-size: 13px; text-transform: uppercase; letter-spacing: 0.06em;
+       color: var(--muted); font-weight: 600; margin: 26px 0 8px; }
+
+  table { width: 100%; border-collapse: collapse; font-size: 13px;
+          font-variant-numeric: tabular-nums; }
+  th, td { text-align: right; padding: 4px 8px; border-bottom: 1px solid var(--line); }
+  th:nth-child(2), td.code { text-align: left; font-family: ui-monospace, monospace; }
+  th { color: var(--muted); font-weight: 500; font-size: 11px;
+       text-transform: uppercase; letter-spacing: 0.05em; }
+  td.neg { color: var(--accent); font-weight: 600; }
+  td.empty { text-align: center; color: var(--muted); padding: 16px; }
+
+  .controls { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin: 22px 0 0; }
+  input[type=text] {
+    padding: 7px 10px; border: 1px solid var(--line); border-radius: 7px;
+    background: var(--card); color: var(--fg); font: inherit; font-size: 13px; width: 150px;
+  }
+  button {
+    padding: 7px 14px; border: 1px solid var(--line); border-radius: 7px;
+    background: var(--card); color: var(--fg); font: inherit; font-size: 13px; cursor: pointer;
+  }
+  button:hover { border-color: var(--accent); }
+  button.primary { background: var(--accent); border-color: var(--accent); color: var(--bg); font-weight: 600; }
+
+  #status { font-size: 13px; margin-left: 4px; }
+  #status.ok { color: var(--accent); }
+  #status.err { color: var(--warn); }
+
+  .warn { background: color-mix(in srgb, var(--warn) 12%, transparent);
+          border: 1px solid var(--warn); color: var(--warn);
+          padding: 8px 12px; border-radius: 8px; font-size: 13px; margin-top: 12px; }
+  .note { color: var(--muted); font-size: 12px; margin-top: 22px;
+          border-top: 1px solid var(--line); padding-top: 14px; }
+  [hidden] { display: none !important; }
+</style>
+</head>
+<body>
+<main>
+  <h1>Typing capture</h1>
+  <p class="sub">Type anything. Every keypress is timed; nothing you write is stored.</p>
+
+  <textarea id="box" spellcheck="false" placeholder="Start typing&hellip;"></textarea>
+
+  <div id="pasteWarning" class="warn" hidden>
+    Paste detected. Pasting fires no key events, so this session's timings no longer
+    describe typing. Reset before saving.
+  </div>
+
+  <div class="big">
+    <div><b id="netWpm">0</b><span>net wpm</span></div>
+    <div><b id="grossWpm">0</b><span>gross wpm</span></div>
+    <div><b id="keys">0</b><span>keystrokes</span></div>
+    <div><b id="elapsed">0.0</b><span>seconds</span></div>
+    <div><b id="netChars">0</b><span>characters</span></div>
+  </div>
+
+  <div class="grid">
+    <div><span>mean dwell</span><b id="dwell">0</b></div>
+    <div><span>mean flight</span><b id="flight">0</b></div>
+    <div><span>rollovers</span><b id="rollover">0</b></div>
+    <div><span>backspace</span><b id="backspace">0</b></div>
+    <div><span>delete</span><b id="del">0</b></div>
+    <div><span>correction ratio</span><b id="ratio">&ndash;</b></div>
+    <div><span>clock tick</span><b id="timerRes">&ndash;</b></div>
+  </div>
+
+  <h2>Last 15 keystrokes</h2>
+  <table>
+    <thead><tr><th>#</th><th>key</th><th>dwell&nbsp;ms</th><th>flight&nbsp;ms</th></tr></thead>
+    <tbody id="tableBody"><tr><td colspan="4" class="empty">start typing</td></tr></tbody>
+  </table>
+
+  <div class="controls">
+    <input type="text" id="subject" placeholder="subject label" autocomplete="off">
+    <button id="save" class="primary">Save session</button>
+    <button id="export">Export JSON</button>
+    <button id="reset">Reset</button>
+    <span id="status"></span>
+  </div>
+
+  <p class="note">
+    <b>Dwell</b> is how long you hold a key. <b>Flight</b> is the gap from releasing one
+    key to pressing the next &mdash; it goes <em>negative</em> (shown highlighted) when you
+    press the next key before letting go of the last, which is called rollover.
+    <b>Gross&nbsp;WPM</b> counts every keystroke including corrections; <b>net&nbsp;WPM</b>
+    counts only surviving characters, so the <b>correction ratio</b> between them measures
+    how much of your typing you undo. <b>Clock tick</b> is how finely this browser actually
+    reports time &mdash; browsers blur their timers deliberately, which limits how precisely
+    dwell can be measured at all.
+  </p>
+</main>
+<script type="module" src="./app.js"></script>
+</body>
+</html>

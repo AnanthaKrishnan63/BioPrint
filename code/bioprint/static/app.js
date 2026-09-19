@@ -128,7 +128,7 @@ async function api(path, body) {
 
 // ---------------------------------------------------------------- modes
 const POINTER_CLICKS = 5; // server needs this many clicked reps before it fits a pointer model
-const enrollState = { target: 10, count: 0, clicks: 0, reps: 0, last: null };
+const enrollState = { target: 10, count: 0, clicks: 0, reps: 0, last: null, lastBad: false };
 let mode = 'login';
 
 const COPY = {
@@ -186,7 +186,8 @@ function renderFoot() {
         ? `${enrollState.clicks} clicked ✓`
         : `clicked ${enrollState.clicks} of ${POINTER_CLICKS} needed`),
     );
-    const note = el('p', { className: 'foot-note' }, enrollState.last || 'Tip: type it straight through — a backspace makes the sample unusable — and finish with a click.');
+    const note = el('p', { className: enrollState.lastBad ? 'foot-note err' : 'foot-note', role: enrollState.lastBad ? 'alert' : null },
+      enrollState.last || 'Tip: type it straight through — a backspace makes the sample unusable — and finish with a click.');
     foot.append(bar, label, note);
   } else if (mode === 'register') {
     foot.append(
@@ -317,9 +318,10 @@ async function doEnrollRep(creds) {
   }
   enrollState.target = data.target || enrollState.target;
   enrollState.count = data.count;
-  enrollState.reps += 1;
-  if (via === 'click') enrollState.clicks += 1;
+  enrollState.lastBad = !data.accepted;
   if (data.accepted) {
+    enrollState.reps += 1;
+    if (via === 'click') enrollState.clicks += 1;
     const left = enrollState.target - data.count;
     enrollState.last = left > 0 ? `Saved. ${left} to go — keep it natural.` : 'Saved — that was the last one.';
     if (via !== 'click') {
@@ -329,7 +331,9 @@ async function doEnrollRep(creds) {
     }
   } else {
     const why = (data.reasons && data.reasons[0]) || 'that repetition could not be used';
-    enrollState.last = `Not counted — ${why}`;
+    // A rejected repetition must be unmissable: a wrong password here would
+    // otherwise look like a saved one.
+    enrollState.last = `✕ Not saved — ${why}.`;
   }
   submit.textContent = enrollButtonLabel();
   renderFoot();

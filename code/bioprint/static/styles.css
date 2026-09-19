@@ -165,6 +165,7 @@ a { color: var(--accent); }
 .progress span.current { background: color-mix(in srgb, var(--accent) 45%, var(--neutral-wash)); }
 .progress-label { display: flex; justify-content: space-between; margin-top: .45rem; font-size: .88rem; color: var(--ink-2); }
 .foot-note { font-size: .88rem; color: var(--ink-2); margin: 0; }
+.foot-note.err { color: var(--bad-ink); font-weight: 600; }
 
 /* Result panel, below the card */
 .result {

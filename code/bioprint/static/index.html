@@ -3,25 +3,75 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>BioPrint</title>
-<!-- STUB UI. OWNER: Agent D (UI) replaces this page, app.js and adds the dashboard. -->
-<style>
-  body { font: 16px system-ui, sans-serif; max-width: 28rem; margin: 3rem auto; padding: 0 1rem; }
-  form { display: grid; gap: .6rem; }
-  input, button { font: inherit; padding: .5rem; }
-  pre { background: #f4f4f4; padding: .75rem; white-space: pre-wrap; font-size: 13px; }
-</style>
+<title>BioPrint — sign in</title>
+<meta name="description" content="A login that checks how you type, not just what you type.">
+<link rel="stylesheet" href="./styles.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><text y='19' font-size='20'>🔐</text></svg>">
 </head>
 <body>
-<h1>BioPrint</h1>
-<form id="card" autocomplete="off">
-  <input id="username" placeholder="username" autocomplete="off">
-  <input id="password" type="password" placeholder="password" autocomplete="off">
-  <button id="login" type="submit">Log in</button>
-  <button id="enroll" type="button">Enroll sample</button>
-  <button id="register" type="button">Register</button>
-</form>
-<pre id="out"></pre>
+<header class="topbar">
+  <a class="brand" href="./index.html">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true">
+      <path d="M12 3c2.5 0 4.7 1.2 6 3M4 8.5C5.3 5.8 8.4 4 12 4M6.5 19.5c-.9-1.8-1.3-3.6-1.3-5.5 0-3.3 3-6 6.8-6s6.8 2.7 6.8 6c0 1.2-.1 2.3-.4 3.4M9 20.4c-.6-1.6-1-3.4-1-6 0-2.2 1.8-4 4-4s4 1.8 4 4c0 2.6-.4 4.7-1.2 6.6M12 12.4v3.2c0 1.6.2 3.2.7 4.7"/>
+    </svg>
+    BioPrint <small>behaviour-based login</small>
+  </a>
+  <nav class="demo-nav" aria-label="Demo">
+    <span class="label" aria-hidden="true">Demo</span>
+    <a href="./index.html#login" data-page="login">Sign in</a>
+    <a href="./index.html#enroll" data-page="enroll">Create account</a>
+    <a href="./dashboard.html" data-page="dashboard">Dashboard</a>
+  </nav>
+</header>
+
+<main class="auth-main">
+  <!-- One card for sign-in and enrollment: same fields, same button, same place
+       on screen, so pointer features compare like with like. -->
+  <form class="card" id="card" novalidate autocomplete="off">
+    <div class="card-head">
+      <h1 id="card-title">Sign in</h1>
+      <p id="card-sub">Type your password the way you normally do. We compare the rhythm, not just the characters.</p>
+    </div>
+
+    <div class="field">
+      <label for="username">Username</label>
+      <input id="username" type="text" autocomplete="off" autocapitalize="none" autocorrect="off"
+             spellcheck="false" data-1p-ignore data-lpignore="true" data-bwignore data-form-type="other"
+             enterkeyhint="next" required>
+    </div>
+
+    <div class="field">
+      <div class="label-row">
+        <label for="password">Password</label>
+        <button type="button" class="linklike" id="reveal" aria-pressed="false">Show</button>
+      </div>
+      <input id="password" type="password" autocomplete="off" autocapitalize="none" autocorrect="off"
+             spellcheck="false" data-1p-ignore data-lpignore="true" data-bwignore data-form-type="other"
+             enterkeyhint="go" required>
+    </div>
+
+    <p class="hint-row" id="hint" aria-live="polite"></p>
+
+    <button class="btn btn-primary" id="submit" type="submit">Log in</button>
+
+    <div class="card-foot" id="foot">
+      <p class="foot-note" id="foot-note">
+        New here? <a href="./index.html#enroll">Create an account</a> and teach BioPrint your rhythm.
+      </p>
+    </div>
+  </form>
+
+  <section class="result" id="result" hidden aria-live="polite"></section>
+
+  <details class="explainer">
+    <summary>What is BioPrint measuring?</summary>
+    <p>Only <em>timing</em>: how long each physical key is held down, the gaps between keys, and how the
+      pointer travels to the button. The characters you type are used solely to line up the comparison.</p>
+    <p>Nothing here replaces your password — it is a second, silent check that the person typing it is you.
+      There is no OTP and no second device: the decision is made from behaviour alone, in a millisecond or two.</p>
+  </details>
+</main>
+
 <script type="module" src="./app.js"></script>
 </body>
 </html>

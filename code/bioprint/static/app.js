@@ -1,66 +1,434 @@
-// app.js — STUB wiring. OWNER: Agent D (UI). Shows the whole API working end to end.
+// app.js — the login / enrollment screen. OWNER: Agent D (UI).
+//
+// One card serves three modes (sign in, create account, enrollment reps). The
+// fields and the submit button never move between modes: pointer features compare
+// the approach to the button, so the button must sit in the same place every time.
 import { createCapture } from './capture.js';
 import { createPointerCapture } from './pointer.js';
 import { collectEnv } from './probe.js';
+import { $, el, gauge, svgIcon, decisionInfo, markNav, applyTheme, fmt } from './ui.js';
 
-const $ = (id) => document.getElementById(id);
+applyTheme();
+
 const card = $('card');
+const username = $('username');
+const password = $('password');
+const submit = $('submit');
+const hint = $('hint');
+const foot = $('foot');
+const title = $('card-title');
+const sub = $('card-sub');
+const result = $('result');
+
+// ---------------------------------------------------------------- capture
 let origin = performance.now();
-const keys = createCapture(card, { origin });
-const pointer = createPointerCapture(card, { origin });
+const keys = createCapture(card, { origin, onChange: updateHint });
+// 'submit' is this page's button id, so it must be added to the tracked ids.
+const pointer = createPointerCapture(card, { origin, ids: ['submit', 'reveal'] });
 let submitVia = 'unknown';
-let submitId = 'login'; // whichever button submits this sample
+let busy = false;
 
 function rect(id) {
   const r = $(id).getBoundingClientRect();
   return [r.x, r.y, r.width, r.height];
 }
 
-async function sample() {
+async function buildSample() {
   return {
-    keystrokes: keys.events,
-    pointer: pointer.events,
+    keystrokes: keys.events.slice(),
+    pointer: pointer.events.slice(),
     env: await collectEnv(),
     meta: {
       had_paste: keys.hadPaste,
       viewport: `${innerWidth}x${innerHeight}@${devicePixelRatio}`,
-      targets: { submit: rect(submitId), password: rect('password'), username: rect('username') },
+      // "submit" is always the button that sent THIS sample. There is only one.
+      targets: { submit: rect('submit'), username: rect('username'), password: rect('password') },
       submit_via: submitVia,
     },
   };
 }
 
-function reset() {
+// The form can be submitted while keys (or the mouse button) are still down: Enter
+// fires its submit on keydown, so the last password key's dwell is still open. Wait
+// for the matching releases — briefly — before serialising the sample.
+const SETTLE_MS = 150;
+let buttonHeld = false;
+
+function heldKeyCount() {
+  const held = new Set();
+  for (const e of keys.events) {
+    if (e.type === 'down') held.add(e.code);
+    else held.delete(e.code);
+  }
+  return held.size;
+}
+
+function settle(maxMs = SETTLE_MS) {
+  if (!heldKeyCount() && !buttonHeld) return Promise.resolve();
+  return new Promise((resolve) => {
+    const finish = () => {
+      clearTimeout(timer);
+      document.removeEventListener('keyup', check);
+      document.removeEventListener('pointerup', check);
+      resolve();
+    };
+    // Bubble-phase on the document: capture.js (on the card) and pointer.js
+    // (capture phase) have both recorded the event by the time this runs.
+    const check = () => {
+      if (!heldKeyCount() && !buttonHeld) finish();
+    };
+    const timer = setTimeout(finish, maxMs);
+    document.addEventListener('keyup', check);
+    document.addEventListener('pointerup', check);
+  });
+}
+
+function resetCapture({ clearPassword = true } = {}) {
   origin = performance.now();
   keys.reset(origin);
   pointer.reset(origin);
   submitVia = 'unknown';
-  $('password').value = '';
-  $('password').focus();
+  buttonHeld = false;
+  if (clearPassword) password.value = '';
+  updateHint();
 }
 
-async function post(path, body) {
-  const res = await fetch(path, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(body),
+function updateHint() {
+  if (keys.hadPaste) {
+    hint.className = 'hint-row warn';
+    hint.textContent = 'Pasted — there is no rhythm in a paste, so this attempt gets flagged.';
+    return;
+  }
+  const n = keys.events.filter((e) => e.type === 'down').length;
+  hint.className = 'hint-row';
+  hint.textContent = n ? `Capturing rhythm — ${n} keystroke${n === 1 ? '' : 's'} so far` : '';
+}
+
+// ---------------------------------------------------------------- network
+async function api(path, body) {
+  const t0 = performance.now();
+  let res;
+  try {
+    res = await fetch(path, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(body),
+    });
+  } catch (err) {
+    return { ok: false, status: 0, data: { detail: 'server unreachable' }, rtt: performance.now() - t0 };
+  }
+  let data = null;
+  try {
+    data = await res.json();
+  } catch {
+    data = {};
+  }
+  return { ok: res.ok, status: res.status, data, rtt: performance.now() - t0 };
+}
+
+// ---------------------------------------------------------------- modes
+const POINTER_CLICKS = 5; // server needs this many clicked reps before it fits a pointer model
+const enrollState = { target: 10, count: 0, clicks: 0, reps: 0, last: null };
+let mode = 'login';
+
+const COPY = {
+  login: {
+    title: 'Sign in',
+    sub: 'Type your password the way you normally do. We compare the rhythm, not just the characters.',
+    button: 'Log in',
+  },
+  register: {
+    title: 'Create your account',
+    sub: 'Pick a username and password. You will then type that password ten times so we can learn its rhythm — timing only.',
+    button: 'Create account',
+  },
+  enroll: {
+    title: 'Teach BioPrint your rhythm',
+    sub: 'Type the same password, then click the button — with the mouse, not Enter. We learn the timing and how you reach the button.',
+    button: 'Click to save',
+  },
+};
+
+function setMode(next, { keepResult = false } = {}) {
+  mode = next;
+  const copy = COPY[next];
+  title.textContent = copy.title;
+  sub.textContent = copy.sub;
+  submit.textContent = next === 'enroll' ? enrollButtonLabel() : copy.button;
+  username.readOnly = next === 'enroll';
+  markNav(next === 'login' ? 'login' : 'enroll');
+  // Keep the address bar in step, so the Demo nav links always fire a change.
+  const want = next === 'login' ? '#login' : '#enroll';
+  if (location.hash !== want) history.replaceState(null, '', location.pathname + location.search + want);
+  document.title = next === 'login' ? 'BioPrint — sign in' : 'BioPrint — enrollment';
+  if (!keepResult) hideResult();
+  renderFoot();
+  resetCapture();
+  (next === 'enroll' || username.value ? password : username).focus();
+}
+
+const enrollButtonLabel = () =>
+  `${COPY.enroll.button} ${Math.min(enrollState.count + 1, enrollState.target)} of ${enrollState.target}`;
+
+function renderFoot() {
+  foot.replaceChildren();
+  if (mode === 'enroll') {
+    const bar = el('div', { className: 'progress', role: 'img' });
+    bar.setAttribute('aria-label', `${enrollState.count} of ${enrollState.target} repetitions saved`);
+    for (let i = 0; i < enrollState.target; i++) {
+      bar.append(el('span', { className: i < enrollState.count ? 'done' : i === enrollState.count ? 'current' : '' }));
+    }
+    const label = el(
+      'div',
+      { className: 'progress-label' },
+      el('span', {}, `${enrollState.count} of ${enrollState.target} saved`),
+      el('span', {}, enrollState.clicks >= POINTER_CLICKS
+        ? `${enrollState.clicks} clicked ✓`
+        : `clicked ${enrollState.clicks} of ${POINTER_CLICKS} needed`),
+    );
+    const note = el('p', { className: 'foot-note' }, enrollState.last || 'Tip: type it straight through — a backspace makes the sample unusable — and finish with a click.');
+    foot.append(bar, label, note);
+  } else if (mode === 'register') {
+    foot.append(
+      el('p', { className: 'foot-note' }, 'Already set up? ', el('a', { href: './index.html#login' }, 'Sign in'), '.'),
+    );
+  } else {
+    foot.append(
+      el('p', { className: 'foot-note' }, 'New here? ', el('a', { href: './index.html#enroll' }, 'Create an account'), ' and teach BioPrint your rhythm.'),
+    );
+  }
+}
+
+// ---------------------------------------------------------------- result panel
+function hideResult() {
+  result.hidden = true;
+  result.replaceChildren();
+}
+
+function showResult({ tone, icon, heading, body, reasons = [], signals = [], meta = [], actions = [] }) {
+  result.className = `result ${tone}`;
+  result.hidden = false;
+  const head = el(
+    'div',
+    { className: 'result-head' },
+    svgIcon(icon, 'result-icon'),
+    el('div', {}, el('h2', {}, heading), body ? el('p', {}, body) : null),
+  );
+  result.replaceChildren(head);
+  if (reasons.length) {
+    result.append(el('ul', {}, reasons.map((r) => el('li', {}, r))));
+  }
+  if (signals.length) {
+    const box = el('div', { className: 'sig-mini' });
+    for (const s of signals) box.append(gauge(s, { compact: true }));
+    result.append(box);
+  }
+  if (meta.length || actions.length) {
+    result.append(el('div', { className: 'meta' }, meta, actions));
+  }
+  // Nudge the verdict into view if it fell below the fold. 'nearest' scrolls the
+  // minimum needed; pointer features are measured against the button's rect at
+  // submit time, so a small scroll cannot distort them.
+  if (result.getBoundingClientRect().bottom > innerHeight) {
+    result.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  }
+}
+
+const pill = (text, title = '') => el('span', { className: 'pill', title }, text);
+
+function renderLogin(data, rtt) {
+  const info = decisionInfo(data.decision);
+  const user = username.value.trim();
+  const bodies = {
+    allow: 'Your typing rhythm matched the profile enrolled for this account.',
+    block: 'The password was correct, but the behaviour was not. BioPrint blocked this on behaviour alone — no code, no second device.',
+    retype: 'There is nothing to compare when the password is corrected mid-way. Type it again, straight through.',
+    wrong_password: 'Check the password and try again.',
+    unknown_user: 'Create the account first, then enroll your rhythm.',
+    not_enrolled: 'This account still needs its enrollment repetitions before behaviour can be checked.',
+  };
+  const meta = [];
+  if (Number.isFinite(data.latency_ms)) meta.push(pill(`decision in ${fmt(data.latency_ms, 1)} ms`, 'server-side scoring time'));
+  meta.push(pill(`${Math.round(rtt)} ms round trip`, 'browser to server and back'));
+  const actions = [];
+  if (data.attempt_id) {
+    actions.push(el('a', { href: `./dashboard.html?user=${encodeURIComponent(user)}&attempt=${data.attempt_id}` }, 'See why on the dashboard →'));
+  }
+  if (data.decision === 'not_enrolled' || data.decision === 'unknown_user') {
+    actions.push(el('a', { href: './index.html#enroll' }, 'Go to enrollment →'));
+  }
+  showResult({
+    tone: info.tone,
+    icon: info.icon,
+    heading: data.decision === 'allow' ? `Welcome back, ${user}` : info.title,
+    body: bodies[data.decision] || '',
+    reasons: data.reasons || [],
+    signals: (data.signals || []).filter((s) => s.available !== false || s.name === 'pointer'),
+    meta,
+    actions,
   });
-  $('out').textContent = JSON.stringify(await res.json(), null, 2);
 }
 
-const creds = () => ({ username: $('username').value, password: $('password').value });
+// ---------------------------------------------------------------- actions
+async function doRegister(creds) {
+  const { ok, status, data } = await api('/api/register', creds);
+  if (ok) {
+    enrollState.target = data.enroll_target || 10;
+    enrollState.count = 0;
+    enrollState.clicks = 0;
+    enrollState.reps = 0;
+    enrollState.last = `Account created. Now type that same password ${enrollState.target} times.`;
+    localStorage.setItem('bioprint.user', creds.username);
+    setMode('enroll');
+    return;
+  }
+  if (status === 409) {
+    const res = await fetch(`/api/users/${encodeURIComponent(creds.username)}`);
+    const st = res.ok ? await res.json() : null;
+    if (st && !st.enrolled) {
+      enrollState.target = st.enroll_target || 10;
+      enrollState.count = st.enroll_count || 0;
+      enrollState.last = 'Picking up where you left off — use the same password.';
+      setMode('enroll');
+      return;
+    }
+    showResult({
+      tone: 'other',
+      icon: 'info',
+      heading: 'That username is taken',
+      body: 'If the account is yours, sign in instead.',
+      actions: [el('a', { href: './index.html#login' }, 'Go to sign in →')],
+    });
+    return;
+  }
+  showResult({ tone: 'other', icon: 'info', heading: 'Could not create the account', body: (data && data.detail) || 'Unknown error.' });
+}
 
-$('password').addEventListener('keydown', (e) => { if (e.key === 'Enter') submitVia = 'enter'; });
-$('login').addEventListener('pointerdown', () => { submitVia = 'click'; submitId = 'login'; });
-$('enroll').addEventListener('pointerdown', () => { submitVia = 'click'; submitId = 'enroll'; });
+async function doEnrollRep(creds) {
+  const via = submitVia;
+  await settle();
+  const sample = await buildSample();
+  const { ok, data } = await api('/api/enroll', { ...creds, sample });
+  resetCapture();
+  if (!ok) {
+    enrollState.last = (data && data.detail) || 'The server rejected that repetition.';
+    renderFoot();
+    return;
+  }
+  enrollState.target = data.target || enrollState.target;
+  enrollState.count = data.count;
+  enrollState.reps += 1;
+  if (via === 'click') enrollState.clicks += 1;
+  if (data.accepted) {
+    const left = enrollState.target - data.count;
+    enrollState.last = left > 0 ? `Saved. ${left} to go — keep it natural.` : 'Saved — that was the last one.';
+    if (via !== 'click') {
+      enrollState.last += enrollState.clicks < POINTER_CLICKS
+        ? ` Please click the button instead of pressing Enter — the pointer profile needs ${POINTER_CLICKS - enrollState.clicks} more clicked repetition(s).`
+        : ' (That one was sent with Enter, so it carries no pointer data.)';
+    }
+  } else {
+    const why = (data.reasons && data.reasons[0]) || 'that repetition could not be used';
+    enrollState.last = `Not counted — ${why}`;
+  }
+  submit.textContent = enrollButtonLabel();
+  renderFoot();
+
+  if (data.enrolled) {
+    const user = creds.username;
+    showResult({
+      tone: 'allow',
+      icon: 'check',
+      heading: 'Your rhythm is enrolled',
+      body: `BioPrint fitted a profile for ${user} from ${data.count} repetitions. From now on a login has to match it.`,
+      actions: [
+        el('a', { href: `./dashboard.html?user=${encodeURIComponent(user)}` }, 'Open the dashboard →'),
+      ],
+    });
+    setMode('login', { keepResult: true }); // never focuses or clicks the button itself
+  }
+}
+
+async function doLogin(creds) {
+  await settle();
+  const sample = await buildSample();
+  const { ok, data, rtt } = await api('/api/login', { ...creds, sample });
+  resetCapture();
+  if (!ok) {
+    showResult({ tone: 'other', icon: 'info', heading: 'Could not reach the checker', body: (data && data.detail) || 'Unknown error.' });
+    return;
+  }
+  renderLogin(data, rtt);
+}
 
 card.addEventListener('submit', async (e) => {
   e.preventDefault();
-  await post('/api/login', { ...creds(), sample: await sample() });
-  reset();
+  if (busy) return;
+  const creds = { username: username.value.trim(), password: password.value };
+  if (!creds.username || !creds.password) {
+    hint.className = 'hint-row warn';
+    hint.textContent = 'Both a username and a password are needed.';
+    (creds.username ? password : username).focus();
+    return;
+  }
+  busy = true;
+  submit.setAttribute('aria-busy', 'true');
+  try {
+    if (mode === 'register') await doRegister(creds);
+    else if (mode === 'enroll') await doEnrollRep(creds);
+    else await doLogin(creds);
+  } finally {
+    busy = false;
+    submit.removeAttribute('aria-busy');
+  }
 });
-$('enroll').addEventListener('click', async () => {
-  await post('/api/enroll', { ...creds(), sample: await sample() });
-  reset();
+
+// How the sample was submitted: a click on the button, or Enter in a field.
+submit.addEventListener('pointerdown', () => { submitVia = 'click'; buttonHeld = true; });
+document.addEventListener('pointerup', () => { buttonHeld = false; });
+for (const field of [username, password]) {
+  field.addEventListener('keydown', (e) => { if (e.key === 'Enter') submitVia = 'enter'; });
+}
+
+$('reveal').addEventListener('click', (e) => {
+  const on = password.type === 'password';
+  password.type = on ? 'text' : 'password';
+  e.currentTarget.setAttribute('aria-pressed', String(on));
+  e.currentTarget.textContent = on ? 'Hide' : 'Show';
+  password.focus();
 });
-$('register').addEventListener('click', () => post('/api/register', creds()));
+
+// ---------------------------------------------------------------- routing
+function route() {
+  const hash = location.hash.replace('#', '');
+  if (hash === 'enroll') {
+    if (mode !== 'enroll') setMode('register');
+  } else if (mode !== 'login') {
+    setMode('login');
+  }
+}
+addEventListener('hashchange', route);
+// The nav links point at this same page; handle them directly so a click always
+// switches mode, even when the hash already matches.
+for (const link of document.querySelectorAll('.demo-nav a[data-page]')) {
+  if (link.dataset.page === 'dashboard') continue;
+  link.addEventListener('click', (e) => {
+    e.preventDefault();
+    if (link.dataset.page === 'enroll') setMode(mode === 'enroll' ? 'enroll' : 'register');
+    else setMode('login');
+  });
+}
+
+const remembered = localStorage.getItem('bioprint.user');
+if (remembered) {
+  username.value = remembered;
+  // A remembered name is a suggestion: the first click selects it, so typing replaces.
+  username.addEventListener('focus', function once() {
+    username.select();
+    username.removeEventListener('focus', once);
+  });
+}
+setMode(location.hash.replace('#', '') === 'enroll' ? 'register' : 'login');
+username.addEventListener('change', () => {
+  if (username.value.trim()) localStorage.setItem('bioprint.user', username.value.trim());
+});

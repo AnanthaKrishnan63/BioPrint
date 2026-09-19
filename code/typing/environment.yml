@@ -9,6 +9,9 @@ dependencies:
   - numpy          # bioprint scoring
   - pytest         # bioprint tests
   - httpx          # fastapi TestClient
+  - pip
+  - pip:
+    - playwright   # headless-browser bot for the demo; then: playwright install chromium
   # added as the research moves into analysis:
   # - pandas
   # - scikit-learn

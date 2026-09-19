@@ -119,4 +119,5 @@ class EnrollOut(BaseModel):
     count: int  # accepted enrollment samples so far
     target: int
     enrolled: bool
+    warmup: bool = False  # this sample was a practice run and did not count
     reasons: list[str] = Field(default_factory=list)

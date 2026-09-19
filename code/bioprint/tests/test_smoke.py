@@ -6,10 +6,12 @@ from helpers import CODES, PASSWORD, make_sample
 
 def _enrolled(client, user="alice"):
     assert client.post("/api/register", json={"username": user, "password": PASSWORD}).status_code == 200
-    for i in range(10):
+    for i in range(11):  # 1 practice run + 10 counted
         r = client.post("/api/enroll", json={"username": user, "password": PASSWORD,
                                              "sample": make_sample(seed=i)}).json()
         assert r["accepted"], r
+        assert r["warmup"] == (i == 0)
+        assert r["count"] == i
     assert r["enrolled"]
 
 

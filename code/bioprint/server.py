@@ -18,7 +18,12 @@ from contracts import AttemptIn, EnrollOut, FeatureVector, LoginOut, RegisterIn,
 from engine import bot, features, pointer, scorer
 from engine.decide import decide
 
-ENROLL_TARGET = 10
+ENROLL_TARGET = 10  # counted repetitions
+# The first repetition is a practice run: stored raw (still useful for replay
+# detection) but left out of the profile, because a shaky first attempt widens
+# the spread and lets impostors in. On CMU, enrolling while still learning the
+# string gave FAR 26% vs 3% when practised.
+WARMUP_REPS = 1
 MIN_POINTER_SAMPLES = 5  # fit a pointer model only if this many enrollments used the pointer
 
 db.init_db()
@@ -38,6 +43,15 @@ def _vectors(conn, user_id: int, column: str, kind: str | None = None,
         args.append(kind)
     q += " ORDER BY id"
     return [FeatureVector.model_validate_json(r[0]) for r in conn.execute(q, args)]
+
+
+def _enroll_rows(conn, user_id: int) -> list[tuple[FeatureVector, FeatureVector | None]]:
+    """Every accepted enrollment sample in order: (keystroke vector, pointer vector or None)."""
+    rows = conn.execute(
+        "SELECT keystroke_vector, pointer_vector FROM samples"
+        " WHERE user_id = ? AND kind = 'enroll' ORDER BY id", (user_id,)).fetchall()
+    return [(FeatureVector.model_validate_json(k), FeatureVector.model_validate_json(p) if p else None)
+            for k, p in rows]
 
 
 def _fit(vectors: list[FeatureVector]) -> scorer.Model:
@@ -63,8 +77,8 @@ def enroll(body: AttemptIn) -> EnrollOut:
         u = _user(conn, body.username)
         if not u:
             raise HTTPException(404, "unknown user")
-        prior = _vectors(conn, u["id"], "keystroke_vector", "enroll")
-        count = len(prior)
+        rows = _enroll_rows(conn, u["id"])
+        count = max(0, len(rows) - WARMUP_REPS)
 
         def reject(reason: str) -> EnrollOut:
             return EnrollOut(accepted=False, count=count, target=ENROLL_TARGET,
@@ -72,7 +86,7 @@ def enroll(body: AttemptIn) -> EnrollOut:
 
         if not db.check_password(body.password, u["pw_salt"], u["pw_hash"]):
             return reject("wrong password")
-        template = features.template_codes(prior[0]) if prior else None
+        template = features.template_codes(rows[0][0]) if rows else None
         if why := features.needs_retype(body.sample, template):
             return reject(why)
 
@@ -84,19 +98,24 @@ def enroll(body: AttemptIn) -> EnrollOut:
             (u["id"], db.now(), body.sample.model_dump_json(), kv.model_dump_json(),
              pv.model_dump_json() if pv else None),
         )
-        count += 1
+        rows.append((kv, pv))
+        warmup = len(rows) <= WARMUP_REPS
+        count = len(rows) - WARMUP_REPS
+        reasons = ["practice run, not counted"] if warmup else []
 
         enrolled = u["keystroke_model"] is not None
         if count >= ENROLL_TARGET:
-            ks_model = _fit(prior + [kv])
-            pvs = _vectors(conn, u["id"], "pointer_vector", "enroll")
+            counted = rows[WARMUP_REPS:]
+            ks_model = _fit([k for k, _ in counted])
+            pvs = [p for _, p in counted if p]
             pt_model = _fit(pvs) if len(pvs) >= MIN_POINTER_SAMPLES else None
             conn.execute(
                 "UPDATE users SET keystroke_model = ?, pointer_model = ? WHERE id = ?",
                 (json.dumps(ks_model.to_dict()), json.dumps(pt_model.to_dict()) if pt_model else None, u["id"]),
             )
             enrolled = True
-    return EnrollOut(accepted=True, count=count, target=ENROLL_TARGET, enrolled=enrolled)
+    return EnrollOut(accepted=True, count=max(0, count), target=ENROLL_TARGET, enrolled=enrolled,
+                     warmup=warmup, reasons=reasons)
 
 
 @app.post("/api/login")
@@ -198,7 +217,8 @@ def user_status(username: str) -> dict:
         if not u:
             raise HTTPException(404, "unknown user")
         n = conn.execute("SELECT COUNT(*) FROM samples WHERE user_id = ? AND kind = 'enroll'", (u["id"],)).fetchone()[0]
-    return {"username": username, "enroll_count": n, "enroll_target": ENROLL_TARGET,
+    return {"username": username, "enroll_count": max(0, n - WARMUP_REPS), "enroll_target": ENROLL_TARGET,
+            "warmup_reps": WARMUP_REPS,
             "enrolled": u["keystroke_model"] is not None}
 
 

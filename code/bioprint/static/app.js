@@ -130,6 +130,9 @@ async function api(path, body) {
 const POINTER_CLICKS = 5; // server needs this many clicked reps before it fits a pointer model
 const enrollState = { target: 10, count: 0, clicks: 0, reps: 0, last: null, lastBad: false };
 let mode = 'login';
+// Who the server says is signed in on this browser (null if nobody). Only used
+// for the "Continue" note under the sign-in form; the form itself never changes.
+let sessionUser = null;
 
 const COPY = {
   login: {
@@ -197,6 +200,11 @@ function renderFoot() {
     foot.append(
       el('p', { className: 'foot-note' }, 'New here? ', el('a', { href: './index.html#enroll' }, 'Create an account'), ' and teach BioPrint your rhythm.'),
     );
+    if (sessionUser) {
+      foot.append(
+        el('p', { className: 'foot-note' }, `Signed in as ${sessionUser}. `, el('a', { href: './welcome.html' }, 'Continue →')),
+      );
+    }
   }
 }
 
@@ -353,6 +361,11 @@ async function doEnrollRep(creds) {
   }
 }
 
+// An allow is a real login: the server has set the session cookie. Give the
+// verdict card a moment to be seen, then land on the signed-in page.
+const WELCOME_DELAY_MS = 1200;
+const WELCOME = './welcome.html';
+
 async function doLogin(creds) {
   await settle();
   const sample = await buildSample();
@@ -363,6 +376,14 @@ async function doLogin(creds) {
     return;
   }
   renderLogin(data, rtt);
+  if (data.decision === 'allow') {
+    sessionUser = creds.username;
+    result.append(el('p', { className: 'result-next' }, 'Taking you in…'));
+    setTimeout(() => { location.href = WELCOME; }, WELCOME_DELAY_MS);
+  } else if (data.decision === 'block') {
+    sessionUser = null; // the server cleared the cookie too
+    renderFoot();
+  }
 }
 
 card.addEventListener('submit', async (e) => {
@@ -436,3 +457,14 @@ setMode(location.hash.replace('#', '') === 'enroll' ? 'register' : 'login');
 username.addEventListener('change', () => {
   if (username.value.trim()) localStorage.setItem('bioprint.user', username.value.trim());
 });
+
+// Already signed in? Say so under the form. Never auto-redirect: the demo needs
+// to log in again and again, and a blocked attempt must be possible from here.
+fetch('/api/session')
+  .then((r) => (r.ok ? r.json() : null))
+  .then((s) => {
+    if (!s || !s.username) return;
+    sessionUser = s.username;
+    if (mode === 'login') renderFoot();
+  })
+  .catch(() => {});

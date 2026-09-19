@@ -6,11 +6,17 @@ Then: http://localhost:8000
 
 from __future__ import annotations
 
+import base64
+import hashlib
+import hmac
 import json
+import os
+import secrets
 import time
+from datetime import datetime, timezone
 from pathlib import Path
 
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI, HTTPException, Request, Response
 from fastapi.staticfiles import StaticFiles
 
 import db
@@ -28,6 +34,59 @@ MIN_POINTER_SAMPLES = 5  # fit a pointer model only if this many enrollments use
 
 db.init_db()
 app = FastAPI(title="BioPrint")
+
+# ---------------------------------------------------------------- session cookie
+# An "allow" becomes a real login: a signed, HttpOnly cookie. Stdlib only.
+# Value is  base64url(json{"u": username, "since": iso}) + "." + hex(HMAC-SHA256)
+# keyed with BIOPRINT_SECRET, or a random per-process key (sessions then die
+# with the process, which is what a demo wants). No `Secure` flag: the demo runs
+# on plain http://localhost. Only the server can mint one; the browser cannot
+# read or forge it.
+SESSION_COOKIE = "bioprint_session"
+SESSION_MAX_AGE = 12 * 3600  # seconds
+_SECRET = (os.environ.get("BIOPRINT_SECRET") or "").encode() or secrets.token_bytes(32)
+
+
+def _sign(payload: bytes) -> str:
+    return hmac.new(_SECRET, payload, hashlib.sha256).hexdigest()
+
+
+def _session_token(username: str) -> str:
+    payload = json.dumps({"u": username, "since": db.now()}, separators=(",", ":")).encode()
+    body = base64.urlsafe_b64encode(payload).decode().rstrip("=")
+    return f"{body}.{_sign(payload)}"
+
+
+def read_session(request: Request) -> dict | None:
+    """{username, since} if the request carries a valid, unexpired session cookie."""
+    token = request.cookies.get(SESSION_COOKIE)
+    if not token or "." not in token:
+        return None
+    body, sig = token.rsplit(".", 1)
+    try:
+        payload = base64.urlsafe_b64decode(body + "=" * (-len(body) % 4))
+    except (ValueError, TypeError):
+        return None
+    if not hmac.compare_digest(_sign(payload), sig):
+        return None
+    try:
+        data = json.loads(payload)
+        since = datetime.fromisoformat(data["since"])
+        username = str(data["u"])
+    except (ValueError, KeyError, TypeError):
+        return None
+    if (datetime.now(timezone.utc) - since).total_seconds() > SESSION_MAX_AGE:
+        return None
+    return {"username": username, "since": data["since"]}
+
+
+def start_session(response: Response, username: str) -> None:
+    response.set_cookie(SESSION_COOKIE, _session_token(username), max_age=SESSION_MAX_AGE,
+                        httponly=True, samesite="lax", path="/")
+
+
+def end_session(response: Response) -> None:
+    response.delete_cookie(SESSION_COOKIE, path="/")
 
 
 def _user(conn, username: str):
@@ -127,7 +186,7 @@ def enroll(body: AttemptIn) -> EnrollOut:
 
 
 @app.post("/api/login")
-def login(body: AttemptIn) -> LoginOut:
+def login(body: AttemptIn, response: Response) -> LoginOut:
     t0 = time.perf_counter()
     signals: list[SignalResult] = []
     sample_id = None
@@ -143,6 +202,13 @@ def login(body: AttemptIn) -> LoginOut:
                 (u["id"] if u else None, sample_id, body.username, db.now(), decision, json.dumps(reasons),
                  json.dumps([s.model_dump() for s in signals]), latency),
             )
+            # Only an allow signs the browser in. A block also signs it out: whoever
+            # is at this keyboard just failed the behaviour check, so any session
+            # they inherited (unlocked laptop, stolen cookie) ends here.
+            if decision == "allow":
+                start_session(response, body.username)
+            elif decision == "block":
+                end_session(response)
             return LoginOut(decision=decision, reasons=reasons, signals=signals,
                             latency_ms=latency, attempt_id=cur.lastrowid)
 
@@ -182,6 +248,20 @@ def login(body: AttemptIn) -> LoginOut:
             signals.append(SignalResult(name="pointer", available=False, reasons=["no pointer data to compare"]))
 
         return finish(*decide(signals))
+
+
+@app.get("/api/session")
+def session(request: Request) -> dict:
+    s = read_session(request)
+    if not s:
+        raise HTTPException(401, "not signed in")
+    return s
+
+
+@app.post("/api/logout")
+def logout(response: Response) -> dict:
+    end_session(response)
+    return {"ok": True}
 
 
 @app.get("/api/attempts")

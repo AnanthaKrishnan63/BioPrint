@@ -30,6 +30,7 @@
   --series-1: #2a78d6; /* keystroke */
   --series-2: #eb6834; /* pointer */
   --series-3: #1baf7a; /* bot */
+  --series-4: #8a5cd6; /* device */
 
   --radius: 14px;
   --shadow: 0 1px 2px rgba(0, 0, 0, .04), 0 8px 24px rgba(0, 0, 0, .06);
@@ -62,6 +63,7 @@
     --series-1: #3987e5;
     --series-2: #d95926;
     --series-3: #199e70;
+    --series-4: #a07fe6;
     --shadow: 0 1px 2px rgba(0, 0, 0, .4), 0 8px 24px rgba(0, 0, 0, .35);
   }
 }
@@ -202,6 +204,27 @@ a { color: var(--accent); }
 
 /* Mini signal rows inside the login result */
 .sig-mini { margin-top: .7rem; display: grid; gap: .45rem; }
+.result-next { margin-top: .6rem; font-size: .88rem; color: var(--muted); }
+
+/* ---------------------------------------------------------------- welcome page */
+.welcome { padding-bottom: 1.75rem; }
+.welcome-head { display: flex; gap: .8rem; align-items: flex-start; }
+.welcome-head h1 { margin: 0; font-size: 1.45rem; line-height: 1.25; }
+.welcome-head p { margin: .35rem 0 0; color: var(--ink-2); font-size: .95rem; line-height: 1.4; min-height: 1.4em; }
+.welcome-icon { flex: none; width: 34px; height: 34px; margin-top: .15rem; color: var(--muted); transition: color .3s; }
+.welcome.ready .welcome-icon { color: var(--good-ink); }
+.welcome-facts { margin: 1.25rem 0 0; padding: .9rem 1rem; display: grid; gap: .55rem; border-radius: 12px; background: var(--surface-2); border: 1px solid var(--line); }
+.welcome-facts[hidden], .welcome-actions[hidden] { display: none; }
+.welcome-facts > div { display: grid; grid-template-columns: 7.5rem 1fr; gap: .5rem; align-items: baseline; }
+.welcome-facts dt { margin: 0; font-size: .78rem; text-transform: uppercase; letter-spacing: .05em; color: var(--muted); font-weight: 600; }
+.welcome-facts dd { margin: 0; font-variant-numeric: tabular-nums; color: var(--ink); }
+.welcome-facts dd.tone-allow { color: var(--good-ink); font-weight: 600; }
+.welcome-facts dd.tone-block { color: var(--bad-ink); font-weight: 600; }
+.welcome-facts dd.tone-retype, .welcome-facts dd.tone-other { color: var(--warn-ink); font-weight: 600; }
+.welcome-actions { margin-top: 1.1rem; display: grid; gap: .6rem; }
+.welcome-actions .btn-primary { margin-top: 0; text-align: center; text-decoration: none; }
+.welcome-actions .btn-ghost { width: 100%; font-size: 1rem; padding: .7rem 1rem; }
+@media (max-width: 420px) { .welcome-facts > div { grid-template-columns: 1fr; gap: .1rem; } }
 
 /* ---------------------------------------------------------------- gauges (shared) */
 .gauge { display: grid; gap: .3rem; }
@@ -263,6 +286,10 @@ a { color: var(--accent); }
 .verdict li { margin: .2rem 0; }
 .signals { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
 @media (max-width: 900px) { .signals { grid-template-columns: 1fr; } }
+/* four gauges (device added): 4 across on wide screens, 2x2 on laptops, stacked on phones */
+.signals { grid-template-columns: repeat(4, 1fr); }
+@media (max-width: 1200px) { .signals { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 700px) { .signals { grid-template-columns: 1fr; } }
 .signal-card { border: 1px solid var(--line); border-radius: 12px; padding: .9rem 1rem; display: grid; gap: .6rem; align-content: start; }
 .signal-card .gauge-name { font-size: 1rem; }
 .signal-card .gauge-top { flex-wrap: wrap; }

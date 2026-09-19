@@ -1,7 +1,8 @@
 // dashboard.js — live view of login attempts. OWNER: Agent D (UI).
 //
-// The three signals (keystroke, pointer, bot) are shown side by side and never
-// added together: a bot flag and an unfamiliar rhythm are different accusations.
+// The four signals (keystroke, pointer, bot, device) are shown side by side and never
+// added together: a bot flag and an unfamiliar rhythm are different accusations, and
+// "different device" is advisory context for the behaviour verdict, not a verdict itself.
 import {
   $, el, gauge, miniBars, badge, svgIcon, decisionInfo, markNav, featureLabel,
   fmt, fmtValue, relTime, direction, applyTheme, SIGNAL_LABEL, SIGNAL_BLURB, SIGNAL_VAR,
@@ -9,7 +10,13 @@ import {
 
 const POLL_MS = 2000;
 const NS = 'http://www.w3.org/2000/svg';
-const SERIES = ['keystroke', 'pointer', 'bot'];
+const SERIES = ['keystroke', 'pointer', 'bot', 'device'];
+
+// The device gauge (device agent) extends ui.js's tables here rather than editing
+// them: gauge() and the legend read SIGNAL_LABEL/SIGNAL_VAR by signal name.
+SIGNAL_LABEL.device = 'Device';
+SIGNAL_BLURB.device = 'Bits of browser identity that differ from enrollment: fonts, GPU, screen, time zone… A browser update is under the limit; another laptop is far over.';
+SIGNAL_VAR.device = 'var(--series-4)';
 
 const userInput = $('user');
 const followBtn = $('follow');
@@ -134,6 +141,28 @@ function contribTable(sig) {
   return table;
 }
 
+/** Device contributions are "attribute differs, weighing N bits", not observed-vs-usual
+ *  numbers, so they get their own table: one row per mismatched attribute. */
+function deviceTable(sig) {
+  const rows = (sig.contributions || []).slice().sort((x, y) => y.deviation - x.deviation);
+  if (!rows.length) return null;
+  const max = Math.max(...rows.map((r) => r.deviation), 1e-9);
+  const table = el('table', { className: 'contrib' });
+  table.append(el('thead', {}, el('tr', {}, el('th', {}, 'What differs'), el('th', { className: 'num' }, 'bits'), el('th', {}, 'weight'))));
+  const body = el('tbody');
+  for (const c of rows) {
+    const bar = el('span', { className: 'shift' });
+    bar.style.width = `${Math.max(6, (c.deviation / max) * 60)}px`;
+    bar.style.background = sig.flagged ? 'var(--bad)' : 'var(--line-strong)';
+    body.append(el('tr', {},
+      el('td', { title: c.feature }, featureLabel(c.feature)),
+      el('td', { className: 'num up' }, fmt(c.deviation)),
+      el('td', {}, bar)));
+  }
+  table.append(body);
+  return table;
+}
+
 function renderSignals(a) {
   const box = $('signals');
   box.replaceChildren();
@@ -145,13 +174,14 @@ function renderSignals(a) {
     const card = el('div', { className: 'signal-card' });
     card.append(gauge(sig));
     if (available) {
-      card.append(el('div', { className: 'big' }, fmt(sig.score), el('small', {}, ` of limit ${fmt(sig.threshold)}`)));
+      const unit = name === 'device' ? ' bits' : '';
+      card.append(el('div', { className: 'big' }, fmt(sig.score), el('small', {}, `${unit} of limit ${fmt(sig.threshold)}`)));
     }
     card.append(el('p', { className: 'gauge-val', style: 'margin:0' }, SIGNAL_BLURB[name]));
     if (sig.reasons && sig.reasons.length) {
       card.append(el('ul', {}, sig.reasons.map((r) => el('li', {}, r))));
     }
-    const t = contribTable(sig);
+    const t = name === 'device' ? deviceTable(sig) : contribTable(sig);
     if (t) card.append(t);
     box.append(card);
   }

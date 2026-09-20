@@ -41,6 +41,11 @@ MIN_POINTER_SAMPLES = 5  # fit a pointer model only if this many enrollments use
 db.init_db()
 app = FastAPI(title="BioPrint")
 
+@app.get("/api/experiment")
+def experiment_status():
+    return json.loads((Path(__file__).parent / "experiment.json").read_text())
+
+
 # ---------------------------------------------------------------- session cookie
 # An "allow" becomes a real login: a signed, HttpOnly cookie. Stdlib only.
 # Value is  base64url(json{"u": username, "since": iso}) + "." + hex(HMAC-SHA256)

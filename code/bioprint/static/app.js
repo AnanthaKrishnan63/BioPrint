@@ -780,3 +780,9 @@ fetch('/api/session')
     if (mode === 'login') renderFoot();
   })
   .catch(() => {});
+
+// Identify the experiment for testers without changing the login interaction.
+fetch('/api/experiment').then((r) => r.json()).then((e) => {
+  const label = document.querySelector('.brand small');
+  if (label) label.textContent = 'Experiment: ' + e.mode.replaceAll('-', ' ');
+}).catch(() => {});

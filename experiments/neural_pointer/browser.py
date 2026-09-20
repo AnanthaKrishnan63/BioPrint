@@ -48,7 +48,7 @@ with sync_playwright() as p:
         if path=='/api/session': r.fulfill(status=401,json={})
         elif path=='/api/experiment': r.fulfill(json={'mode':'typing-pointer'})
         elif path=='/api/login': r.fulfill(json={'decision':'keypad','signals':[{'name':'pointer_neural','available':False}],'reasons':[],'attempt_id':1})
-        elif path=='/api/pointer/challenge': r.fulfill(json={'id':'verify','kind':'verify','minimum_points':20,'minimum_ms':0,'expires_in':180})
+        elif path=='/api/pointer/challenge': r.fulfill(json={'id':'verify','kind':'verify','minimum_points':20,'minimum_ms':3000,'expires_in':180})
         elif path=='/api/pointer/capture':
             checked.append(r.request.post_data_json)
             r.fulfill(json={'decision':'block','signals':[{'name':'pointer_neural','score':.2,'threshold':.05,'flagged':True}],'reasons':['Pointer movement did not match your profile'],'attempt_id':2})
@@ -62,13 +62,23 @@ with sync_playwright() as p:
     page.locator('#submit').click()
     target=page.locator('#keypad-mount button')
     target.wait_for()
+    assert 'Pointer check 1 of 1' in page.locator('body').inner_text()
+    assert 'One pointer movement check' in page.locator('body').inner_text()
+    assert 'Keypad check' not in page.locator('body').inner_text()
+    assert 'Two quick target checks' not in page.locator('body').inner_text()
     box=page.locator('#keypad-mount > div').bounding_box()
     page.mouse.move(box['x']+20,box['y']+20)
+    # Time must advance without new pointer events, and remain informative after
+    # the minimum duration while the recording still needs more movements.
+    page.wait_for_function("document.querySelector('#keypad-mount [role=status]').textContent.startsWith('1 seconds recorded')")
+    page.wait_for_function("document.querySelector('#keypad-mount [role=status]').textContent.includes('Keep moving and clicking')")
+    assert '0 seconds remaining' not in page.locator('#keypad-mount').inner_text()
+    page.screenshot(path=str(root/'.worktrees/typing-pointer/experiments/results/pointer-login-browser.png'))
     page.mouse.move(box['x']+box['width']-20,box['y']+box['height']-20,steps=35)
     target.click()
     page.wait_for_function("document.querySelector('#submit').textContent === 'Log in'")
     assert len(checked)==1 and checked[0]['kind']=='verify'
     assert len(checked[0]['events'])>=20 and all(e['trusted'] for e in checked[0]['events'])
     assert not errors,errors
-    print(json.dumps({'neural_login_capture':True,'page_errors':errors}))
+    print(json.dumps({'neural_login_capture':True,'timer_advances_without_movement':True,'pointer_labels':True,'page_errors':errors}))
     browser.close()

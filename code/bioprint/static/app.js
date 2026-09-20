@@ -200,13 +200,14 @@ function progressBar(done, total, label) {
 function renderFoot() {
   foot.replaceChildren();
   if (keypadPhase) {
-    const { count, target, kind, note, bad } = keypadPhase;
+    const { count, target, kind, note, bad, neural } = keypadPhase;
+    const checkName = neural ? 'Pointer' : 'Keypad';
     const n = Math.min(count + 1, target);
     foot.append(
-      progressBar(count, target, `${count} of ${target} keypad checks done`),
+      progressBar(count, target, `${count} of ${target} ${checkName.toLowerCase()} checks done`),
       el('div', { className: 'progress-label' },
-        el('span', {}, `Keypad check ${n} of ${target}`),
-        el('span', {}, count >= target ? 'checking…' : 'tap the digits shown')),
+        el('span', {}, `${checkName} check ${n} of ${target}`),
+        el('span', {}, count >= target ? 'checking…' : neural ? 'follow and click the targets' : 'tap the digits shown')),
       el('p', { className: bad ? 'foot-note err' : 'foot-note', role: bad ? 'alert' : null }, note),
     );
     if (kind === 'login') {
@@ -295,13 +296,15 @@ function showResult({ tone, icon, heading, body, reasons = [], signals = [], met
 const pill = (text, title = '') => el('span', { className: 'pill', title }, text);
 
 function renderLogin(data, rtt) {
-  const info = decisionInfo(data.decision);
+  const neural = data.decision === 'keypad' && (data.signals || []).some(s => s.name === 'pointer_neural');
+  const info = neural ? { ...decisionInfo(data.decision), title: 'One pointer movement check' } : decisionInfo(data.decision);
   const user = username.value.trim();
   const bodies = {
     allow: 'Your identity checks matched the profile enrolled for this account.',
     block: 'The password was correct, but the behaviour was not. BioPrint blocked this on behaviour alone — no code, no second device.',
     step_up: `We need more typing evidence. Type your password ${STEP_UP_SAMPLES} more times below to complete the check.`,
-    keypad: `We need additional evidence. Complete ${KEYPAD_STEPUP_RUNS} target checks below at your normal pace.`,
+    keypad: neural ? 'Move and click the targets naturally so we can compare your pointer movement with your profile.'
+      : `We need additional evidence. Complete ${KEYPAD_STEPUP_RUNS} target checks below at your normal pace.`,
     retype: 'There is nothing to compare when the password is corrected mid-way. Type it again, straight through.',
     wrong_password: 'Check the password and try again.',
     unknown_user: 'Create the account first, then enroll your rhythm.',
@@ -581,7 +584,7 @@ const keypadLeft = (st) =>
 
 async function enterNeuralPointer(creds) {
   endKeypad();
-  const phase = keypadPhase = { kind: 'login', creds, count: 0, target: 1, runs: [], widget: null,
+  const phase = keypadPhase = { kind: 'login', neural: true, creds, count: 0, target: 1, runs: [], widget: null,
     note: 'Move and click naturally so we can compare your movement with your profile.', bad: false };
   title.textContent = 'One movement check';
   sub.textContent = 'Follow the targets with your usual mouse or trackpad.';

@@ -21,6 +21,21 @@ export function createPointerCapture(mount, { challenge, onDone, onError }) {
     clearInterval(timer);
     for (const name of ['pointermove', 'pointerdown', 'pointerup']) stage.removeEventListener(name, capture);
   }
+  function renderProgress() {
+    if (stopped) return;
+    if (first === null) {
+      note.textContent = 'Move to the target to start the recording, then follow and click the targets naturally.';
+      return;
+    }
+    const elapsed = performance.now() - started - first;
+    const remaining = Math.max(0, Math.ceil((challenge.minimum_ms - elapsed) / 1000));
+    const instruction = remaining > 0
+      ? `At least ${remaining} more seconds. Follow and click the targets naturally.`
+      : events.length < challenge.minimum_points
+        ? 'Keep moving and clicking the targets while we collect enough movement.'
+        : 'Click the target to finish.';
+    note.textContent = `${Math.floor(elapsed / 1000)} seconds recorded · ${events.length} / ${challenge.minimum_points} movements minimum. ${instruction}`;
+  }
   function capture(event) {
     if (stopped) return;
     if (event.pointerType !== 'mouse') {
@@ -40,7 +55,7 @@ export function createPointerCapture(mount, { challenge, onDone, onError }) {
     }
     const elapsed = t - first;
     const enough = events.length >= challenge.minimum_points && elapsed >= challenge.minimum_ms;
-    note.textContent = `${Math.max(0, Math.ceil((challenge.minimum_ms - elapsed) / 1000))} seconds remaining · ${events.length} movements recorded. Follow and click the targets naturally.`;
+    renderProgress();
     if (enough && event.type === 'pointerup') {
       destroy();
       note.textContent = 'Saving your movement…';
@@ -54,8 +69,9 @@ export function createPointerCapture(mount, { challenge, onDone, onError }) {
       destroy();
       onError('The recording expired. Please start again.');
     }
-  }, 1000);
-  note.textContent = 'Move to the target and click. Continue naturally until the recording is complete.';
+    renderProgress();
+  }, 250);
+  renderProgress();
   relocate();
   return { destroy };
 }

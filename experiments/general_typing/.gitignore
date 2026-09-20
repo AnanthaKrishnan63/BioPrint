@@ -1,0 +1,4 @@
+results/*.joblib
+results/*-scores.npz
+aligned_results/*.joblib
+aligned_results/*-scores.npz

@@ -1,0 +1,158 @@
+{
+  "pooled/distance": {
+    "file": "pooled-distance.joblib",
+    "sha256": "6e99d2719a03f6ba7cf84302a54188e8ee66dfbed7b12c6c4108a9feaf154af5",
+    "sources": [
+      "cmu",
+      "fixed"
+    ],
+    "calibration": {
+      "false_accepts": 570,
+      "impostor_attempts": 57061,
+      "false_rejects": 3329,
+      "genuine_attempts": 4083,
+      "far": 0.009989309686125375,
+      "frr": 0.8153318638256184,
+      "eer": 0.2194479233186575,
+      "threshold": -0.509311050660178
+    }
+  },
+  "pooled/logistic": {
+    "file": "pooled-logistic.joblib",
+    "sha256": "ac411c25e51431adaa278fa76dd02e577d3fb7a6f0f1ae42250cf385ef005b14",
+    "sources": [
+      "cmu",
+      "fixed"
+    ],
+    "calibration": {
+      "false_accepts": 570,
+      "impostor_attempts": 57061,
+      "false_rejects": 3366,
+      "genuine_attempts": 4083,
+      "far": 0.009989309686125375,
+      "frr": 0.8243938280675973,
+      "eer": 0.2125929140125608,
+      "threshold": 2.1160330952666144
+    }
+  },
+  "pooled/extra_trees": {
+    "file": "pooled-extra_trees.joblib",
+    "sha256": "67ef69e2120513715c3a14ed76d9cb3fe2e6de956e247f16cf4ba553e8593a27",
+    "sources": [
+      "cmu",
+      "fixed"
+    ],
+    "calibration": {
+      "false_accepts": 570,
+      "impostor_attempts": 57061,
+      "false_rejects": 3147,
+      "genuine_attempts": 4083,
+      "far": 0.009989309686125375,
+      "frr": 0.7707567964731815,
+      "eer": 0.1996095369757025,
+      "threshold": 0.712044088629735
+    }
+  },
+  "cmu_only/distance": {
+    "file": "cmu_only-distance.joblib",
+    "sha256": "faf98b1dcde22bb39f3bd50dc22af0b55ec7b2d331bfaf307ef34d30dd8678e9",
+    "sources": [
+      "cmu"
+    ],
+    "calibration": {
+      "false_accepts": 296,
+      "impostor_attempts": 29640,
+      "false_rejects": 1903,
+      "genuine_attempts": 2470,
+      "far": 0.009986504723346829,
+      "frr": 0.7704453441295547,
+      "eer": 0.2109311740890688,
+      "threshold": -0.5904878332766567
+    }
+  },
+  "cmu_only/logistic": {
+    "file": "cmu_only-logistic.joblib",
+    "sha256": "9689b72f9fae5c2bbedf7caa84b9ea478fa14d5fb8041466a56cb5e01626c2ae",
+    "sources": [
+      "cmu"
+    ],
+    "calibration": {
+      "false_accepts": 296,
+      "impostor_attempts": 29640,
+      "false_rejects": 1682,
+      "genuine_attempts": 2470,
+      "far": 0.009986504723346829,
+      "frr": 0.6809716599190283,
+      "eer": 0.17611336032388666,
+      "threshold": 2.339016388385421
+    }
+  },
+  "cmu_only/extra_trees": {
+    "file": "cmu_only-extra_trees.joblib",
+    "sha256": "d80b462ad73c4431e880cb090025f5484df621144f2898a42d1bfa42e25397ea",
+    "sources": [
+      "cmu"
+    ],
+    "calibration": {
+      "false_accepts": 296,
+      "impostor_attempts": 29640,
+      "false_rejects": 1678,
+      "genuine_attempts": 2470,
+      "far": 0.009986504723346829,
+      "frr": 0.6793522267206478,
+      "eer": 0.18417678812415655,
+      "threshold": 0.80528035986326
+    }
+  },
+  "keyrecs_only/distance": {
+    "file": "keyrecs_only-distance.joblib",
+    "sha256": "489422d86958f530582aab242a50e437e3132d215858b68c99c29976d991bd50",
+    "sources": [
+      "fixed"
+    ],
+    "calibration": {
+      "false_accepts": 274,
+      "impostor_attempts": 27421,
+      "false_rejects": 1229,
+      "genuine_attempts": 1613,
+      "far": 0.00999234163597243,
+      "frr": 0.7619342839429635,
+      "eer": 0.21933919258962112,
+      "threshold": -0.4723897468556059
+    }
+  },
+  "keyrecs_only/logistic": {
+    "file": "keyrecs_only-logistic.joblib",
+    "sha256": "ff49869143594ad80b441ce8a330b1a68cb2db1cbd9b83d5d53ff079c574314f",
+    "sources": [
+      "fixed"
+    ],
+    "calibration": {
+      "false_accepts": 274,
+      "impostor_attempts": 27421,
+      "false_rejects": 1287,
+      "genuine_attempts": 1613,
+      "far": 0.00999234163597243,
+      "frr": 0.7978921264724117,
+      "eer": 0.2102403267568652,
+      "threshold": 1.9446737212443195
+    }
+  },
+  "keyrecs_only/extra_trees": {
+    "file": "keyrecs_only-extra_trees.joblib",
+    "sha256": "ed2d056ca3e91ca4ebbb22c687b33e82302acf2eed2ac5382a04bd74754ca803",
+    "sources": [
+      "fixed"
+    ],
+    "calibration": {
+      "false_accepts": 274,
+      "impostor_attempts": 27421,
+      "false_rejects": 1179,
+      "genuine_attempts": 1613,
+      "far": 0.00999234163597243,
+      "frr": 0.7309361438313701,
+      "eer": 0.20210787352758833,
+      "threshold": 0.6713030527884317
+    }
+  }
+}

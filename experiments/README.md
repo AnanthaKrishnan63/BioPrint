@@ -1,5 +1,7 @@
 # Login combination experiment: typing-stepup
 
+On `experiment/general-typing`, the additional trained matchers are **offline research only**. Start with [the decision and results](general_typing/DECISION.md). The normal app and `run.sh` still use the inherited typing-step-up policy; the new matchers have not been promoted into login.
+
 This worktree starts from `0e11268`. Normal login implements the policy described in `../code/bioprint/EXPERIMENT.md`. No change has been merged into main.
 
 ## Run locally

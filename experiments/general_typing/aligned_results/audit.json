@@ -1,0 +1,12 @@
+{
+  "verified_score_tables": 18,
+  "verified_model_hashes": 9,
+  "source_hashes_verified": true,
+  "identity_disjointness_verified": true,
+  "same_trials_as_control": true,
+  "generated_browser_input_median_ms": {
+    "distance": 5.235427990555763,
+    "logistic": 6.901493499753997,
+    "extra_trees": 64.989856997272
+  }
+}

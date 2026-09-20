@@ -1,0 +1,24 @@
+{
+  "verified_score_tables": 36,
+  "model_hashes_verified": 9,
+  "calibration_far_gates_verified": true,
+  "source_hashes_verified": true,
+  "identity_disjointness_verified": true,
+  "generated_browser_input_inference": {
+    "distance": {
+      "median_ms": 10.677176003810018,
+      "max_ms": 11.39343500835821,
+      "model_bytes": 83
+    },
+    "logistic": {
+      "median_ms": 11.74736098619178,
+      "max_ms": 12.467016989830881,
+      "model_bytes": 2748
+    },
+    "extra_trees": {
+      "median_ms": 85.8167220139876,
+      "max_ms": 90.82016901811585,
+      "model_bytes": 559947076
+    }
+  }
+}

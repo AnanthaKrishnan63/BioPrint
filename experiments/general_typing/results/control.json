@@ -1,0 +1,22 @@
+{
+  "cmu": {
+    "false_accepts": 3052,
+    "impostor_attempts": 9000,
+    "false_rejects": 188,
+    "genuine_attempts": 1000,
+    "far": 0.3391111111111111,
+    "frr": 0.188,
+    "eer": 0.26311111111111113,
+    "threshold": -1.0
+  },
+  "fixed": {
+    "false_accepts": 9257,
+    "impostor_attempts": 18161,
+    "false_rejects": 188,
+    "genuine_attempts": 1397,
+    "far": 0.509718627828864,
+    "frr": 0.13457408732999285,
+    "eer": 0.31639226914817464,
+    "threshold": -1.0
+  }
+}

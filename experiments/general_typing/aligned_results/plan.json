@@ -1,0 +1,7 @@
+{
+  "protocol_sha256": "ce1c6e4f2313717715d14a8c36287f25c44142472a1f0af72a98209667ef186b",
+  "script_sha256": "4ab28796fbcb66baa1c6d85fb9a58aabda09018082bc40825595387e1754c276",
+  "engine_sha256": "b014a41513beac8b535c9909d39b32213d5ac2aafe26336aad1f4378cbed4598",
+  "prior_summary_dev_exposure": true,
+  "sealed_test_read": false
+}

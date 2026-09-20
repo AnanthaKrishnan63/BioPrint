@@ -1,0 +1,12 @@
+{
+  "workspace_dependencies": {
+    "scripts/data_keystrokes.py": "b4c02d006693289150da8e3d1bdc9f4af58e817893c0644125533c9ab30689d5",
+    "scripts/keystroke_benchmark.py": "ad5500cb7d4818dc11953774b73c62acfb724a365d603ac1d96307011e7142cb",
+    "code/bioprint/eval/strict_cmu.py": "fdaeba0c0c2691cf506628434be70094cdb68442722c87feb1224a64c3ccbba9",
+    "scripts/research.sh": "b19ffa616756cbe790a1778408ff54f3db0c4fc1d05e259ef3c4208aea069211"
+  },
+  "python": "3.12.14 (main, Sep  2 2026, 23:27:36) [GCC 15.3.0]",
+  "numpy": "2.5.3",
+  "sklearn": "1.9.1",
+  "joblib": "1.6.0"
+}

@@ -1,0 +1,164 @@
+{
+  "pooled/distance": {
+    "sources": [
+      "cmu",
+      "fixed",
+      "free"
+    ],
+    "file": "pooled-distance.joblib",
+    "sha256": "829b055f98ec1f6a62a49ff84f2aef82fdaaec5f9f881af861af4aae4d249ebe",
+    "calibration": {
+      "false_accepts": 1549,
+      "impostor_attempts": 154947,
+      "false_rejects": 8963,
+      "genuine_attempts": 9841,
+      "far": 0.009996966704744203,
+      "frr": 0.9107814246519662,
+      "eer": 0.31621968764723307,
+      "threshold": -0.46727493111292706
+    }
+  },
+  "pooled/logistic": {
+    "sources": [
+      "cmu",
+      "fixed",
+      "free"
+    ],
+    "file": "pooled-logistic.joblib",
+    "sha256": "4b16371dbdb047b028e52286a6873849a32209da4769804f8130236b8629f5fb",
+    "calibration": {
+      "false_accepts": 1549,
+      "impostor_attempts": 154947,
+      "false_rejects": 9141,
+      "genuine_attempts": 9841,
+      "far": 0.009996966704744203,
+      "frr": 0.9288690173762829,
+      "eer": 0.28563097371028445,
+      "threshold": 1.62853623973166
+    }
+  },
+  "pooled/extra_trees": {
+    "sources": [
+      "cmu",
+      "fixed",
+      "free"
+    ],
+    "file": "pooled-extra_trees.joblib",
+    "sha256": "c279d0cdef265ebcd6df464b12ee2864fac1155a49c001b06dad08f7eb6eb2b3",
+    "calibration": {
+      "false_accepts": 1549,
+      "impostor_attempts": 154947,
+      "false_rejects": 8747,
+      "genuine_attempts": 9841,
+      "far": 0.009996966704744203,
+      "frr": 0.8888324357280765,
+      "eer": 0.27635748275080274,
+      "threshold": 0.6371822417098864
+    }
+  },
+  "cmu_only/distance": {
+    "sources": [
+      "cmu"
+    ],
+    "file": "cmu_only-distance.joblib",
+    "sha256": "b1ffe3cd61253f28c3e1e6a03d1cb5b0807598194d069603d8d8b7b590454c41",
+    "calibration": {
+      "false_accepts": 296,
+      "impostor_attempts": 29640,
+      "false_rejects": 2336,
+      "genuine_attempts": 2470,
+      "far": 0.009986504723346829,
+      "frr": 0.945748987854251,
+      "eer": 0.28502024291497974,
+      "threshold": -0.6732597226395566
+    }
+  },
+  "cmu_only/logistic": {
+    "sources": [
+      "cmu"
+    ],
+    "file": "cmu_only-logistic.joblib",
+    "sha256": "bc096c275f20d9a01ef657d489e6f2f1ba44f2881a34c7d78fb7113b431abc22",
+    "calibration": {
+      "false_accepts": 296,
+      "impostor_attempts": 29640,
+      "false_rejects": 2353,
+      "genuine_attempts": 2470,
+      "far": 0.009986504723346829,
+      "frr": 0.9526315789473684,
+      "eer": 0.25546558704453437,
+      "threshold": 2.717816805762192
+    }
+  },
+  "cmu_only/extra_trees": {
+    "sources": [
+      "cmu"
+    ],
+    "file": "cmu_only-extra_trees.joblib",
+    "sha256": "3018221ee90f44a2f7822714408e11407d8d92419578b5eb5ba1107898117342",
+    "calibration": {
+      "false_accepts": 296,
+      "impostor_attempts": 29640,
+      "false_rejects": 2172,
+      "genuine_attempts": 2470,
+      "far": 0.009986504723346829,
+      "frr": 0.8793522267206477,
+      "eer": 0.27860998650472335,
+      "threshold": 0.7379100398013265
+    }
+  },
+  "keyrecs_only/distance": {
+    "sources": [
+      "fixed",
+      "free"
+    ],
+    "file": "keyrecs_only-distance.joblib",
+    "sha256": "20c0e84a51ee7d29280106eea6fe725aa92af648d30f8a003fb740c89be2485b",
+    "calibration": {
+      "false_accepts": 1253,
+      "impostor_attempts": 125307,
+      "false_rejects": 6620,
+      "genuine_attempts": 7371,
+      "far": 0.009999441371990391,
+      "frr": 0.8981142314475647,
+      "eer": 0.310948310948311,
+      "threshold": -0.44913622481758697
+    }
+  },
+  "keyrecs_only/logistic": {
+    "sources": [
+      "fixed",
+      "free"
+    ],
+    "file": "keyrecs_only-logistic.joblib",
+    "sha256": "feb1c93d8cbc813f60257ecd131684e102c1757db2718b50287c335be7873573",
+    "calibration": {
+      "false_accepts": 1253,
+      "impostor_attempts": 125307,
+      "false_rejects": 6730,
+      "genuine_attempts": 7371,
+      "far": 0.009999441371990391,
+      "frr": 0.9130375797042464,
+      "eer": 0.29183525261956633,
+      "threshold": 1.4412465103913832
+    }
+  },
+  "keyrecs_only/extra_trees": {
+    "sources": [
+      "fixed",
+      "free"
+    ],
+    "file": "keyrecs_only-extra_trees.joblib",
+    "sha256": "c2d9f1699a8ca42e39e38ae73775c5d162c0c240a49d71bbdc601662656fbb0d",
+    "calibration": {
+      "false_accepts": 1253,
+      "impostor_attempts": 125307,
+      "false_rejects": 6483,
+      "genuine_attempts": 7371,
+      "far": 0.009999441371990391,
+      "frr": 0.8795278795278795,
+      "eer": 0.27146927146927147,
+      "threshold": 0.6299120443042041
+    }
+  }
+}

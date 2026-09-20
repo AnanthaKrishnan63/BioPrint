@@ -1,0 +1,143 @@
+{
+  "subjects": [
+    "P012",
+    "P015",
+    "P022"
+  ],
+  "audit": [
+    {
+      "subject": "P012",
+      "role": "enrollment",
+      "valid_windows": 96,
+      "rejected_windows": 0,
+      "tail_events": 3
+    },
+    {
+      "subject": "P012",
+      "role": "probe",
+      "valid_windows": 66,
+      "rejected_windows": 0,
+      "tail_events": 0
+    },
+    {
+      "subject": "P015",
+      "role": "enrollment",
+      "valid_windows": 677,
+      "rejected_windows": 0,
+      "tail_events": 4
+    },
+    {
+      "subject": "P015",
+      "role": "probe",
+      "valid_windows": 134,
+      "rejected_windows": 0,
+      "tail_events": 2
+    },
+    {
+      "subject": "P022",
+      "role": "enrollment",
+      "valid_windows": 249,
+      "rejected_windows": 0,
+      "tail_events": 8
+    },
+    {
+      "subject": "P022",
+      "role": "probe",
+      "valid_windows": 166,
+      "rejected_windows": 0,
+      "tail_events": 7
+    }
+  ],
+  "results": {
+    "pooled/distance": {
+      "false_accepts": 73,
+      "impostor_attempts": 732,
+      "false_rejects": 336,
+      "genuine_attempts": 366,
+      "far": 0.09972677595628415,
+      "frr": 0.9180327868852459,
+      "eer": 0.514344262295082,
+      "threshold": -0.46727493111292706
+    },
+    "pooled/logistic": {
+      "false_accepts": 55,
+      "impostor_attempts": 732,
+      "false_rejects": 343,
+      "genuine_attempts": 366,
+      "far": 0.07513661202185792,
+      "frr": 0.9371584699453552,
+      "eer": 0.5491803278688525,
+      "threshold": 1.62853623973166
+    },
+    "pooled/extra_trees": {
+      "false_accepts": 34,
+      "impostor_attempts": 732,
+      "false_rejects": 355,
+      "genuine_attempts": 366,
+      "far": 0.04644808743169399,
+      "frr": 0.9699453551912568,
+      "eer": 0.5389344262295082,
+      "threshold": 0.6371822417098864
+    },
+    "cmu_only/distance": {
+      "false_accepts": 164,
+      "impostor_attempts": 732,
+      "false_rejects": 316,
+      "genuine_attempts": 366,
+      "far": 0.22404371584699453,
+      "frr": 0.8633879781420765,
+      "eer": 0.514344262295082,
+      "threshold": -0.6732597226395566
+    },
+    "cmu_only/logistic": {
+      "false_accepts": 38,
+      "impostor_attempts": 732,
+      "false_rejects": 355,
+      "genuine_attempts": 366,
+      "far": 0.05191256830601093,
+      "frr": 0.9699453551912568,
+      "eer": 0.4890710382513661,
+      "threshold": 2.717816805762192
+    },
+    "cmu_only/extra_trees": {
+      "false_accepts": 7,
+      "impostor_attempts": 732,
+      "false_rejects": 361,
+      "genuine_attempts": 366,
+      "far": 0.009562841530054645,
+      "frr": 0.9863387978142076,
+      "eer": 0.4890710382513661,
+      "threshold": 0.7379100398013265
+    },
+    "keyrecs_only/distance": {
+      "false_accepts": 62,
+      "impostor_attempts": 732,
+      "false_rejects": 339,
+      "genuine_attempts": 366,
+      "far": 0.08469945355191257,
+      "frr": 0.9262295081967213,
+      "eer": 0.514344262295082,
+      "threshold": -0.44913622481758697
+    },
+    "keyrecs_only/logistic": {
+      "false_accepts": 38,
+      "impostor_attempts": 732,
+      "false_rejects": 344,
+      "genuine_attempts": 366,
+      "far": 0.05191256830601093,
+      "frr": 0.9398907103825137,
+      "eer": 0.5519125683060109,
+      "threshold": 1.4412465103913832
+    },
+    "keyrecs_only/extra_trees": {
+      "false_accepts": 39,
+      "impostor_attempts": 732,
+      "false_rejects": 356,
+      "genuine_attempts": 366,
+      "far": 0.05327868852459016,
+      "frr": 0.9726775956284153,
+      "eer": 0.5252732240437159,
+      "threshold": 0.6299120443042041
+    }
+  }
+}

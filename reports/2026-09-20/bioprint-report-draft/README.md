@@ -33,7 +33,7 @@ External background sources are linked in the PDF: NIST SP 800-63B-4, BioCatch's
 ## One-command typing-model demo
 
 ```bash
-bash .worktrees/typing-pointer/experiments/typing_demo/run.sh
+bash experiments/typing_demo/run.sh
 ```
 
 This creates temporary synthetic enrollments, fits the actual compatible typing model and calls the login API, then opens a browser report. Add `--no-open` for headless use. No listener is started and the live account database is untouched. The public benchmark password is `.tie5Roanl`. The first four examples are typing-classifier outcomes; a fifth owner-like attack shows an actual login false accept. The false-accept classifier example is correctly intercepted by the stricter direct-login policy.

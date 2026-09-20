@@ -1,19 +1,19 @@
 {
   "sources": {
     "reports/2026-09-20/evidence/summary_v11.json": "0ee73feea1b393fae647730513cfdbc4f6106e4ec175b2912685597b73f3b519",
-    ".worktrees/general-typing/experiments/general_typing/RESULTS.md": "c8125fb482ed18e3679c2dac84537387503663bed1a6f48bf3e4e95bfe3d3830",
-    ".worktrees/general-typing/experiments/general_typing/ALIGNED_RESULTS.md": "2e8ea4df09229f4b2aa2dae6a4250957c6b8d391f93849c7895c36b368b05519",
-    ".worktrees/typing-pointer/experiments/results/comparison.json": "3df472b03e045985c143ec87e1ccc11d34298aac086b2401eb0630ff4aeb8ece",
-    ".worktrees/typing-pointer/experiments/results/typing-pointer-neural-dev-v1.json": "5a57fa7b075abdaceba529c7bbd20c33614989773a1c995def19b7bd3da5612a",
-    ".worktrees/typing-pointer/experiments/results/typing-pointer-neural-dev-v2.json": "2a9af2d0bfa4819d5a0120b0740d4bb50112910997b4e3a06d290929f6909f4f",
-    ".worktrees/typing-pointer/experiments/results/typing-pointer-neural-tradeoff.json": "29c4cd0e92cdf32ae81d8046c8c85ad77cd049c4e10179c49f8b1c782df8556b",
-    ".worktrees/typing-pointer/code/bioprint/experiment.json": "c666c5774a34999ba3feba86690830e2eebfc014441c8803e256ddddd601a479",
+    "reports/2026-09-20/evidence/general-typing/RESULTS.md": "c8125fb482ed18e3679c2dac84537387503663bed1a6f48bf3e4e95bfe3d3830",
+    "reports/2026-09-20/evidence/general-typing/ALIGNED_RESULTS.md": "2e8ea4df09229f4b2aa2dae6a4250957c6b8d391f93849c7895c36b368b05519",
+    "experiments/results/comparison.json": "3df472b03e045985c143ec87e1ccc11d34298aac086b2401eb0630ff4aeb8ece",
+    "experiments/results/typing-pointer-neural-dev-v1.json": "5a57fa7b075abdaceba529c7bbd20c33614989773a1c995def19b7bd3da5612a",
+    "experiments/results/typing-pointer-neural-dev-v2.json": "2a9af2d0bfa4819d5a0120b0740d4bb50112910997b4e3a06d290929f6909f4f",
+    "experiments/results/typing-pointer-neural-tradeoff.json": "29c4cd0e92cdf32ae81d8046c8c85ad77cd049c4e10179c49f8b1c782df8556b",
+    "code/bioprint/experiment.json": "c666c5774a34999ba3feba86690830e2eebfc014441c8803e256ddddd601a479",
     "reports/2026-09-20/bioprint-report-draft/paired-comparison-analysis.json": "db35dec62f5999f2dbff36e0c7d278b522aae58e28aa13708124b678fd611704",
-    ".worktrees/typing-pointer/experiments/typing_demo/demo.py": "901120fcae398604f72188cf04687f2b7526c3a90059a738e2d7dafdb7700ebb",
+    "experiments/typing_demo/demo.py": "c9c3156d95cc6757513c01f359371cfff31e85c56b814a0972db6409b428f02a",
     "reports/2026-09-20/bioprint-report-draft/typing-demo-results.json": "47ec9fbbd1a4ed18ed668d66492e2c89a071da48d693d02c0523284a03b853a3",
     "reports/2026-09-20/DATASET_RESULTS.md": "942ac1652cbe4294d0e37fb73ba3612b55c8c9a7ec7bcce14bcebfebe9feb192",
-    ".worktrees/typing-pointer/experiments/NEURAL_POINTER_RESULTS.md": "13f93c3cc1f559f637c6eed9a741de578bec5500d1d29d7fa06556b23727c4bc",
-    ".worktrees/typing-pointer/code/bioprint/EXPERIMENT.md": "24731a1bee456e336716d265570612bc0da9862134a069d44edbc0a60d364c9c"
+    "experiments/NEURAL_POINTER_RESULTS.md": "13f93c3cc1f559f637c6eed9a741de578bec5500d1d29d7fa06556b23727c4bc",
+    "code/bioprint/EXPERIMENT.md": "24731a1bee456e336716d265570612bc0da9862134a069d44edbc0a60d364c9c"
   },
   "ledger_rows": 156,
   "source_reports_sha256": {

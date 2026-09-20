@@ -8,7 +8,7 @@ import numpy as np
 
 HERE = Path(__file__).resolve().parent
 ROOT = HERE.parents[2]
-RESULTS = ROOT / '.worktrees/typing-pointer/experiments/results'
+RESULTS = ROOT / 'experiments/results'
 source = RESULTS / 'typing-pointer-neural-dev-v2.json'
 data = json.loads(source.read_text())
 old = {r['id']: r for r in data['results']['legacy']}

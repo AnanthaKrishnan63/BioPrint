@@ -8,6 +8,7 @@ import json
 import os
 from pathlib import Path
 import sys
+import subprocess
 import tempfile
 import webbrowser
 
@@ -18,6 +19,9 @@ HERE=Path(__file__).resolve().parent
 BRANCH=HERE.parents[1]
 ROOT=Path(os.environ['BIOPRINT_RESEARCH_ROOT']).resolve()
 COHORT=ROOT/'research/benchmarks/login_combinations_v3'
+if not (COHORT/'manifest.json').is_file():
+    print('Preparing the optional public CMU demonstration data (first run only).', flush=True)
+    subprocess.run([sys.executable, str(ROOT/'scripts/datasets.py'), 'typing-demo', '--download'], check=True)
 manifest=json.loads((COHORT/'manifest.json').read_text())
 for name,expected in manifest['files'].items():
     assert hashlib.sha256((COHORT/name).read_bytes()).hexdigest()==expected, name

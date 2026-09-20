@@ -176,7 +176,7 @@ Owner-like typing attack & 0.0000 & 1.0000 & Admit (deliberate attack case)\\\bo
 \end{tabularx}
 \captionof{table}{The stricter policy can intercept a typing-model false accept. An owner-like replay assumption still exposes a direct-admission weakness. Neither score is fabricated.}
 \end{center}
-Run \texttt{bash .worktrees/typing-pointer/experiments/typing\_demo/run.sh} from the repository root. The script checks model use, saved-score agreement and session issuance, then opens a local browser report. It requires no live accounts or network listener.
+Run \texttt{bash experiments/typing\_demo/run.sh} from the repository root. The script checks model use, saved-score agreement and session issuance, then opens a local browser report. It requires no live accounts or network listener.
 
 \subsection{Why evaluate general models and genuinely paired fusion?}
 \textbf{General typing tests whether the fixed-password restriction can be removed.} Shared logistic and ExtraTrees models use 42 distribution-residual features, followed by 31 features aligned to each account's own password. Fifty-four evaluations cover unseen users and cross-dataset transfer. Aligned logistic, trained on both sources, yields 0.42/95.30/25.41 on CMU and 3.83/88.98/29.42 on KeyRecs fixed. Trees also retain high rejection (90.90\% and 82.61\%). Matched shipped-scorer EERs are 26.31\% and 31.64\%. These rejection rates favor retaining compatible-password models. Distribution-only models perform worse overall; free-text TypeNet transfer gives 1.17/84.08/20.23.

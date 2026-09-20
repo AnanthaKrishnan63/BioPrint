@@ -1,0 +1,74 @@
+
+
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+<head>
+    <title>The SapiMouse database</title>
+    <link rel="icon" href="http://www.ms.sapientia.ro/~manyi/favicon3.ico" type="image/ico">
+    <link rel="shortcut icon" href="http://www.ms.sapientia.ro/~manyi/favicon3.ico">
+    <STYLE type="text/css">
+            th
+            {
+                text-align:left;
+            }
+        </STYLE>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="keywords" content="bihavioral biometrics, mouse dynamics, bot detection">
+</head>
+<body>
+<h1> The SapiMouse database </h1>
+<hr>
+<p>The <b>SapiMouse</b> dataset was collected in 2020, and contains mouse dynamics data from 120 subjects (92 male and 28 female). </p>
+<p>The subjects were from the Sapientia University with age between 18 and 53 years.</p>
+
+<div><h3>Data acquisition protocol</h3></div>
+<ul>
+    <li>Data collection was performed using a JavaScript web application running on the users' own computer. </li>
+    <li>The data collection application is publicly available at <a href=https://mousedynamicsdatalogger.netlify.app>https://mousedynamicsdatalogger.netlify.app  </a>. </li>
+    <li>The participants used different browsers and mouses with a huge variety of DPI (dot-per-inch) settings, in some cases they used touch-pad. </li>
+    <li>Movements were sampled by event-driven sampling technique, when users interact with their devices. </li>
+    <li>The goal was accomplishing as much mouse operations as possible during the given time interval. </li>
+    <li>Subjects were asked to complete two sessions, a three minutes session followed by a one minute session. </li>
+</ul>
+
+<div><h3>Session files</h3></div>
+<p>Each user has a dedicated folder with two files. The first one contains the data recorded during a session that lasted for 3 minutes, whereas the second file refers to the one-minute-long session, respectively. </p>
+
+<p>The naming convention of the files is as follows: <i>session_[date]_[1min|3min].csv</i>, where <i>date</i> is the date of the data collection. </p>
+<p>Each line of the file represents one mouse event and consists of the following features: </p>
+<ul>
+    <li>timestamp: elapsed time since the start of the session</li>
+    <li>button: describes the current condition of the mouse buttons</li>
+    <li>state: contains information about the current state of the mouse</li>
+    <li>x, y: the coordinates of the cursor on the screen</li>
+</ul>
+
+
+<h3> Download database</h3>
+<ul>
+    <li>Address: http://www.ms.sapientia.ro/~manyi/sapimouse/sapimouse.zip </li>
+    <li><a href ="http://www.ms.sapientia.ro/~manyi/sapimouse/sapimouse.zip">Download SapiMouse</a> </li>
+
+</ul>
+
+<div><h3> Publications </h3></div>
+<ul>
+    <li>
+        Margit Antal, Norbert Fejer, Krisztian Buza (<b>2021</b>), SapiMouse: Mouse Dynamics-based User Authentication Using Deep Feature Learning, May 19-21, 2021, <a href="https://ieeexplore.ieee.org/document/9465583">[LINK]</a>
+
+    </li>
+    <li>
+        M. Antal, K. Buza and N. Fejer (<b>2021</b>), "SapiAgent: A Bot Based on Deep Learning to Generate Human-Like Mouse Trajectories," in IEEE Access, vol. 9, pp. 124396-124408, 2021, doi: 10.1109/ACCESS.2021.3111098, IF: 3.367.
+        [<a href ="https://ieeexplore.ieee.org/document/9530664">Link</a>]
+    </li>
+</ul>
+
+</body>
+</html>

@@ -35,7 +35,7 @@ The mobile-registration exclusion has been removed. The conclusion emphasizes th
 ## One-command demonstration
 
 ```bash
-bash .worktrees/typing-pointer/experiments/typing_demo/run.sh
+bash experiments/typing_demo/run.sh
 ```
 
 The script creates synthetic enrollments in a temporary database, fits the actual compatible SVM, calls the login API and verifies model scores and issued sessions. It opens a local browser report with four typing-classifier outcomes and one explicit owner-like attack. The ordinary model false accept is intercepted by the stricter application cutoff and shown as a keypad request, not mislabeled as a successful login. Examples are selected to explain behavior, not estimate accuracy. No live database or server is changed.

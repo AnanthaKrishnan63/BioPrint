@@ -53,7 +53,7 @@ for r in rows:
 
 # Keep all general-matcher rows, including controls and cross-dataset transfer.
 for filename in ('RESULTS.md','ALIGNED_RESULTS.md'):
-    path='.worktrees/general-typing/experiments/general_typing/'+filename
+    path='reports/2026-09-20/evidence/general-typing/'+filename
     for line in read(path).splitlines():
         if not line.startswith('|'): continue
         cells=[s.strip() for s in line.strip('|').split('|')]
@@ -63,7 +63,7 @@ for filename in ('RESULTS.md','ALIGNED_RESULTS.md'):
                            eer_percent=float(cells[4].rstrip('%')),false_accepts=cells[5],false_rejects=cells[6],
                            aggregation='pooled; rounded source table',source=path))
 
-comparison_path='.worktrees/typing-pointer/experiments/results/comparison.json'
+comparison_path='experiments/results/comparison.json'
 comparison=json.loads(read(comparison_path))
 policy_table=[]
 for r in comparison['rows']:
@@ -76,7 +76,7 @@ for r in comparison['rows']:
         name={'login-control':'Control','typing-stepup':'Typing repetition','typing-pointer':'Typing + statistical pointer','typing-keypad':'Typing + keypad'}[r['mode']]
         policy_table.append(f'{name} & {r["false_accepts"]}/90 & {100*r["far"]:.2f} & {r["false_rejects"]}/60 & {100*r["frr"]:.2f} \\\\')
 for version in ('v1','v2'):
-    path=f'.worktrees/typing-pointer/experiments/results/typing-pointer-neural-dev-{version}.json'
+    path=f'experiments/results/typing-pointer-neural-dev-{version}.json'
     data=json.loads(read(path))
     for name,r in data['overall'].items():
         ledger.append(dict(scope='synthetic neural '+version,dataset='shared artificial DEV cohort',model=name,
@@ -89,7 +89,7 @@ for version in ('v1','v2'):
         assert r['false_accepts']==9 and r['false_rejects']==19
         policy_table.append(r'\textbf{Typing + trained pointer} & 9/90 & \textbf{10.00} & 19/60 & \textbf{31.67} \\')
 (HERE/'policy-table.tex').write_text('\n'.join(policy_table)+'\n\\bottomrule\n')
-tradeoff_path='.worktrees/typing-pointer/experiments/results/typing-pointer-neural-tradeoff.json'
+tradeoff_path='experiments/results/typing-pointer-neural-tradeoff.json'
 tradeoff=json.loads(read(tradeoff_path))
 for target,r in tradeoff['threshold_tradeoff'].items():
     ledger.append(dict(scope='synthetic pointer threshold counterfactual',dataset='shared artificial DEV cohort',
@@ -107,19 +107,19 @@ ledger.append(dict(scope='schema audit only',dataset='BrainRun',model='101 games
 ledger.append(dict(scope='genuine-only bot audit',dataset='CMU',model='production timing rules',
                    frr_percent=100*15/5100,false_rejects='15/5100',aggregation='genuine false flags; no bot-positive FAR/EER',
                    source='reports/2026-09-20/evidence/bot_rules/results.json'))
-read('.worktrees/typing-pointer/code/bioprint/experiment.json')
+read('code/bioprint/experiment.json')
 analysis=json.loads(read('reports/2026-09-20/bioprint-report-draft/paired-comparison-analysis.json'))
 for name,r in analysis['typing_diagnostics'].items():
     ledger.append(dict(scope='post-hoc synthetic typing-only diagnostic',dataset=name,model='compatible RBF SVM at model threshold',
                        far_percent=100*r['far'],frr_percent=100*r['frr'],eer_percent='',
                        false_accepts=f'{r["false_accepts"]}/{r["impostor_n"]}',
                        false_rejects=f'{r["false_rejects"]}/{r["genuine_n"]}',aggregation=r['scope'],
-                       source='.worktrees/typing-pointer/experiments/results/typing-pointer-dev-v1.json'))
-read('.worktrees/typing-pointer/experiments/typing_demo/demo.py')
+                       source='experiments/results/typing-pointer-dev-v1.json'))
+read('experiments/typing_demo/demo.py')
 read('reports/2026-09-20/bioprint-report-draft/typing-demo-results.json')
 for path in ('reports/2026-09-20/DATASET_RESULTS.md',
-             '.worktrees/typing-pointer/experiments/NEURAL_POINTER_RESULTS.md',
-             '.worktrees/typing-pointer/code/bioprint/EXPERIMENT.md'):
+             'experiments/NEURAL_POINTER_RESULTS.md',
+             'code/bioprint/EXPERIMENT.md'):
     read(path)
 fields=['scope','dataset','model','far_percent','frr_percent','eer_percent','false_accepts','false_rejects','aggregation','source']
 with (HERE/'complete-results.csv').open('w',newline='') as f:

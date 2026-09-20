@@ -46,3 +46,10 @@ data/benchmarks/
 research/benchmarks/source_documents/hmog_data_description.pdf
 research/benchmarks/source_documents/hmog_data_description.txt
 research/benchmarks/source_documents/hmog_keypress_schema.png
+# Optional research outputs; curated publishable results are under reports/.
+research/benchmarks/**/*.json
+research/benchmarks/**/checkpoint
+research/benchmarks/**/*stderr.txt
+research/benchmarks/**/*stdout.txt
+research/benchmarks/beacon_nonlinear/train_attempt1_failure.txt
+research/benchmarks/hmog/pending_patches/dev_guard_block.txt

@@ -1,0 +1,18 @@
+{
+  "purpose": "Final typing-pointer application assets; CPU inference",
+  "sha256": {
+    "pointer-encoder.pt": "a0e613d7029a42f4e25177c75e33b2ecd551a8e1571720df0e9ee0bafb21a32a",
+    "typing-background.json": "290ca91fc9e7c68f950d1dd0e310f491c617d20047c13184a76495827c42d1fe"
+  },
+  "pointer": {
+    "training_checkpoint_epoch": 27,
+    "architecture": "FCN Conv1d 128/256/128 with global average pooling",
+    "threshold": 0.9480821490287781,
+    "torch_version": "2.14.0+cpu"
+  },
+  "typing": {
+    "schema": "CMU .tie5Roanl; Enter excluded",
+    "role": "train_background",
+    "account_models": "fit during enrollment; separate negative calibration"
+  }
+}

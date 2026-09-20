@@ -115,8 +115,10 @@ def ensure_data(path: Path = DATA) -> Path:
     return path
 
 
-def load(path: Path = DATA, include_return: bool = True) -> Dataset:
+def load(path: Path = DATA, include_return: bool = True, *, synthetic_only: bool = False) -> Dataset:
     """CSV -> per-subject arrays in ms. Rows are kept in file order (session, rep)."""
+    if not synthetic_only or Path(path).resolve() == DATA.resolve():
+        raise RuntimeError('Legacy all-session loading is disabled: use eval.strict_cmu.load_partition(train/dev); test is sealed')
     cmu_names, live_names = cmu_and_live_names()
     rows: dict[str, list[tuple[int, int, list[float]]]] = {}
     with open(path, newline="") as f:

@@ -102,10 +102,10 @@ each capped at 6. **Threshold**: per user, 1.5 × the 75th percentile of
 leave-one-out enrollment distances, clipped to [1.0, 1.9]. Block when score >
 threshold. Each feature's share of the score becomes a reason.
 
-Why scaled Manhattan and not a neural net: Killourhy & Maxion (2009) compared 14
-detectors on the CMU keystroke dataset and it won. We reproduce their 9.6% EER
-to the decimal with the naive version and reach 6.9% with the median/cap
-variant. It fits in 1.6 ms, scores in 0.04 ms, and explains itself.
+The live scorer uses scaled Manhattan distance for small enrollment sets and
+feature-level explanations. Separate research experiments compare supervised
+and neural methods. Historical benchmark numbers used different protocols and
+must not be presented as current held-out accuracy or a SOTA comparison.
 
 **Signals are never merged into one number.** A bot with the owner's exact
 rhythm is a replay; a human with a different rhythm on the owner's laptop is an
@@ -114,18 +114,22 @@ pattern is the information, so the dashboard shows four gauges.
 
 ## Reliability
 
-Measured on the public CMU dataset (51 people × 400 reps of `.tie5Roanl`,
-8 sessions on different days), `python -m eval.cmu`:
+The strict CMU experiment uses sessions 1–4 for training, 5–6 for validation/dev,
+and seals sessions 7–8. Legacy all-session loading is disabled. Earlier work had
+already exposed later sessions; this cannot retroactively establish a pristine
+test set. Current scripts never read sealed measurements.
 
-| Protocol | EER | Note |
-|---|---|---|
-| Published setup: 200 training reps | **6.9 %** | Killourhy & Maxion 2009 report 9.6 % for the same detector |
-| Product setup: 10 enrollment reps, tested on *later sessions* | 20 % | 10.7 % when the enrollee already types the string fluently |
-| Enrollment sweep 5 / 10 / 20 / 50 reps | 25.6 / 20.2 / 15.6 / 11.8 % | more reps buy a lot |
+With ten enrollment samples, frozen dev macro EER is **22.04%** for the live
+distance baseline and **15.50%** for the training-selected RBF SVM. At thresholds
+calibrated to 1% FAR on training data, actual dev FAR/FRR are 1.10%/74.20% and
+1.00%/72.98%, respectively. The SVM is experimental and is not enabled for live
+accounts. Low EER alone does not establish usable low-FAR authentication.
 
-We report FRR at fixed FAR in the results JSON as well; EER alone hides which
-side an error lands on. Live attempts are labelled genuine / impostor / bot on
-the dashboard so the same numbers can be produced on real people.
+See [research protocol](../../research/benchmarks/PROTOCOL.md),
+[experiment log](../../logs/EXPERIMENTS.md), and
+[research commands](../../research/benchmarks/README.md) for datasets, limitations,
+frozen artifacts, and API replay. All thresholds and model choices use training
+data; dev validates frozen choices. No zero-error claim is supported.
 
 ## Privacy (read this)
 

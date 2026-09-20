@@ -23,6 +23,27 @@ Fit, model selection and threshold calibration use separate TRAIN roles where sp
 
 ## 2. Dataset improvements and tradeoffs
 
+### Percentage-point improvements and methodology
+
+**Improvement = old rate − new rate**, calculated before rounding. Positive values mean fewer errors; negative values mean more errors. Old statistics are **FAR / FRR / EER**, in that order. EER means equal error rate. This table includes datasets with improvement in at least one of these metrics; a row does not imply improvement in all three. CMU's 100-enrollment experiment is a separate budget. BEACON is a paired research hybrid, not the normal website's all-feature result. Experiments without valid recognition metrics are excluded.
+
+| Dataset | FAR improvement (pp) | FRR improvement (pp) | EER improvement (pp) | Old statistics / methodology | New methodology |
+|---|---:|---:|---:|---|---|
+| CMU, 10 enrollments | +0.15 | +6.76 | +7.72 | 1.10% / 74.20% / 22.04%; Scaled Manhattan; ten session-1 enrollments | Per-account RBF SVM; select on sessions 2–3, calibrate on session 4; same ten enrollments |
+| CMU, 100 enrollments (separate budget) | -0.01 | +5.35 | +4.85 | 1.01% / 49.78% / 13.99%; Scaled Manhattan; 100 enrollments | RBF SVM; TRAIN-selected settings and thresholds; same 100-enrollment budget |
+| KeyRecs fixed | -0.04 | +30.47 | +5.46 | 1.26% / 76.39% / 17.08%; Logistic regression; 47 positional timing features | ExtraTrees on the same features; chronological session-1 fit/selection/calibration, session-2 DEV |
+| KeyRecs free transcription | -0.44 | +40.08 | +6.94 | 0.70% / 85.73% / 16.66%; Logistic regression; 35 summaries per 50 digraphs | ExtraTrees on the same summaries; session-1 selection/calibration, session-2 DEV |
+| SapiMouse, five blocks | +6.64 | +17.11 | +12.30 | 8.30% / 60.53% / 26.17%; Handcrafted scaled Manhattan; five blocks / 641 coordinates | Fully convolutional sequence encoder with cosine template scoring; same observation budget |
+| FPStalker browser linkage | -0.15 | +3.49 | +1.49 | 0.69% / 8.33% / 3.79%; Equal agreement across browser attributes | Pairwise histogram gradient boosting on attribute equality/similarity; browser linkage only |
+| DELBOT geometry | -3.64 | +68.85 | +35.95 | 0.00% / 100.00% / 50.50%; Pointer-only production-rule reconstruction; rejects all humans at the frozen threshold | Random forest on pointer geometry; held-out bot-family evaluation |
+| Stroop/Flanker cognitive profile | -1.39 | +11.11 | +20.83 | 1.39% / 88.89% / 48.61%; Single condition-index reaction-time slope | Full reaction-time and accuracy profile; same nine DEV people, hundreds of trials per session |
+| TSI touch landing | +0.00 | +3.65 | +2.30 | 1.00% / 95.51% / 36.75%; Touch-landing baseline | Random forest with target-normalized landing, motor and timing features |
+| Balabit pointer (mixed result) | -0.04 | +5.76 | -7.58 | 1.89% / 98.20% / 48.61%; Handcrafted scaled Manhattan | TRAIN-selected ExtraTrees; FRR improves but pooled EER worsens |
+| BEACON paired hybrid (FAR-only gain) | +20.99 | -37.04 | -2.47 | 45.68% / 30.86% / 38.27%; TypeNet + SapiMouse + handcrafted hybrid | Type2Branch + SapiMouse + handcrafted hybrid; same paired claims and TRAIN selection rule; FAR improves but FRR/EER worsen |
+
+
+### Absolute rates for the dataset comparisons
+
 | Dataset | Baseline FAR | New FAR | Baseline FRR | New FRR | Baseline EER | New EER | EER reduction (pp) |
 |---|---:|---:|---:|---:|---:|---:|---:|
 | CMU, 10 enrollments | 1.10 | 0.95 | 74.20 | 67.43 | 22.04 | 14.32 | 7.72 |

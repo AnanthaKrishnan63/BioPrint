@@ -65,6 +65,30 @@ for label, dataset, old, new in pairs:
     vals = [a['far'], b['far'], a['frr'], b['frr'], a['eer'], b['eer'], a['eer'] - b['eer']]
     comparison += '| ' + label + ' | ' + ' | '.join(f'{v*100:.2f}' for v in vals) + ' |\n'
 
+methodologies = {
+    'cmu-account-selection': ('Scaled Manhattan; ten session-1 enrollments', 'Per-account RBF SVM; select on sessions 2–3, calibrate on session 4; same ten enrollments'),
+    'cmu100': ('Scaled Manhattan; 100 enrollments', 'RBF SVM; TRAIN-selected settings and thresholds; same 100-enrollment budget'),
+    'keyrecs-fixed': ('Logistic regression; 47 positional timing features', 'ExtraTrees on the same features; chronological session-1 fit/selection/calibration, session-2 DEV'),
+    'keyrecs-free': ('Logistic regression; 35 summaries per 50 digraphs', 'ExtraTrees on the same summaries; session-1 selection/calibration, session-2 DEV'),
+    'pointer_sapimouse_optimized': ('Handcrafted scaled Manhattan; five blocks / 641 coordinates', 'Fully convolutional sequence encoder with cosine template scoring; same observation budget'),
+    'device': ('Equal agreement across browser attributes', 'Pairwise histogram gradient boosting on attribute equality/similarity; browser linkage only'),
+    'delbot': ('Pointer-only production-rule reconstruction; rejects all humans at the frozen threshold', 'Random forest on pointer geometry; held-out bot-family evaluation'),
+    'cognitive': ('Single condition-index reaction-time slope', 'Full reaction-time and accuracy profile; same nine DEV people, hundreds of trials per session'),
+    'touch_tsi': ('Touch-landing baseline', 'Random forest with target-normalized landing, motor and timing features'),
+    'pointer': ('Handcrafted scaled Manhattan', 'TRAIN-selected ExtraTrees; FRR improves but pooled EER worsens'),
+    'beacon-type2branch-paired-dev': ('TypeNet + SapiMouse + handcrafted hybrid', 'Type2Branch + SapiMouse + handcrafted hybrid; same paired claims and TRAIN selection rule; FAR improves but FRR/EER worsen'),
+}
+improvement_pairs = pairs + [
+    ('BEACON paired hybrid (FAR-only gain)', 'beacon-type2branch-paired-dev', 'old_hybrid', 'type2branch_hybrid'),
+]
+improvements = '| Dataset | FAR improvement (pp) | FRR improvement (pp) | EER improvement (pp) | Old statistics / methodology | New methodology |\n|---|---:|---:|---:|---|---|\n'
+for label, dataset, old, new in improvement_pairs:
+    a, b = row(dataset, old), row(dataset, new)
+    changes = ' | '.join(f"{100 * (a[k] - b[k]):+.2f}" for k in ['far', 'frr', 'eer'])
+    old_stats = ' / '.join(f"{100 * a[k]:.2f}%" for k in ['far', 'frr', 'eer'])
+    old_method, new_method = methodologies[dataset]
+    improvements += f'| {label} | {changes} | {old_stats}; {old_method} | {new_method} |\n'
+
 paired = '| Model | False accepts / 162 | False rejects / 81 | FAR (%) | FRR (%) | EER (%) |\n|---|---:|---:|---:|---:|---:|\n'
 for r in rows:
     if r['dataset'] == 'beacon-type2branch-paired-dev':
@@ -98,6 +122,14 @@ Reverse the inequality for similarity scores. CMU and KeyRecs average per-accoun
 Fit, model selection and threshold calibration use separate TRAIN roles where specified. DEV measures frozen candidates. First-session enrollment for an unseen account is support data, not a probe. Experiments preserve earlier failures and disclose prior DEV exposure. Legacy CMU exploration prevents a pristine, untouched-test claim. This report reads saved artifacts only; it does not run models or access test observations.
 
 ## 2. Dataset improvements and tradeoffs
+
+### Percentage-point improvements and methodology
+
+**Improvement = old rate − new rate**, calculated before rounding. Positive values mean fewer errors; negative values mean more errors. Old statistics are **FAR / FRR / EER**, in that order. EER means equal error rate. This table includes datasets with improvement in at least one of these metrics; a row does not imply improvement in all three. CMU's 100-enrollment experiment is a separate budget. BEACON is a paired research hybrid, not the normal website's all-feature result. Experiments without valid recognition metrics are excluded.
+
+IMPROVEMENTS
+
+### Absolute rates for the dataset comparisons
 
 COMPARISON
 
@@ -191,7 +223,7 @@ The following ledger includes every row, including repeated controls and failed 
 
 APPENDIX
 '''
-report = report.replace('COMPARISON', comparison).replace('PAIRED', paired).replace('APPENDIX', appendix)
+report = report.replace('IMPROVEMENTS', improvements).replace('COMPARISON', comparison).replace('PAIRED', paired).replace('APPENDIX', appendix)
 (OUT / 'DATASET_RESULTS.md').write_text(report.rstrip() + '\n')
 
 integration = '''# BioPrint: findings to integrate into normal login

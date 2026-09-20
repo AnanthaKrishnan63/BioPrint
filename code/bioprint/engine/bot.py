@@ -9,10 +9,10 @@ must stack (two typical weak tells exceed THRESHOLD). flagged = score > THRESHOL
 Each fired rule is also a Contribution named "bot.<rule>", so the dashboard can
 show exactly which rule fired.
 
-Design constraint: a real human must not be flagged. So
-  - timing floors sit far below what fingers can physically do (fast typists are
-    ~60 ms DD; rollover makes UD negative and DD tiny, so UD is never tested and
-    DD floors need MANY pairs);
+False human flags are possible: these rules are heuristics, not physical proofs.
+The strict public-data audit is in scripts/bot_rule_validation.py. In particular,
+  - rollover makes UD negative and DD tiny, so UD is never tested and
+    DD floors need MANY pairs;
   - nothing about the pointer is required when the form was submitted with Enter;
   - software rendering (llvmpipe on Linux/VMs), no plugins, etc. are weak only.
 """
@@ -36,9 +36,9 @@ NON_CHAR = MODIFIERS | {"Enter", "NumpadEnter", "Tab", "Backspace", "Delete", "E
                         "ArrowLeft", "ArrowRight", "ArrowUp", "ArrowDown", "Home", "End"}
 
 # --- timing rules (milliseconds)
-# A key switch has to travel and bounce; with 1 ms browser timer resolution and USB
-# polling at 1-8 ms, a real press is never shorter than ~20 ms. 10 ms is a wide margin.
-# Playwright/Puppeteer `type()` emits down+up back to back: holds of 0-3 ms.
+# A short-hold heuristic, not a universal hardware or human lower bound.
+# Genuine public CMU dev recordings can fall below it. Browser automation can
+# also produce short down/up intervals; timing alone cannot establish its origin.
 HOLD_FLOOR_MS = 10.0
 # Two keys in the same USB report can share a timestamp (DD = 0) during rollover, so a
 # tiny DD is only suspicious when it is the norm, not once.
@@ -54,7 +54,8 @@ ROUND_GRID_MS = 10.0  # fabricated samples use round numbers; a 1 ms clock gives
 # --- replay
 # Mean absolute difference (ms) over all H/DD/UD features between this attempt and a
 # stored one.
-# Human floor, measured on CMU DSL-StrongPasswordData (51 subjects x 400 repetitions,
+# Legacy exploratory rationale (not a current sealed-test result), measured on
+# CMU DSL-StrongPasswordData (51 subjects x 400 repetitions,
 # ~4M same-subject pairs): the two closest repetitions ANY subject ever produced differ
 # by 4.74 ms MAE; the median subject's closest pair is 7.9 ms, and that is the closest
 # of 79,800 pairs -- with ~10 stored samples per user the expected minimum is far higher.
@@ -184,8 +185,8 @@ def _timing(sample: Sample, acc: _Acc) -> None:
 
     short = [h for h in holds if h < HOLD_FLOOR_MS]
     if short:
-        acc.add("impossible_hold", STRONG, f"{len(short)} keys held under {HOLD_FLOOR_MS:.0f} ms "
-                f"(min {min(short):.1f} ms): faster than a key switch can travel", min(short), HOLD_FLOOR_MS)
+        acc.add("impossible_hold", STRONG, f"{len(short)} keys held under the configured {HOLD_FLOOR_MS:.0f} ms timing floor "
+                f"(min {min(short):.1f} ms)", min(short), HOLD_FLOOR_MS)
 
     if len(dds) >= MIN_TIMING_N - 1:
         tiny = sum(d < DD_FLOOR_MS for d in dds)

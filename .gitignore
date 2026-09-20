@@ -15,3 +15,32 @@ node_modules/
 research/.obsidian/workspace*.json
 .DS_Store
 .vscode/
+.lan/
+.worktrees/
+
+# Local CPU research environment and downloaded public datasets
+.research-deps/
+.research-*-deps/
+logs/
+runtime/
+.env
+.env.*
+!.env.example
+*.db-wal
+*.db-shm
+*.npz
+*.npy
+# Research checkpoints and raw cohorts are opt-in downloads; app assets live in models/.
+research/benchmarks/**/*.pt
+research/benchmarks/**/*.gz
+research/benchmarks/**/*.index
+research/benchmarks/**/*.data-*
+.research-tmp/
+research/benchmarks/data/
+datasets/
+*.joblib
+data/benchmarks/
+# HMOG's downloaded format guide remains local under its dataset terms.
+research/benchmarks/source_documents/hmog_data_description.pdf
+research/benchmarks/source_documents/hmog_data_description.txt
+research/benchmarks/source_documents/hmog_keypress_schema.png

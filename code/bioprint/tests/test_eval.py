@@ -1,15 +1,29 @@
 """Unit tests for the CMU harness (eval/cmu.py). OWNER: Agent E (eval).
 
-The dataset-backed tests skip when eval/data/DSL-StrongPasswordData.csv is absent
-(it is gitignored); `python -m eval.cmu` downloads it.
+Legacy protocol math is checked on synthetic fixtures only. Real test data stays sealed.
 """
 
 from __future__ import annotations
 
 import numpy as np
 import pytest
+import csv
 
 from eval import cmu
+
+
+@pytest.fixture()
+def synthetic_csv(tmp_path):
+    path = tmp_path / 'synthetic-keystrokes.csv'
+    columns, _ = cmu.cmu_and_live_names()
+    with path.open('w', newline='') as stream:
+        writer = csv.writer(stream)
+        writer.writerow(['subject', 'sessionIndex', 'rep'] + columns)
+        for user in range(3):
+            for session in range(1, 9):
+                for rep in range(1, 51):
+                    writer.writerow([f's00{user+2}', session, rep] + [.1491 + user * .05] * len(columns))
+    return path
 
 
 def test_names_match_the_cmu_header_and_live_convention():
@@ -20,31 +34,28 @@ def test_names_match_the_cmu_header_and_live_convention():
     assert live[-1] == "H.Enter#10"
 
 
-@pytest.mark.skipif(not cmu.DATA.exists(), reason="CMU CSV not downloaded")
-def test_loader_shapes_and_units():
-    ds = cmu.load(cmu.DATA)
-    assert len(ds.subjects) == 51 and len(ds.names) == 31
+def test_loader_shapes_and_units(synthetic_csv):
+    ds = cmu.load(synthetic_csv, synthetic_only=True)
+    assert len(ds.subjects) == 3 and len(ds.names) == 31
     s = ds.subjects["s002"]
     assert s.X.shape == (400, 31)
     assert list(s.session[:2]) == [1, 1] and list(s.rep[:2]) == [1, 2]
     assert set(s.session) == set(range(1, 9))
-    # milliseconds: the first row of s002 is H.period = 0.1491 s
+    # Synthetic milliseconds conversion, independent of actual CMU values.
     assert s.X[0, 0] == pytest.approx(149.1)
     holds = s.X[:, [j for j, n in enumerate(ds.names) if n.startswith("H.")]]
     assert 30 < np.median(holds) < 400  # human dwell in ms, not seconds
 
 
-@pytest.mark.skipif(not cmu.DATA.exists(), reason="CMU CSV not downloaded")
-def test_without_return_drops_exactly_the_enter_columns():
-    ds = cmu.load(cmu.DATA).without_return()
+def test_without_return_drops_exactly_the_enter_columns(synthetic_csv):
+    ds = cmu.load(synthetic_csv, synthetic_only=True).without_return()
     assert len(ds.names) == 28
     assert not any("Enter#" in n for n in ds.names)
     assert ds.subjects["s002"].X.shape == (400, 28)
 
 
-@pytest.mark.skipif(not cmu.DATA.exists(), reason="CMU CSV not downloaded")
-def test_splits_are_the_documented_ones():
-    s = cmu.load(cmu.DATA).subjects["s002"]
+def test_splits_are_the_documented_ones(synthetic_csv):
+    s = cmu.load(synthetic_csv, synthetic_only=True).subjects["s002"]
     km = cmu.split_km(s)
     assert len(km.train) == 200 and len(km.genuine) == 200
     bp = cmu.split_bioprint(s, 10, "first")
@@ -83,11 +94,13 @@ def test_gate_a_bands():
     assert cmu.gate_a(0.25).startswith("FAIL")
 
 
-@pytest.mark.skipif(not cmu.DATA.exists(), reason="CMU CSV not downloaded")
-def test_end_to_end_on_three_subjects():
-    out = cmu.main(["--subjects", "3", "--sizes", "10"])
-    assert out["n_subjects"] == 3
-    agg = out["protocol1"]["with_return"]["aggregate"]
+def test_end_to_end_on_synthetic_subjects(synthetic_csv):
+    ds = cmu.load(synthetic_csv, synthetic_only=True)
+    out = cmu.evaluate(ds, cmu.split_km)
+    agg = out['aggregate']
     assert 0.0 <= agg["eer"]["mean"] <= 1.0
-    assert out["headline"]["gate_a"]
-    assert out["latency"]["score_ms"]["p95"] < 50.0
+
+
+def test_real_all_session_loader_is_disabled():
+    with pytest.raises(RuntimeError, match='test is sealed'):
+        cmu.load(cmu.DATA)

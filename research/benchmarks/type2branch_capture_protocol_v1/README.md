@@ -1,0 +1,7 @@
+# Frozen short-capture DEV follow-up
+
+This is a disclosed follow-up to the failed fixed 1,000-event protocol. It retains all 79 active identities and the original five full S1 enrollment windows 15–19. It uses one S2 probe per identity: the largest 25/50/75/100-event anchor within the first 100 available events. Captures shorter than 25 events receive additional verification and remain in coverage/action denominators. No timing data is parsed for them.
+
+Each eligible probe will use its exact-length reserved-TRAIN threshold after both paired training arms and calibration finish. Every eligible probe is compared against all 79 enrollment galleries. Conditional FAR/FRR/discrete EER, length and TRAIN-role breakdowns, coverage, and whole-cohort direct-accept/additional-verification fractions must be separately reported. Missing galleries or malformed required prefixes make the prescribed experiment infeasible; no subset performance reporting. Documented source parser unknown-key mapping remains unchanged.
+
+The protocol records prior DEV exposure, including p004 having only 38 S2 rows. It is not a pristine validation or final test, and it has a different capture budget/trial count from the original failed experiment. No performance improvement is implied. No DEV/test payloads were read while freezing this protocol. 61 combined generated tests passed in 0.51 seconds; source hashes were verified.

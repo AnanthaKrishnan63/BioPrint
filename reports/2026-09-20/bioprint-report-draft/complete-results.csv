@@ -1,0 +1,157 @@
+scope,dataset,model,far_percent,frr_percent,eer_percent,false_accepts,false_rejects,aggregation,source
+dataset research,cmu,baseline,1.0968627450980393,74.19607843137256,22.044117647058822,,,macro_per_account,reports/2026-09-20/evidence/cmu/dev_results.json
+dataset research,cmu,svm-10-0.1,0.9980392156862744,72.98039215686273,15.50235294117647,,,macro_per_account,reports/2026-09-20/evidence/cmu/dev_results.json
+dataset research,cmu100,baseline,1.014901960784314,49.7843137254902,13.990980392156862,,,macro_per_account,reports/2026-09-20/evidence/cmu100/dev_results.json
+dataset research,cmu100,svm-1-1,1.0298039215686274,44.43137254901961,9.140392156862745,,,macro_per_account,reports/2026-09-20/evidence/cmu100/dev_results.json
+dataset research,cmu-account-selection,baseline,1.0968627450980393,74.19607843137256,22.044117647058822,,,macro_per_account,reports/2026-09-20/evidence/cmu-account-selection/dev_results.json
+dataset research,cmu-account-selection,svm-10-0.1,0.9980392156862744,72.98039215686273,15.50235294117647,,,macro_per_account,reports/2026-09-20/evidence/cmu-account-selection/dev_results.json
+dataset research,cmu-account-selection,account_selected,0.9486274509803923,67.43137254901961,14.32450980392157,,,macro_per_account,reports/2026-09-20/evidence/cmu-account-selection/dev_results.json
+dataset research,cmu-far-selection,baseline,1.0968627450980393,74.19607843137256,22.044117647058822,,,macro_per_account,reports/2026-09-20/evidence/cmu-far-selection/dev_results.json
+dataset research,cmu-far-selection,svm-10-0.1,0.9980392156862744,72.98039215686273,15.50235294117647,,,macro_per_account,reports/2026-09-20/evidence/cmu-far-selection/dev_results.json
+dataset research,cmu-far-selection,account_selected,0.9486274509803923,67.43137254901961,14.32450980392157,,,macro_per_account,reports/2026-09-20/evidence/cmu-far-selection/dev_results.json
+dataset research,cmu-far-selection,far_selected,0.9854901960784315,64.09803921568627,18.49764705882353,,,macro_per_account,reports/2026-09-20/evidence/cmu-far-selection/dev_results.json
+dataset research,keyrecs-fixed,reference_logistic,1.2568777122187937,76.38890167357718,17.080271785943626,,,macro_per_account,reports/2026-09-20/evidence/results/keyrecs-v1/fixed-results.json
+dataset research,keyrecs-fixed,train_selected,1.293094644250142,45.91429299860141,11.618161203340529,,,macro_per_account,reports/2026-09-20/evidence/results/keyrecs-v1/fixed-results.json
+dataset research,keyrecs-free,reference_logistic,0.7048288533409635,85.72565404763463,16.664982550039966,,,macro_per_account,reports/2026-09-20/evidence/results/keyrecs-v1/free-results.json
+dataset research,keyrecs-free,train_selected,1.1413852736598369,45.643808403984124,9.722853458302232,,,macro_per_account,reports/2026-09-20/evidence/results/keyrecs-v1/free-results.json
+dataset research,keyrecs-free-typenet,frozen_typenet,1.172332213934953,84.08364279164118,20.232984102706528,,,macro_per_account,reports/2026-09-20/evidence/results/typenet-keyrecs-v1/dev-results.json
+dataset research,device,equal_attribute_agreement,0.6887755102040817,8.333333333333332,3.7877673591959313,,,pooled,reports/2026-09-20/evidence/device_results.json
+dataset research,device,exact_fingerprint_match,0.0,91.3265306122449,47.733333333333334,,,pooled,reports/2026-09-20/evidence/device_results.json
+dataset research,device,bioprint_overlap_device_score,1.211734693877551,33.07823129251701,7.568027210884354,,,pooled,reports/2026-09-20/evidence/device_results.json
+dataset research,device,thresholdfp_2025_pairwise_adaptation,1.1181972789115646,7.993197278911565,3.966836734693877,,,pooled,reports/2026-09-20/evidence/device_results.json
+dataset research,device,fpstalker_inspired_random_forest,0.7993197278911565,5.272108843537415,2.3809523809523836,,,pooled,reports/2026-09-20/evidence/device_results.json
+dataset research,device,hist_gradient_boosting,0.8418367346938775,4.846938775510204,2.2959183673469385,,,pooled,reports/2026-09-20/evidence/device_results.json
+dataset research,delbot,geometric_random_forest,3.6363636363636362,31.154684095860567,14.545454545454545,,,pooled,reports/2026-09-20/evidence/delbot_results.json
+dataset research,delbot,geometric_logistic_regression,0.0,100.0,14.596949891067535,,,pooled,reports/2026-09-20/evidence/delbot_results.json
+dataset research,delbot,bioprint_pointer_rules_only,0.0,100.0,50.49614112458654,,,pooled,reports/2026-09-20/evidence/delbot_results.json
+dataset research,cognitive,condition_index_slope,1.3888888888888888,88.88888888888889,48.61111111111111,,,pooled,reports/2026-09-20/evidence/cognitive_results.json
+dataset research,cognitive,condition_means,0.0,100.0,31.944444444444443,,,pooled,reports/2026-09-20/evidence/cognitive_results.json
+dataset research,cognitive,full_rt_accuracy_profile,2.7777777777777777,77.77777777777779,27.77777777777778,,,pooled,reports/2026-09-20/evidence/cognitive_results.json
+dataset research,cognitive,learned_full_profile_rf,4.166666666666666,88.88888888888889,30.555555555555557,,,pooled,reports/2026-09-20/evidence/cognitive_results.json
+dataset research,touch_tsi,selected,0.9959141981613893,91.85393258426966,34.44841675178753,,,pooled,reports/2026-09-20/evidence/touch_tsi_results.json
+dataset research,touch_tsi,landing_baseline,0.9959141981613893,95.50561797752809,36.746680286006125,,,pooled,reports/2026-09-20/evidence/touch_tsi_results.json
+dataset research,beacon_nonlinear,behavior_fusion_selected,2.4691358024691357,98.76543209876543,43.82716049382716,,,pooled,reports/2026-09-20/evidence/beacon_nonlinear_results.json
+dataset research,beacon_nonlinear,behavior_fusion_reference_lr,2.4691358024691357,98.76543209876543,43.82716049382716,,,pooled,reports/2026-09-20/evidence/beacon_nonlinear_results.json
+dataset research,beacon_nonlinear,behavior_plus_context_selected,8.024691358024691,86.41975308641975,43.20987654320987,,,pooled,reports/2026-09-20/evidence/beacon_nonlinear_results.json
+dataset research,beacon_nonlinear,behavior_plus_context_reference_lr,8.024691358024691,86.41975308641975,43.20987654320987,,,pooled,reports/2026-09-20/evidence/beacon_nonlinear_results.json
+dataset research,pointer,existing_scaled_manhattan,1.8884892086330936,98.20143884892086,48.606115107913666,,,pooled,reports/2026-09-20/evidence/pointer/results.json
+dataset research,pointer,extra_1,1.9334532374100721,92.44604316546763,56.18255395683454,,,pooled,reports/2026-09-20/evidence/pointer/results.json
+dataset research,pointer_sapimouse,scaled_manhattan@5,8.295194508009153,60.526315789473685,26.17276887871854,,,pooled,reports/2026-09-20/evidence/pointer_sapimouse/results.json
+dataset research,pointer_sapimouse,ocsvm:0.5:raw@5,2.231121281464531,80.26315789473685,21.281464530892446,,,pooled,reports/2026-09-20/evidence/pointer_sapimouse/results.json
+dataset research,pointer_sapimouse,ocsvm:0.5:enroll@5,2.402745995423341,61.8421052631579,18.363844393592682,,,pooled,reports/2026-09-20/evidence/pointer_sapimouse/results.json
+dataset research,pointer_sapimouse_optimized,scaled_manhattan@5,8.295194508009153,60.526315789473685,26.17276887871854,,,pooled,reports/2026-09-20/evidence/pointer_sapimouse_optimized/results.json
+dataset research,pointer_sapimouse_optimized,ocsvm:0.5:raw@5,2.231121281464531,80.26315789473685,21.281464530892446,,,pooled,reports/2026-09-20/evidence/pointer_sapimouse_optimized/results.json
+dataset research,pointer_sapimouse_optimized,cosine@5,1.6590389016018305,43.42105263157895,13.872997711670475,,,pooled,reports/2026-09-20/evidence/pointer_sapimouse_optimized/results.json
+dataset research,beacon,keyboard,0.6172839506172839,100.0,39.50617283950617,,,pooled,reports/2026-09-20/evidence/beacon/dev_results.json
+dataset research,beacon,mouse,41.9753086419753,35.80246913580247,40.4320987654321,,,pooled,reports/2026-09-20/evidence/beacon/dev_results.json
+dataset research,beacon,behavior_fusion,2.4691358024691357,98.76543209876543,44.1358024691358,,,pooled,reports/2026-09-20/evidence/beacon/dev_results.json
+dataset research,beacon,behavior_plus_context,8.024691358024691,86.41975308641975,43.20987654320987,,,pooled,reports/2026-09-20/evidence/beacon/dev_results.json
+dataset research,beacon,untrained_equal_behavior_fusion,11.728395061728394,88.88888888888889,39.50617283950617,,,pooled,reports/2026-09-20/evidence/beacon/dev_results.json
+dataset research,beacon-neural-v1,typenet,0.0,100.0,37.03703703703704,,,pooled,reports/2026-09-20/evidence/beacon-neural-v1/dev_results.json
+dataset research,beacon-neural-v1,mouse,41.9753086419753,35.80246913580247,40.4320987654321,,,pooled,reports/2026-09-20/evidence/beacon-neural-v1/dev_results.json
+dataset research,beacon-neural-v1,neural_behavior_fusion,41.9753086419753,34.5679012345679,39.50617283950617,,,pooled,reports/2026-09-20/evidence/beacon-neural-v1/dev_results.json
+dataset research,beacon-neural-v1,hybrid_behavior_fusion,2.4691358024691357,98.76543209876543,43.20987654320987,,,pooled,reports/2026-09-20/evidence/beacon-neural-v1/dev_results.json
+dataset research,beacon-neural-v2,typenet,0.0,100.0,35.80246913580247,,,pooled,reports/2026-09-20/evidence/beacon-neural-v2/dev_results.json
+dataset research,beacon-neural-v2,mouse,41.9753086419753,34.5679012345679,39.50617283950617,,,pooled,reports/2026-09-20/evidence/beacon-neural-v2/dev_results.json
+dataset research,beacon-neural-v2,handcrafted_behavior,2.4691358024691357,97.53086419753086,42.901234567901234,,,pooled,reports/2026-09-20/evidence/beacon-neural-v2/dev_results.json
+dataset research,beacon-neural-v2,sapimouse,66.66666666666666,56.79012345679012,59.25925925925925,,,pooled,reports/2026-09-20/evidence/beacon-neural-v2/dev_results.json
+dataset research,beacon-neural-v2,dual_neural,54.93827160493827,59.25925925925925,59.25925925925925,,,pooled,reports/2026-09-20/evidence/beacon-neural-v2/dev_results.json
+dataset research,beacon-neural-v2,hybrid_behavior_fusion,4.320987654320987,92.5925925925926,43.20987654320987,,,pooled,reports/2026-09-20/evidence/beacon-neural-v2/dev_results.json
+dataset research,hmog-paired-v1,joint,0.0,100.0,45.16129032258065,,,pooled_observed_claims_incomplete_cohort,reports/2026-09-20/evidence/hmog/validation_v1/validation_complete.json
+dataset research,hmog-paired-v1,key,0.0,93.54838709677419,26.881720430107524,,,pooled_observed_claims_incomplete_cohort,reports/2026-09-20/evidence/hmog/validation_v1/validation_complete.json
+dataset research,hmog-paired-v1,imu,4.301075268817205,96.7741935483871,50.53763440860215,,,pooled_observed_claims_incomplete_cohort,reports/2026-09-20/evidence/hmog/validation_v1/validation_complete.json
+dataset research,pointer-sapimouse-znorm-comparison,cosine@5,1.6590389016018305,43.42105263157895,13.872997711670475,,,pooled,reports/2026-09-20/evidence/pointer_sapimouse_znorm_dev_v2/dev_complete.json
+dataset research,pointer-sapimouse-znorm-comparison,znorm_cosine@5,0.7437070938215103,60.526315789473685,11.727688787185354,,,pooled,reports/2026-09-20/evidence/pointer_sapimouse_znorm_dev_v2/dev_complete.json
+dataset research,type2branch-one-capture-dev,train_selected_length_model,9.136643946770528,30.37974683544304,13.932164881531966,,,pooled_raw_score_discrete_conditional,reports/2026-09-20/evidence/type2branch_capture_dev_evaluation_v1/report.json
+dataset research,beacon-type2branch-paired-dev,typenet,0.0,100.0,35.80246913580247,,,pooled_discrete,reports/2026-09-20/evidence/beacon_type2branch_dev_evaluation_v1/report.json
+dataset research,beacon-type2branch-paired-dev,sapimouse,66.66666666666666,56.79012345679012,59.25925925925925,,,pooled_discrete,reports/2026-09-20/evidence/beacon_type2branch_dev_evaluation_v1/report.json
+dataset research,beacon-type2branch-paired-dev,handcrafted_behavior,2.4691358024691357,97.53086419753086,42.901234567901234,,,pooled_discrete,reports/2026-09-20/evidence/beacon_type2branch_dev_evaluation_v1/report.json
+dataset research,beacon-type2branch-paired-dev,old_dual_neural,54.93827160493827,59.25925925925925,59.25925925925925,,,pooled_discrete,reports/2026-09-20/evidence/beacon_type2branch_dev_evaluation_v1/report.json
+dataset research,beacon-type2branch-paired-dev,old_hybrid,45.67901234567901,30.864197530864196,38.2716049382716,,,pooled_discrete,reports/2026-09-20/evidence/beacon_type2branch_dev_evaluation_v1/report.json
+dataset research,beacon-type2branch-paired-dev,type2branch,11.728395061728394,80.24691358024691,43.20987654320987,,,pooled_discrete,reports/2026-09-20/evidence/beacon_type2branch_dev_evaluation_v1/report.json
+dataset research,beacon-type2branch-paired-dev,type2branch_pointer,64.81481481481481,59.25925925925925,59.25925925925925,,,pooled_discrete,reports/2026-09-20/evidence/beacon_type2branch_dev_evaluation_v1/report.json
+dataset research,beacon-type2branch-paired-dev,type2branch_hybrid,24.691358024691358,67.90123456790124,40.74074074074074,,,pooled_discrete,reports/2026-09-20/evidence/beacon_type2branch_dev_evaluation_v1/report.json
+general typing RESULTS.md,cmu,"Existing positional scorer, enrollment threshold",33.91,18.8,26.31,3052/9000,188/1000,pooled; rounded source table,.worktrees/general-typing/experiments/general_typing/RESULTS.md
+general typing RESULTS.md,cmu,distance,0.21,99.9,38.02,19/9000,999/1000,pooled; rounded source table,.worktrees/general-typing/experiments/general_typing/RESULTS.md
+general typing RESULTS.md,cmu,logistic,0.87,99.2,28.32,78/9000,992/1000,pooled; rounded source table,.worktrees/general-typing/experiments/general_typing/RESULTS.md
+general typing RESULTS.md,cmu,extra_trees,1.62,98.8,28.0,146/9000,988/1000,pooled; rounded source table,.worktrees/general-typing/experiments/general_typing/RESULTS.md
+general typing RESULTS.md,fixed,"Existing positional scorer, enrollment threshold",50.97,13.46,31.64,9257/18161,188/1397,pooled; rounded source table,.worktrees/general-typing/experiments/general_typing/RESULTS.md
+general typing RESULTS.md,fixed,distance,0.11,99.86,35.08,20/18161,1395/1397,pooled; rounded source table,.worktrees/general-typing/experiments/general_typing/RESULTS.md
+general typing RESULTS.md,fixed,logistic,0.19,99.57,37.72,34/18161,1391/1397,pooled; rounded source table,.worktrees/general-typing/experiments/general_typing/RESULTS.md
+general typing RESULTS.md,fixed,extra_trees,0.36,96.35,34.86,65/18161,1346/1397,pooled; rounded source table,.worktrees/general-typing/experiments/general_typing/RESULTS.md
+general typing RESULTS.md,free,distance,0.83,91.79,30.02,493/59553,4205/4581,pooled; rounded source table,.worktrees/general-typing/experiments/general_typing/RESULTS.md
+general typing RESULTS.md,free,logistic,1.9,93.25,31.61,1129/59553,4272/4581,pooled; rounded source table,.worktrees/general-typing/experiments/general_typing/RESULTS.md
+general typing RESULTS.md,free,extra_trees,1.57,90.68,28.6,936/59553,4154/4581,pooled; rounded source table,.worktrees/general-typing/experiments/general_typing/RESULTS.md
+general typing RESULTS.md,cmu,keyrecs_only / distance,0.17,99.9,38.02,15/9000,999/1000,pooled; rounded source table,.worktrees/general-typing/experiments/general_typing/RESULTS.md
+general typing RESULTS.md,cmu,keyrecs_only / logistic,0.57,99.4,28.4,51/9000,994/1000,pooled; rounded source table,.worktrees/general-typing/experiments/general_typing/RESULTS.md
+general typing RESULTS.md,cmu,keyrecs_only / extra_trees,0.46,99.5,32.1,41/9000,995/1000,pooled; rounded source table,.worktrees/general-typing/experiments/general_typing/RESULTS.md
+general typing RESULTS.md,fixed,cmu_only / distance,0.7,99.21,35.08,127/18161,1386/1397,pooled; rounded source table,.worktrees/general-typing/experiments/general_typing/RESULTS.md
+general typing RESULTS.md,fixed,cmu_only / logistic,2.33,93.41,34.16,424/18161,1305/1397,pooled; rounded source table,.worktrees/general-typing/experiments/general_typing/RESULTS.md
+general typing RESULTS.md,fixed,cmu_only / extra_trees,0.89,91.77,33.07,161/18161,1282/1397,pooled; rounded source table,.worktrees/general-typing/experiments/general_typing/RESULTS.md
+general typing RESULTS.md,free,cmu_only / distance,5.14,71.97,30.02,3061/59553,3297/4581,pooled; rounded source table,.worktrees/general-typing/experiments/general_typing/RESULTS.md
+general typing RESULTS.md,free,cmu_only / logistic,1.02,94.04,31.85,607/59553,4308/4581,pooled; rounded source table,.worktrees/general-typing/experiments/general_typing/RESULTS.md
+general typing RESULTS.md,free,cmu_only / extra_trees,2.97,94.22,33.66,1769/59553,4316/4581,pooled; rounded source table,.worktrees/general-typing/experiments/general_typing/RESULTS.md
+general typing RESULTS.md,cmu,cmu_only / distance,1.57,98.4,38.02,141/9000,984/1000,pooled; rounded source table,.worktrees/general-typing/experiments/general_typing/RESULTS.md
+general typing RESULTS.md,cmu,cmu_only / logistic,0.79,99.2,26.4,71/9000,992/1000,pooled; rounded source table,.worktrees/general-typing/experiments/general_typing/RESULTS.md
+general typing RESULTS.md,cmu,cmu_only / extra_trees,3.12,94.9,26.91,281/9000,949/1000,pooled; rounded source table,.worktrees/general-typing/experiments/general_typing/RESULTS.md
+general typing RESULTS.md,fixed,keyrecs_only / distance,0.09,99.86,35.08,17/18161,1395/1397,pooled; rounded source table,.worktrees/general-typing/experiments/general_typing/RESULTS.md
+general typing RESULTS.md,fixed,keyrecs_only / logistic,0.24,99.36,36.93,44/18161,1388/1397,pooled; rounded source table,.worktrees/general-typing/experiments/general_typing/RESULTS.md
+general typing RESULTS.md,fixed,keyrecs_only / extra_trees,0.14,99.79,37.74,25/18161,1394/1397,pooled; rounded source table,.worktrees/general-typing/experiments/general_typing/RESULTS.md
+general typing RESULTS.md,free,keyrecs_only / distance,0.67,93.21,30.02,401/59553,4270/4581,pooled; rounded source table,.worktrees/general-typing/experiments/general_typing/RESULTS.md
+general typing RESULTS.md,free,keyrecs_only / logistic,1.58,94.08,31.98,943/59553,4310/4581,pooled; rounded source table,.worktrees/general-typing/experiments/general_typing/RESULTS.md
+general typing RESULTS.md,free,keyrecs_only / extra_trees,1.24,90.42,27.02,738/59553,4142/4581,pooled; rounded source table,.worktrees/general-typing/experiments/general_typing/RESULTS.md
+general typing RESULTS.md,BEACON gameplay,pooled/distance,9.97,91.8,51.43,73/732,336/366,pooled; rounded source table,.worktrees/general-typing/experiments/general_typing/RESULTS.md
+general typing RESULTS.md,BEACON gameplay,pooled/logistic,7.51,93.72,54.92,55/732,343/366,pooled; rounded source table,.worktrees/general-typing/experiments/general_typing/RESULTS.md
+general typing RESULTS.md,BEACON gameplay,pooled/extra_trees,4.64,96.99,53.89,34/732,355/366,pooled; rounded source table,.worktrees/general-typing/experiments/general_typing/RESULTS.md
+general typing RESULTS.md,BEACON gameplay,cmu_only/distance,22.4,86.34,51.43,164/732,316/366,pooled; rounded source table,.worktrees/general-typing/experiments/general_typing/RESULTS.md
+general typing RESULTS.md,BEACON gameplay,cmu_only/logistic,5.19,96.99,48.91,38/732,355/366,pooled; rounded source table,.worktrees/general-typing/experiments/general_typing/RESULTS.md
+general typing RESULTS.md,BEACON gameplay,cmu_only/extra_trees,0.96,98.63,48.91,7/732,361/366,pooled; rounded source table,.worktrees/general-typing/experiments/general_typing/RESULTS.md
+general typing RESULTS.md,BEACON gameplay,keyrecs_only/distance,8.47,92.62,51.43,62/732,339/366,pooled; rounded source table,.worktrees/general-typing/experiments/general_typing/RESULTS.md
+general typing RESULTS.md,BEACON gameplay,keyrecs_only/logistic,5.19,93.99,55.19,38/732,344/366,pooled; rounded source table,.worktrees/general-typing/experiments/general_typing/RESULTS.md
+general typing RESULTS.md,BEACON gameplay,keyrecs_only/extra_trees,5.33,97.27,52.53,39/732,356/366,pooled; rounded source table,.worktrees/general-typing/experiments/general_typing/RESULTS.md
+general typing ALIGNED_RESULTS.md,cmu,Shipped positional scorer,33.91,18.8,26.31,3052/9000,188/1000,pooled; rounded source table,.worktrees/general-typing/experiments/general_typing/ALIGNED_RESULTS.md
+general typing ALIGNED_RESULTS.md,cmu,pooled/distance,1.44,97.2,26.31,130/9000,972/1000,pooled; rounded source table,.worktrees/general-typing/experiments/general_typing/ALIGNED_RESULTS.md
+general typing ALIGNED_RESULTS.md,cmu,pooled/logistic,0.42,95.3,25.41,38/9000,953/1000,pooled; rounded source table,.worktrees/general-typing/experiments/general_typing/ALIGNED_RESULTS.md
+general typing ALIGNED_RESULTS.md,cmu,pooled/extra_trees,1.72,90.9,24.19,155/9000,909/1000,pooled; rounded source table,.worktrees/general-typing/experiments/general_typing/ALIGNED_RESULTS.md
+general typing ALIGNED_RESULTS.md,cmu,cmu_only/distance,4.14,90.6,26.31,373/9000,906/1000,pooled; rounded source table,.worktrees/general-typing/experiments/general_typing/ALIGNED_RESULTS.md
+general typing ALIGNED_RESULTS.md,cmu,cmu_only/logistic,4.12,75.7,25.62,371/9000,757/1000,pooled; rounded source table,.worktrees/general-typing/experiments/general_typing/ALIGNED_RESULTS.md
+general typing ALIGNED_RESULTS.md,cmu,cmu_only/extra_trees,5.91,71.0,24.3,532/9000,710/1000,pooled; rounded source table,.worktrees/general-typing/experiments/general_typing/ALIGNED_RESULTS.md
+general typing ALIGNED_RESULTS.md,cmu,keyrecs_only/distance,0.88,98.8,26.31,79/9000,988/1000,pooled; rounded source table,.worktrees/general-typing/experiments/general_typing/ALIGNED_RESULTS.md
+general typing ALIGNED_RESULTS.md,cmu,keyrecs_only/logistic,0.66,95.4,28.98,59/9000,954/1000,pooled; rounded source table,.worktrees/general-typing/experiments/general_typing/ALIGNED_RESULTS.md
+general typing ALIGNED_RESULTS.md,cmu,keyrecs_only/extra_trees,0.87,98.4,25.92,78/9000,984/1000,pooled; rounded source table,.worktrees/general-typing/experiments/general_typing/ALIGNED_RESULTS.md
+general typing ALIGNED_RESULTS.md,fixed,Shipped positional scorer,50.97,13.46,31.64,9257/18161,188/1397,pooled; rounded source table,.worktrees/general-typing/experiments/general_typing/ALIGNED_RESULTS.md
+general typing ALIGNED_RESULTS.md,fixed,pooled/distance,3.56,87.47,31.64,646/18161,1222/1397,pooled; rounded source table,.worktrees/general-typing/experiments/general_typing/ALIGNED_RESULTS.md
+general typing ALIGNED_RESULTS.md,fixed,pooled/logistic,3.83,88.98,29.42,695/18161,1243/1397,pooled; rounded source table,.worktrees/general-typing/experiments/general_typing/ALIGNED_RESULTS.md
+general typing ALIGNED_RESULTS.md,fixed,pooled/extra_trees,4.58,82.61,30.78,831/18161,1154/1397,pooled; rounded source table,.worktrees/general-typing/experiments/general_typing/ALIGNED_RESULTS.md
+general typing ALIGNED_RESULTS.md,fixed,cmu_only/distance,7.41,75.02,31.64,1346/18161,1048/1397,pooled; rounded source table,.worktrees/general-typing/experiments/general_typing/ALIGNED_RESULTS.md
+general typing ALIGNED_RESULTS.md,fixed,cmu_only/logistic,9.79,68.58,30.57,1778/18161,958/1397,pooled; rounded source table,.worktrees/general-typing/experiments/general_typing/ALIGNED_RESULTS.md
+general typing ALIGNED_RESULTS.md,fixed,cmu_only/extra_trees,9.6,67.93,29.92,1744/18161,949/1397,pooled; rounded source table,.worktrees/general-typing/experiments/general_typing/ALIGNED_RESULTS.md
+general typing ALIGNED_RESULTS.md,fixed,keyrecs_only/distance,2.42,90.98,31.64,440/18161,1271/1397,pooled; rounded source table,.worktrees/general-typing/experiments/general_typing/ALIGNED_RESULTS.md
+general typing ALIGNED_RESULTS.md,fixed,keyrecs_only/logistic,4.25,90.62,30.62,772/18161,1266/1397,pooled; rounded source table,.worktrees/general-typing/experiments/general_typing/ALIGNED_RESULTS.md
+general typing ALIGNED_RESULTS.md,fixed,keyrecs_only/extra_trees,2.94,90.05,32.14,534/18161,1258/1397,pooled; rounded source table,.worktrees/general-typing/experiments/general_typing/ALIGNED_RESULTS.md
+synthetic policy train,shared artificial cohort,login-control,34.72222222222222,10.416666666666668,,25/72,5/48,final scenario outcomes; EER undefined,.worktrees/typing-pointer/experiments/results/comparison.json
+synthetic policy train,shared artificial cohort,typing-stepup,16.666666666666664,41.66666666666667,,12/72,20/48,final scenario outcomes; EER undefined,.worktrees/typing-pointer/experiments/results/comparison.json
+synthetic policy train,shared artificial cohort,typing-pointer,19.444444444444446,22.916666666666664,,14/72,11/48,final scenario outcomes; EER undefined,.worktrees/typing-pointer/experiments/results/comparison.json
+synthetic policy train,shared artificial cohort,typing-keypad,20.833333333333336,27.083333333333332,,15/72,13/48,final scenario outcomes; EER undefined,.worktrees/typing-pointer/experiments/results/comparison.json
+synthetic policy calibration,shared artificial cohort,login-control,30.555555555555557,20.833333333333336,,22/72,10/48,final scenario outcomes; EER undefined,.worktrees/typing-pointer/experiments/results/comparison.json
+synthetic policy calibration,shared artificial cohort,typing-stepup,16.666666666666664,35.41666666666667,,12/72,17/48,final scenario outcomes; EER undefined,.worktrees/typing-pointer/experiments/results/comparison.json
+synthetic policy calibration,shared artificial cohort,typing-pointer,18.055555555555554,18.75,,13/72,9/48,final scenario outcomes; EER undefined,.worktrees/typing-pointer/experiments/results/comparison.json
+synthetic policy calibration,shared artificial cohort,typing-keypad,18.055555555555554,18.75,,13/72,9/48,final scenario outcomes; EER undefined,.worktrees/typing-pointer/experiments/results/comparison.json
+synthetic policy dev,shared artificial cohort,login-control,35.55555555555556,8.333333333333332,,32/90,5/60,final scenario outcomes; EER undefined,.worktrees/typing-pointer/experiments/results/comparison.json
+synthetic policy dev,shared artificial cohort,typing-stepup,11.11111111111111,41.66666666666667,,10/90,25/60,final scenario outcomes; EER undefined,.worktrees/typing-pointer/experiments/results/comparison.json
+synthetic policy dev,shared artificial cohort,typing-pointer,15.555555555555555,21.666666666666668,,14/90,13/60,final scenario outcomes; EER undefined,.worktrees/typing-pointer/experiments/results/comparison.json
+synthetic policy dev,shared artificial cohort,typing-keypad,14.444444444444443,26.666666666666668,,13/90,16/60,final scenario outcomes; EER undefined,.worktrees/typing-pointer/experiments/results/comparison.json
+synthetic neural v1,shared artificial DEV cohort,legacy,15.555555555555555,21.666666666666668,,14/90,13/60,final scenario outcomes; EER undefined,.worktrees/typing-pointer/experiments/results/typing-pointer-neural-dev-v1.json
+synthetic neural v1,shared artificial DEV cohort,neural,10.0,50.0,,9/90,30/60,final scenario outcomes; EER undefined,.worktrees/typing-pointer/experiments/results/typing-pointer-neural-dev-v1.json
+synthetic neural v2,shared artificial DEV cohort,legacy,15.555555555555555,21.666666666666668,,14/90,13/60,final scenario outcomes; EER undefined,.worktrees/typing-pointer/experiments/results/typing-pointer-neural-dev-v2.json
+synthetic neural v2,shared artificial DEV cohort,neural,10.0,31.666666666666664,,9/90,19/60,final scenario outcomes; EER undefined,.worktrees/typing-pointer/experiments/results/typing-pointer-neural-dev-v2.json
+synthetic pointer threshold counterfactual,shared artificial DEV cohort,source calibration FAR target 0.001,10.0,33.33333333333333,,9/90,20/60,"fixed score-level counterfactual, not full API rerun",.worktrees/typing-pointer/experiments/results/typing-pointer-neural-tradeoff.json
+synthetic pointer threshold counterfactual,shared artificial DEV cohort,source calibration FAR target 0.01,10.0,31.666666666666664,,9/90,19/60,"fixed score-level counterfactual, not full API rerun",.worktrees/typing-pointer/experiments/results/typing-pointer-neural-tradeoff.json
+synthetic pointer threshold counterfactual,shared artificial DEV cohort,source calibration FAR target 0.05,10.0,28.333333333333332,,9/90,17/60,"fixed score-level counterfactual, not full API rerun",.worktrees/typing-pointer/experiments/results/typing-pointer-neural-tradeoff.json
+infeasible study,hmog-touch-paired-dev,infeasible,,,,,,recognition metrics unavailable,reports/2026-09-20/evidence/hmog/tap_dev_v1/dev_complete.json
+infeasible study,arithmetic-three-level-dev,infeasible,,,,,,recognition metrics unavailable,reports/2026-09-20/evidence/arithmetic_dev_failure_v1/report.json
+infeasible study,type2branch-cross-session-dev,infeasible_prescribed_cohort,,,,,,recognition metrics unavailable,reports/2026-09-20/evidence/type2branch_dev_features_v1/report.json
+schema audit only,BrainRun,101 games; 982 gestures; 7/8 TRAIN users,,,,,,recognition metrics unavailable,reports/2026-09-20/evidence/brainrun_train_schema_v2/report.json
+genuine-only bot audit,CMU,production timing rules,,0.29411764705882354,,,15/5100,genuine false flags; no bot-positive FAR/EER,reports/2026-09-20/evidence/bot_rules/results.json
+post-hoc synthetic typing-only diagnostic,ordinary_desktop,compatible RBF SVM at model threshold,3.3333333333333335,53.333333333333336,,1/30,24/45,"Typing score <= its model threshold only; excludes bot/device/challenge decisions. Post-hoc diagnostic on the existing synthetic scenarios, not a new independent benchmark.",.worktrees/typing-pointer/experiments/results/typing-pointer-dev-v1.json
+post-hoc synthetic typing-only diagnostic,all_available_typing,compatible RBF SVM at model threshold,13.333333333333334,53.333333333333336,,8/60,24/45,"Typing score <= its model threshold only; excludes bot/device/challenge decisions. Post-hoc diagnostic on the existing synthetic scenarios, not a new independent benchmark.",.worktrees/typing-pointer/experiments/results/typing-pointer-dev-v1.json

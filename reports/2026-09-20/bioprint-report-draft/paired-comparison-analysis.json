@@ -1,0 +1,80 @@
+{
+  "source_sha256": "2a9af2d0bfa4819d5a0120b0740d4bb50112910997b4e3a06d290929f6909f4f",
+  "accounts": 15,
+  "method": "Two-sided exact account-level paired sign-flip test; all 2^15 label swaps. Conditional on the artificial mapping and exchangeability under the null. Repeated scenarios within an account stay together. Exploratory, not population confirmation.",
+  "far": {
+    "new_minus_old_pp": -5.555555555555555,
+    "improved_cases": 5,
+    "worsened_cases": 0,
+    "exact_cluster_sign_flip_p": 0.125,
+    "account_bootstrap_percentile_95_pp": [
+      -11.11111111111111,
+      -1.111111111111111
+    ],
+    "account_error_rate_differences": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      -0.3333333333333333,
+      -0.16666666666666666,
+      0.0,
+      -0.16666666666666666,
+      0.0,
+      -0.16666666666666666,
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  "frr": {
+    "new_minus_old_pp": 10.0,
+    "improved_cases": 1,
+    "worsened_cases": 7,
+    "exact_cluster_sign_flip_p": 0.15625,
+    "account_bootstrap_percentile_95_pp": [
+      0.0,
+      20.0
+    ],
+    "account_error_rate_differences": [
+      0.25,
+      0.0,
+      0.25,
+      0.0,
+      0.0,
+      0.0,
+      0.25,
+      0.0,
+      0.5,
+      -0.25,
+      0.0,
+      0.5,
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  "typing_diagnostics": {
+    "ordinary_desktop": {
+      "genuine_n": 45,
+      "impostor_n": 30,
+      "false_accepts": 1,
+      "false_rejects": 24,
+      "far": 0.03333333333333333,
+      "frr": 0.5333333333333333,
+      "scope": "Typing score <= its model threshold only; excludes bot/device/challenge decisions. Post-hoc diagnostic on the existing synthetic scenarios, not a new independent benchmark."
+    },
+    "all_available_typing": {
+      "genuine_n": 45,
+      "impostor_n": 60,
+      "false_accepts": 8,
+      "false_rejects": 24,
+      "far": 0.13333333333333333,
+      "frr": 0.5333333333333333,
+      "scope": "Typing score <= its model threshold only; excludes bot/device/challenge decisions. Post-hoc diagnostic on the existing synthetic scenarios, not a new independent benchmark."
+    }
+  },
+  "typing_source_sha256": "67000b64db047b9dee54f02c1bfc56041cd57fd6f2f8eff9feb32402520504cb"
+}

@@ -1,0 +1,105 @@
+{
+  "sources": {
+    "reports/2026-09-20/evidence/summary_v11.json": "0ee73feea1b393fae647730513cfdbc4f6106e4ec175b2912685597b73f3b519",
+    ".worktrees/general-typing/experiments/general_typing/RESULTS.md": "c8125fb482ed18e3679c2dac84537387503663bed1a6f48bf3e4e95bfe3d3830",
+    ".worktrees/general-typing/experiments/general_typing/ALIGNED_RESULTS.md": "2e8ea4df09229f4b2aa2dae6a4250957c6b8d391f93849c7895c36b368b05519",
+    ".worktrees/typing-pointer/experiments/results/comparison.json": "3df472b03e045985c143ec87e1ccc11d34298aac086b2401eb0630ff4aeb8ece",
+    ".worktrees/typing-pointer/experiments/results/typing-pointer-neural-dev-v1.json": "5a57fa7b075abdaceba529c7bbd20c33614989773a1c995def19b7bd3da5612a",
+    ".worktrees/typing-pointer/experiments/results/typing-pointer-neural-dev-v2.json": "2a9af2d0bfa4819d5a0120b0740d4bb50112910997b4e3a06d290929f6909f4f",
+    ".worktrees/typing-pointer/experiments/results/typing-pointer-neural-tradeoff.json": "29c4cd0e92cdf32ae81d8046c8c85ad77cd049c4e10179c49f8b1c782df8556b",
+    ".worktrees/typing-pointer/code/bioprint/experiment.json": "c666c5774a34999ba3feba86690830e2eebfc014441c8803e256ddddd601a479",
+    "reports/2026-09-20/bioprint-report-draft/paired-comparison-analysis.json": "db35dec62f5999f2dbff36e0c7d278b522aae58e28aa13708124b678fd611704",
+    ".worktrees/typing-pointer/experiments/typing_demo/demo.py": "901120fcae398604f72188cf04687f2b7526c3a90059a738e2d7dafdb7700ebb",
+    "reports/2026-09-20/bioprint-report-draft/typing-demo-results.json": "47ec9fbbd1a4ed18ed668d66492e2c89a071da48d693d02c0523284a03b853a3",
+    "reports/2026-09-20/DATASET_RESULTS.md": "942ac1652cbe4294d0e37fb73ba3612b55c8c9a7ec7bcce14bcebfebe9feb192",
+    ".worktrees/typing-pointer/experiments/NEURAL_POINTER_RESULTS.md": "13f93c3cc1f559f637c6eed9a741de578bec5500d1d29d7fa06556b23727c4bc",
+    ".worktrees/typing-pointer/code/bioprint/EXPERIMENT.md": "24731a1bee456e336716d265570612bc0da9862134a069d44edbc0a60d364c9c"
+  },
+  "ledger_rows": 156,
+  "source_reports_sha256": {
+    "cmu/dev_results.json": "906be5a8d48a032054cb9ec299588032a4126250d680111fe22c58b795f86794",
+    "cmu100/dev_results.json": "cb3df81937d012c776c15de3bf908995dc13c393c75dd560c80f911bf64de6fd",
+    "cmu-account-selection/dev_results.json": "b415fa103b627411ffe054e5bf18f198deae5269ea8c4c972a3f04705be02f65",
+    "cmu-far-selection/dev_results.json": "a397b606303a7270fae5f391d4bdf08659c5a72ac6b8798966644cd7d765b0e6",
+    "results/keyrecs-v1/fixed-results.json": "88b83c42d6772f5cb4db8a9e19771c56a1de54a1e0f2f6fbaf8575e465a3c12e",
+    "results/keyrecs-v1/free-results.json": "5f39deeb0999339e29e49f660186fe683890a1e3b8a843f90abd57acddb6cad3",
+    "results/typenet-keyrecs-v1/dev-results.json": "53d508ba9cb75457a0e77928000bd08fb0c657805f615ae98420343bf8a41395",
+    "device_results.json": "55669105a0387477d90b105b9d6d2c5c3a3e05092577dac14a50e224d072d073",
+    "delbot_results.json": "837eef2100ee19b4d2209ca2721cc3b4d43ebbb426c3a4291f1d7bb7a543c586",
+    "cognitive_results.json": "f1274167e75b9e8c113173436f5dd5acba3637f33ed72da4c7e5e60ffcfa2299",
+    "touch_tsi_results.json": "cf088c5a768c37a028dfa41f5d269aef6c30088d4f81d3207fb4384ab93127a2",
+    "beacon_nonlinear_results.json": "be45d8687f7cd1067cfce9b5107dcb67e0e5826f89616275d697dac3f701991f",
+    "pointer/results.json": "2d890275da078d27c9a3dc09419f33c41811941e343957e0957fe1710ba56119",
+    "pointer_sapimouse/results.json": "061a0b41747c771683aac66057b3d766f8f7e7de532204a802fe364a73000a66",
+    "pointer_sapimouse_optimized/results.json": "ac2c8d1b629c61972369df5c1079d14edb15eca3aae93f374010583fbb6fafc5",
+    "beacon/dev_results.json": "d3a1f51ee9f5edc50eb37041a6984a71e0c3fdb59b3af40fecbd9a8816f78f85",
+    "beacon-neural-v1/dev_results.json": "6a1b62a77d3f4c4a2a3873c52df95251164071619d2bd1b306f4d37841d73476",
+    "beacon-neural-v2/dev_results.json": "e41c3dd309db681cacfb9be1b0d998ee4f8e2fbb0f2070d16bf684c9567a2757",
+    "hmog/validation_v1/validation_complete.json": "1ad1dd6a9898c176c880768d1a8999ff5d877cfa8aac941032779ea7b11f9175",
+    "pointer_sapimouse_znorm_dev_v2/dev_complete.json": "cd4edeaaedcc98a834ad6b0c7976413b34b47e677764b2f3d4a37ff34e695244",
+    "hmog/tap_dev_v1/dev_complete.json": "6ab901e8b3104050c1be9f563f36a3c95bccd678536be35d7b0c11c4c5ca7f57",
+    "arithmetic_dev_failure_v1/report.json": "a065cefeaf21ae3c92195e07fe855c6a18ca262695fc082860bacb2e5d77b89b",
+    "type2branch_dev_features_v1/report.json": "8839c06256bb97c8cdea33015e153975cb2a729bda322e49a2db4cb860418443",
+    "type2branch_capture_dev_evaluation_v1/report.json": "591fd0258c9652fbd40b7034ea5c839d0c6df6d9ed5950377057af61236f07ca",
+    "beacon_type2branch_dev_evaluation_v1/report.json": "659f43709022ec41b4ac96cc76e4ee25751605749285e58c5204e21b64deb813"
+  },
+  "infeasible_experiments": [
+    {
+      "experiment": "hmog-touch-paired-dev",
+      "source": "hmog/tap_dev_v1/dev_complete.json",
+      "status": "infeasible",
+      "reason": "Missing required personal support gallery",
+      "missing_gallery_accounts": [
+        "556357"
+      ],
+      "recognition_metrics_available": false
+    },
+    {
+      "experiment": "arithmetic-three-level-dev",
+      "source": "arithmetic_dev_failure_v1/report.json",
+      "status": "infeasible",
+      "invalid_blocks": [
+        {
+          "subject": "LWS",
+          "round": 2,
+          "level": "l",
+          "member": "Cal_LWS_LlT2.mat",
+          "role": "training_enrollment_support",
+          "status": "invalid",
+          "error": "Expected five trials with optional trailing padding",
+          "shapes": {
+            "imageT": [
+              50
+            ],
+            "keyT": [
+              50
+            ],
+            "CorrectAns": [
+              50
+            ]
+          }
+        }
+      ],
+      "training_selected_method": "wait_missing_error_profile__scaled_l1",
+      "recognition_metrics_available": false
+    },
+    {
+      "experiment": "type2branch-cross-session-dev",
+      "source": "type2branch_dev_features_v1/report.json",
+      "status": "infeasible_prescribed_cohort",
+      "failures": [
+        {
+          "role": "probes",
+          "subject": "p004",
+          "error": "Prescribed event prefix unavailable"
+        }
+      ],
+      "recognition_metrics_available": false
+    }
+  ],
+  "notes": [
+    "Repeated controls are preserved, not independent experiments.",
+    "All rates refer to source protocols, not the latest live app.",
+    "General matcher rates are rounded in their source Markdown tables."
+  ]
+}

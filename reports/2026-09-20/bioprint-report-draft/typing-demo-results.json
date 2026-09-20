@@ -1,0 +1,71 @@
+{
+  "password_is_public_dataset_text": ".tie5Roanl",
+  "examples": [
+    {
+      "label": "True accept",
+      "case_id": "s018-genuine_same_device",
+      "ground_truth": "owner",
+      "typing_outcome": "True accept",
+      "score": 0.0,
+      "model_limit": 1.0,
+      "direct_admission_limit": 0.75,
+      "login_decision": "allow",
+      "session_issued": true,
+      "source_model": "RBF typing model with a separate TRAIN impostor-calibration threshold"
+    },
+    {
+      "label": "True reject",
+      "case_id": "s018-impostor_same_device",
+      "ground_truth": "impostor",
+      "typing_outcome": "True reject",
+      "score": 3.561589313594328,
+      "model_limit": 1.0,
+      "direct_admission_limit": 0.75,
+      "login_decision": "block",
+      "session_issued": false,
+      "source_model": "RBF typing model with a separate TRAIN impostor-calibration threshold"
+    },
+    {
+      "label": "False reject",
+      "case_id": "s032-genuine_same_device",
+      "ground_truth": "owner",
+      "typing_outcome": "False reject",
+      "score": 4.178596616725212,
+      "model_limit": 1.0,
+      "direct_admission_limit": 0.75,
+      "login_decision": "block",
+      "session_issued": false,
+      "source_model": "RBF typing model with a separate TRAIN impostor-calibration threshold"
+    },
+    {
+      "label": "False accept",
+      "case_id": "s039-impostor_same_device",
+      "ground_truth": "impostor",
+      "typing_outcome": "False accept",
+      "score": 0.7655614387101829,
+      "model_limit": 1.0,
+      "direct_admission_limit": 0.75,
+      "login_decision": "keypad",
+      "session_issued": false,
+      "source_model": "RBF typing model with a separate TRAIN impostor-calibration threshold"
+    },
+    {
+      "label": "Owner-like typing attack",
+      "case_id": "s018-typing_match_attack",
+      "ground_truth": "impostor",
+      "typing_outcome": "False accept",
+      "score": 0.0,
+      "model_limit": 1.0,
+      "direct_admission_limit": 0.75,
+      "login_decision": "allow",
+      "session_issued": true,
+      "source_model": "RBF typing model with a separate TRAIN impostor-calibration threshold"
+    }
+  ],
+  "cohort_sha256": "8b1038a3a4d0a5140e5fbdb6a9db9387a11af771170697a32ceb17dd655ddecb",
+  "reference_sha256": "67000b64db047b9dee54f02c1bfc56041cd57fd6f2f8eff9feb32402520504cb",
+  "interpretation": "Outcome-selected demonstration, not an unbiased accuracy benchmark. First four labels describe the typing classifier at limit 1.0. The full login separately uses the stricter direct limit 0.75, bot/device checks and step-up. The fifth example intentionally supplies owner-like typing to an impostor; it is not a natural impostor trace.",
+  "real_api": true,
+  "listener_started": false,
+  "temporary_database_deleted": true
+}

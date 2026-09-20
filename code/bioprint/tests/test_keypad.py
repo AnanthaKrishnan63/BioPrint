@@ -254,17 +254,18 @@ def test_the_environment_probe_still_applies():
     assert "webdriver" in fired(r) and r.flagged
 
 
-def test_a_new_layout_cannot_be_searched_in_under_120_ms():
-    r = keypad.bot_check([run(seed=25, target=NO_REPEATS, interval_ms=100.0, interval_sd=8.0,
+@pytest.mark.parametrize('device', ['mouse', 'touch'])
+def test_fast_varied_taps_on_a_visible_layout_are_not_bots(device):
+    r = keypad.bot_check([run(seed=25, device=device, target=NO_REPEATS, interval_ms=100.0, interval_sd=8.0,
                               first_extra_ms=400.0)])
-    assert "keypad_impossible_search" in fired(r) and r.flagged
+    assert not r.flagged, r.reasons
 
 
 def test_a_repeated_digit_is_allowed_to_be_fast():
-    """The same key twice needs no new search, so the fast-tap rule must exempt it."""
+    """Repeated digits with variable timing also remain valid input."""
     d = make_run(seed=26, target=[3, 3, 3, 3, 3, 3], interval_ms=100.0, interval_sd=8.0,
                  first_extra_ms=400.0)
-    assert "keypad_impossible_search" not in fired(keypad.bot_check([KeypadRun.model_validate(d)]))
+    assert not keypad.bot_check([KeypadRun.model_validate(d)]).flagged
 
 
 def test_tapping_before_the_digits_could_be_read_is_a_weak_tell():

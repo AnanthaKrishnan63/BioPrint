@@ -1,7 +1,13 @@
 """End-to-end through the HTTP API. Proves the contracts hold together; the real
 accuracy tests live with each engine module."""
 
-from helpers import CODES, PASSWORD, make_sample
+from helpers import CODES, PASSWORD, make_sample as _make_sample
+from test_bot import human_env
+
+
+def make_sample(**kwargs):
+    kwargs.setdefault('env', human_env())
+    return _make_sample(**kwargs)
 
 
 def _enrolled(client, user="alice"):

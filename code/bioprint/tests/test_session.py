@@ -1,7 +1,13 @@
 """The session cookie: an "allow" signs the browser in, a "block" signs it out.
 Goes through the HTTP API like test_smoke.py; the TestClient keeps a cookie jar."""
 
-from helpers import PASSWORD, make_sample
+from helpers import PASSWORD, make_sample as _make_sample
+from test_bot import human_env
+
+
+def make_sample(**kwargs):
+    kwargs.setdefault("env", human_env())
+    return _make_sample(**kwargs)
 
 COOKIE = "bioprint_session"
 
@@ -75,7 +81,7 @@ def test_wrong_password_sets_nothing(client):
     _enrolled(client)
     r = login(client, make_sample(seed=1), password="nope")
     assert r.json()["decision"] == "wrong_password"
-    assert "set-cookie" not in r.headers
+    assert "Max-Age=0" in r.headers["set-cookie"]
     assert not client.cookies.get(COOKIE)
     assert client.get("/api/session").status_code == 401
 
@@ -85,7 +91,7 @@ def test_other_non_allow_decisions_set_nothing(client):
     for user in ("bob", "nobody"):
         r = login(client, make_sample(), user=user)
         assert r.json()["decision"] in ("not_enrolled", "unknown_user")
-        assert "set-cookie" not in r.headers
+        assert "Max-Age=0" in r.headers["set-cookie"]
     assert client.get("/api/session").status_code == 401
 
 

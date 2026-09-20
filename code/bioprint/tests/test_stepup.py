@@ -55,7 +55,7 @@ def pending_step_up(client) -> dict:
     r = login(client, owner(99, env=OTHER))
     body = r.json()
     assert body["decision"] == "step_up", body
-    assert "set-cookie" not in r.headers
+    assert "Max-Age=0" in r.headers["set-cookie"]
     assert not client.cookies.get(COOKIE)
     assert client.get("/api/session").status_code == 401
     return body
@@ -88,14 +88,14 @@ def test_new_device_and_impostor_rhythm_blocks_directly(client):
     body = r.json()
     assert body["decision"] == "block", body
     assert signal(body, "keystroke")["flagged"] and signal(body, "device")["flagged"]
-    assert any("different device" in x for x in body["reasons"])
+    assert any("outside the enrolled profile" in x for x in body["reasons"])
     assert not client.cookies.get(COOKIE)
 
 
-def test_device_unavailable_counts_as_same_device(client):
-    """No probe on this attempt: nothing to ask more about, the rhythm decides."""
+def test_device_unavailable_requires_more_behavior(client):
+    """Missing context cannot establish familiarity for direct admission."""
     enrolled(client)
-    assert login(client, owner(99, env={})).json()["decision"] == "allow"
+    assert login(client, owner(99, env={})).json()["decision"] == "step_up"
     assert login(client, owner(5, env={}, **IMPOSTOR)).json()["decision"] == "block"
 
 
@@ -132,7 +132,7 @@ def test_step_up_with_impostor_samples_blocks_and_clears_session(client):
     assert client.get("/api/session").status_code == 200
     r = login(client, owner(99, env=OTHER))
     assert r.json()["decision"] == "step_up"
-    assert client.get("/api/session").status_code == 200  # step_up leaves the cookie alone
+    assert client.get("/api/session").status_code == 401  # uncertainty revokes the old session
 
     r = step_up(client, [owner(s, env=OTHER, **IMPOSTOR) for s in (11, 12, 13)])
     body = r.json()
@@ -199,7 +199,7 @@ def test_corrected_sample_in_the_batch_means_retype_and_keeps_the_step_up_pendin
 def test_step_up_wrong_password_and_unknown_user(client):
     pending_step_up(client)
     r = step_up(client, [owner(s, env=OTHER) for s in (101, 102, 103)], password="nope")
-    assert r.json()["decision"] == "wrong_password" and "set-cookie" not in r.headers
+    assert r.json()["decision"] == "wrong_password" and "Max-Age=0" in r.headers["set-cookie"]
     r = step_up(client, [owner(s, env=OTHER) for s in (101, 102, 103)], user="nobody")
     assert r.json()["decision"] == "unknown_user"
     assert client.get("/api/session").status_code == 401

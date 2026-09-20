@@ -21,7 +21,9 @@ from contracts import KEYPAD_BLANK
 from test_bot import human_env
 
 OUT = ROOT / 'research/benchmarks/login_combinations_v3'
-OUT.mkdir(exist_ok=False)
+OUT.mkdir(parents=True, exist_ok=True)
+if any((OUT / name).exists() for name in ('background.json', 'cohort.json.gz', 'manifest.json')):
+    raise SystemExit('Cohort artifacts already exist; preserve them and use a fresh checkout to rebuild.')
 SEED = 20260920
 names, records = load_partition('train')
 _, dev = load_partition('dev')

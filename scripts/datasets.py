@@ -55,8 +55,8 @@ def main():
         return 0
     if args.dataset in ('cmu', 'typing-demo'):
         cmu()
-    if args.dataset == 'typing-demo' and (ROOT / destination).exists():
-        print('Cohort directory exists; preserving it. The demonstration checks its manifest.')
+    if args.dataset == 'typing-demo' and (ROOT / destination / 'manifest.json').exists():
+        print('Cohort manifest exists; preserving it. The demonstration verifies its checksums.')
         return 0
     if script:
         env = dict(os.environ, BIOPRINT_RESEARCH_ROOT=str(ROOT))

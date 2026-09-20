@@ -202,5 +202,9 @@ def test_same_class_step_up_scores_motor_too(client):
         pytest.skip("this rhythm was not borderline; covered by test_decide")
     runs = [solve(client, 600 + i, device="mouse", env=OTHER) for i in range(2)]
     body = keypad_login(client, runs).json()
-    assert body["decision"] == "allow", body
-    assert signal(body, "keypad_motor")["available"]
+    # The stricter final pointer policy rejects this borderline motor fixture.
+    motor = signal(body, "keypad_motor")
+    assert motor["available"]
+    assert motor["score"] > 0.75 * motor["threshold"]
+    assert body["decision"] == "block", body
+    assert not client.cookies.get(COOKIE)

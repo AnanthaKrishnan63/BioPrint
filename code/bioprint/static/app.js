@@ -6,6 +6,7 @@
 import { createCapture } from './capture.js';
 import { createPointerCapture } from './pointer.js';
 import { createKeypad } from './keypad.js';
+import { createPointerCapture as createNeuralPointer } from './neural-pointer.js';
 import { collectEnv } from './probe.js';
 import { $, el, gauge, svgIcon, decisionInfo, markNav, applyTheme, fmt } from './ui.js';
 
@@ -450,7 +451,17 @@ function afterVerdict(creds, data, rtt) {
   if (data.decision === 'allow') {
     sessionUser = creds.username;
     result.append(el('p', { className: 'result-next' }, 'Taking you in…'));
-    setTimeout(() => { location.href = WELCOME; }, WELCOME_DELAY_MS);
+    setTimeout(async () => {
+      let destination = WELCOME;
+      const mobile = navigator.userAgentData?.mobile === true || /Android|iPhone|iPad|Mobile/i.test(navigator.userAgent);
+      if (!mobile) {
+        try {
+          const r = await fetch('/api/pointer/status');
+          if (r.ok && !(await r.json()).enrolled) destination = './pointer-enroll.html';
+        } catch { /* Keep the signed-in account accessible if status is unavailable. */ }
+      }
+      location.href = destination;
+    }, WELCOME_DELAY_MS);
   } else if (data.decision === 'block') {
     sessionUser = null; // the server cleared the cookie too
     renderFoot();
@@ -461,6 +472,10 @@ function afterVerdict(creds, data, rtt) {
     renderFoot();
     password.focus();
   } else if (data.decision === 'keypad') {
+    if ((data.signals || []).some(s => s.name === 'pointer_neural')) {
+      enterNeuralPointer(creds);
+      return;
+    }
     // The verdict card stays up (it explains why) while the keypad takes the form's place.
     result.append(el('p', { className: 'result-next' }, `${KEYPAD_STEPUP_RUNS} keypads to go`));
     enterKeypad('login', creds);
@@ -563,6 +578,38 @@ const KEYPAD_COPY = {
 
 const keypadLeft = (st) =>
   Number.isFinite(st.keypad_target) && (st.keypad_count || 0) < st.keypad_target;
+
+async function enterNeuralPointer(creds) {
+  endKeypad();
+  const phase = keypadPhase = { kind: 'login', creds, count: 0, target: 1, runs: [], widget: null,
+    note: 'Move and click naturally so we can compare your movement with your profile.', bad: false };
+  title.textContent = 'One movement check';
+  sub.textContent = 'Follow the targets with your usual mouse or trackpad.';
+  card.classList.add('keypad-on');
+  const mount = keypadMount();
+  renderFoot();
+  const challenge = await api('/api/pointer/challenge', { kind: 'verify', ...creds });
+  if (keypadPhase !== phase) return;
+  const fail = message => {
+    if (keypadPhase !== phase) return;
+    phase.note = message;
+    phase.bad = true;
+    phase.widget?.destroy();
+    const retry = el('button', { type: 'button', className: 'btn btn-ghost' }, 'Try movement again');
+    retry.addEventListener('click', () => enterNeuralPointer(creds));
+    mount.replaceChildren(retry);
+    renderFoot();
+  };
+  if (!challenge.ok) return fail(challenge.data?.detail || 'Could not start this check. Sign in again.');
+  phase.widget = createNeuralPointer(mount, { challenge: challenge.data, onError: fail, onDone: async recording => {
+    const reply = await api('/api/pointer/capture', { kind: 'verify', ...creds, ...recording });
+    if (keypadPhase !== phase) return;
+    if (!reply.ok) return fail(typeof reply.data?.detail === 'string' ? reply.data.detail : 'Could not check this recording. Try again.');
+    endKeypad();
+    setMode('login', { keepResult: true });
+    afterVerdict(creds, reply.data, reply.rtt);
+  } });
+}
 
 function keypadMount() {
   let m = $('keypad-mount');

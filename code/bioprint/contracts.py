@@ -199,7 +199,7 @@ class SignalResult(BaseModel):
     # keypad: the cognitive half of the scrambled keypad (search + reach cadence),
     # scored on any device. keypad_motor: the movement half, only when the
     # device class matches enrollment; advisory.
-    name: Literal["keystroke", "pointer", "bot", "device", "keypad", "keypad_motor"]
+    name: Literal["keystroke", "pointer", "pointer_neural", "bot", "device", "keypad", "keypad_motor"]
     available: bool = True  # False: not enough data to judge (e.g. no pointer used)
     score: float = 0.0  # larger = less like the owner (or more bot-like)
     threshold: float = 1.0

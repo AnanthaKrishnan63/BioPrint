@@ -2,7 +2,9 @@
 
 Shared baseline: `0e11268`. This branch is experimental; no population FAR guarantee.
 
-The control retains its original decision policy. Candidates use strict typing admission, three extra typings or two scrambled target runs. `typing-pointer` uses the existing run-level mouse motor profile on desktop and cognitive timing on mobile; `typing-keypad` uses cognitive timing. These are existing feature-based keypad models, not the SapiMouse encoder.
+This branch uses strict typing admission and adaptive verification. Desktop accounts with a neural pointer profile now use the trained SapiMouse FCN encoder and cosine matching during pointer step-up. Three one-minute recordings at `/pointer-enroll.html` create each account's profile. Without this profile, the previous run-level motor scorer remains the fallback; mobile uses cognitive keypad timing. Direct typing admission is unchanged. The original four-combination benchmark predates this neural integration; see `experiments/NEURAL_POINTER_RESULTS.md` for the follow-up.
+
+The pointer launcher sets `BIOPRINT_POINTER_ENCODER`. Its SHA-256 is pinned, and the cosine threshold is 0.9480821490287781, from source TRAIN calibration at a 1% FAR target. This target is not an app-wide FAR guarantee. Enrollment adds tables without replacing existing profiles or databases. Verification does not update profiles.
 
 Supervised typing requires a checksum-pinned TRAIN background bank whose feature names exactly match the password. Otherwise the existing enrollment-distance scorer is used and identified in the signal explanation. C=10 and gamma factor=0.1 are fixed; calibration is separate from fitting. No probe updates any profile.
 

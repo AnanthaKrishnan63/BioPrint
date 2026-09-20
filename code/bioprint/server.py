@@ -29,6 +29,7 @@ from contracts import (KEYPAD_BLANK, KEYPAD_CHALLENGE_TTL_S, KEYPAD_COLS, KEYPAD
                        LoginOut, RegisterIn, SignalResult, StepUpIn)
 from engine import bot, device, features, keypad, pointer, scorer
 from engine.experiment import decide, decide_keypad, typing_signal
+import pointer_neural
 
 ENROLL_TARGET = 10  # counted repetitions
 # The first repetition is a practice run: stored raw (still useful for replay
@@ -252,6 +253,11 @@ def login(body: AttemptIn, request: Request, response: Response) -> LoginOut:
         u = _user(conn, body.username)
 
         def finish(decision, reasons) -> LoginOut:
+            if (decision == 'keypad' and u and _env_class(body.sample.env) != 'touch'
+                    and pointer_neural.enrolled(conn, u['id'])):
+                signals.append(SignalResult(name='pointer_neural', available=False,
+                    reasons=['Complete the trained pointer movement check']))
+                reasons = ['Move naturally to complete your pointer identity check']
             return _record(conn, response, t0, u, sample_id, body.username, decision, reasons, signals)
 
         if not u:
@@ -281,6 +287,8 @@ def login(body: AttemptIn, request: Request, response: Response) -> LoginOut:
         if signals[-1].flagged:
             return finish(*decide(signals))
         routing = _keypad_routing(u, body.sample.env)
+        if _env_class(body.sample.env) == 'mouse' and pointer_neural.enrolled(conn, u['id']):
+            routing['keypad_enrolled'] = True  # a trained pointer challenge is available
         if retype:
             if features.is_virtual_keyboard(body.sample) and routing["keypad_enrolled"]:
                 # A touch keyboard gives no timing, but the keypad works on any
@@ -571,6 +579,8 @@ def login_keypad(body: KeypadIn, request: Request, response: Response) -> LoginO
         pending = _pending_step_up(conn, u["id"], "keypad")
         if not pending or u["keypad_model"] is None:
             raise HTTPException(409, "no keypad check is pending for this account; sign in first")
+        if pointer_neural.required(pending):
+            raise HTTPException(409, 'This login requires the trained pointer check, not the legacy keypad')
         if len(body.runs) != KEYPAD_STEPUP_RUNS:
             raise HTTPException(400, f"{KEYPAD_STEPUP_RUNS} keypad runs are needed")
 
@@ -681,4 +691,5 @@ def user_status(username: str) -> dict:
             "keypad_target": KEYPAD_ENROLL_RUNS, "keypad_device_class": kp_class}
 
 
+pointer_neural.install(app, db, read_session, _pending_step_up, _record)
 app.mount("/", StaticFiles(directory=Path(__file__).parent / "static", html=True), name="static")

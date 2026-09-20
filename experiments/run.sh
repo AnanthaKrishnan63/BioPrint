@@ -13,6 +13,7 @@ export PYTHONPYCACHEPREFIX="$TMPDIR/pycache"
 export OPENBLAS_NUM_THREADS=2 OMP_NUM_THREADS=2 MKL_NUM_THREADS=2
 mkdir -p "$experiment_dir/runtime" "$TMPDIR"
 export BIOPRINT_DB="$experiment_dir/runtime/bioprint.db"
+export BIOPRINT_POINTER_ENCODER="$research_root/research/benchmarks/pointer_sapimouse/encoder.torchscript.pt"
 export BIOPRINT_BACKGROUND="$cohort_dir/background.json"
 export BIOPRINT_BACKGROUND_SHA256="$("$python_bin" -c 'import json,sys; print(json.load(open(sys.argv[1]))["files"]["background.json"])' "$cohort_dir/manifest.json")"
 experiment_port="${1:-8006}"

@@ -68,6 +68,7 @@ export const decisionInfo = (d) =>
 export const SIGNAL_LABEL = {
   keystroke: 'Typing rhythm',
   pointer: 'Pointer movement',
+  pointer_neural: 'Trained pointer model',
   bot: 'Bot / replay',
   keypad: 'Keypad: search & cadence',
   keypad_motor: 'Keypad: movement',
@@ -75,6 +76,7 @@ export const SIGNAL_LABEL = {
 export const SIGNAL_BLURB = {
   keystroke: 'How long each key is held and the gaps between them.',
   pointer: 'How the mouse travelled to the button and clicked it.',
+  pointer_neural: 'The trained movement encoder compares this recording with your personal mouse profile.',
   bot: 'Signs of a script: untrusted events, automation flags, replayed timing.',
   keypad: 'How fast you find and reach each digit on a keypad that is shuffled every time — a cognitive habit, so it compares across any device, phone included.',
   keypad_motor: 'How the pointer or finger actually travels to each key: path, speed, overshoot. Only comparable on the same kind of device as enrollment, so it is advisory.',
@@ -82,13 +84,14 @@ export const SIGNAL_BLURB = {
 export const SIGNAL_VAR = {
   keystroke: 'var(--series-1)',
   pointer: 'var(--series-2)',
+  pointer_neural: 'var(--series-2)',
   bot: 'var(--series-3)',
   keypad: 'var(--series-5)',
   keypad_motor: 'var(--series-6)',
 };
 /** Column heads for the compact bars in the attempts table. */
 export const SIGNAL_SHORT = {
-  keystroke: 'Key', pointer: 'Ptr', bot: 'Bot', device: 'Dev', keypad: 'Pad', keypad_motor: 'Mov',
+  keystroke: 'Key', pointer: 'Ptr', pointer_neural: 'Model', bot: 'Bot', device: 'Dev', keypad: 'Pad', keypad_motor: 'Mov',
 };
 
 // ------------------------------------------------------------------ numbers

@@ -1,5 +1,7 @@
 # Four login combinations: implementation and synthetic screening
 
+Historical comparison: these results predate trained pointer integration. See [the neural pointer follow-up](NEURAL_POINTER_RESULTS.md) for the actual encoder comparison; the original results below are preserved.
+
 All four combinations are implemented in separate branches and worktrees. **No candidate is promoted to main.** The selection record was frozen before the corrected DEV replay: every candidate exceeded the 1% synthetic calibration FAR gate. These results compare implemented policies on artificial scenarios; they do not establish real-person app FAR/FRR.
 
 ## What runs

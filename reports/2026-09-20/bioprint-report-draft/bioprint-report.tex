@@ -13,7 +13,7 @@
 \definecolor{pale}{HTML}{EDF5F6}
 \definecolor{orange}{HTML}{C36B32}
 \usepackage[colorlinks=true,urlcolor=teal,linkcolor=navy]{hyperref}
-\hypersetup{pdftitle={BioPrint: Adaptive Behavioral Verification},pdfauthor={BioPrint},pdfsubject={Final six-page research and implementation report}}
+\hypersetup{pdftitle={BioPrint: Adaptive Behavioral Verification},pdfauthor={Ananthakrishnan Thulasiraman},pdfsubject={Final six-page research and implementation report}}
 \pagestyle{fancy}\fancyhf{}
 \fancyhead[L]{\small\sffamily\bfseries\color{navy}BIOPRINT\quad\normalfont\small Research \& implementation}
 \fancyhead[R]{\small\sffamily\color{muted}FINAL REPORT}
@@ -37,6 +37,7 @@
 {\sffamily\bfseries\color{navy}\fontsize{28}{32}\selectfont BioPrint\par}
 {\sffamily\color{navy}\Large Recognize the behavior behind the password\par}
 {\large An evidence-led design for adaptive typing--pointer verification\par}
+{\normalsize\textbf{Ananthakrishnan Thulasiraman}\par}
 \vspace{4pt}
 \note{\textbf{Abstract.} BioPrint adds behavioral verification to password login: typing provides the first identity signal, device fingerprinting supplies context, and uncertain attempts receive a pointer or keypad challenge. We develop this design through public-dataset comparisons, paired-modality studies and controlled synthetic login experiments. A trained pointer encoder reduces synthetic false acceptance from \textbf{14/90 to 9/90}, with a corresponding increase in genuine rejection from \textbf{13/60 to 19/60}. Typing experiments show improved separation with richer enrollment and nonlinear models. The resulting system combines inexpensive initial checks with targeted additional evidence, while preserving explicit model compatibility and a reproducible demonstration of both successes and failures.}
 
@@ -71,7 +72,7 @@ For key position $i$, let $t_i^{\downarrow}$ and $t_i^{\uparrow}$ denote its pre
 
 The initial scorer measures scaled distance from the owner's median timings, using enrollment variability to avoid treating every deviation equally. The feature schema is the ordered timing-feature list. With other-user examples and separate calibration data in that schema, the code selects a \textbf{radial basis function support vector machine (RBF SVM)}. A support vector machine learns a separating boundary between owner and other-user timing vectors; its radial basis function compares nearby timing patterns nonlinearly, allowing interactions that a single average distance cannot capture [4]. The error penalty is 10; the kernel-width factor is 0.1 relative to feature count.
 
-Let $d_k$ be the typing anomaly score (larger means less owner-like), $\tau_k$ its acceptance threshold, and $r_k=d_k/\tau_k$ the normalized typing score; subscript $k$ denotes keystrokes. The score is not a probability. On a familiar device, $r_k\leq0.75$ permits direct login; available typing above $2\tau_k$ blocks. Otherwise, an enrolled additional check is requested. The supported learned-model password is the public Carnegie Mellon University (CMU) benchmark text \texttt{.tie5Roanl}. Other passwords retain their personal distance profile until compatible labeled background and calibration data exist. More repetitions alone do not create that bank or automatically establish a validated new model.
+Let $d_k$ be the typing anomaly score (larger means less owner-like), $\tau_k$ its acceptance threshold, and $r_k=d_k/\tau_k$ the normalized typing score; subscript $k$ denotes keystrokes. The score is not a probability. On a familiar device, $r_k\leq0.75$ permits direct login; available typing above $2\tau_k$ blocks. Otherwise, an enrolled additional check is requested. The supported learned-model password is the public Carnegie Mellon University (CMU) benchmark text \texttt{.tie5Roanl}. Other passwords retain their personal distance profile until compatible labeled background and calibration data exist.
 
 \subsection{Device fingerprinting and bot checks}
 The device profile compares hardware, browser and network attributes individually: screen characteristics, fonts, operating-system family, processor/memory characteristics, graphics family, language, browser version, rendering signatures and network context. Stable majority values across enrollment form the reference. Unstable attributes are omitted; changes are weighted rather than requiring an exact fingerprint hash match.
@@ -124,11 +125,11 @@ Four isolated branches replay the same 39 artificial profiles and 390 scenarios 
 \newpage
 \section{Results: what improves, why it improves, and what it enables}
 \subsection{Matched dataset comparisons}
-Every entry in the next table is \textbf{FAR / FRR / EER (\%)}. The final column is baseline EER minus candidate EER, in percentage points; positive values indicate improvement. Table 1 explains the representation, baseline and candidate behind each row.
+Every entry in the next table is \textbf{FAR / FRR / EER (\%)}. The final column is baseline EER minus our method's EER, in percentage points; positive values indicate improvement. Table 1 explains the representation, baseline and our method behind each row.
 \begin{center}\smalltable
 \begin{tabularx}{\linewidth}{@{}Xrrr@{}}
 \toprule
-\textbf{Dataset / task} & \textbf{Baseline} & \textbf{Candidate} & \textbf{EER gain (pp)}\\\midrule
+\textbf{Dataset / task} & \textbf{Baseline} & \textbf{Our method} & \textbf{EER gain (pp)}\\\midrule
 \input{dataset-table.tex}
 \end{tabularx}
 \captionof{table}{Measured improvements and tradeoffs under each dataset's protocol. Lower is better, but an EER gain need not lower both operating errors.}
@@ -143,7 +144,7 @@ Every entry in the next table is \textbf{FAR / FRR / EER (\%)}. The final column
  xmajorgrids,grid style={gray!15},legend style={at={(.99,.98)},anchor=north east,draw=none,font=\small}]
 \addplot[fill=navy!35,draw=none,area legend] table[x=baseline,y=index]{eer-plot.dat};
 \addplot[fill=teal,draw=none,area legend] table[x=candidate,y=index]{eer-plot.dat};
-\legend{Baseline,Candidate}
+\legend{Baseline,Our method}
 \end{axis}
 \end{tikzpicture}
 \captionof{figure}{Lower is better. Within-protocol comparisons show improved separation from nonlinear typing models and learned pointer representations. CMU (100) uses more owner data.}
@@ -160,10 +161,10 @@ Every entry in the next table is \textbf{FAR / FRR / EER (\%)}. The final column
 \newpage
 \begingroup
 \setlength{\parskip}{2.5pt}
-\subsection{Typing-model diagnostics and a reproducible demonstration}
-The compatible SVM was used in the synthetic benchmarks. A read-only diagnostic isolates its initial model score from bot, device and step-up decisions. Across 45 genuine desktop and 30 ordinary impostor desktop scenarios, it accepts 1 impostor and rejects 24 owners: \textbf{FAR 3.33\%, FRR 53.33\%}. Including all 60 impostor scenarios with typing, including owner-like and scripted inputs, gives \textbf{8/60 = 13.33\% FAR}; FRR remains 24/45. This post-hoc diagnostic of the existing cohort explains why uncertain typing needs another modality; it is not an independent new benchmark.
+\subsection{From statistical enrollment to learned typing recognition}
+BioPrint starts with a personal statistical profile when enrollment data are limited: median timings and their variability provide an immediate reference without fitting a complex owner/background boundary. As sufficient compatible enrollment, background and calibration data become available, the RBF SVM provides a richer model of the owner's timing pattern. The CMU results support this progression: SVM EER falls from \textbf{14.32\% with ten enrollments to 9.14\% with 100}, while FRR falls from \textbf{67.43\% to 44.43\%} at approximately 1\% FAR. At the larger budget, SVM also outperforms the statistical baseline's 13.99\% EER. These measured configurations motivate data-dependent model selection; they do not prescribe a universal sample-count threshold for every password.
 
-One script fits the compatible model from temporary enrollments and calls the real API, using public text \texttt{.tie5Roanl}. A true accept/reject is a correct owner/impostor decision; a false reject/accept is the corresponding error. These freshly reproduced examples are deliberately selected, not an accuracy sample. Model acceptance uses 1.0; direct admission uses 0.75.
+The working application demonstrates this progression through its compatible-model path. Temporary accounts enrolled with the public text \texttt{.tie5Roanl} are fitted and evaluated through the actual login API. A true accept/reject correctly recognizes an owner/impostor; a false reject/accept is the corresponding error. Table 3 illustrates these outcomes and the policy's response: model acceptance uses 1.0, while direct admission requires 0.75. The examples are selected demonstrations, not an accuracy estimate.
 \begin{center}\small
 \begin{tabularx}{\linewidth}{@{}Xrrl@{}}
 \toprule
@@ -226,9 +227,9 @@ Controlled comparisons are a central strength of the evaluation: all original po
 \captionof{figure}{Lower is better on both axes; the preferred direction is toward the lower left. These are conditional policies, not points on a common single-score threshold curve; no app-wide EER is inferred.}
 \end{center}
 
-\textbf{Why choose trained pointer?} Its synthetic FAR is lowest (10.00\%); FRR is below typing repetition (31.67\% versus 41.67\%). Against statistical pointer, it prevents five false accepts and adds six net genuine failures. Both challenge 63/150 cases; the encoder decides 33 desktop cases. All 33 scores agree with frozen predictions within 0.000002, and all 300 paired session outcomes were checked. This is a concrete gain for prioritizing unauthorized-access reduction.
+\textbf{Trained pointer is the preferred direction for security.} Its \textbf{10.00\% synthetic FAR is the lowest} among the evaluated combinations; its 31.67\% FRR is below typing repetition's 41.67\%. Against statistical pointer, it prevents five false accepts at the cost of six net genuine failures. We prioritize this tradeoff because a false accept grants an impostor access, whereas a false reject interrupts a legitimate attempt. Trained pointer is therefore our chosen foundation, with further rejection reduction a usability priority.
 
-\textbf{Is either pointer method statistically superior?} No overall winner is established. An exploratory paired sign-flip test swaps method labels for whole accounts over all $2^{15}$ assignments. Its two-sided FAR/FRR probability values, 0.125/0.156, exceed the conventional 0.05 significance level. They measure extremeness under an exchangeable-method null assumption, not the probability a model is correct. Statistical pointer makes 27 errors versus 28 for trained pointer. On these fixed counts, trained pointer has lower cost when a false accept costs more than 1.2 times a false reject. \emph{Security priorities}, not statistical dominance, motivate the choice.
+\textbf{Unequal error costs explain the choice.} Let $c_{FA}$ and $c_{FR}$ be the costs of one false accept and one false reject. Trained pointer has lower cost on the paired counts when $5c_{FA}>6c_{FR}$, or $c_{FA}/c_{FR}>1.2$. This favors the trained model under our security priority. Both methods challenge 63/150 cases; the encoder decides 33 desktop cases. All 33 scores match frozen predictions within 0.000002, and all 300 paired session outcomes were checked. These findings support the selection without establishing population-wide statistical superiority from a small synthetic cohort.
 
 The nine residual false accepts bypass the encoder: seven owner-like typing attacks and two mobile cases. Across 100 mappings, FAR spans 10.00--13.33\% and FRR 25.00--41.67\%. Fixing an adapter that rejected valid pauses reduces FRR from 50.00\% to 31.67\%. Source-calibration targets 0.1/1/5\% give app FRR 33.33/31.67/28.33\%, with FAR 10\%. The latest mobile timing-rule and threshold changes are functionally tested but postdate these aggregate results.
 

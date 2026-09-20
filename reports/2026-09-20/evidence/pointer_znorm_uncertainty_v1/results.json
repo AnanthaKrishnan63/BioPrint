@@ -1,0 +1,82 @@
+{
+  "plan": {
+    "seed": 20260920,
+    "replicates": 2000,
+    "target": "0.01",
+    "cluster": "probe person; all decisions and claimed accounts retained together",
+    "interval": "paired percentile 2.5/97.5%; candidate minus selected",
+    "limitations": "Conditional on fixed enrollment references and models; shared-reference, training and prior DEV reuse uncertainty not represented.",
+    "evaluation_only": true,
+    "candidate_promoted": false,
+    "inputs": {
+      "dev_complete.json": "cd4edeaaedcc98a834ad6b0c7976413b34b47e677764b2f3d4a37ff34e695244",
+      "scores.npz": "5d316385729fa06c496ae1830f0c96086b825f9fb9ca56121d86dad22dfa275c"
+    },
+    "source_sha256": "5d174dbc8a091e1b3b21e0fa4f1ecc0e814f6480bae57ef36cee4456bbdad8c1"
+  },
+  "clusters": 24,
+  "decisions": 76,
+  "metric_order": [
+    "far",
+    "frr",
+    "eer_descriptive"
+  ],
+  "observed": {
+    "cosine@5": [
+      0.016590389016018305,
+      0.4342105263157895,
+      0.13872997711670476
+    ],
+    "znorm_cosine@5": [
+      0.007437070938215103,
+      0.6052631578947368,
+      0.11727688787185353
+    ]
+  },
+  "conditional_95pct": {
+    "cosine@5": [
+      [
+        0.0064612566530725096,
+        0.02878984998550216
+      ],
+      [
+        0.27160052910052906,
+        0.5972916666666662
+      ],
+      [
+        0.067476002258611,
+        0.20033242753623165
+      ]
+    ],
+    "znorm_cosine@5": [
+      [
+        0.0005955926146515784,
+        0.016723602484472043
+      ],
+      [
+        0.3882169117647059,
+        0.8260869565217391
+      ],
+      [
+        0.07664437012263092,
+        0.19731148750208757
+      ]
+    ]
+  },
+  "candidate_minus_selected_95pct": [
+    [
+      -0.01630611236589498,
+      -0.0024419204255550163
+    ],
+    [
+      -0.10227272727272724,
+      0.4428616636528029
+    ],
+    [
+      -0.054680139693540505,
+      0.03976773491619725
+    ]
+  ],
+  "test_accessed": false,
+  "candidate_promoted": false
+}

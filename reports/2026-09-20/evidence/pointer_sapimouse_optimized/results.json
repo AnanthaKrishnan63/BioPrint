@@ -1,0 +1,1864 @@
+{
+  "selected_from_training_only": "cosine@5",
+  "dev": {
+    "scaled_manhattan@5": {
+      "0.001": {
+        "far": 0.044050343249427915,
+        "frr": 0.7368421052631579,
+        "eer_descriptive": 0.2617276887871854,
+        "auc": 0.8238061544020233,
+        "genuine_comparisons": 76,
+        "impostor_comparisons": 1748,
+        "macro_eer_descriptive": 0.22910011895457102,
+        "macro_frr": 0.7465277777777777,
+        "per_claimed_user": {
+          "user1": {
+            "far": 0.0136986301369863,
+            "frr": 0.6666666666666666,
+            "eer_descriptive": 0.041095890410958846,
+            "auc": 0.9497716894977168,
+            "genuine_comparisons": 3,
+            "impostor_comparisons": 73
+          },
+          "user100": {
+            "far": 0.0136986301369863,
+            "frr": 0.3333333333333333,
+            "eer_descriptive": 0.020547945205479423,
+            "auc": 0.9817351598173516,
+            "genuine_comparisons": 3,
+            "impostor_comparisons": 73
+          },
+          "user105": {
+            "far": 0.014285714285714285,
+            "frr": 1.0,
+            "eer_descriptive": 0.23333333333333334,
+            "auc": 0.6928571428571428,
+            "genuine_comparisons": 6,
+            "impostor_comparisons": 70
+          },
+          "user106": {
+            "far": 0.013513513513513514,
+            "frr": 1.0,
+            "eer_descriptive": 0.3783783783783784,
+            "auc": 0.7837837837837838,
+            "genuine_comparisons": 2,
+            "impostor_comparisons": 74
+          },
+          "user108": {
+            "far": 0.0410958904109589,
+            "frr": 0.6666666666666666,
+            "eer_descriptive": 0.3036529680365297,
+            "auc": 0.8310502283105023,
+            "genuine_comparisons": 3,
+            "impostor_comparisons": 73
+          },
+          "user116": {
+            "far": 0.0136986301369863,
+            "frr": 0.6666666666666666,
+            "eer_descriptive": 0.3515981735159817,
+            "auc": 0.8447488584474887,
+            "genuine_comparisons": 3,
+            "impostor_comparisons": 73
+          },
+          "user18": {
+            "far": 0.0945945945945946,
+            "frr": 1.0,
+            "eer_descriptive": 0.3851351351351351,
+            "auc": 0.8040540540540541,
+            "genuine_comparisons": 2,
+            "impostor_comparisons": 74
+          },
+          "user21": {
+            "far": 0.027777777777777776,
+            "frr": 0.75,
+            "eer_descriptive": 0.25,
+            "auc": 0.8854166666666666,
+            "genuine_comparisons": 4,
+            "impostor_comparisons": 72
+          },
+          "user25": {
+            "far": 0.0136986301369863,
+            "frr": 0.3333333333333333,
+            "eer_descriptive": 0.06164383561643838,
+            "auc": 0.9543378995433789,
+            "genuine_comparisons": 3,
+            "impostor_comparisons": 73
+          },
+          "user28": {
+            "far": 0.05405405405405406,
+            "frr": 1.0,
+            "eer_descriptive": 0.6148648648648649,
+            "auc": 0.5202702702702703,
+            "genuine_comparisons": 2,
+            "impostor_comparisons": 74
+          },
+          "user4": {
+            "far": 0.2191780821917808,
+            "frr": 1.0,
+            "eer_descriptive": 0.6689497716894978,
+            "auc": 0.4429223744292237,
+            "genuine_comparisons": 3,
+            "impostor_comparisons": 73
+          },
+          "user40": {
+            "far": 0.0136986301369863,
+            "frr": 1.0,
+            "eer_descriptive": 0.3515981735159817,
+            "auc": 0.5525114155251142,
+            "genuine_comparisons": 3,
+            "impostor_comparisons": 73
+          },
+          "user46": {
+            "far": 0.1780821917808219,
+            "frr": 0.0,
+            "eer_descriptive": 0.0547945205479452,
+            "auc": 0.9497716894977168,
+            "genuine_comparisons": 3,
+            "impostor_comparisons": 73
+          },
+          "user47": {
+            "far": 0.0,
+            "frr": 1.0,
+            "eer_descriptive": 0.027027027027026973,
+            "auc": 0.9662162162162162,
+            "genuine_comparisons": 2,
+            "impostor_comparisons": 74
+          },
+          "user50": {
+            "far": 0.013888888888888888,
+            "frr": 0.75,
+            "eer_descriptive": 0.03472222222222221,
+            "auc": 0.9756944444444444,
+            "genuine_comparisons": 4,
+            "impostor_comparisons": 72
+          },
+          "user51": {
+            "far": 0.06666666666666667,
+            "frr": 1.0,
+            "eer_descriptive": 0.1333333333333333,
+            "auc": 0.7333333333333334,
+            "genuine_comparisons": 1,
+            "impostor_comparisons": 75
+          },
+          "user57": {
+            "far": 0.013888888888888888,
+            "frr": 1.0,
+            "eer_descriptive": 0.03472222222222221,
+            "auc": 0.9618055555555556,
+            "genuine_comparisons": 4,
+            "impostor_comparisons": 72
+          },
+          "user69": {
+            "far": 0.0410958904109589,
+            "frr": 0.6666666666666666,
+            "eer_descriptive": 0.047945205479452024,
+            "auc": 0.949771689497717,
+            "genuine_comparisons": 3,
+            "impostor_comparisons": 73
+          },
+          "user74": {
+            "far": 0.014705882352941176,
+            "frr": 0.75,
+            "eer_descriptive": 0.25,
+            "auc": 0.8363970588235294,
+            "genuine_comparisons": 8,
+            "impostor_comparisons": 68
+          },
+          "user75": {
+            "far": 0.0,
+            "frr": 1.0,
+            "eer_descriptive": 0.04729729729729726,
+            "auc": 0.9324324324324325,
+            "genuine_comparisons": 2,
+            "impostor_comparisons": 74
+          },
+          "user78": {
+            "far": 0.0273972602739726,
+            "frr": 0.6666666666666666,
+            "eer_descriptive": 0.2420091324200913,
+            "auc": 0.7442922374429224,
+            "genuine_comparisons": 3,
+            "impostor_comparisons": 73
+          },
+          "user81": {
+            "far": 0.0684931506849315,
+            "frr": 0.6666666666666666,
+            "eer_descriptive": 0.2762557077625571,
+            "auc": 0.8858447488584476,
+            "genuine_comparisons": 3,
+            "impostor_comparisons": 73
+          },
+          "user91": {
+            "far": 0.0958904109589041,
+            "frr": 0.6666666666666666,
+            "eer_descriptive": 0.3926940639269407,
+            "auc": 0.7853881278538812,
+            "genuine_comparisons": 3,
+            "impostor_comparisons": 73
+          },
+          "user96": {
+            "far": 0.0,
+            "frr": 0.3333333333333333,
+            "eer_descriptive": 0.2968036529680365,
+            "auc": 0.9132420091324202,
+            "genuine_comparisons": 3,
+            "impostor_comparisons": 73
+          }
+        }
+      },
+      "0.01": {
+        "far": 0.08295194508009153,
+        "frr": 0.6052631578947368,
+        "eer_descriptive": 0.2617276887871854,
+        "auc": 0.8238061544020233,
+        "genuine_comparisons": 76,
+        "impostor_comparisons": 1748,
+        "macro_eer_descriptive": 0.22910011895457102,
+        "macro_frr": 0.6302083333333334,
+        "per_claimed_user": {
+          "user1": {
+            "far": 0.0547945205479452,
+            "frr": 0.3333333333333333,
+            "eer_descriptive": 0.041095890410958846,
+            "auc": 0.9497716894977168,
+            "genuine_comparisons": 3,
+            "impostor_comparisons": 73
+          },
+          "user100": {
+            "far": 0.0547945205479452,
+            "frr": 0.0,
+            "eer_descriptive": 0.020547945205479423,
+            "auc": 0.9817351598173516,
+            "genuine_comparisons": 3,
+            "impostor_comparisons": 73
+          },
+          "user105": {
+            "far": 0.12857142857142856,
+            "frr": 0.6666666666666666,
+            "eer_descriptive": 0.23333333333333334,
+            "auc": 0.6928571428571428,
+            "genuine_comparisons": 6,
+            "impostor_comparisons": 70
+          },
+          "user106": {
+            "far": 0.04054054054054054,
+            "frr": 1.0,
+            "eer_descriptive": 0.3783783783783784,
+            "auc": 0.7837837837837838,
+            "genuine_comparisons": 2,
+            "impostor_comparisons": 74
+          },
+          "user108": {
+            "far": 0.0958904109589041,
+            "frr": 0.6666666666666666,
+            "eer_descriptive": 0.3036529680365297,
+            "auc": 0.8310502283105023,
+            "genuine_comparisons": 3,
+            "impostor_comparisons": 73
+          },
+          "user116": {
+            "far": 0.0958904109589041,
+            "frr": 0.6666666666666666,
+            "eer_descriptive": 0.3515981735159817,
+            "auc": 0.8447488584474887,
+            "genuine_comparisons": 3,
+            "impostor_comparisons": 73
+          },
+          "user18": {
+            "far": 0.14864864864864866,
+            "frr": 0.5,
+            "eer_descriptive": 0.3851351351351351,
+            "auc": 0.8040540540540541,
+            "genuine_comparisons": 2,
+            "impostor_comparisons": 74
+          },
+          "user21": {
+            "far": 0.05555555555555555,
+            "frr": 0.75,
+            "eer_descriptive": 0.25,
+            "auc": 0.8854166666666666,
+            "genuine_comparisons": 4,
+            "impostor_comparisons": 72
+          },
+          "user25": {
+            "far": 0.0136986301369863,
+            "frr": 0.3333333333333333,
+            "eer_descriptive": 0.06164383561643838,
+            "auc": 0.9543378995433789,
+            "genuine_comparisons": 3,
+            "impostor_comparisons": 73
+          },
+          "user28": {
+            "far": 0.08108108108108109,
+            "frr": 1.0,
+            "eer_descriptive": 0.6148648648648649,
+            "auc": 0.5202702702702703,
+            "genuine_comparisons": 2,
+            "impostor_comparisons": 74
+          },
+          "user4": {
+            "far": 0.2876712328767123,
+            "frr": 1.0,
+            "eer_descriptive": 0.6689497716894978,
+            "auc": 0.4429223744292237,
+            "genuine_comparisons": 3,
+            "impostor_comparisons": 73
+          },
+          "user40": {
+            "far": 0.0273972602739726,
+            "frr": 1.0,
+            "eer_descriptive": 0.3515981735159817,
+            "auc": 0.5525114155251142,
+            "genuine_comparisons": 3,
+            "impostor_comparisons": 73
+          },
+          "user46": {
+            "far": 0.3013698630136986,
+            "frr": 0.0,
+            "eer_descriptive": 0.0547945205479452,
+            "auc": 0.9497716894977168,
+            "genuine_comparisons": 3,
+            "impostor_comparisons": 73
+          },
+          "user47": {
+            "far": 0.0,
+            "frr": 1.0,
+            "eer_descriptive": 0.027027027027026973,
+            "auc": 0.9662162162162162,
+            "genuine_comparisons": 2,
+            "impostor_comparisons": 74
+          },
+          "user50": {
+            "far": 0.013888888888888888,
+            "frr": 0.25,
+            "eer_descriptive": 0.03472222222222221,
+            "auc": 0.9756944444444444,
+            "genuine_comparisons": 4,
+            "impostor_comparisons": 72
+          },
+          "user51": {
+            "far": 0.10666666666666667,
+            "frr": 1.0,
+            "eer_descriptive": 0.1333333333333333,
+            "auc": 0.7333333333333334,
+            "genuine_comparisons": 1,
+            "impostor_comparisons": 75
+          },
+          "user57": {
+            "far": 0.027777777777777776,
+            "frr": 1.0,
+            "eer_descriptive": 0.03472222222222221,
+            "auc": 0.9618055555555556,
+            "genuine_comparisons": 4,
+            "impostor_comparisons": 72
+          },
+          "user69": {
+            "far": 0.0547945205479452,
+            "frr": 0.3333333333333333,
+            "eer_descriptive": 0.047945205479452024,
+            "auc": 0.949771689497717,
+            "genuine_comparisons": 3,
+            "impostor_comparisons": 73
+          },
+          "user74": {
+            "far": 0.07352941176470588,
+            "frr": 0.625,
+            "eer_descriptive": 0.25,
+            "auc": 0.8363970588235294,
+            "genuine_comparisons": 8,
+            "impostor_comparisons": 68
+          },
+          "user75": {
+            "far": 0.0,
+            "frr": 1.0,
+            "eer_descriptive": 0.04729729729729726,
+            "auc": 0.9324324324324325,
+            "genuine_comparisons": 2,
+            "impostor_comparisons": 74
+          },
+          "user78": {
+            "far": 0.0821917808219178,
+            "frr": 0.6666666666666666,
+            "eer_descriptive": 0.2420091324200913,
+            "auc": 0.7442922374429224,
+            "genuine_comparisons": 3,
+            "impostor_comparisons": 73
+          },
+          "user81": {
+            "far": 0.0958904109589041,
+            "frr": 0.6666666666666666,
+            "eer_descriptive": 0.2762557077625571,
+            "auc": 0.8858447488584476,
+            "genuine_comparisons": 3,
+            "impostor_comparisons": 73
+          },
+          "user91": {
+            "far": 0.1506849315068493,
+            "frr": 0.3333333333333333,
+            "eer_descriptive": 0.3926940639269407,
+            "auc": 0.7853881278538812,
+            "genuine_comparisons": 3,
+            "impostor_comparisons": 73
+          },
+          "user96": {
+            "far": 0.0,
+            "frr": 0.3333333333333333,
+            "eer_descriptive": 0.2968036529680365,
+            "auc": 0.9132420091324202,
+            "genuine_comparisons": 3,
+            "impostor_comparisons": 73
+          }
+        }
+      },
+      "0.05": {
+        "far": 0.15331807780320367,
+        "frr": 0.5131578947368421,
+        "eer_descriptive": 0.2617276887871854,
+        "auc": 0.8238061544020233,
+        "genuine_comparisons": 76,
+        "impostor_comparisons": 1748,
+        "macro_eer_descriptive": 0.22910011895457102,
+        "macro_frr": 0.5399305555555556,
+        "per_claimed_user": {
+          "user1": {
+            "far": 0.1506849315068493,
+            "frr": 0.0,
+            "eer_descriptive": 0.041095890410958846,
+            "auc": 0.9497716894977168,
+            "genuine_comparisons": 3,
+            "impostor_comparisons": 73
+          },
+          "user100": {
+            "far": 0.1780821917808219,
+            "frr": 0.0,
+            "eer_descriptive": 0.020547945205479423,
+            "auc": 0.9817351598173516,
+            "genuine_comparisons": 3,
+            "impostor_comparisons": 73
+          },
+          "user105": {
+            "far": 0.2571428571428571,
+            "frr": 0.6666666666666666,
+            "eer_descriptive": 0.23333333333333334,
+            "auc": 0.6928571428571428,
+            "genuine_comparisons": 6,
+            "impostor_comparisons": 70
+          },
+          "user106": {
+            "far": 0.08108108108108109,
+            "frr": 1.0,
+            "eer_descriptive": 0.3783783783783784,
+            "auc": 0.7837837837837838,
+            "genuine_comparisons": 2,
+            "impostor_comparisons": 74
+          },
+          "user108": {
+            "far": 0.1780821917808219,
+            "frr": 0.6666666666666666,
+            "eer_descriptive": 0.3036529680365297,
+            "auc": 0.8310502283105023,
+            "genuine_comparisons": 3,
+            "impostor_comparisons": 73
+          },
+          "user116": {
+            "far": 0.2328767123287671,
+            "frr": 0.3333333333333333,
+            "eer_descriptive": 0.3515981735159817,
+            "auc": 0.8447488584474887,
+            "genuine_comparisons": 3,
+            "impostor_comparisons": 73
+          },
+          "user18": {
+            "far": 0.1891891891891892,
+            "frr": 0.5,
+            "eer_descriptive": 0.3851351351351351,
+            "auc": 0.8040540540540541,
+            "genuine_comparisons": 2,
+            "impostor_comparisons": 74
+          },
+          "user21": {
+            "far": 0.08333333333333333,
+            "frr": 0.75,
+            "eer_descriptive": 0.25,
+            "auc": 0.8854166666666666,
+            "genuine_comparisons": 4,
+            "impostor_comparisons": 72
+          },
+          "user25": {
+            "far": 0.0410958904109589,
+            "frr": 0.3333333333333333,
+            "eer_descriptive": 0.06164383561643838,
+            "auc": 0.9543378995433789,
+            "genuine_comparisons": 3,
+            "impostor_comparisons": 73
+          },
+          "user28": {
+            "far": 0.21621621621621623,
+            "frr": 1.0,
+            "eer_descriptive": 0.6148648648648649,
+            "auc": 0.5202702702702703,
+            "genuine_comparisons": 2,
+            "impostor_comparisons": 74
+          },
+          "user4": {
+            "far": 0.4246575342465753,
+            "frr": 0.6666666666666666,
+            "eer_descriptive": 0.6689497716894978,
+            "auc": 0.4429223744292237,
+            "genuine_comparisons": 3,
+            "impostor_comparisons": 73
+          },
+          "user40": {
+            "far": 0.0410958904109589,
+            "frr": 1.0,
+            "eer_descriptive": 0.3515981735159817,
+            "auc": 0.5525114155251142,
+            "genuine_comparisons": 3,
+            "impostor_comparisons": 73
+          },
+          "user46": {
+            "far": 0.4520547945205479,
+            "frr": 0.0,
+            "eer_descriptive": 0.0547945205479452,
+            "auc": 0.9497716894977168,
+            "genuine_comparisons": 3,
+            "impostor_comparisons": 73
+          },
+          "user47": {
+            "far": 0.013513513513513514,
+            "frr": 1.0,
+            "eer_descriptive": 0.027027027027026973,
+            "auc": 0.9662162162162162,
+            "genuine_comparisons": 2,
+            "impostor_comparisons": 74
+          },
+          "user50": {
+            "far": 0.027777777777777776,
+            "frr": 0.25,
+            "eer_descriptive": 0.03472222222222221,
+            "auc": 0.9756944444444444,
+            "genuine_comparisons": 4,
+            "impostor_comparisons": 72
+          },
+          "user51": {
+            "far": 0.17333333333333334,
+            "frr": 1.0,
+            "eer_descriptive": 0.1333333333333333,
+            "auc": 0.7333333333333334,
+            "genuine_comparisons": 1,
+            "impostor_comparisons": 75
+          },
+          "user57": {
+            "far": 0.027777777777777776,
+            "frr": 0.5,
+            "eer_descriptive": 0.03472222222222221,
+            "auc": 0.9618055555555556,
+            "genuine_comparisons": 4,
+            "impostor_comparisons": 72
+          },
+          "user69": {
+            "far": 0.0958904109589041,
+            "frr": 0.3333333333333333,
+            "eer_descriptive": 0.047945205479452024,
+            "auc": 0.949771689497717,
+            "genuine_comparisons": 3,
+            "impostor_comparisons": 73
+          },
+          "user74": {
+            "far": 0.08823529411764706,
+            "frr": 0.625,
+            "eer_descriptive": 0.25,
+            "auc": 0.8363970588235294,
+            "genuine_comparisons": 8,
+            "impostor_comparisons": 68
+          },
+          "user75": {
+            "far": 0.0,
+            "frr": 1.0,
+            "eer_descriptive": 0.04729729729729726,
+            "auc": 0.9324324324324325,
+            "genuine_comparisons": 2,
+            "impostor_comparisons": 74
+          },
+          "user78": {
+            "far": 0.1643835616438356,
+            "frr": 0.3333333333333333,
+            "eer_descriptive": 0.2420091324200913,
+            "auc": 0.7442922374429224,
+            "genuine_comparisons": 3,
+            "impostor_comparisons": 73
+          },
+          "user81": {
+            "far": 0.1232876712328767,
+            "frr": 0.3333333333333333,
+            "eer_descriptive": 0.2762557077625571,
+            "auc": 0.8858447488584476,
+            "genuine_comparisons": 3,
+            "impostor_comparisons": 73
+          },
+          "user91": {
+            "far": 0.3424657534246575,
+            "frr": 0.3333333333333333,
+            "eer_descriptive": 0.3926940639269407,
+            "auc": 0.7853881278538812,
+            "genuine_comparisons": 3,
+            "impostor_comparisons": 73
+          },
+          "user96": {
+            "far": 0.0958904109589041,
+            "frr": 0.3333333333333333,
+            "eer_descriptive": 0.2968036529680365,
+            "auc": 0.9132420091324202,
+            "genuine_comparisons": 3,
+            "impostor_comparisons": 73
+          }
+        }
+      }
+    },
+    "ocsvm:0.5:raw@5": {
+      "0.001": {
+        "far": 0.014874141876430207,
+        "frr": 0.8552631578947368,
+        "eer_descriptive": 0.21281464530892447,
+        "auc": 0.8743676984222569,
+        "genuine_comparisons": 76,
+        "impostor_comparisons": 1748,
+        "macro_eer_descriptive": 0.07733686169045757,
+        "macro_frr": 0.9270833333333334,
+        "per_claimed_user": {
+          "user1": {
+            "far": 0.0,
+            "frr": 1.0,
+            "eer_descriptive": 0.03424657534246578,
+            "auc": 0.958904109589041,
+            "genuine_comparisons": 3,
+            "impostor_comparisons": 73
+          },
+          "user100": {
+            "far": 0.0,
+            "frr": 1.0,
+            "eer_descriptive": 0.0,
+            "auc": 1.0,
+            "genuine_comparisons": 3,
+            "impostor_comparisons": 73
+          },
+          "user105": {
+            "far": 0.0,
+            "frr": 1.0,
+            "eer_descriptive": 0.0,
+            "auc": 1.0,
+            "genuine_comparisons": 6,
+            "impostor_comparisons": 70
+          },
+          "user106": {
+            "far": 0.0,
+            "frr": 1.0,
+            "eer_descriptive": 0.04054054054054057,
+            "auc": 0.9594594594594594,
+            "genuine_comparisons": 2,
+            "impostor_comparisons": 74
+          },
+          "user108": {
+            "far": 0.0,
+            "frr": 1.0,
+            "eer_descriptive": 0.0821917808219178,
+            "auc": 0.9269406392694064,
+            "genuine_comparisons": 3,
+            "impostor_comparisons": 73
+          },
+          "user116": {
+            "far": 0.0,
+            "frr": 1.0,
+            "eer_descriptive": 0.0,
+            "auc": 1.0,
+            "genuine_comparisons": 3,
+            "impostor_comparisons": 73
+          },
+          "user18": {
+            "far": 0.0,
+            "frr": 1.0,
+            "eer_descriptive": 0.013513513513513487,
+            "auc": 0.9864864864864865,
+            "genuine_comparisons": 2,
+            "impostor_comparisons": 74
+          },
+          "user21": {
+            "far": 0.041666666666666664,
+            "frr": 0.25,
+            "eer_descriptive": 0.02777777777777779,
+            "auc": 0.986111111111111,
+            "genuine_comparisons": 4,
+            "impostor_comparisons": 72
+          },
+          "user25": {
+            "far": 0.0,
+            "frr": 1.0,
+            "eer_descriptive": 0.013698630136986356,
+            "auc": 0.9817351598173516,
+            "genuine_comparisons": 3,
+            "impostor_comparisons": 73
+          },
+          "user28": {
+            "far": 0.0,
+            "frr": 1.0,
+            "eer_descriptive": 0.4864864864864865,
+            "auc": 0.7297297297297296,
+            "genuine_comparisons": 2,
+            "impostor_comparisons": 74
+          },
+          "user4": {
+            "far": 0.0,
+            "frr": 1.0,
+            "eer_descriptive": 0.3858447488584475,
+            "auc": 0.5844748858447488,
+            "genuine_comparisons": 3,
+            "impostor_comparisons": 73
+          },
+          "user40": {
+            "far": 0.0,
+            "frr": 1.0,
+            "eer_descriptive": 0.28310502283105027,
+            "auc": 0.9223744292237442,
+            "genuine_comparisons": 3,
+            "impostor_comparisons": 73
+          },
+          "user46": {
+            "far": 0.0,
+            "frr": 1.0,
+            "eer_descriptive": 0.020547945205479423,
+            "auc": 0.9863013698630138,
+            "genuine_comparisons": 3,
+            "impostor_comparisons": 73
+          },
+          "user47": {
+            "far": 0.0,
+            "frr": 1.0,
+            "eer_descriptive": 0.0,
+            "auc": 1.0,
+            "genuine_comparisons": 2,
+            "impostor_comparisons": 74
+          },
+          "user50": {
+            "far": 0.0,
+            "frr": 1.0,
+            "eer_descriptive": 0.0,
+            "auc": 1.0,
+            "genuine_comparisons": 4,
+            "impostor_comparisons": 72
+          },
+          "user51": {
+            "far": 0.0,
+            "frr": 1.0,
+            "eer_descriptive": 0.0,
+            "auc": 1.0,
+            "genuine_comparisons": 1,
+            "impostor_comparisons": 75
+          },
+          "user57": {
+            "far": 0.0,
+            "frr": 1.0,
+            "eer_descriptive": 0.00694444444444442,
+            "auc": 0.9965277777777778,
+            "genuine_comparisons": 4,
+            "impostor_comparisons": 72
+          },
+          "user69": {
+            "far": 0.0,
+            "frr": 1.0,
+            "eer_descriptive": 0.006849315068493178,
+            "auc": 0.9954337899543378,
+            "genuine_comparisons": 3,
+            "impostor_comparisons": 73
+          },
+          "user74": {
+            "far": 0.3382352941176471,
+            "frr": 0.0,
+            "eer_descriptive": 0.0,
+            "auc": 1.0,
+            "genuine_comparisons": 8,
+            "impostor_comparisons": 68
+          },
+          "user75": {
+            "far": 0.0,
+            "frr": 1.0,
+            "eer_descriptive": 0.0,
+            "auc": 1.0,
+            "genuine_comparisons": 2,
+            "impostor_comparisons": 74
+          },
+          "user78": {
+            "far": 0.0,
+            "frr": 1.0,
+            "eer_descriptive": 0.07534246575342463,
+            "auc": 0.8995433789954339,
+            "genuine_comparisons": 3,
+            "impostor_comparisons": 73
+          },
+          "user81": {
+            "far": 0.0,
+            "frr": 1.0,
+            "eer_descriptive": 0.0,
+            "auc": 1.0,
+            "genuine_comparisons": 3,
+            "impostor_comparisons": 73
+          },
+          "user91": {
+            "far": 0.0,
+            "frr": 1.0,
+            "eer_descriptive": 0.0821917808219178,
+            "auc": 0.8858447488584476,
+            "genuine_comparisons": 3,
+            "impostor_comparisons": 73
+          },
+          "user96": {
+            "far": 0.0,
+            "frr": 1.0,
+            "eer_descriptive": 0.2968036529680365,
+            "auc": 0.9132420091324202,
+            "genuine_comparisons": 3,
+            "impostor_comparisons": 73
+          }
+        }
+      },
+      "0.01": {
+        "far": 0.02231121281464531,
+        "frr": 0.8026315789473685,
+        "eer_descriptive": 0.21281464530892447,
+        "auc": 0.8743676984222569,
+        "genuine_comparisons": 76,
+        "impostor_comparisons": 1748,
+        "macro_eer_descriptive": 0.07733686169045757,
+        "macro_frr": 0.888888888888889,
+        "per_claimed_user": {
+          "user1": {
+            "far": 0.0,
+            "frr": 1.0,
+            "eer_descriptive": 0.03424657534246578,
+            "auc": 0.958904109589041,
+            "genuine_comparisons": 3,
+            "impostor_comparisons": 73
+          },
+          "user100": {
+            "far": 0.0,
+            "frr": 1.0,
+            "eer_descriptive": 0.0,
+            "auc": 1.0,
+            "genuine_comparisons": 3,
+            "impostor_comparisons": 73
+          },
+          "user105": {
+            "far": 0.0,
+            "frr": 0.8333333333333334,
+            "eer_descriptive": 0.0,
+            "auc": 1.0,
+            "genuine_comparisons": 6,
+            "impostor_comparisons": 70
+          },
+          "user106": {
+            "far": 0.0,
+            "frr": 1.0,
+            "eer_descriptive": 0.04054054054054057,
+            "auc": 0.9594594594594594,
+            "genuine_comparisons": 2,
+            "impostor_comparisons": 74
+          },
+          "user108": {
+            "far": 0.0,
+            "frr": 1.0,
+            "eer_descriptive": 0.0821917808219178,
+            "auc": 0.9269406392694064,
+            "genuine_comparisons": 3,
+            "impostor_comparisons": 73
+          },
+          "user116": {
+            "far": 0.0,
+            "frr": 1.0,
+            "eer_descriptive": 0.0,
+            "auc": 1.0,
+            "genuine_comparisons": 3,
+            "impostor_comparisons": 73
+          },
+          "user18": {
+            "far": 0.0,
+            "frr": 1.0,
+            "eer_descriptive": 0.013513513513513487,
+            "auc": 0.9864864864864865,
+            "genuine_comparisons": 2,
+            "impostor_comparisons": 74
+          },
+          "user21": {
+            "far": 0.09722222222222222,
+            "frr": 0.0,
+            "eer_descriptive": 0.02777777777777779,
+            "auc": 0.986111111111111,
+            "genuine_comparisons": 4,
+            "impostor_comparisons": 72
+          },
+          "user25": {
+            "far": 0.0,
+            "frr": 1.0,
+            "eer_descriptive": 0.013698630136986356,
+            "auc": 0.9817351598173516,
+            "genuine_comparisons": 3,
+            "impostor_comparisons": 73
+          },
+          "user28": {
+            "far": 0.0,
+            "frr": 1.0,
+            "eer_descriptive": 0.4864864864864865,
+            "auc": 0.7297297297297296,
+            "genuine_comparisons": 2,
+            "impostor_comparisons": 74
+          },
+          "user4": {
+            "far": 0.0,
+            "frr": 1.0,
+            "eer_descriptive": 0.3858447488584475,
+            "auc": 0.5844748858447488,
+            "genuine_comparisons": 3,
+            "impostor_comparisons": 73
+          },
+          "user40": {
+            "far": 0.0,
+            "frr": 1.0,
+            "eer_descriptive": 0.28310502283105027,
+            "auc": 0.9223744292237442,
+            "genuine_comparisons": 3,
+            "impostor_comparisons": 73
+          },
+          "user46": {
+            "far": 0.0,
+            "frr": 1.0,
+            "eer_descriptive": 0.020547945205479423,
+            "auc": 0.9863013698630138,
+            "genuine_comparisons": 3,
+            "impostor_comparisons": 73
+          },
+          "user47": {
+            "far": 0.0,
+            "frr": 1.0,
+            "eer_descriptive": 0.0,
+            "auc": 1.0,
+            "genuine_comparisons": 2,
+            "impostor_comparisons": 74
+          },
+          "user50": {
+            "far": 0.0,
+            "frr": 1.0,
+            "eer_descriptive": 0.0,
+            "auc": 1.0,
+            "genuine_comparisons": 4,
+            "impostor_comparisons": 72
+          },
+          "user51": {
+            "far": 0.0,
+            "frr": 1.0,
+            "eer_descriptive": 0.0,
+            "auc": 1.0,
+            "genuine_comparisons": 1,
+            "impostor_comparisons": 75
+          },
+          "user57": {
+            "far": 0.0,
+            "frr": 0.5,
+            "eer_descriptive": 0.00694444444444442,
+            "auc": 0.9965277777777778,
+            "genuine_comparisons": 4,
+            "impostor_comparisons": 72
+          },
+          "user69": {
+            "far": 0.0,
+            "frr": 1.0,
+            "eer_descriptive": 0.006849315068493178,
+            "auc": 0.9954337899543378,
+            "genuine_comparisons": 3,
+            "impostor_comparisons": 73
+          },
+          "user74": {
+            "far": 0.4411764705882353,
+            "frr": 0.0,
+            "eer_descriptive": 0.0,
+            "auc": 1.0,
+            "genuine_comparisons": 8,
+            "impostor_comparisons": 68
+          },
+          "user75": {
+            "far": 0.0,
+            "frr": 1.0,
+            "eer_descriptive": 0.0,
+            "auc": 1.0,
+            "genuine_comparisons": 2,
+            "impostor_comparisons": 74
+          },
+          "user78": {
+            "far": 0.0,
+            "frr": 1.0,
+            "eer_descriptive": 0.07534246575342463,
+            "auc": 0.8995433789954339,
+            "genuine_comparisons": 3,
+            "impostor_comparisons": 73
+          },
+          "user81": {
+            "far": 0.0,
+            "frr": 1.0,
+            "eer_descriptive": 0.0,
+            "auc": 1.0,
+            "genuine_comparisons": 3,
+            "impostor_comparisons": 73
+          },
+          "user91": {
+            "far": 0.0273972602739726,
+            "frr": 1.0,
+            "eer_descriptive": 0.0821917808219178,
+            "auc": 0.8858447488584476,
+            "genuine_comparisons": 3,
+            "impostor_comparisons": 73
+          },
+          "user96": {
+            "far": 0.0,
+            "frr": 1.0,
+            "eer_descriptive": 0.2968036529680365,
+            "auc": 0.9132420091324202,
+            "genuine_comparisons": 3,
+            "impostor_comparisons": 73
+          }
+        }
+      },
+      "0.05": {
+        "far": 0.06121281464530892,
+        "frr": 0.4473684210526316,
+        "eer_descriptive": 0.21281464530892447,
+        "auc": 0.8743676984222569,
+        "genuine_comparisons": 76,
+        "impostor_comparisons": 1748,
+        "macro_eer_descriptive": 0.07733686169045757,
+        "macro_frr": 0.5555555555555555,
+        "per_claimed_user": {
+          "user1": {
+            "far": 0.0,
+            "frr": 1.0,
+            "eer_descriptive": 0.03424657534246578,
+            "auc": 0.958904109589041,
+            "genuine_comparisons": 3,
+            "impostor_comparisons": 73
+          },
+          "user100": {
+            "far": 0.0,
+            "frr": 0.0,
+            "eer_descriptive": 0.0,
+            "auc": 1.0,
+            "genuine_comparisons": 3,
+            "impostor_comparisons": 73
+          },
+          "user105": {
+            "far": 0.02857142857142857,
+            "frr": 0.0,
+            "eer_descriptive": 0.0,
+            "auc": 1.0,
+            "genuine_comparisons": 6,
+            "impostor_comparisons": 70
+          },
+          "user106": {
+            "far": 0.0,
+            "frr": 1.0,
+            "eer_descriptive": 0.04054054054054057,
+            "auc": 0.9594594594594594,
+            "genuine_comparisons": 2,
+            "impostor_comparisons": 74
+          },
+          "user108": {
+            "far": 0.0,
+            "frr": 1.0,
+            "eer_descriptive": 0.0821917808219178,
+            "auc": 0.9269406392694064,
+            "genuine_comparisons": 3,
+            "impostor_comparisons": 73
+          },
+          "user116": {
+            "far": 0.0,
+            "frr": 0.3333333333333333,
+            "eer_descriptive": 0.0,
+            "auc": 1.0,
+            "genuine_comparisons": 3,
+            "impostor_comparisons": 73
+          },
+          "user18": {
+            "far": 0.0,
+            "frr": 1.0,
+            "eer_descriptive": 0.013513513513513487,
+            "auc": 0.9864864864864865,
+            "genuine_comparisons": 2,
+            "impostor_comparisons": 74
+          },
+          "user21": {
+            "far": 0.4027777777777778,
+            "frr": 0.0,
+            "eer_descriptive": 0.02777777777777779,
+            "auc": 0.986111111111111,
+            "genuine_comparisons": 4,
+            "impostor_comparisons": 72
+          },
+          "user25": {
+            "far": 0.0,
+            "frr": 1.0,
+            "eer_descriptive": 0.013698630136986356,
+            "auc": 0.9817351598173516,
+            "genuine_comparisons": 3,
+            "impostor_comparisons": 73
+          },
+          "user28": {
+            "far": 0.02702702702702703,
+            "frr": 1.0,
+            "eer_descriptive": 0.4864864864864865,
+            "auc": 0.7297297297297296,
+            "genuine_comparisons": 2,
+            "impostor_comparisons": 74
+          },
+          "user4": {
+            "far": 0.0,
+            "frr": 1.0,
+            "eer_descriptive": 0.3858447488584475,
+            "auc": 0.5844748858447488,
+            "genuine_comparisons": 3,
+            "impostor_comparisons": 73
+          },
+          "user40": {
+            "far": 0.0410958904109589,
+            "frr": 0.3333333333333333,
+            "eer_descriptive": 0.28310502283105027,
+            "auc": 0.9223744292237442,
+            "genuine_comparisons": 3,
+            "impostor_comparisons": 73
+          },
+          "user46": {
+            "far": 0.0,
+            "frr": 1.0,
+            "eer_descriptive": 0.020547945205479423,
+            "auc": 0.9863013698630138,
+            "genuine_comparisons": 3,
+            "impostor_comparisons": 73
+          },
+          "user47": {
+            "far": 0.0,
+            "frr": 0.0,
+            "eer_descriptive": 0.0,
+            "auc": 1.0,
+            "genuine_comparisons": 2,
+            "impostor_comparisons": 74
+          },
+          "user50": {
+            "far": 0.0,
+            "frr": 0.0,
+            "eer_descriptive": 0.0,
+            "auc": 1.0,
+            "genuine_comparisons": 4,
+            "impostor_comparisons": 72
+          },
+          "user51": {
+            "far": 0.0,
+            "frr": 1.0,
+            "eer_descriptive": 0.0,
+            "auc": 1.0,
+            "genuine_comparisons": 1,
+            "impostor_comparisons": 75
+          },
+          "user57": {
+            "far": 0.08333333333333333,
+            "frr": 0.0,
+            "eer_descriptive": 0.00694444444444442,
+            "auc": 0.9965277777777778,
+            "genuine_comparisons": 4,
+            "impostor_comparisons": 72
+          },
+          "user69": {
+            "far": 0.0,
+            "frr": 1.0,
+            "eer_descriptive": 0.006849315068493178,
+            "auc": 0.9954337899543378,
+            "genuine_comparisons": 3,
+            "impostor_comparisons": 73
+          },
+          "user74": {
+            "far": 0.6470588235294118,
+            "frr": 0.0,
+            "eer_descriptive": 0.0,
+            "auc": 1.0,
+            "genuine_comparisons": 8,
+            "impostor_comparisons": 68
+          },
+          "user75": {
+            "far": 0.0,
+            "frr": 1.0,
+            "eer_descriptive": 0.0,
+            "auc": 1.0,
+            "genuine_comparisons": 2,
+            "impostor_comparisons": 74
+          },
+          "user78": {
+            "far": 0.1506849315068493,
+            "frr": 0.0,
+            "eer_descriptive": 0.07534246575342463,
+            "auc": 0.8995433789954339,
+            "genuine_comparisons": 3,
+            "impostor_comparisons": 73
+          },
+          "user81": {
+            "far": 0.0,
+            "frr": 1.0,
+            "eer_descriptive": 0.0,
+            "auc": 1.0,
+            "genuine_comparisons": 3,
+            "impostor_comparisons": 73
+          },
+          "user91": {
+            "far": 0.136986301369863,
+            "frr": 0.3333333333333333,
+            "eer_descriptive": 0.0821917808219178,
+            "auc": 0.8858447488584476,
+            "genuine_comparisons": 3,
+            "impostor_comparisons": 73
+          },
+          "user96": {
+            "far": 0.0,
+            "frr": 0.3333333333333333,
+            "eer_descriptive": 0.2968036529680365,
+            "auc": 0.9132420091324202,
+            "genuine_comparisons": 3,
+            "impostor_comparisons": 73
+          }
+        }
+      }
+    },
+    "cosine@5": {
+      "0.001": {
+        "far": 0.005720823798627002,
+        "frr": 0.5263157894736842,
+        "eer_descriptive": 0.13872997711670476,
+        "auc": 0.9487986270022883,
+        "genuine_comparisons": 76,
+        "impostor_comparisons": 1748,
+        "macro_eer_descriptive": 0.08274540404627029,
+        "macro_frr": 0.5243055555555555,
+        "per_claimed_user": {
+          "user1": {
+            "far": 0.0136986301369863,
+            "frr": 1.0,
+            "eer_descriptive": 0.047945205479452024,
+            "auc": 0.9406392694063928,
+            "genuine_comparisons": 3,
+            "impostor_comparisons": 73
+          },
+          "user100": {
+            "far": 0.0,
+            "frr": 0.3333333333333333,
+            "eer_descriptive": 0.0,
+            "auc": 1.0,
+            "genuine_comparisons": 3,
+            "impostor_comparisons": 73
+          },
+          "user105": {
+            "far": 0.0,
+            "frr": 1.0,
+            "eer_descriptive": 0.0,
+            "auc": 1.0,
+            "genuine_comparisons": 6,
+            "impostor_comparisons": 70
+          },
+          "user106": {
+            "far": 0.0,
+            "frr": 1.0,
+            "eer_descriptive": 0.08783783783783783,
+            "auc": 0.9121621621621622,
+            "genuine_comparisons": 2,
+            "impostor_comparisons": 74
+          },
+          "user108": {
+            "far": 0.0,
+            "frr": 1.0,
+            "eer_descriptive": 0.06849315068493156,
+            "auc": 0.9360730593607306,
+            "genuine_comparisons": 3,
+            "impostor_comparisons": 73
+          },
+          "user116": {
+            "far": 0.0,
+            "frr": 0.3333333333333333,
+            "eer_descriptive": 0.0,
+            "auc": 1.0,
+            "genuine_comparisons": 3,
+            "impostor_comparisons": 73
+          },
+          "user18": {
+            "far": 0.0,
+            "frr": 1.0,
+            "eer_descriptive": 0.020270270270270285,
+            "auc": 0.9797297297297297,
+            "genuine_comparisons": 2,
+            "impostor_comparisons": 74
+          },
+          "user21": {
+            "far": 0.041666666666666664,
+            "frr": 0.25,
+            "eer_descriptive": 0.02777777777777779,
+            "auc": 0.986111111111111,
+            "genuine_comparisons": 4,
+            "impostor_comparisons": 72
+          },
+          "user25": {
+            "far": 0.0273972602739726,
+            "frr": 0.0,
+            "eer_descriptive": 0.013698630136986356,
+            "auc": 0.9908675799086758,
+            "genuine_comparisons": 3,
+            "impostor_comparisons": 73
+          },
+          "user28": {
+            "far": 0.02702702702702703,
+            "frr": 1.0,
+            "eer_descriptive": 0.4864864864864865,
+            "auc": 0.7297297297297296,
+            "genuine_comparisons": 2,
+            "impostor_comparisons": 74
+          },
+          "user4": {
+            "far": 0.0,
+            "frr": 1.0,
+            "eer_descriptive": 0.3858447488584475,
+            "auc": 0.5799086757990868,
+            "genuine_comparisons": 3,
+            "impostor_comparisons": 73
+          },
+          "user40": {
+            "far": 0.0,
+            "frr": 0.3333333333333333,
+            "eer_descriptive": 0.33789954337899547,
+            "auc": 0.8858447488584474,
+            "genuine_comparisons": 3,
+            "impostor_comparisons": 73
+          },
+          "user46": {
+            "far": 0.0,
+            "frr": 0.3333333333333333,
+            "eer_descriptive": 0.0,
+            "auc": 1.0,
+            "genuine_comparisons": 3,
+            "impostor_comparisons": 73
+          },
+          "user47": {
+            "far": 0.0,
+            "frr": 0.0,
+            "eer_descriptive": 0.0,
+            "auc": 1.0,
+            "genuine_comparisons": 2,
+            "impostor_comparisons": 74
+          },
+          "user50": {
+            "far": 0.0,
+            "frr": 0.0,
+            "eer_descriptive": 0.0,
+            "auc": 1.0,
+            "genuine_comparisons": 4,
+            "impostor_comparisons": 72
+          },
+          "user51": {
+            "far": 0.0,
+            "frr": 0.0,
+            "eer_descriptive": 0.0,
+            "auc": 1.0,
+            "genuine_comparisons": 1,
+            "impostor_comparisons": 75
+          },
+          "user57": {
+            "far": 0.013888888888888888,
+            "frr": 0.0,
+            "eer_descriptive": 0.0,
+            "auc": 1.0,
+            "genuine_comparisons": 4,
+            "impostor_comparisons": 72
+          },
+          "user69": {
+            "far": 0.0,
+            "frr": 0.3333333333333333,
+            "eer_descriptive": 0.0,
+            "auc": 1.0,
+            "genuine_comparisons": 3,
+            "impostor_comparisons": 73
+          },
+          "user74": {
+            "far": 0.0,
+            "frr": 0.5,
+            "eer_descriptive": 0.007352941176470562,
+            "auc": 0.9963235294117647,
+            "genuine_comparisons": 8,
+            "impostor_comparisons": 68
+          },
+          "user75": {
+            "far": 0.0,
+            "frr": 0.5,
+            "eer_descriptive": 0.0,
+            "auc": 1.0,
+            "genuine_comparisons": 2,
+            "impostor_comparisons": 74
+          },
+          "user78": {
+            "far": 0.0136986301369863,
+            "frr": 0.6666666666666666,
+            "eer_descriptive": 0.07534246575342463,
+            "auc": 0.8995433789954339,
+            "genuine_comparisons": 3,
+            "impostor_comparisons": 73
+          },
+          "user81": {
+            "far": 0.0,
+            "frr": 0.6666666666666666,
+            "eer_descriptive": 0.0,
+            "auc": 1.0,
+            "genuine_comparisons": 3,
+            "impostor_comparisons": 73
+          },
+          "user91": {
+            "far": 0.0,
+            "frr": 1.0,
+            "eer_descriptive": 0.0821917808219178,
+            "auc": 0.8858447488584476,
+            "genuine_comparisons": 3,
+            "impostor_comparisons": 73
+          },
+          "user96": {
+            "far": 0.0,
+            "frr": 0.3333333333333333,
+            "eer_descriptive": 0.34474885844748865,
+            "auc": 0.8812785388127854,
+            "genuine_comparisons": 3,
+            "impostor_comparisons": 73
+          }
+        }
+      },
+      "0.01": {
+        "far": 0.016590389016018305,
+        "frr": 0.4342105263157895,
+        "eer_descriptive": 0.13872997711670476,
+        "auc": 0.9487986270022883,
+        "genuine_comparisons": 76,
+        "impostor_comparisons": 1748,
+        "macro_eer_descriptive": 0.08274540404627029,
+        "macro_frr": 0.421875,
+        "per_claimed_user": {
+          "user1": {
+            "far": 0.0136986301369863,
+            "frr": 1.0,
+            "eer_descriptive": 0.047945205479452024,
+            "auc": 0.9406392694063928,
+            "genuine_comparisons": 3,
+            "impostor_comparisons": 73
+          },
+          "user100": {
+            "far": 0.0,
+            "frr": 0.0,
+            "eer_descriptive": 0.0,
+            "auc": 1.0,
+            "genuine_comparisons": 3,
+            "impostor_comparisons": 73
+          },
+          "user105": {
+            "far": 0.0,
+            "frr": 1.0,
+            "eer_descriptive": 0.0,
+            "auc": 1.0,
+            "genuine_comparisons": 6,
+            "impostor_comparisons": 70
+          },
+          "user106": {
+            "far": 0.0,
+            "frr": 1.0,
+            "eer_descriptive": 0.08783783783783783,
+            "auc": 0.9121621621621622,
+            "genuine_comparisons": 2,
+            "impostor_comparisons": 74
+          },
+          "user108": {
+            "far": 0.0136986301369863,
+            "frr": 1.0,
+            "eer_descriptive": 0.06849315068493156,
+            "auc": 0.9360730593607306,
+            "genuine_comparisons": 3,
+            "impostor_comparisons": 73
+          },
+          "user116": {
+            "far": 0.0,
+            "frr": 0.3333333333333333,
+            "eer_descriptive": 0.0,
+            "auc": 1.0,
+            "genuine_comparisons": 3,
+            "impostor_comparisons": 73
+          },
+          "user18": {
+            "far": 0.013513513513513514,
+            "frr": 0.5,
+            "eer_descriptive": 0.020270270270270285,
+            "auc": 0.9797297297297297,
+            "genuine_comparisons": 2,
+            "impostor_comparisons": 74
+          },
+          "user21": {
+            "far": 0.05555555555555555,
+            "frr": 0.25,
+            "eer_descriptive": 0.02777777777777779,
+            "auc": 0.986111111111111,
+            "genuine_comparisons": 4,
+            "impostor_comparisons": 72
+          },
+          "user25": {
+            "far": 0.0410958904109589,
+            "frr": 0.0,
+            "eer_descriptive": 0.013698630136986356,
+            "auc": 0.9908675799086758,
+            "genuine_comparisons": 3,
+            "impostor_comparisons": 73
+          },
+          "user28": {
+            "far": 0.02702702702702703,
+            "frr": 1.0,
+            "eer_descriptive": 0.4864864864864865,
+            "auc": 0.7297297297297296,
+            "genuine_comparisons": 2,
+            "impostor_comparisons": 74
+          },
+          "user4": {
+            "far": 0.0136986301369863,
+            "frr": 1.0,
+            "eer_descriptive": 0.3858447488584475,
+            "auc": 0.5799086757990868,
+            "genuine_comparisons": 3,
+            "impostor_comparisons": 73
+          },
+          "user40": {
+            "far": 0.0,
+            "frr": 0.3333333333333333,
+            "eer_descriptive": 0.33789954337899547,
+            "auc": 0.8858447488584474,
+            "genuine_comparisons": 3,
+            "impostor_comparisons": 73
+          },
+          "user46": {
+            "far": 0.0136986301369863,
+            "frr": 0.0,
+            "eer_descriptive": 0.0,
+            "auc": 1.0,
+            "genuine_comparisons": 3,
+            "impostor_comparisons": 73
+          },
+          "user47": {
+            "far": 0.0,
+            "frr": 0.0,
+            "eer_descriptive": 0.0,
+            "auc": 1.0,
+            "genuine_comparisons": 2,
+            "impostor_comparisons": 74
+          },
+          "user50": {
+            "far": 0.013888888888888888,
+            "frr": 0.0,
+            "eer_descriptive": 0.0,
+            "auc": 1.0,
+            "genuine_comparisons": 4,
+            "impostor_comparisons": 72
+          },
+          "user51": {
+            "far": 0.013333333333333334,
+            "frr": 0.0,
+            "eer_descriptive": 0.0,
+            "auc": 1.0,
+            "genuine_comparisons": 1,
+            "impostor_comparisons": 75
+          },
+          "user57": {
+            "far": 0.041666666666666664,
+            "frr": 0.0,
+            "eer_descriptive": 0.0,
+            "auc": 1.0,
+            "genuine_comparisons": 4,
+            "impostor_comparisons": 72
+          },
+          "user69": {
+            "far": 0.0273972602739726,
+            "frr": 0.0,
+            "eer_descriptive": 0.0,
+            "auc": 1.0,
+            "genuine_comparisons": 3,
+            "impostor_comparisons": 73
+          },
+          "user74": {
+            "far": 0.0,
+            "frr": 0.375,
+            "eer_descriptive": 0.007352941176470562,
+            "auc": 0.9963235294117647,
+            "genuine_comparisons": 8,
+            "impostor_comparisons": 68
+          },
+          "user75": {
+            "far": 0.0,
+            "frr": 0.0,
+            "eer_descriptive": 0.0,
+            "auc": 1.0,
+            "genuine_comparisons": 2,
+            "impostor_comparisons": 74
+          },
+          "user78": {
+            "far": 0.0958904109589041,
+            "frr": 0.6666666666666666,
+            "eer_descriptive": 0.07534246575342463,
+            "auc": 0.8995433789954339,
+            "genuine_comparisons": 3,
+            "impostor_comparisons": 73
+          },
+          "user81": {
+            "far": 0.0,
+            "frr": 0.3333333333333333,
+            "eer_descriptive": 0.0,
+            "auc": 1.0,
+            "genuine_comparisons": 3,
+            "impostor_comparisons": 73
+          },
+          "user91": {
+            "far": 0.0,
+            "frr": 1.0,
+            "eer_descriptive": 0.0821917808219178,
+            "auc": 0.8858447488584476,
+            "genuine_comparisons": 3,
+            "impostor_comparisons": 73
+          },
+          "user96": {
+            "far": 0.0136986301369863,
+            "frr": 0.3333333333333333,
+            "eer_descriptive": 0.34474885844748865,
+            "auc": 0.8812785388127854,
+            "genuine_comparisons": 3,
+            "impostor_comparisons": 73
+          }
+        }
+      },
+      "0.05": {
+        "far": 0.05320366132723112,
+        "frr": 0.27631578947368424,
+        "eer_descriptive": 0.13872997711670476,
+        "auc": 0.9487986270022883,
+        "genuine_comparisons": 76,
+        "impostor_comparisons": 1748,
+        "macro_eer_descriptive": 0.08274540404627029,
+        "macro_frr": 0.2673611111111111,
+        "per_claimed_user": {
+          "user1": {
+            "far": 0.0684931506849315,
+            "frr": 0.3333333333333333,
+            "eer_descriptive": 0.047945205479452024,
+            "auc": 0.9406392694063928,
+            "genuine_comparisons": 3,
+            "impostor_comparisons": 73
+          },
+          "user100": {
+            "far": 0.0410958904109589,
+            "frr": 0.0,
+            "eer_descriptive": 0.0,
+            "auc": 1.0,
+            "genuine_comparisons": 3,
+            "impostor_comparisons": 73
+          },
+          "user105": {
+            "far": 0.0,
+            "frr": 0.6666666666666666,
+            "eer_descriptive": 0.0,
+            "auc": 1.0,
+            "genuine_comparisons": 6,
+            "impostor_comparisons": 70
+          },
+          "user106": {
+            "far": 0.0,
+            "frr": 0.5,
+            "eer_descriptive": 0.08783783783783783,
+            "auc": 0.9121621621621622,
+            "genuine_comparisons": 2,
+            "impostor_comparisons": 74
+          },
+          "user108": {
+            "far": 0.0684931506849315,
+            "frr": 0.3333333333333333,
+            "eer_descriptive": 0.06849315068493156,
+            "auc": 0.9360730593607306,
+            "genuine_comparisons": 3,
+            "impostor_comparisons": 73
+          },
+          "user116": {
+            "far": 0.0,
+            "frr": 0.0,
+            "eer_descriptive": 0.0,
+            "auc": 1.0,
+            "genuine_comparisons": 3,
+            "impostor_comparisons": 73
+          },
+          "user18": {
+            "far": 0.02702702702702703,
+            "frr": 0.5,
+            "eer_descriptive": 0.020270270270270285,
+            "auc": 0.9797297297297297,
+            "genuine_comparisons": 2,
+            "impostor_comparisons": 74
+          },
+          "user21": {
+            "far": 0.05555555555555555,
+            "frr": 0.0,
+            "eer_descriptive": 0.02777777777777779,
+            "auc": 0.986111111111111,
+            "genuine_comparisons": 4,
+            "impostor_comparisons": 72
+          },
+          "user25": {
+            "far": 0.1095890410958904,
+            "frr": 0.0,
+            "eer_descriptive": 0.013698630136986356,
+            "auc": 0.9908675799086758,
+            "genuine_comparisons": 3,
+            "impostor_comparisons": 73
+          },
+          "user28": {
+            "far": 0.06756756756756757,
+            "frr": 0.5,
+            "eer_descriptive": 0.4864864864864865,
+            "auc": 0.7297297297297296,
+            "genuine_comparisons": 2,
+            "impostor_comparisons": 74
+          },
+          "user4": {
+            "far": 0.1506849315068493,
+            "frr": 1.0,
+            "eer_descriptive": 0.3858447488584475,
+            "auc": 0.5799086757990868,
+            "genuine_comparisons": 3,
+            "impostor_comparisons": 73
+          },
+          "user40": {
+            "far": 0.0410958904109589,
+            "frr": 0.3333333333333333,
+            "eer_descriptive": 0.33789954337899547,
+            "auc": 0.8858447488584474,
+            "genuine_comparisons": 3,
+            "impostor_comparisons": 73
+          },
+          "user46": {
+            "far": 0.0821917808219178,
+            "frr": 0.0,
+            "eer_descriptive": 0.0,
+            "auc": 1.0,
+            "genuine_comparisons": 3,
+            "impostor_comparisons": 73
+          },
+          "user47": {
+            "far": 0.0,
+            "frr": 0.0,
+            "eer_descriptive": 0.0,
+            "auc": 1.0,
+            "genuine_comparisons": 2,
+            "impostor_comparisons": 74
+          },
+          "user50": {
+            "far": 0.08333333333333333,
+            "frr": 0.0,
+            "eer_descriptive": 0.0,
+            "auc": 1.0,
+            "genuine_comparisons": 4,
+            "impostor_comparisons": 72
+          },
+          "user51": {
+            "far": 0.08,
+            "frr": 0.0,
+            "eer_descriptive": 0.0,
+            "auc": 1.0,
+            "genuine_comparisons": 1,
+            "impostor_comparisons": 75
+          },
+          "user57": {
+            "far": 0.041666666666666664,
+            "frr": 0.0,
+            "eer_descriptive": 0.0,
+            "auc": 1.0,
+            "genuine_comparisons": 4,
+            "impostor_comparisons": 72
+          },
+          "user69": {
+            "far": 0.0821917808219178,
+            "frr": 0.0,
+            "eer_descriptive": 0.0,
+            "auc": 1.0,
+            "genuine_comparisons": 3,
+            "impostor_comparisons": 73
+          },
+          "user74": {
+            "far": 0.014705882352941176,
+            "frr": 0.25,
+            "eer_descriptive": 0.007352941176470562,
+            "auc": 0.9963235294117647,
+            "genuine_comparisons": 8,
+            "impostor_comparisons": 68
+          },
+          "user75": {
+            "far": 0.0,
+            "frr": 0.0,
+            "eer_descriptive": 0.0,
+            "auc": 1.0,
+            "genuine_comparisons": 2,
+            "impostor_comparisons": 74
+          },
+          "user78": {
+            "far": 0.1232876712328767,
+            "frr": 0.6666666666666666,
+            "eer_descriptive": 0.07534246575342463,
+            "auc": 0.8995433789954339,
+            "genuine_comparisons": 3,
+            "impostor_comparisons": 73
+          },
+          "user81": {
+            "far": 0.0547945205479452,
+            "frr": 0.0,
+            "eer_descriptive": 0.0,
+            "auc": 1.0,
+            "genuine_comparisons": 3,
+            "impostor_comparisons": 73
+          },
+          "user91": {
+            "far": 0.0136986301369863,
+            "frr": 1.0,
+            "eer_descriptive": 0.0821917808219178,
+            "auc": 0.8858447488584476,
+            "genuine_comparisons": 3,
+            "impostor_comparisons": 73
+          },
+          "user96": {
+            "far": 0.0684931506849315,
+            "frr": 0.3333333333333333,
+            "eer_descriptive": 0.34474885844748865,
+            "auc": 0.8812785388127854,
+            "genuine_comparisons": 3,
+            "impostor_comparisons": 73
+          }
+        }
+      }
+    }
+  },
+  "counts": {
+    "train_calibration_users": 12,
+    "dev_enrollment_users": 24,
+    "dev_probe_users": 24,
+    "training_support_enrollment_windows": 1359,
+    "dev_probe_windows": 427
+  },
+  "input_events_per_decision": 641,
+  "displacements_per_decision": 640,
+  "checkpoint_epoch": 27,
+  "test_accessed": false,
+  "limitations": [
+    "Predeclared scoring variants; all ranking/thresholds use12training-calibration users only.",
+    "Unseen-encoder dev cohort enrolled with3min TRAINING-support files;1min DEV probes never fit or scale models.",
+    "Dataset users/devices not a same-device attacker study; no claim of production FAR.",
+    "No current2025SOTA equivalence or multimodal fusion claim."
+  ]
+}

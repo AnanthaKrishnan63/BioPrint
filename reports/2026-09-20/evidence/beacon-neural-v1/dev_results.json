@@ -1,0 +1,325 @@
+{
+  "protocol": {
+    "representation": "frozen KeyRecs TypeNet; no encoder fitting on BEACON",
+    "source_model_sha256": "83b67ca5b59e08df13a1faf806fd6f0964bfb5980656e0500f770c018fcb400a",
+    "paired_window_seconds": 30,
+    "pairing": "same participant, recording and elapsed-time window",
+    "window_rule": "reuse every exact baseline accepted30s window; no neural quality-based reselection",
+    "sequence_rule": "first at most50 adjacent key pairs entirely inside window; keep at least4 pairs",
+    "short_sequences": "gather last valid recurrent state; frozen BN means later padding cannot influence it",
+    "keycode_mapping": "letters/digits/ASCII plus explicit pynput special-key table; unknown0; reject unknown>1%",
+    "clock": "Elapsed Start/Release Time seconds, confirmed against source logger and Duration",
+    "clock_gate": "reject any negative hold or median(abs(release-start-Duration))>.01seconds",
+    "encoder_gallery": "first up to5 enrollment windows per account, mean Euclidean distance",
+    "mouse": "unchanged16 baseline summary features, per-account training-enrollment median/MAD distance",
+    "fusion_candidates_C": [
+      0.01,
+      0.1,
+      1.0
+    ],
+    "selection": "same fit/selection/calibration identity groups as frozen baseline; dev untouched until freeze",
+    "support_roles": "record_roles.json personal_enrollment is training, including support for dev identities",
+    "test_accessed": false,
+    "limitations": [
+      "gameplay rather than typing/login",
+      "source logger can overwrite press time on key auto-repeat; holds are recorder-defined",
+      "key labels are mapped, not original browser event.keyCode; modifier side distinctions collapse",
+      "short sequences differ from full50-event source training; no SOTA reproduction claim",
+      "few independent people; comparison counts do not create independent trials"
+    ]
+  },
+  "subjects": [
+    "P012",
+    "P015",
+    "P022"
+  ],
+  "dev_audit": [
+    {
+      "subject": "P012",
+      "role": "enrollment",
+      "record_partition": "train",
+      "events": 963,
+      "unknown_codes": 0,
+      "median_duration_disagreement_seconds": 7.639722188201858e-14,
+      "windows": 30,
+      "sequence_lengths": [
+        5,
+        22,
+        38,
+        33,
+        9,
+        20,
+        5,
+        5,
+        24,
+        11,
+        17,
+        30,
+        20,
+        12,
+        29,
+        26,
+        24,
+        6,
+        12,
+        21,
+        8,
+        13,
+        28,
+        7,
+        9,
+        43,
+        12,
+        8,
+        23,
+        9
+      ]
+    },
+    {
+      "subject": "P012",
+      "role": "probe",
+      "record_partition": "dev",
+      "events": 660,
+      "unknown_codes": 0,
+      "median_duration_disagreement_seconds": 6.727951529228449e-14,
+      "windows": 43,
+      "sequence_lengths": [
+        4,
+        16,
+        9,
+        6,
+        9,
+        5,
+        14,
+        7,
+        4,
+        14,
+        4,
+        11,
+        17,
+        33,
+        6,
+        16,
+        6,
+        23,
+        4,
+        5,
+        14,
+        11,
+        19,
+        15,
+        12,
+        13,
+        28,
+        4,
+        18,
+        18,
+        13,
+        37,
+        16,
+        10,
+        17,
+        15,
+        15,
+        14,
+        4,
+        20,
+        4,
+        15,
+        24
+      ]
+    },
+    {
+      "subject": "P015",
+      "role": "enrollment",
+      "record_partition": "train",
+      "events": 6774,
+      "unknown_codes": 0,
+      "median_duration_disagreement_seconds": 1.4915846335838978e-13,
+      "windows": 12,
+      "sequence_lengths": [
+        22,
+        36,
+        50,
+        42,
+        21,
+        8,
+        39,
+        50,
+        50,
+        46,
+        40,
+        50
+      ]
+    },
+    {
+      "subject": "P015",
+      "role": "probe",
+      "record_partition": "dev",
+      "events": 1342,
+      "unknown_codes": 0,
+      "median_duration_disagreement_seconds": 5.818956427816602e-14,
+      "windows": 23,
+      "sequence_lengths": [
+        25,
+        34,
+        18,
+        32,
+        45,
+        31,
+        42,
+        45,
+        44,
+        20,
+        30,
+        28,
+        26,
+        20,
+        5,
+        36,
+        35,
+        16,
+        40,
+        10,
+        8,
+        24,
+        34
+      ]
+    },
+    {
+      "subject": "P022",
+      "role": "enrollment",
+      "record_partition": "train",
+      "events": 2498,
+      "unknown_codes": 0,
+      "median_duration_disagreement_seconds": 8.776313009661862e-14,
+      "windows": 18,
+      "sequence_lengths": [
+        6,
+        40,
+        32,
+        22,
+        30,
+        32,
+        29,
+        24,
+        27,
+        30,
+        37,
+        29,
+        38,
+        25,
+        17,
+        22,
+        34,
+        5
+      ]
+    },
+    {
+      "subject": "P022",
+      "role": "probe",
+      "record_partition": "dev",
+      "events": 1667,
+      "unknown_codes": 0,
+      "median_duration_disagreement_seconds": 8.368306048112117e-14,
+      "windows": 15,
+      "sequence_lengths": [
+        35,
+        10,
+        5,
+        31,
+        34,
+        5,
+        50,
+        22,
+        31,
+        34,
+        11,
+        8,
+        35,
+        31,
+        9
+      ]
+    }
+  ],
+  "evaluation_split": "dev",
+  "results": {
+    "typenet": {
+      "eer_diagnostic": 0.37037037037037035,
+      "genuine_comparisons": 81,
+      "impostor_comparisons": 162,
+      "operating_points": {
+        "eer": {
+          "frr": 0.38271604938271603,
+          "far": 0.35802469135802467
+        },
+        "far_1pct": {
+          "frr": 1.0,
+          "far": 0.0
+        },
+        "far_5pct": {
+          "frr": 0.9753086419753086,
+          "far": 0.006172839506172839
+        }
+      }
+    },
+    "mouse": {
+      "eer_diagnostic": 0.404320987654321,
+      "genuine_comparisons": 81,
+      "impostor_comparisons": 162,
+      "operating_points": {
+        "eer": {
+          "frr": 0.35802469135802467,
+          "far": 0.41975308641975306
+        },
+        "far_1pct": {
+          "frr": 0.35802469135802467,
+          "far": 0.41975308641975306
+        },
+        "far_5pct": {
+          "frr": 0.024691358024691357,
+          "far": 0.8765432098765432
+        }
+      }
+    },
+    "neural_behavior_fusion": {
+      "eer_diagnostic": 0.3950617283950617,
+      "genuine_comparisons": 81,
+      "impostor_comparisons": 162,
+      "operating_points": {
+        "eer": {
+          "frr": 0.345679012345679,
+          "far": 0.41975308641975306
+        },
+        "far_1pct": {
+          "frr": 0.345679012345679,
+          "far": 0.41975308641975306
+        },
+        "far_5pct": {
+          "frr": 0.024691358024691357,
+          "far": 0.8950617283950617
+        }
+      }
+    },
+    "hybrid_behavior_fusion": {
+      "eer_diagnostic": 0.43209876543209874,
+      "genuine_comparisons": 81,
+      "impostor_comparisons": 162,
+      "operating_points": {
+        "eer": {
+          "frr": 0.5432098765432098,
+          "far": 0.2777777777777778
+        },
+        "far_1pct": {
+          "frr": 0.9876543209876543,
+          "far": 0.024691358024691357
+        },
+        "far_5pct": {
+          "frr": 0.5432098765432098,
+          "far": 0.2839506172839506
+        }
+      }
+    }
+  },
+  "frozen_sha256": "b35f624352f7d789ba5f0b23d3419dcf845fa0f9a831f5bd47960eb2f4a5cb6f"
+}

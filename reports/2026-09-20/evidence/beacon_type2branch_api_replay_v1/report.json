@@ -1,0 +1,59 @@
+{
+  "status": "paired_dev_api_replay_complete",
+  "mode": "in-process ASGI, no listener",
+  "boundary": "Fusion replay on paired features from offline frozen encoders; not live browser capture or online encoder inference",
+  "models": {
+    "typenet": {
+      "claims": 243,
+      "max_score_error": 0.0,
+      "decision_flips": 0,
+      "all_pooled_and_per_probe_metrics_match": true
+    },
+    "sapimouse": {
+      "claims": 243,
+      "max_score_error": 0.0,
+      "decision_flips": 0,
+      "all_pooled_and_per_probe_metrics_match": true
+    },
+    "handcrafted_behavior": {
+      "claims": 243,
+      "max_score_error": 0.0,
+      "decision_flips": 0,
+      "all_pooled_and_per_probe_metrics_match": true
+    },
+    "old_dual_neural": {
+      "claims": 243,
+      "max_score_error": 0.0,
+      "decision_flips": 0,
+      "all_pooled_and_per_probe_metrics_match": true
+    },
+    "old_hybrid": {
+      "claims": 243,
+      "max_score_error": 0.0,
+      "decision_flips": 0,
+      "all_pooled_and_per_probe_metrics_match": true
+    },
+    "type2branch": {
+      "claims": 243,
+      "max_score_error": 0.0,
+      "decision_flips": 0,
+      "all_pooled_and_per_probe_metrics_match": true
+    },
+    "type2branch_pointer": {
+      "claims": 243,
+      "max_score_error": 0.0,
+      "decision_flips": 0,
+      "all_pooled_and_per_probe_metrics_match": true
+    },
+    "type2branch_hybrid": {
+      "claims": 243,
+      "max_score_error": 0.0,
+      "decision_flips": 0,
+      "all_pooled_and_per_probe_metrics_match": true
+    }
+  },
+  "split_host_origin_remote_guards": 403,
+  "malformed_input_guard": 422,
+  "unknown_model_guard": 404,
+  "test_observations_decoded": false
+}

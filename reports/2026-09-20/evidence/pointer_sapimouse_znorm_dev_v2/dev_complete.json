@@ -1,0 +1,837 @@
+{
+  "status": "complete_evaluation_only",
+  "plan": {
+    "input_sha256": {
+      "research/benchmarks/pointer_sapimouse/fcn_training_best.pt": "2c5303bc5fbdbc89cd980c8b75ecc2c1461dad61ab7095edcc76225011526476",
+      "data/benchmarks/sapimouse/split_manifest.json": "8bfe470c78ad790b26b6db2a4f65f3e1ab6733e7688a0d54be16185eda00257e",
+      "research/benchmarks/pointer_sapimouse_znorm_v1/train_complete.json": "20885bcacbb3ee21936befad1cf41e89a2f629058add79b8ceb71231b555259c",
+      "research/benchmarks/pointer_sapimouse_optimized/frozen_training_selection.json": "4e3237ea9a219673ac85da239d5745cd9b381804ddc9c3ff770c90f0e15fe7d4",
+      "research/benchmarks/pointer_sapimouse_optimized/cosine_user1.npz": "c3f4d0713c2c8a263f2f8d2255436b694e7ec13a5155a7e5870e42b543061f29",
+      "research/benchmarks/pointer_sapimouse_optimized/cosine_user100.npz": "24c46f632524f0b0879109982f5602c6e6a73993a38af3972f04e3c620c6f052",
+      "research/benchmarks/pointer_sapimouse_optimized/cosine_user105.npz": "91f5257e5304b3c48765d7c23c1154a522d72c3a7d9237702f420cec40cf6190",
+      "research/benchmarks/pointer_sapimouse_optimized/cosine_user106.npz": "24083a6067e16af89cfcbb9de6eb604de72035fd5d82ecb3349c83c4f68e8422",
+      "research/benchmarks/pointer_sapimouse_optimized/cosine_user108.npz": "8129c49cdc09ea831440e02d00ba65b9e4135d748a3c45e0fb198d2a9959c7ae",
+      "research/benchmarks/pointer_sapimouse_optimized/cosine_user116.npz": "f9d6eaed28c2497d2cac1e89120b2f779e7d82e2c9ec5e669a8da328740bfe3d",
+      "research/benchmarks/pointer_sapimouse_optimized/cosine_user18.npz": "ca20d785d4e0683241adfced662548257fb07d78b3e9ad7ef9dc6ddc8c9c428d",
+      "research/benchmarks/pointer_sapimouse_optimized/cosine_user21.npz": "76e15af16b55bb3522b37efb4e25d1dbb6f3ffeb9b9a6838f2256a32c379d1da",
+      "research/benchmarks/pointer_sapimouse_optimized/cosine_user25.npz": "addb1be0d7d001e9555c30618b2fcd158d580f13a321f80c430b07a5ca1ac5c4",
+      "research/benchmarks/pointer_sapimouse_optimized/cosine_user28.npz": "3478730ff4d973617a7690d50ea39dea94aff66829513bdc12f52869e35d142e",
+      "research/benchmarks/pointer_sapimouse_optimized/cosine_user4.npz": "52891d198ada46e6808870a52de29235db4318b9fe25923ae1da3574d18eee30",
+      "research/benchmarks/pointer_sapimouse_optimized/cosine_user40.npz": "2f6187a8d8a9b38340f72496a1f150d84c885f4a1eb933b82f79127174d349a9",
+      "research/benchmarks/pointer_sapimouse_optimized/cosine_user46.npz": "ee4999e52c063d0bf781c7933f35e8bc090652dcf8021f02ff2b72c1d114edd5",
+      "research/benchmarks/pointer_sapimouse_optimized/cosine_user47.npz": "1a726126d897ceab9cc4fb890677b5ed7f22ee854c394da1945f3187a794f3c9",
+      "research/benchmarks/pointer_sapimouse_optimized/cosine_user50.npz": "c62c4f2453cef140686ec72bd343b5b934682acf5cf5e8f3d2f4bfa1a2159201",
+      "research/benchmarks/pointer_sapimouse_optimized/cosine_user51.npz": "cbbe58c14575044306e4d480a50433d6eaf5a22111587a42f5f3d05dd845a20d",
+      "research/benchmarks/pointer_sapimouse_optimized/cosine_user57.npz": "9e464b430d97abdd1fffd4cafd39ffe4c6b2e5f12a0aa6db366753210e5e9b9c",
+      "research/benchmarks/pointer_sapimouse_optimized/cosine_user69.npz": "8a1ff4e3e0af2d327dae86d8c11bba7106122c0cd726938b5817934593379606",
+      "research/benchmarks/pointer_sapimouse_optimized/cosine_user74.npz": "5499412150026dd2f6be78a3d8442b6ec2b867da06489170fe99b1e33d9850bd",
+      "research/benchmarks/pointer_sapimouse_optimized/cosine_user75.npz": "f5c61b3ceee52d44d7bef47b329720cad4c9f06115cde670671eb78443cd0014",
+      "research/benchmarks/pointer_sapimouse_optimized/cosine_user78.npz": "dd42910180d45c2f037770b7dcf41ea61849cac6c88bd4c1b5af45e7bfafbaf5",
+      "research/benchmarks/pointer_sapimouse_optimized/cosine_user81.npz": "0fdd79fb2e05155e9b4146d12e87d39ff775a108a679818ff132148306f5d81f",
+      "research/benchmarks/pointer_sapimouse_optimized/cosine_user91.npz": "95844cd0f490d27a7a803284077288ac3cf831f8185ff5e1f54d7ddcd2302908",
+      "research/benchmarks/pointer_sapimouse_optimized/cosine_user96.npz": "ee0a4e7085ff3a6a9e5c08d8cba6ef8eb424fb7285a8ade35ecba595fb68ee24"
+    },
+    "source_sha256": {
+      "pointer_sapimouse_znorm_dev.py": "f416f6241dda1f972e0ae592881fe86ffee6c7f2dcf876a2b43dde5f319821e4",
+      "pointer_sapimouse_znorm.py": "2c4eb8265b126d6b999e8e64cb60fafe50fee593fe93349a8e6a9033aab90028",
+      "pointer_sapimouse_benchmark.py": "abfd68c1a54eae1b00df89565749ca6274cdb1996b5103c6a9bdfbd5a3d2c75b",
+      "pointer_sapimouse_optimize.py": "f0e86f6ef8e158f04eeffe7fe7cc8b9dc818f3c118dfefe8cd11b1ed7f2c2ddc",
+      "pointer_benchmark.py": "eb02a2a40611665edd6902b6fc7e802c8658a1cf7e9c3755230b7d0d86328c0f"
+    },
+    "subjects": [
+      "user1",
+      "user100",
+      "user105",
+      "user106",
+      "user108",
+      "user116",
+      "user18",
+      "user21",
+      "user25",
+      "user28",
+      "user4",
+      "user40",
+      "user46",
+      "user47",
+      "user50",
+      "user51",
+      "user57",
+      "user69",
+      "user74",
+      "user75",
+      "user78",
+      "user81",
+      "user91",
+      "user96"
+    ],
+    "dev_entries": [
+      {
+        "path": "sapimouse/user1/session_2020_05_14_1min.csv",
+        "size": 57068,
+        "crc": 895974079,
+        "split": "dev",
+        "role": "dev_probe",
+        "outer_cohort": "dev"
+      },
+      {
+        "path": "sapimouse/user100/session_2020_03_31_1min.csv",
+        "size": 70018,
+        "crc": 1521935349,
+        "split": "dev",
+        "role": "dev_probe",
+        "outer_cohort": "dev"
+      },
+      {
+        "path": "sapimouse/user105/session_2020_10_14_1min.csv",
+        "size": 121149,
+        "crc": 763867095,
+        "split": "dev",
+        "role": "dev_probe",
+        "outer_cohort": "dev"
+      },
+      {
+        "path": "sapimouse/user106/session_2020_05_14_1min.csv",
+        "size": 51771,
+        "crc": 547990962,
+        "split": "dev",
+        "role": "dev_probe",
+        "outer_cohort": "dev"
+      },
+      {
+        "path": "sapimouse/user108/session_2020_06_09_1min.csv",
+        "size": 61026,
+        "crc": 1369527729,
+        "split": "dev",
+        "role": "dev_probe",
+        "outer_cohort": "dev"
+      },
+      {
+        "path": "sapimouse/user116/session_2020_10_14_1min.csv",
+        "size": 55741,
+        "crc": 898535627,
+        "split": "dev",
+        "role": "dev_probe",
+        "outer_cohort": "dev"
+      },
+      {
+        "path": "sapimouse/user18/session_2020_10_14_1min.csv",
+        "size": 50912,
+        "crc": 992300719,
+        "split": "dev",
+        "role": "dev_probe",
+        "outer_cohort": "dev"
+      },
+      {
+        "path": "sapimouse/user21/session_2020_06_09_1min.csv",
+        "size": 73752,
+        "crc": 2545899927,
+        "split": "dev",
+        "role": "dev_probe",
+        "outer_cohort": "dev"
+      },
+      {
+        "path": "sapimouse/user25/session_2020_10_14_1min.csv",
+        "size": 55081,
+        "crc": 39453125,
+        "split": "dev",
+        "role": "dev_probe",
+        "outer_cohort": "dev"
+      },
+      {
+        "path": "sapimouse/user28/session_2020_03_31_1min.csv",
+        "size": 45464,
+        "crc": 3336794604,
+        "split": "dev",
+        "role": "dev_probe",
+        "outer_cohort": "dev"
+      },
+      {
+        "path": "sapimouse/user4/session_2020_10_14_1min.csv",
+        "size": 64207,
+        "crc": 2792414289,
+        "split": "dev",
+        "role": "dev_probe",
+        "outer_cohort": "dev"
+      },
+      {
+        "path": "sapimouse/user40/session_2020_05_18_1min.csv",
+        "size": 60501,
+        "crc": 3815118610,
+        "split": "dev",
+        "role": "dev_probe",
+        "outer_cohort": "dev"
+      },
+      {
+        "path": "sapimouse/user46/session_2020_05_18_1min.csv",
+        "size": 59364,
+        "crc": 1141723234,
+        "split": "dev",
+        "role": "dev_probe",
+        "outer_cohort": "dev"
+      },
+      {
+        "path": "sapimouse/user47/session_2020_06_16_1min.csv",
+        "size": 44316,
+        "crc": 3216072580,
+        "split": "dev",
+        "role": "dev_probe",
+        "outer_cohort": "dev"
+      },
+      {
+        "path": "sapimouse/user50/session_2020_05_18_1min.csv",
+        "size": 72911,
+        "crc": 3343612676,
+        "split": "dev",
+        "role": "dev_probe",
+        "outer_cohort": "dev"
+      },
+      {
+        "path": "sapimouse/user51/session_2020_05_18_1min.csv",
+        "size": 33136,
+        "crc": 2474495249,
+        "split": "dev",
+        "role": "dev_probe",
+        "outer_cohort": "dev"
+      },
+      {
+        "path": "sapimouse/user57/session_2020_05_14_1min.csv",
+        "size": 76179,
+        "crc": 2048268125,
+        "split": "dev",
+        "role": "dev_probe",
+        "outer_cohort": "dev"
+      },
+      {
+        "path": "sapimouse/user69/session_2020_06_09_1min.csv",
+        "size": 62412,
+        "crc": 1297267575,
+        "split": "dev",
+        "role": "dev_probe",
+        "outer_cohort": "dev"
+      },
+      {
+        "path": "sapimouse/user74/session_2020_05_14_1min.csv",
+        "size": 160765,
+        "crc": 3543082488,
+        "split": "dev",
+        "role": "dev_probe",
+        "outer_cohort": "dev"
+      },
+      {
+        "path": "sapimouse/user75/session_2020_06_11_1min.csv",
+        "size": 43921,
+        "crc": 4264603341,
+        "split": "dev",
+        "role": "dev_probe",
+        "outer_cohort": "dev"
+      },
+      {
+        "path": "sapimouse/user78/session_2020_05_22_1min.csv",
+        "size": 63337,
+        "crc": 1132621556,
+        "split": "dev",
+        "role": "dev_probe",
+        "outer_cohort": "dev"
+      },
+      {
+        "path": "sapimouse/user81/session_2020_10_14_1min.csv",
+        "size": 65955,
+        "crc": 1205680742,
+        "split": "dev",
+        "role": "dev_probe",
+        "outer_cohort": "dev"
+      },
+      {
+        "path": "sapimouse/user91/session_2020_05_15_1min.csv",
+        "size": 70499,
+        "crc": 46272724,
+        "split": "dev",
+        "role": "dev_probe",
+        "outer_cohort": "dev"
+      },
+      {
+        "path": "sapimouse/user96/session_2020_06_03_1min.csv",
+        "size": 57556,
+        "crc": 3723567515,
+        "split": "dev",
+        "role": "dev_probe",
+        "outer_cohort": "dev"
+      }
+    ],
+    "background_entries": [
+      {
+        "path": "sapimouse/user101/session_2020_06_08_3min.csv",
+        "size": 188607,
+        "crc": 1632330945,
+        "split": "train",
+        "role": "representation",
+        "outer_cohort": "train"
+      },
+      {
+        "path": "sapimouse/user102/session_2020_03_31_3min.csv",
+        "size": 195703,
+        "crc": 1990940176,
+        "split": "train",
+        "role": "representation",
+        "outer_cohort": "train"
+      },
+      {
+        "path": "sapimouse/user11/session_2020_06_03_3min.csv",
+        "size": 295598,
+        "crc": 3566870722,
+        "split": "train",
+        "role": "representation",
+        "outer_cohort": "train"
+      },
+      {
+        "path": "sapimouse/user110/session_2020_05_18_3min.csv",
+        "size": 248870,
+        "crc": 3840054007,
+        "split": "train",
+        "role": "representation",
+        "outer_cohort": "train"
+      },
+      {
+        "path": "sapimouse/user112/session_2020_06_09_3min.csv",
+        "size": 233202,
+        "crc": 3502939945,
+        "split": "train",
+        "role": "representation",
+        "outer_cohort": "train"
+      },
+      {
+        "path": "sapimouse/user113/session_2020_10_14_3min.csv",
+        "size": 159194,
+        "crc": 4170809256,
+        "split": "train",
+        "role": "representation",
+        "outer_cohort": "train"
+      },
+      {
+        "path": "sapimouse/user115/session_2020_05_14_3min.csv",
+        "size": 186900,
+        "crc": 981190991,
+        "split": "train",
+        "role": "representation",
+        "outer_cohort": "train"
+      },
+      {
+        "path": "sapimouse/user117/session_2020_06_09_3min.csv",
+        "size": 720664,
+        "crc": 4278445439,
+        "split": "train",
+        "role": "representation",
+        "outer_cohort": "train"
+      },
+      {
+        "path": "sapimouse/user119/session_2020_06_09_3min.csv",
+        "size": 219406,
+        "crc": 2912885859,
+        "split": "train",
+        "role": "representation",
+        "outer_cohort": "train"
+      },
+      {
+        "path": "sapimouse/user13/session_2020_06_17_3min.csv",
+        "size": 226715,
+        "crc": 3133122490,
+        "split": "train",
+        "role": "representation",
+        "outer_cohort": "train"
+      },
+      {
+        "path": "sapimouse/user14/session_2020_10_14_3min.csv",
+        "size": 177080,
+        "crc": 2535860554,
+        "split": "train",
+        "role": "representation",
+        "outer_cohort": "train"
+      },
+      {
+        "path": "sapimouse/user16/session_2020_05_14_3min.csv",
+        "size": 202522,
+        "crc": 307547457,
+        "split": "train",
+        "role": "representation",
+        "outer_cohort": "train"
+      },
+      {
+        "path": "sapimouse/user17/session_2020_05_18_3min.csv",
+        "size": 199397,
+        "crc": 1004407911,
+        "split": "train",
+        "role": "representation",
+        "outer_cohort": "train"
+      },
+      {
+        "path": "sapimouse/user2/session_2020_10_22_3min.csv",
+        "size": 152651,
+        "crc": 4158553243,
+        "split": "train",
+        "role": "representation",
+        "outer_cohort": "train"
+      },
+      {
+        "path": "sapimouse/user24/session_2020_10_14_3min.csv",
+        "size": 208293,
+        "crc": 2589383773,
+        "split": "train",
+        "role": "representation",
+        "outer_cohort": "train"
+      },
+      {
+        "path": "sapimouse/user26/session_2020_05_14_3min.csv",
+        "size": 430253,
+        "crc": 1506505665,
+        "split": "train",
+        "role": "representation",
+        "outer_cohort": "train"
+      },
+      {
+        "path": "sapimouse/user27/session_2020_10_14_3min.csv",
+        "size": 153003,
+        "crc": 876098965,
+        "split": "train",
+        "role": "representation",
+        "outer_cohort": "train"
+      },
+      {
+        "path": "sapimouse/user30/session_2020_06_09_3min.csv",
+        "size": 207010,
+        "crc": 2105315223,
+        "split": "train",
+        "role": "representation",
+        "outer_cohort": "train"
+      },
+      {
+        "path": "sapimouse/user31/session_2020_10_14_3min.csv",
+        "size": 146781,
+        "crc": 2601480495,
+        "split": "train",
+        "role": "representation",
+        "outer_cohort": "train"
+      },
+      {
+        "path": "sapimouse/user32/session_2020_05_25_3min.csv",
+        "size": 219346,
+        "crc": 2321029570,
+        "split": "train",
+        "role": "representation",
+        "outer_cohort": "train"
+      },
+      {
+        "path": "sapimouse/user33/session_2020_10_14_3min.csv",
+        "size": 169724,
+        "crc": 1410561433,
+        "split": "train",
+        "role": "representation",
+        "outer_cohort": "train"
+      },
+      {
+        "path": "sapimouse/user38/session_2020_05_14_3min.csv",
+        "size": 199234,
+        "crc": 4041207489,
+        "split": "train",
+        "role": "representation",
+        "outer_cohort": "train"
+      },
+      {
+        "path": "sapimouse/user39/session_2020_05_29_3min.csv",
+        "size": 153198,
+        "crc": 1545470808,
+        "split": "train",
+        "role": "representation",
+        "outer_cohort": "train"
+      },
+      {
+        "path": "sapimouse/user41/session_2020_10_20_3min.csv",
+        "size": 228725,
+        "crc": 4000877458,
+        "split": "train",
+        "role": "representation",
+        "outer_cohort": "train"
+      },
+      {
+        "path": "sapimouse/user42/session_2020_05_14_3min.csv",
+        "size": 206547,
+        "crc": 3855976233,
+        "split": "train",
+        "role": "representation",
+        "outer_cohort": "train"
+      },
+      {
+        "path": "sapimouse/user44/session_2020_05_18_3min.csv",
+        "size": 222256,
+        "crc": 2269624084,
+        "split": "train",
+        "role": "representation",
+        "outer_cohort": "train"
+      },
+      {
+        "path": "sapimouse/user45/session_2020_10_14_3min.csv",
+        "size": 178402,
+        "crc": 1457609189,
+        "split": "train",
+        "role": "representation",
+        "outer_cohort": "train"
+      },
+      {
+        "path": "sapimouse/user48/session_2020_05_25_3min.csv",
+        "size": 168394,
+        "crc": 3287477831,
+        "split": "train",
+        "role": "representation",
+        "outer_cohort": "train"
+      },
+      {
+        "path": "sapimouse/user49/session_2020_05_14_3min.csv",
+        "size": 139768,
+        "crc": 2772051300,
+        "split": "train",
+        "role": "representation",
+        "outer_cohort": "train"
+      },
+      {
+        "path": "sapimouse/user5/session_2020_06_04_3min.csv",
+        "size": 202910,
+        "crc": 621536275,
+        "split": "train",
+        "role": "representation",
+        "outer_cohort": "train"
+      },
+      {
+        "path": "sapimouse/user52/session_2020_05_18_3min.csv",
+        "size": 233869,
+        "crc": 780388771,
+        "split": "train",
+        "role": "representation",
+        "outer_cohort": "train"
+      },
+      {
+        "path": "sapimouse/user53/session_2020_06_09_3min.csv",
+        "size": 141822,
+        "crc": 1898747014,
+        "split": "train",
+        "role": "representation",
+        "outer_cohort": "train"
+      },
+      {
+        "path": "sapimouse/user54/session_2020_06_25_3min.csv",
+        "size": 106493,
+        "crc": 932811345,
+        "split": "train",
+        "role": "representation",
+        "outer_cohort": "train"
+      },
+      {
+        "path": "sapimouse/user55/session_2020_05_14_3min.csv",
+        "size": 212997,
+        "crc": 3034936493,
+        "split": "train",
+        "role": "representation",
+        "outer_cohort": "train"
+      },
+      {
+        "path": "sapimouse/user56/session_2020_06_25_3min.csv",
+        "size": 208245,
+        "crc": 932398778,
+        "split": "train",
+        "role": "representation",
+        "outer_cohort": "train"
+      },
+      {
+        "path": "sapimouse/user59/session_2020_03_31_3min.csv",
+        "size": 193673,
+        "crc": 2280785977,
+        "split": "train",
+        "role": "representation",
+        "outer_cohort": "train"
+      },
+      {
+        "path": "sapimouse/user6/session_2020_06_09_3min.csv",
+        "size": 191536,
+        "crc": 2359714814,
+        "split": "train",
+        "role": "representation",
+        "outer_cohort": "train"
+      },
+      {
+        "path": "sapimouse/user60/session_2020_10_19_3min.csv",
+        "size": 141334,
+        "crc": 2754126108,
+        "split": "train",
+        "role": "representation",
+        "outer_cohort": "train"
+      },
+      {
+        "path": "sapimouse/user62/session_2020_10_14_3min.csv",
+        "size": 189894,
+        "crc": 3268030626,
+        "split": "train",
+        "role": "representation",
+        "outer_cohort": "train"
+      },
+      {
+        "path": "sapimouse/user62/session_2020_05_27_3min.csv",
+        "size": 193670,
+        "crc": 3312663037,
+        "split": "train",
+        "role": "representation",
+        "outer_cohort": "train"
+      },
+      {
+        "path": "sapimouse/user63/session_2020_06_09_3min.csv",
+        "size": 212913,
+        "crc": 1878167141,
+        "split": "train",
+        "role": "representation",
+        "outer_cohort": "train"
+      },
+      {
+        "path": "sapimouse/user64/session_2020_06_09_3min.csv",
+        "size": 455917,
+        "crc": 1475440745,
+        "split": "train",
+        "role": "representation",
+        "outer_cohort": "train"
+      },
+      {
+        "path": "sapimouse/user66/session_2020_05_27_3min.csv",
+        "size": 184781,
+        "crc": 701429204,
+        "split": "train",
+        "role": "representation",
+        "outer_cohort": "train"
+      },
+      {
+        "path": "sapimouse/user68/session_2020_06_09_3min.csv",
+        "size": 175953,
+        "crc": 824276555,
+        "split": "train",
+        "role": "representation",
+        "outer_cohort": "train"
+      },
+      {
+        "path": "sapimouse/user70/session_2020_10_14_3min.csv",
+        "size": 189889,
+        "crc": 3039487413,
+        "split": "train",
+        "role": "representation",
+        "outer_cohort": "train"
+      },
+      {
+        "path": "sapimouse/user71/session_2020_10_15_3min.csv",
+        "size": 187144,
+        "crc": 1947759165,
+        "split": "train",
+        "role": "representation",
+        "outer_cohort": "train"
+      },
+      {
+        "path": "sapimouse/user72/session_2020_10_14_3min.csv",
+        "size": 171625,
+        "crc": 2432213406,
+        "split": "train",
+        "role": "representation",
+        "outer_cohort": "train"
+      },
+      {
+        "path": "sapimouse/user73/session_2020_06_09_3min.csv",
+        "size": 208739,
+        "crc": 99619343,
+        "split": "train",
+        "role": "representation",
+        "outer_cohort": "train"
+      },
+      {
+        "path": "sapimouse/user77/session_3min.csv",
+        "size": 210826,
+        "crc": 1256308899,
+        "split": "train",
+        "role": "representation",
+        "outer_cohort": "train"
+      },
+      {
+        "path": "sapimouse/user79/session_2020_10_14_3min.csv",
+        "size": 120162,
+        "crc": 784774892,
+        "split": "train",
+        "role": "representation",
+        "outer_cohort": "train"
+      },
+      {
+        "path": "sapimouse/user80/session_2020_06_09_3min.csv",
+        "size": 142732,
+        "crc": 1659429972,
+        "split": "train",
+        "role": "representation",
+        "outer_cohort": "train"
+      },
+      {
+        "path": "sapimouse/user83/session_2020_06_01_3min.csv",
+        "size": 179044,
+        "crc": 3235518313,
+        "split": "train",
+        "role": "representation",
+        "outer_cohort": "train"
+      },
+      {
+        "path": "sapimouse/user84/session_2020_09_16_3min.csv",
+        "size": 444303,
+        "crc": 504317157,
+        "split": "train",
+        "role": "representation",
+        "outer_cohort": "train"
+      },
+      {
+        "path": "sapimouse/user85/session_2020_10_14_3min.csv",
+        "size": 162206,
+        "crc": 1132774487,
+        "split": "train",
+        "role": "representation",
+        "outer_cohort": "train"
+      },
+      {
+        "path": "sapimouse/user89/session_2020_10_14_3min.csv",
+        "size": 193834,
+        "crc": 4277093601,
+        "split": "train",
+        "role": "representation",
+        "outer_cohort": "train"
+      },
+      {
+        "path": "sapimouse/user90/session_2020_06_10_3min.csv",
+        "size": 353034,
+        "crc": 3003891536,
+        "split": "train",
+        "role": "representation",
+        "outer_cohort": "train"
+      },
+      {
+        "path": "sapimouse/user92/session_2020_10_14_3min.csv",
+        "size": 167495,
+        "crc": 167236136,
+        "split": "train",
+        "role": "representation",
+        "outer_cohort": "train"
+      },
+      {
+        "path": "sapimouse/user93/session_2020_05_18_3min.csv",
+        "size": 152823,
+        "crc": 2092130358,
+        "split": "train",
+        "role": "representation",
+        "outer_cohort": "train"
+      },
+      {
+        "path": "sapimouse/user95/session_2020_06_03_3min.csv",
+        "size": 235952,
+        "crc": 2320451041,
+        "split": "train",
+        "role": "representation",
+        "outer_cohort": "train"
+      },
+      {
+        "path": "sapimouse/user97/session_2020_05_17_3min.csv",
+        "size": 87366,
+        "crc": 915806354,
+        "split": "train",
+        "role": "representation",
+        "outer_cohort": "train"
+      },
+      {
+        "path": "sapimouse/user99/session_2020_10_19_3min.csv",
+        "size": 123333,
+        "crc": 3410894869,
+        "split": "train",
+        "role": "representation",
+        "outer_cohort": "train"
+      }
+    ],
+    "thresholds": {
+      "cosine@5": {
+        "0.001": 0.9561202526092529,
+        "0.01": 0.9480821490287781,
+        "0.05": 0.9353358149528503
+      },
+      "znorm_cosine@5": {
+        "0.001": 1.7471635724229186,
+        "0.01": 1.6269916291282644,
+        "0.05": 1.1657841178958979
+      }
+    },
+    "selected": "cosine@5",
+    "evaluation_only": true,
+    "no_dev_selection_or_tuning": true,
+    "prior_dev_exposure": "Original SapiMouse DEV already evaluated; this is a frozen comparison extension.",
+    "normalization": "Only existing TRAIN-support centroids and representation-TRAIN background scores; no DEV-probe normalization fit",
+    "blocks": 5,
+    "api_tolerance": {
+      "raw_atol": 1e-05,
+      "znorm_atol": 0.0001,
+      "rtol": 1e-05
+    },
+    "test_accessed": false
+  },
+  "selected": "cosine@5",
+  "dev": {
+    "cosine@5": {
+      "0.001": {
+        "far": 0.005720823798627002,
+        "frr": 0.5263157894736842,
+        "eer_descriptive": 0.13872997711670476,
+        "auc": 0.9487986270022883,
+        "genuine_comparisons": 76,
+        "impostor_comparisons": 1748
+      },
+      "0.01": {
+        "far": 0.016590389016018305,
+        "frr": 0.4342105263157895,
+        "eer_descriptive": 0.13872997711670476,
+        "auc": 0.9487986270022883,
+        "genuine_comparisons": 76,
+        "impostor_comparisons": 1748
+      },
+      "0.05": {
+        "far": 0.05320366132723112,
+        "frr": 0.27631578947368424,
+        "eer_descriptive": 0.13872997711670476,
+        "auc": 0.9487986270022883,
+        "genuine_comparisons": 76,
+        "impostor_comparisons": 1748
+      }
+    },
+    "znorm_cosine@5": {
+      "0.001": {
+        "far": 0.003432494279176201,
+        "frr": 0.6447368421052632,
+        "eer_descriptive": 0.11727688787185353,
+        "auc": 0.941083042273877,
+        "genuine_comparisons": 76,
+        "impostor_comparisons": 1748
+      },
+      "0.01": {
+        "far": 0.007437070938215103,
+        "frr": 0.6052631578947368,
+        "eer_descriptive": 0.11727688787185353,
+        "auc": 0.941083042273877,
+        "genuine_comparisons": 76,
+        "impostor_comparisons": 1748
+      },
+      "0.05": {
+        "far": 0.08638443935926773,
+        "frr": 0.19736842105263158,
+        "eer_descriptive": 0.11727688787185353,
+        "auc": 0.941083042273877,
+        "genuine_comparisons": 76,
+        "impostor_comparisons": 1748
+      }
+    }
+  },
+  "dev_blocks": 427,
+  "dev_decisions": 76,
+  "scores_sha256": "5d316385729fa06c496ae1830f0c96086b825f9fb9ca56121d86dad22dfa275c",
+  "normalization_sha256": "ea477ad3b473233991a633e094ec9246f13ee9002be7e979a180d9b259ef9861",
+  "test_accessed": false,
+  "candidate_promoted": false
+}

@@ -1,0 +1,189 @@
+{
+  "status": "actual_capture_dev_api_replay_complete",
+  "probes": 79,
+  "claims": 6241,
+  "max_absolute_score_error": 0.0,
+  "max_absolute_metric_error": 0,
+  "decision_flips": 0,
+  "gate_checks": {
+    "train": 403,
+    "test": 403,
+    "malformed": 422,
+    "Host": 403,
+    "Origin": 403,
+    "remote_client": 403
+  },
+  "metrics": {
+    "coverage": {
+      "eligible": 79,
+      "total": 79,
+      "fraction": 1.0,
+      "ineligible": [],
+      "ineligible_count": 0,
+      "by_cohort": {
+        "fit": {
+          "eligible": 47,
+          "total": 47,
+          "fraction": 1.0,
+          "ineligible": []
+        },
+        "selection": {
+          "eligible": 16,
+          "total": 16,
+          "fraction": 1.0,
+          "ineligible": []
+        },
+        "calibration": {
+          "eligible": 16,
+          "total": 16,
+          "fraction": 1.0,
+          "ineligible": []
+        }
+      },
+      "by_length": {
+        "25": {
+          "eligible": 1,
+          "total": 79,
+          "fraction_of_all_accounts": 0.012658227848101266
+        },
+        "50": {
+          "eligible": 0,
+          "total": 79,
+          "fraction_of_all_accounts": 0.0
+        },
+        "75": {
+          "eligible": 0,
+          "total": 79,
+          "fraction_of_all_accounts": 0.0
+        },
+        "100": {
+          "eligible": 78,
+          "total": 79,
+          "fraction_of_all_accounts": 0.9873417721518988
+        }
+      }
+    },
+    "conditional_metrics": {
+      "pooled": {
+        "genuine_n": 79,
+        "impostor_n": 6162,
+        "false_rejections": 24,
+        "false_acceptances": 563,
+        "frr": 0.3037974683544304,
+        "far": 0.09136643946770528,
+        "discrete_eer": 0.13932164881531967,
+        "margin_discrete_eer": 0.13932164881531967
+      },
+      "per_length": {
+        "25": {
+          "genuine_n": 1,
+          "impostor_n": 78,
+          "false_rejections": 1,
+          "false_acceptances": 0,
+          "frr": 1.0,
+          "far": 0.0,
+          "discrete_eer": 0.8717948717948718,
+          "margin_discrete_eer": 0.8717948717948718
+        },
+        "50": {},
+        "75": {},
+        "100": {
+          "genuine_n": 78,
+          "impostor_n": 6084,
+          "false_rejections": 23,
+          "false_acceptances": 563,
+          "frr": 0.2948717948717949,
+          "far": 0.09253780407626562,
+          "discrete_eer": 0.14102564102564105,
+          "margin_discrete_eer": 0.14102564102564105
+        }
+      },
+      "probe_cohorts_full_claims": {
+        "fit": {
+          "genuine_n": 47,
+          "impostor_n": 3666,
+          "false_rejections": 10,
+          "false_acceptances": 365,
+          "frr": 0.2127659574468085,
+          "far": 0.09956355701036552,
+          "discrete_eer": 0.1282051282051282,
+          "margin_discrete_eer": 0.1282051282051282
+        },
+        "selection": {
+          "genuine_n": 16,
+          "impostor_n": 1248,
+          "false_rejections": 7,
+          "false_acceptances": 113,
+          "frr": 0.4375,
+          "far": 0.09054487179487179,
+          "discrete_eer": 0.17948717948717946,
+          "margin_discrete_eer": 0.17948717948717946
+        },
+        "calibration": {
+          "genuine_n": 16,
+          "impostor_n": 1248,
+          "false_rejections": 7,
+          "false_acceptances": 85,
+          "frr": 0.4375,
+          "far": 0.06810897435897435,
+          "discrete_eer": 0.125,
+          "margin_discrete_eer": 0.125
+        }
+      },
+      "within_cohort": {
+        "fit": {
+          "genuine_n": 47,
+          "impostor_n": 2162,
+          "false_rejections": 10,
+          "false_acceptances": 236,
+          "frr": 0.2127659574468085,
+          "far": 0.1091581868640148,
+          "discrete_eer": 0.14685476410730802,
+          "margin_discrete_eer": 0.14685476410730802
+        },
+        "selection": {
+          "genuine_n": 16,
+          "impostor_n": 240,
+          "false_rejections": 7,
+          "false_acceptances": 24,
+          "frr": 0.4375,
+          "far": 0.1,
+          "discrete_eer": 0.13958333333333334,
+          "margin_discrete_eer": 0.13958333333333334
+        },
+        "calibration": {
+          "genuine_n": 16,
+          "impostor_n": 240,
+          "false_rejections": 7,
+          "false_acceptances": 19,
+          "frr": 0.4375,
+          "far": 0.07916666666666666,
+          "discrete_eer": 0.125,
+          "margin_discrete_eer": 0.125
+        }
+      }
+    },
+    "whole_cohort": {
+      "total": 79,
+      "direct_acceptances": 55,
+      "direct_acceptance_fraction": 0.6962025316455697,
+      "score_rejections": 24,
+      "score_rejection_fraction": 0.3037974683544304,
+      "ineligible": 0,
+      "ineligible_fraction": 0.0,
+      "additional_verifications": 24,
+      "additional_verification_fraction": 0.3037974683544304
+    },
+    "interpretation": "Conditional rates exclude unavailable captures; raw-score and threshold-margin EER are diagnostic"
+  },
+  "output_sha256": "3e9dae88e9ae0e6c3d4953f3bef209ad2c5a95c87ac1718b1444ae6ab99b04c5",
+  "limitations": [
+    "Different capture budget and trial count from failed original protocol; no direct performance comparison",
+    "Prefix anchoring discards at most24 events within the first100; later events unused",
+    "One chronological probe per identity gives limited precision and dependent all-claim comparisons",
+    "Same-session TRAIN calibration does not guarantee cross-session FAR",
+    "Source-order, Average synthesis and residual preprocessing are documented adaptations",
+    "No all-feature fusion claim; this experiment measures the keystroke encoder",
+    "In-process ASGI with actual isolated model worker; no network listener"
+  ]
+}

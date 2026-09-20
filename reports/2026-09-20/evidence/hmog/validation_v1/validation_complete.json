@@ -1,0 +1,1294 @@
+{
+  "status": "infeasible",
+  "missing": [
+    {
+      "subject": "556357",
+      "missing_role": "dev_probe"
+    },
+    {
+      "subject": "737973",
+      "missing_role": "dev_probe"
+    }
+  ],
+  "metrics": {
+    "joint": {
+      "pooled_eer_diagnostic": 0.4516129032258065,
+      "operating_points": {
+        "0.001": {
+          "frr": 1.0,
+          "far": 0.0,
+          "genuine_count": 31,
+          "impostor_count": 93,
+          "expected_genuine": 154,
+          "expected_impostor": 462,
+          "missing_genuine": 123,
+          "missing_impostor": 369,
+          "genuine_coverage": 0.2012987012987013,
+          "impostor_coverage": 0.2012987012987013,
+          "genuine_rejections": 31,
+          "impostor_acceptances": 0,
+          "genuine_not_accepted_rate": 1.0,
+          "impostor_acceptances_per_expected_claim": 0.0
+        },
+        "0.01": {
+          "frr": 1.0,
+          "far": 0.0,
+          "genuine_count": 31,
+          "impostor_count": 93,
+          "expected_genuine": 154,
+          "expected_impostor": 462,
+          "missing_genuine": 123,
+          "missing_impostor": 369,
+          "genuine_coverage": 0.2012987012987013,
+          "impostor_coverage": 0.2012987012987013,
+          "genuine_rejections": 31,
+          "impostor_acceptances": 0,
+          "genuine_not_accepted_rate": 1.0,
+          "impostor_acceptances_per_expected_claim": 0.0
+        },
+        "0.05": {
+          "frr": 0.9032258064516129,
+          "far": 0.043010752688172046,
+          "genuine_count": 31,
+          "impostor_count": 93,
+          "expected_genuine": 154,
+          "expected_impostor": 462,
+          "missing_genuine": 123,
+          "missing_impostor": 369,
+          "genuine_coverage": 0.2012987012987013,
+          "impostor_coverage": 0.2012987012987013,
+          "genuine_rejections": 28,
+          "impostor_acceptances": 4,
+          "genuine_not_accepted_rate": 0.9805194805194806,
+          "impostor_acceptances_per_expected_claim": 0.008658008658008658
+        }
+      },
+      "per_account": {
+        "219303": {
+          "gallery_available": true,
+          "probe_windows": 7,
+          "eer_diagnostic": 0.5,
+          "operating_points": {
+            "0.001": {
+              "frr": 1.0,
+              "far": 0.0,
+              "genuine_count": 7,
+              "impostor_count": 24,
+              "expected_genuine": 29,
+              "expected_impostor": 125,
+              "missing_genuine": 22,
+              "missing_impostor": 101,
+              "genuine_coverage": 0.2413793103448276,
+              "impostor_coverage": 0.192,
+              "genuine_rejections": 7,
+              "impostor_acceptances": 0,
+              "genuine_not_accepted_rate": 1.0,
+              "impostor_acceptances_per_expected_claim": 0.0
+            },
+            "0.01": {
+              "frr": 1.0,
+              "far": 0.0,
+              "genuine_count": 7,
+              "impostor_count": 24,
+              "expected_genuine": 29,
+              "expected_impostor": 125,
+              "missing_genuine": 22,
+              "missing_impostor": 101,
+              "genuine_coverage": 0.2413793103448276,
+              "impostor_coverage": 0.192,
+              "genuine_rejections": 7,
+              "impostor_acceptances": 0,
+              "genuine_not_accepted_rate": 1.0,
+              "impostor_acceptances_per_expected_claim": 0.0
+            },
+            "0.05": {
+              "frr": 0.8571428571428571,
+              "far": 0.041666666666666664,
+              "genuine_count": 7,
+              "impostor_count": 24,
+              "expected_genuine": 29,
+              "expected_impostor": 125,
+              "missing_genuine": 22,
+              "missing_impostor": 101,
+              "genuine_coverage": 0.2413793103448276,
+              "impostor_coverage": 0.192,
+              "genuine_rejections": 6,
+              "impostor_acceptances": 1,
+              "genuine_not_accepted_rate": 0.9655172413793104,
+              "impostor_acceptances_per_expected_claim": 0.008
+            }
+          }
+        },
+        "556357": {
+          "gallery_available": true,
+          "probe_windows": 0,
+          "eer_diagnostic": null,
+          "operating_points": {
+            "0.001": {
+              "frr": null,
+              "far": 0.0,
+              "genuine_count": 0,
+              "impostor_count": 31,
+              "expected_genuine": 60,
+              "expected_impostor": 94,
+              "missing_genuine": 60,
+              "missing_impostor": 63,
+              "genuine_coverage": 0.0,
+              "impostor_coverage": 0.32978723404255317,
+              "genuine_rejections": 0,
+              "impostor_acceptances": 0,
+              "genuine_not_accepted_rate": 1.0,
+              "impostor_acceptances_per_expected_claim": 0.0
+            },
+            "0.01": {
+              "frr": null,
+              "far": 0.0,
+              "genuine_count": 0,
+              "impostor_count": 31,
+              "expected_genuine": 60,
+              "expected_impostor": 94,
+              "missing_genuine": 60,
+              "missing_impostor": 63,
+              "genuine_coverage": 0.0,
+              "impostor_coverage": 0.32978723404255317,
+              "genuine_rejections": 0,
+              "impostor_acceptances": 0,
+              "genuine_not_accepted_rate": 1.0,
+              "impostor_acceptances_per_expected_claim": 0.0
+            },
+            "0.05": {
+              "frr": null,
+              "far": 0.0,
+              "genuine_count": 0,
+              "impostor_count": 31,
+              "expected_genuine": 60,
+              "expected_impostor": 94,
+              "missing_genuine": 60,
+              "missing_impostor": 63,
+              "genuine_coverage": 0.0,
+              "impostor_coverage": 0.32978723404255317,
+              "genuine_rejections": 0,
+              "impostor_acceptances": 0,
+              "genuine_not_accepted_rate": 1.0,
+              "impostor_acceptances_per_expected_claim": 0.0
+            }
+          }
+        },
+        "737973": {
+          "gallery_available": true,
+          "probe_windows": 0,
+          "eer_diagnostic": null,
+          "operating_points": {
+            "0.001": {
+              "frr": null,
+              "far": 0.0,
+              "genuine_count": 0,
+              "impostor_count": 31,
+              "expected_genuine": 24,
+              "expected_impostor": 130,
+              "missing_genuine": 24,
+              "missing_impostor": 99,
+              "genuine_coverage": 0.0,
+              "impostor_coverage": 0.23846153846153847,
+              "genuine_rejections": 0,
+              "impostor_acceptances": 0,
+              "genuine_not_accepted_rate": 1.0,
+              "impostor_acceptances_per_expected_claim": 0.0
+            },
+            "0.01": {
+              "frr": null,
+              "far": 0.0,
+              "genuine_count": 0,
+              "impostor_count": 31,
+              "expected_genuine": 24,
+              "expected_impostor": 130,
+              "missing_genuine": 24,
+              "missing_impostor": 99,
+              "genuine_coverage": 0.0,
+              "impostor_coverage": 0.23846153846153847,
+              "genuine_rejections": 0,
+              "impostor_acceptances": 0,
+              "genuine_not_accepted_rate": 1.0,
+              "impostor_acceptances_per_expected_claim": 0.0
+            },
+            "0.05": {
+              "frr": null,
+              "far": 0.0,
+              "genuine_count": 0,
+              "impostor_count": 31,
+              "expected_genuine": 24,
+              "expected_impostor": 130,
+              "missing_genuine": 24,
+              "missing_impostor": 99,
+              "genuine_coverage": 0.0,
+              "impostor_coverage": 0.23846153846153847,
+              "genuine_rejections": 0,
+              "impostor_acceptances": 0,
+              "genuine_not_accepted_rate": 1.0,
+              "impostor_acceptances_per_expected_claim": 0.0
+            }
+          }
+        },
+        "777078": {
+          "gallery_available": true,
+          "probe_windows": 24,
+          "eer_diagnostic": 0.5714285714285714,
+          "operating_points": {
+            "0.001": {
+              "frr": 1.0,
+              "far": 0.0,
+              "genuine_count": 24,
+              "impostor_count": 7,
+              "expected_genuine": 41,
+              "expected_impostor": 113,
+              "missing_genuine": 17,
+              "missing_impostor": 106,
+              "genuine_coverage": 0.5853658536585366,
+              "impostor_coverage": 0.061946902654867256,
+              "genuine_rejections": 24,
+              "impostor_acceptances": 0,
+              "genuine_not_accepted_rate": 1.0,
+              "impostor_acceptances_per_expected_claim": 0.0
+            },
+            "0.01": {
+              "frr": 1.0,
+              "far": 0.0,
+              "genuine_count": 24,
+              "impostor_count": 7,
+              "expected_genuine": 41,
+              "expected_impostor": 113,
+              "missing_genuine": 17,
+              "missing_impostor": 106,
+              "genuine_coverage": 0.5853658536585366,
+              "impostor_coverage": 0.061946902654867256,
+              "genuine_rejections": 24,
+              "impostor_acceptances": 0,
+              "genuine_not_accepted_rate": 1.0,
+              "impostor_acceptances_per_expected_claim": 0.0
+            },
+            "0.05": {
+              "frr": 0.9166666666666666,
+              "far": 0.42857142857142855,
+              "genuine_count": 24,
+              "impostor_count": 7,
+              "expected_genuine": 41,
+              "expected_impostor": 113,
+              "missing_genuine": 17,
+              "missing_impostor": 106,
+              "genuine_coverage": 0.5853658536585366,
+              "impostor_coverage": 0.061946902654867256,
+              "genuine_rejections": 22,
+              "impostor_acceptances": 3,
+              "genuine_not_accepted_rate": 0.9512195121951219,
+              "impostor_acceptances_per_expected_claim": 0.02654867256637168
+            }
+          }
+        }
+      },
+      "missing_gallery_accounts": []
+    },
+    "key": {
+      "pooled_eer_diagnostic": 0.26881720430107525,
+      "operating_points": {
+        "0.001": {
+          "frr": 0.9354838709677419,
+          "far": 0.0,
+          "genuine_count": 31,
+          "impostor_count": 93,
+          "expected_genuine": 154,
+          "expected_impostor": 462,
+          "missing_genuine": 123,
+          "missing_impostor": 369,
+          "genuine_coverage": 0.2012987012987013,
+          "impostor_coverage": 0.2012987012987013,
+          "genuine_rejections": 29,
+          "impostor_acceptances": 0,
+          "genuine_not_accepted_rate": 0.987012987012987,
+          "impostor_acceptances_per_expected_claim": 0.0
+        },
+        "0.01": {
+          "frr": 0.9354838709677419,
+          "far": 0.0,
+          "genuine_count": 31,
+          "impostor_count": 93,
+          "expected_genuine": 154,
+          "expected_impostor": 462,
+          "missing_genuine": 123,
+          "missing_impostor": 369,
+          "genuine_coverage": 0.2012987012987013,
+          "impostor_coverage": 0.2012987012987013,
+          "genuine_rejections": 29,
+          "impostor_acceptances": 0,
+          "genuine_not_accepted_rate": 0.987012987012987,
+          "impostor_acceptances_per_expected_claim": 0.0
+        },
+        "0.05": {
+          "frr": 0.8064516129032258,
+          "far": 0.010752688172043012,
+          "genuine_count": 31,
+          "impostor_count": 93,
+          "expected_genuine": 154,
+          "expected_impostor": 462,
+          "missing_genuine": 123,
+          "missing_impostor": 369,
+          "genuine_coverage": 0.2012987012987013,
+          "impostor_coverage": 0.2012987012987013,
+          "genuine_rejections": 25,
+          "impostor_acceptances": 1,
+          "genuine_not_accepted_rate": 0.961038961038961,
+          "impostor_acceptances_per_expected_claim": 0.0021645021645021645
+        }
+      },
+      "per_account": {
+        "219303": {
+          "gallery_available": true,
+          "probe_windows": 7,
+          "eer_diagnostic": 0.5714285714285714,
+          "operating_points": {
+            "0.001": {
+              "frr": 1.0,
+              "far": 0.0,
+              "genuine_count": 7,
+              "impostor_count": 24,
+              "expected_genuine": 29,
+              "expected_impostor": 125,
+              "missing_genuine": 22,
+              "missing_impostor": 101,
+              "genuine_coverage": 0.2413793103448276,
+              "impostor_coverage": 0.192,
+              "genuine_rejections": 7,
+              "impostor_acceptances": 0,
+              "genuine_not_accepted_rate": 1.0,
+              "impostor_acceptances_per_expected_claim": 0.0
+            },
+            "0.01": {
+              "frr": 1.0,
+              "far": 0.0,
+              "genuine_count": 7,
+              "impostor_count": 24,
+              "expected_genuine": 29,
+              "expected_impostor": 125,
+              "missing_genuine": 22,
+              "missing_impostor": 101,
+              "genuine_coverage": 0.2413793103448276,
+              "impostor_coverage": 0.192,
+              "genuine_rejections": 7,
+              "impostor_acceptances": 0,
+              "genuine_not_accepted_rate": 1.0,
+              "impostor_acceptances_per_expected_claim": 0.0
+            },
+            "0.05": {
+              "frr": 1.0,
+              "far": 0.0,
+              "genuine_count": 7,
+              "impostor_count": 24,
+              "expected_genuine": 29,
+              "expected_impostor": 125,
+              "missing_genuine": 22,
+              "missing_impostor": 101,
+              "genuine_coverage": 0.2413793103448276,
+              "impostor_coverage": 0.192,
+              "genuine_rejections": 7,
+              "impostor_acceptances": 0,
+              "genuine_not_accepted_rate": 1.0,
+              "impostor_acceptances_per_expected_claim": 0.0
+            }
+          }
+        },
+        "556357": {
+          "gallery_available": true,
+          "probe_windows": 0,
+          "eer_diagnostic": null,
+          "operating_points": {
+            "0.001": {
+              "frr": null,
+              "far": 0.0,
+              "genuine_count": 0,
+              "impostor_count": 31,
+              "expected_genuine": 60,
+              "expected_impostor": 94,
+              "missing_genuine": 60,
+              "missing_impostor": 63,
+              "genuine_coverage": 0.0,
+              "impostor_coverage": 0.32978723404255317,
+              "genuine_rejections": 0,
+              "impostor_acceptances": 0,
+              "genuine_not_accepted_rate": 1.0,
+              "impostor_acceptances_per_expected_claim": 0.0
+            },
+            "0.01": {
+              "frr": null,
+              "far": 0.0,
+              "genuine_count": 0,
+              "impostor_count": 31,
+              "expected_genuine": 60,
+              "expected_impostor": 94,
+              "missing_genuine": 60,
+              "missing_impostor": 63,
+              "genuine_coverage": 0.0,
+              "impostor_coverage": 0.32978723404255317,
+              "genuine_rejections": 0,
+              "impostor_acceptances": 0,
+              "genuine_not_accepted_rate": 1.0,
+              "impostor_acceptances_per_expected_claim": 0.0
+            },
+            "0.05": {
+              "frr": null,
+              "far": 0.03225806451612903,
+              "genuine_count": 0,
+              "impostor_count": 31,
+              "expected_genuine": 60,
+              "expected_impostor": 94,
+              "missing_genuine": 60,
+              "missing_impostor": 63,
+              "genuine_coverage": 0.0,
+              "impostor_coverage": 0.32978723404255317,
+              "genuine_rejections": 0,
+              "impostor_acceptances": 1,
+              "genuine_not_accepted_rate": 1.0,
+              "impostor_acceptances_per_expected_claim": 0.010638297872340425
+            }
+          }
+        },
+        "737973": {
+          "gallery_available": true,
+          "probe_windows": 0,
+          "eer_diagnostic": null,
+          "operating_points": {
+            "0.001": {
+              "frr": null,
+              "far": 0.0,
+              "genuine_count": 0,
+              "impostor_count": 31,
+              "expected_genuine": 24,
+              "expected_impostor": 130,
+              "missing_genuine": 24,
+              "missing_impostor": 99,
+              "genuine_coverage": 0.0,
+              "impostor_coverage": 0.23846153846153847,
+              "genuine_rejections": 0,
+              "impostor_acceptances": 0,
+              "genuine_not_accepted_rate": 1.0,
+              "impostor_acceptances_per_expected_claim": 0.0
+            },
+            "0.01": {
+              "frr": null,
+              "far": 0.0,
+              "genuine_count": 0,
+              "impostor_count": 31,
+              "expected_genuine": 24,
+              "expected_impostor": 130,
+              "missing_genuine": 24,
+              "missing_impostor": 99,
+              "genuine_coverage": 0.0,
+              "impostor_coverage": 0.23846153846153847,
+              "genuine_rejections": 0,
+              "impostor_acceptances": 0,
+              "genuine_not_accepted_rate": 1.0,
+              "impostor_acceptances_per_expected_claim": 0.0
+            },
+            "0.05": {
+              "frr": null,
+              "far": 0.0,
+              "genuine_count": 0,
+              "impostor_count": 31,
+              "expected_genuine": 24,
+              "expected_impostor": 130,
+              "missing_genuine": 24,
+              "missing_impostor": 99,
+              "genuine_coverage": 0.0,
+              "impostor_coverage": 0.23846153846153847,
+              "genuine_rejections": 0,
+              "impostor_acceptances": 0,
+              "genuine_not_accepted_rate": 1.0,
+              "impostor_acceptances_per_expected_claim": 0.0
+            }
+          }
+        },
+        "777078": {
+          "gallery_available": true,
+          "probe_windows": 24,
+          "eer_diagnostic": 0.2857142857142857,
+          "operating_points": {
+            "0.001": {
+              "frr": 0.9166666666666666,
+              "far": 0.0,
+              "genuine_count": 24,
+              "impostor_count": 7,
+              "expected_genuine": 41,
+              "expected_impostor": 113,
+              "missing_genuine": 17,
+              "missing_impostor": 106,
+              "genuine_coverage": 0.5853658536585366,
+              "impostor_coverage": 0.061946902654867256,
+              "genuine_rejections": 22,
+              "impostor_acceptances": 0,
+              "genuine_not_accepted_rate": 0.9512195121951219,
+              "impostor_acceptances_per_expected_claim": 0.0
+            },
+            "0.01": {
+              "frr": 0.9166666666666666,
+              "far": 0.0,
+              "genuine_count": 24,
+              "impostor_count": 7,
+              "expected_genuine": 41,
+              "expected_impostor": 113,
+              "missing_genuine": 17,
+              "missing_impostor": 106,
+              "genuine_coverage": 0.5853658536585366,
+              "impostor_coverage": 0.061946902654867256,
+              "genuine_rejections": 22,
+              "impostor_acceptances": 0,
+              "genuine_not_accepted_rate": 0.9512195121951219,
+              "impostor_acceptances_per_expected_claim": 0.0
+            },
+            "0.05": {
+              "frr": 0.75,
+              "far": 0.0,
+              "genuine_count": 24,
+              "impostor_count": 7,
+              "expected_genuine": 41,
+              "expected_impostor": 113,
+              "missing_genuine": 17,
+              "missing_impostor": 106,
+              "genuine_coverage": 0.5853658536585366,
+              "impostor_coverage": 0.061946902654867256,
+              "genuine_rejections": 18,
+              "impostor_acceptances": 0,
+              "genuine_not_accepted_rate": 0.8536585365853658,
+              "impostor_acceptances_per_expected_claim": 0.0
+            }
+          }
+        }
+      },
+      "missing_gallery_accounts": []
+    },
+    "imu": {
+      "pooled_eer_diagnostic": 0.5053763440860215,
+      "operating_points": {
+        "0.001": {
+          "frr": 0.967741935483871,
+          "far": 0.021505376344086023,
+          "genuine_count": 31,
+          "impostor_count": 93,
+          "expected_genuine": 154,
+          "expected_impostor": 462,
+          "missing_genuine": 123,
+          "missing_impostor": 369,
+          "genuine_coverage": 0.2012987012987013,
+          "impostor_coverage": 0.2012987012987013,
+          "genuine_rejections": 30,
+          "impostor_acceptances": 2,
+          "genuine_not_accepted_rate": 0.9935064935064936,
+          "impostor_acceptances_per_expected_claim": 0.004329004329004329
+        },
+        "0.01": {
+          "frr": 0.967741935483871,
+          "far": 0.043010752688172046,
+          "genuine_count": 31,
+          "impostor_count": 93,
+          "expected_genuine": 154,
+          "expected_impostor": 462,
+          "missing_genuine": 123,
+          "missing_impostor": 369,
+          "genuine_coverage": 0.2012987012987013,
+          "impostor_coverage": 0.2012987012987013,
+          "genuine_rejections": 30,
+          "impostor_acceptances": 4,
+          "genuine_not_accepted_rate": 0.9935064935064936,
+          "impostor_acceptances_per_expected_claim": 0.008658008658008658
+        },
+        "0.05": {
+          "frr": 0.8709677419354839,
+          "far": 0.13978494623655913,
+          "genuine_count": 31,
+          "impostor_count": 93,
+          "expected_genuine": 154,
+          "expected_impostor": 462,
+          "missing_genuine": 123,
+          "missing_impostor": 369,
+          "genuine_coverage": 0.2012987012987013,
+          "impostor_coverage": 0.2012987012987013,
+          "genuine_rejections": 27,
+          "impostor_acceptances": 13,
+          "genuine_not_accepted_rate": 0.974025974025974,
+          "impostor_acceptances_per_expected_claim": 0.02813852813852814
+        }
+      },
+      "per_account": {
+        "219303": {
+          "gallery_available": true,
+          "probe_windows": 7,
+          "eer_diagnostic": 0.4166666666666667,
+          "operating_points": {
+            "0.001": {
+              "frr": 0.8571428571428571,
+              "far": 0.041666666666666664,
+              "genuine_count": 7,
+              "impostor_count": 24,
+              "expected_genuine": 29,
+              "expected_impostor": 125,
+              "missing_genuine": 22,
+              "missing_impostor": 101,
+              "genuine_coverage": 0.2413793103448276,
+              "impostor_coverage": 0.192,
+              "genuine_rejections": 6,
+              "impostor_acceptances": 1,
+              "genuine_not_accepted_rate": 0.9655172413793104,
+              "impostor_acceptances_per_expected_claim": 0.008
+            },
+            "0.01": {
+              "frr": 0.8571428571428571,
+              "far": 0.08333333333333333,
+              "genuine_count": 7,
+              "impostor_count": 24,
+              "expected_genuine": 29,
+              "expected_impostor": 125,
+              "missing_genuine": 22,
+              "missing_impostor": 101,
+              "genuine_coverage": 0.2413793103448276,
+              "impostor_coverage": 0.192,
+              "genuine_rejections": 6,
+              "impostor_acceptances": 2,
+              "genuine_not_accepted_rate": 0.9655172413793104,
+              "impostor_acceptances_per_expected_claim": 0.016
+            },
+            "0.05": {
+              "frr": 0.7142857142857143,
+              "far": 0.16666666666666666,
+              "genuine_count": 7,
+              "impostor_count": 24,
+              "expected_genuine": 29,
+              "expected_impostor": 125,
+              "missing_genuine": 22,
+              "missing_impostor": 101,
+              "genuine_coverage": 0.2413793103448276,
+              "impostor_coverage": 0.192,
+              "genuine_rejections": 5,
+              "impostor_acceptances": 4,
+              "genuine_not_accepted_rate": 0.9310344827586207,
+              "impostor_acceptances_per_expected_claim": 0.032
+            }
+          }
+        },
+        "556357": {
+          "gallery_available": true,
+          "probe_windows": 0,
+          "eer_diagnostic": null,
+          "operating_points": {
+            "0.001": {
+              "frr": null,
+              "far": 0.0,
+              "genuine_count": 0,
+              "impostor_count": 31,
+              "expected_genuine": 60,
+              "expected_impostor": 94,
+              "missing_genuine": 60,
+              "missing_impostor": 63,
+              "genuine_coverage": 0.0,
+              "impostor_coverage": 0.32978723404255317,
+              "genuine_rejections": 0,
+              "impostor_acceptances": 0,
+              "genuine_not_accepted_rate": 1.0,
+              "impostor_acceptances_per_expected_claim": 0.0
+            },
+            "0.01": {
+              "frr": null,
+              "far": 0.0,
+              "genuine_count": 0,
+              "impostor_count": 31,
+              "expected_genuine": 60,
+              "expected_impostor": 94,
+              "missing_genuine": 60,
+              "missing_impostor": 63,
+              "genuine_coverage": 0.0,
+              "impostor_coverage": 0.32978723404255317,
+              "genuine_rejections": 0,
+              "impostor_acceptances": 0,
+              "genuine_not_accepted_rate": 1.0,
+              "impostor_acceptances_per_expected_claim": 0.0
+            },
+            "0.05": {
+              "frr": null,
+              "far": 0.03225806451612903,
+              "genuine_count": 0,
+              "impostor_count": 31,
+              "expected_genuine": 60,
+              "expected_impostor": 94,
+              "missing_genuine": 60,
+              "missing_impostor": 63,
+              "genuine_coverage": 0.0,
+              "impostor_coverage": 0.32978723404255317,
+              "genuine_rejections": 0,
+              "impostor_acceptances": 1,
+              "genuine_not_accepted_rate": 1.0,
+              "impostor_acceptances_per_expected_claim": 0.010638297872340425
+            }
+          }
+        },
+        "737973": {
+          "gallery_available": true,
+          "probe_windows": 0,
+          "eer_diagnostic": null,
+          "operating_points": {
+            "0.001": {
+              "frr": null,
+              "far": 0.0,
+              "genuine_count": 0,
+              "impostor_count": 31,
+              "expected_genuine": 24,
+              "expected_impostor": 130,
+              "missing_genuine": 24,
+              "missing_impostor": 99,
+              "genuine_coverage": 0.0,
+              "impostor_coverage": 0.23846153846153847,
+              "genuine_rejections": 0,
+              "impostor_acceptances": 0,
+              "genuine_not_accepted_rate": 1.0,
+              "impostor_acceptances_per_expected_claim": 0.0
+            },
+            "0.01": {
+              "frr": null,
+              "far": 0.0,
+              "genuine_count": 0,
+              "impostor_count": 31,
+              "expected_genuine": 24,
+              "expected_impostor": 130,
+              "missing_genuine": 24,
+              "missing_impostor": 99,
+              "genuine_coverage": 0.0,
+              "impostor_coverage": 0.23846153846153847,
+              "genuine_rejections": 0,
+              "impostor_acceptances": 0,
+              "genuine_not_accepted_rate": 1.0,
+              "impostor_acceptances_per_expected_claim": 0.0
+            },
+            "0.05": {
+              "frr": null,
+              "far": 0.1935483870967742,
+              "genuine_count": 0,
+              "impostor_count": 31,
+              "expected_genuine": 24,
+              "expected_impostor": 130,
+              "missing_genuine": 24,
+              "missing_impostor": 99,
+              "genuine_coverage": 0.0,
+              "impostor_coverage": 0.23846153846153847,
+              "genuine_rejections": 0,
+              "impostor_acceptances": 6,
+              "genuine_not_accepted_rate": 1.0,
+              "impostor_acceptances_per_expected_claim": 0.046153846153846156
+            }
+          }
+        },
+        "777078": {
+          "gallery_available": true,
+          "probe_windows": 24,
+          "eer_diagnostic": 0.7142857142857143,
+          "operating_points": {
+            "0.001": {
+              "frr": 1.0,
+              "far": 0.14285714285714285,
+              "genuine_count": 24,
+              "impostor_count": 7,
+              "expected_genuine": 41,
+              "expected_impostor": 113,
+              "missing_genuine": 17,
+              "missing_impostor": 106,
+              "genuine_coverage": 0.5853658536585366,
+              "impostor_coverage": 0.061946902654867256,
+              "genuine_rejections": 24,
+              "impostor_acceptances": 1,
+              "genuine_not_accepted_rate": 1.0,
+              "impostor_acceptances_per_expected_claim": 0.008849557522123894
+            },
+            "0.01": {
+              "frr": 1.0,
+              "far": 0.2857142857142857,
+              "genuine_count": 24,
+              "impostor_count": 7,
+              "expected_genuine": 41,
+              "expected_impostor": 113,
+              "missing_genuine": 17,
+              "missing_impostor": 106,
+              "genuine_coverage": 0.5853658536585366,
+              "impostor_coverage": 0.061946902654867256,
+              "genuine_rejections": 24,
+              "impostor_acceptances": 2,
+              "genuine_not_accepted_rate": 1.0,
+              "impostor_acceptances_per_expected_claim": 0.017699115044247787
+            },
+            "0.05": {
+              "frr": 0.9166666666666666,
+              "far": 0.2857142857142857,
+              "genuine_count": 24,
+              "impostor_count": 7,
+              "expected_genuine": 41,
+              "expected_impostor": 113,
+              "missing_genuine": 17,
+              "missing_impostor": 106,
+              "genuine_coverage": 0.5853658536585366,
+              "impostor_coverage": 0.061946902654867256,
+              "genuine_rejections": 22,
+              "impostor_acceptances": 2,
+              "genuine_not_accepted_rate": 0.9512195121951219,
+              "impostor_acceptances_per_expected_claim": 0.017699115044247787
+            }
+          }
+        }
+      },
+      "missing_gallery_accounts": []
+    }
+  },
+  "plan": {
+    "created_at_utc": "2026-09-19T23:56:26.557755+00:00",
+    "dev_ids": [
+      "219303",
+      "556357",
+      "737973",
+      "777078"
+    ],
+    "model_protocol_sha256": "c4958413aef42843433fa9ff2ce0b698c0216a4d32261551cc719db4793df13a",
+    "selection_complete_sha256": "bc6000f38b2e8fd125e107d16aecc5ca6d6fea72849a7af8fa6a7314d0ab0e22",
+    "calibration_complete_sha256": "35e83019ea843e517e4ee476adcc90b02ac20cb4848a59ef11735c664b1ffa41",
+    "selected_checkpoint_sha256": "c2b01b9cb8cd9e76d7401ccead27efa906eeb119915a82b1a35c8987b5e6d9eb",
+    "thresholds_sha256": "a1819b9e22ce5ddd652e5ade556efbdc1b9d8a93e1e58258642a048649f74760",
+    "frozen_thresholds": {
+      "joint": {
+        "0.001": 0.4862204247007117,
+        "0.01": 0.76225682078647,
+        "0.05": 1.171946547163469
+      },
+      "key": {
+        "0.001": 0.5516779594878727,
+        "0.01": 0.6134310620099148,
+        "0.05": 0.7189660135617478
+      },
+      "imu": {
+        "0.001": 1.2079285871611674,
+        "0.01": 1.4651832813994006,
+        "0.05": 2.146476209760448
+      }
+    },
+    "features_sha256": "05f94bd9166d81096d9c667fffcd2bcd9032c1760174b7edd716026c2546b7d5",
+    "extraction_report_sha256": "ccc486818d5f723df684aecdbbe9a437a3b6a24faf09c3a2a68407181b44beb5",
+    "sources_sha256": {
+      "hmog_validate.py": "750d2b021f24a5859047a88dc63b019c6208ec65cdbbb0daba9a86980b6ec046",
+      "hmog_select.py": "ddb916d8170e93ae9fa8cdc9034d22bab941b6f4e487a4cea8e131e639007a46",
+      "hmog_verification.py": "397242a64e6764129c74508607a83fc171aafed75c242d99fd543ecb259e5926",
+      "hmog_training_core.py": "140635450d451711fdd31fdbd333018bc9d7c27c89a6d64355bd424338f67ee8"
+    },
+    "gallery": "supportonly arithmeticmean64D",
+    "decision": "distance<=frozen threshold; unavailable claims abstain",
+    "no_fitting_or_tuning": true,
+    "test_measurements_read": false,
+    "calibration_provenance": {
+      "plan_fields": {
+        "calibration_protocol_sha256": "61a722a2d4d4aeaddc3905adface23529869b0f55936f22ddf30fdae6607eef0",
+        "calibration_scope": "encoder-trained fit identities; disjoint unused enrollment sessions1\u20138 only",
+        "limitation": "Calibration observations were not used for optimizer updates, but these are encoder-trained identities; thresholds may be optimistic for novel DEV identities. This does not replace failed original calibration evidence."
+      },
+      "report_fields": {
+        "calibration_protocol_sha256": "61a722a2d4d4aeaddc3905adface23529869b0f55936f22ddf30fdae6607eef0",
+        "calibration_scope": "encoder-trained fit identities; disjoint unused enrollment sessions1\u20138 only",
+        "limitation": "Calibration observations were not used for optimizer updates, but these are encoder-trained identities; thresholds may be optimistic for novel DEV identities. This does not replace failed original calibration evidence."
+      },
+      "calibration_protocol_sha256": "61a722a2d4d4aeaddc3905adface23529869b0f55936f22ddf30fdae6607eef0",
+      "calibration_scope": "encoder-trained fit identities; disjoint unused enrollment sessions1\u20138 only",
+      "limitation": "Calibration observations were not used for optimizer updates, but these are encoder-trained identities; thresholds may be optimistic for novel DEV identities. This does not replace failed original calibration evidence."
+    },
+    "calibration_protocol_sha256": "61a722a2d4d4aeaddc3905adface23529869b0f55936f22ddf30fdae6607eef0"
+  },
+  "coverage": {
+    "219303": {
+      "train_support": {
+        "candidate_windows": 36,
+        "eligible_windows": 24,
+        "missing_windows": 12,
+        "coverage": 0.6666666666666666,
+        "denominator_scope": "inspected metadata-nonempty sessions only",
+        "excluded_sessions": {
+          "2": {
+            "reason": "empty_keypress",
+            "basis": "archive_metadata",
+            "activity_contents_inspected": false,
+            "candidate_windows": null,
+            "eligible_windows": null
+          },
+          "4": {
+            "reason": "empty_keypress",
+            "basis": "archive_metadata",
+            "activity_contents_inspected": false,
+            "candidate_windows": null,
+            "eligible_windows": null
+          },
+          "5": {
+            "reason": "empty_keypress",
+            "basis": "archive_metadata",
+            "activity_contents_inspected": false,
+            "candidate_windows": null,
+            "eligible_windows": null
+          },
+          "7": {
+            "reason": "empty_keypress",
+            "basis": "archive_metadata",
+            "activity_contents_inspected": false,
+            "candidate_windows": null,
+            "eligible_windows": null
+          },
+          "8": {
+            "reason": "empty_keypress",
+            "basis": "archive_metadata",
+            "activity_contents_inspected": false,
+            "candidate_windows": null,
+            "eligible_windows": null
+          }
+        },
+        "excluded_session_candidate_windows": null
+      },
+      "dev_probe": {
+        "candidate_windows": 29,
+        "eligible_windows": 7,
+        "missing_windows": 22,
+        "coverage": 0.2413793103448276,
+        "denominator_scope": "inspected metadata-nonempty sessions only",
+        "excluded_sessions": {
+          "9": {
+            "reason": "empty_keypress",
+            "basis": "archive_metadata",
+            "activity_contents_inspected": false,
+            "candidate_windows": null,
+            "eligible_windows": null
+          },
+          "11": {
+            "reason": "empty_keypress",
+            "basis": "archive_metadata",
+            "activity_contents_inspected": false,
+            "candidate_windows": null,
+            "eligible_windows": null
+          },
+          "12": {
+            "reason": "empty_keypress",
+            "basis": "archive_metadata",
+            "activity_contents_inspected": false,
+            "candidate_windows": null,
+            "eligible_windows": null
+          },
+          "14": {
+            "reason": "empty_keypress",
+            "basis": "archive_metadata",
+            "activity_contents_inspected": false,
+            "candidate_windows": null,
+            "eligible_windows": null
+          },
+          "16": {
+            "reason": "empty_keypress",
+            "basis": "archive_metadata",
+            "activity_contents_inspected": false,
+            "candidate_windows": null,
+            "eligible_windows": null
+          }
+        },
+        "excluded_session_candidate_windows": null
+      }
+    },
+    "556357": {
+      "train_support": {
+        "candidate_windows": 36,
+        "eligible_windows": 1,
+        "missing_windows": 35,
+        "coverage": 0.027777777777777776,
+        "denominator_scope": "inspected metadata-nonempty sessions only",
+        "excluded_sessions": {
+          "1": {
+            "reason": "empty_keypress",
+            "basis": "archive_metadata",
+            "activity_contents_inspected": false,
+            "candidate_windows": null,
+            "eligible_windows": null
+          },
+          "2": {
+            "reason": "empty_keypress",
+            "basis": "archive_metadata",
+            "activity_contents_inspected": false,
+            "candidate_windows": null,
+            "eligible_windows": null
+          },
+          "3": {
+            "reason": "empty_keypress",
+            "basis": "archive_metadata",
+            "activity_contents_inspected": false,
+            "candidate_windows": null,
+            "eligible_windows": null
+          },
+          "4": {
+            "reason": "empty_keypress",
+            "basis": "archive_metadata",
+            "activity_contents_inspected": false,
+            "candidate_windows": null,
+            "eligible_windows": null
+          },
+          "6": {
+            "reason": "empty_keypress",
+            "basis": "archive_metadata",
+            "activity_contents_inspected": false,
+            "candidate_windows": null,
+            "eligible_windows": null
+          },
+          "7": {
+            "reason": "empty_keypress",
+            "basis": "archive_metadata",
+            "activity_contents_inspected": false,
+            "candidate_windows": null,
+            "eligible_windows": null
+          }
+        },
+        "excluded_session_candidate_windows": null
+      },
+      "dev_probe": {
+        "candidate_windows": 60,
+        "eligible_windows": 0,
+        "missing_windows": 60,
+        "coverage": 0.0,
+        "denominator_scope": "inspected metadata-nonempty sessions only",
+        "excluded_sessions": {
+          "9": {
+            "reason": "empty_keypress",
+            "basis": "archive_metadata",
+            "activity_contents_inspected": false,
+            "candidate_windows": null,
+            "eligible_windows": null
+          },
+          "10": {
+            "reason": "empty_keypress",
+            "basis": "archive_metadata",
+            "activity_contents_inspected": false,
+            "candidate_windows": null,
+            "eligible_windows": null
+          },
+          "14": {
+            "reason": "empty_keypress",
+            "basis": "archive_metadata",
+            "activity_contents_inspected": false,
+            "candidate_windows": null,
+            "eligible_windows": null
+          }
+        },
+        "excluded_session_candidate_windows": null
+      }
+    },
+    "737973": {
+      "train_support": {
+        "candidate_windows": 32,
+        "eligible_windows": 1,
+        "missing_windows": 31,
+        "coverage": 0.03125,
+        "denominator_scope": "inspected metadata-nonempty sessions only",
+        "excluded_sessions": {
+          "3": {
+            "reason": "empty_keypress",
+            "basis": "archive_metadata",
+            "activity_contents_inspected": false,
+            "candidate_windows": null,
+            "eligible_windows": null
+          },
+          "4": {
+            "reason": "empty_keypress",
+            "basis": "archive_metadata",
+            "activity_contents_inspected": false,
+            "candidate_windows": null,
+            "eligible_windows": null
+          },
+          "6": {
+            "reason": "empty_keypress",
+            "basis": "archive_metadata",
+            "activity_contents_inspected": false,
+            "candidate_windows": null,
+            "eligible_windows": null
+          },
+          "7": {
+            "reason": "empty_keypress",
+            "basis": "archive_metadata",
+            "activity_contents_inspected": false,
+            "candidate_windows": null,
+            "eligible_windows": null
+          },
+          "8": {
+            "reason": "empty_keypress",
+            "basis": "archive_metadata",
+            "activity_contents_inspected": false,
+            "candidate_windows": null,
+            "eligible_windows": null
+          }
+        },
+        "excluded_session_candidate_windows": null
+      },
+      "dev_probe": {
+        "candidate_windows": 24,
+        "eligible_windows": 0,
+        "missing_windows": 24,
+        "coverage": 0.0,
+        "denominator_scope": "inspected metadata-nonempty sessions only",
+        "excluded_sessions": {
+          "9": {
+            "reason": "empty_keypress",
+            "basis": "archive_metadata",
+            "activity_contents_inspected": false,
+            "candidate_windows": null,
+            "eligible_windows": null
+          },
+          "10": {
+            "reason": "empty_keypress",
+            "basis": "archive_metadata",
+            "activity_contents_inspected": false,
+            "candidate_windows": null,
+            "eligible_windows": null
+          },
+          "13": {
+            "reason": "empty_keypress",
+            "basis": "archive_metadata",
+            "activity_contents_inspected": false,
+            "candidate_windows": null,
+            "eligible_windows": null
+          },
+          "15": {
+            "reason": "empty_keypress",
+            "basis": "archive_metadata",
+            "activity_contents_inspected": false,
+            "candidate_windows": null,
+            "eligible_windows": null
+          },
+          "16": {
+            "reason": "empty_keypress",
+            "basis": "archive_metadata",
+            "activity_contents_inspected": false,
+            "candidate_windows": null,
+            "eligible_windows": null
+          }
+        },
+        "excluded_session_candidate_windows": null
+      }
+    },
+    "777078": {
+      "train_support": {
+        "candidate_windows": 30,
+        "eligible_windows": 11,
+        "missing_windows": 19,
+        "coverage": 0.36666666666666664,
+        "denominator_scope": "inspected metadata-nonempty sessions only",
+        "excluded_sessions": {
+          "3": {
+            "reason": "empty_keypress",
+            "basis": "archive_metadata",
+            "activity_contents_inspected": false,
+            "candidate_windows": null,
+            "eligible_windows": null
+          },
+          "4": {
+            "reason": "empty_keypress",
+            "basis": "archive_metadata",
+            "activity_contents_inspected": false,
+            "candidate_windows": null,
+            "eligible_windows": null
+          },
+          "5": {
+            "reason": "empty_keypress",
+            "basis": "archive_metadata",
+            "activity_contents_inspected": false,
+            "candidate_windows": null,
+            "eligible_windows": null
+          },
+          "6": {
+            "reason": "empty_keypress",
+            "basis": "archive_metadata",
+            "activity_contents_inspected": false,
+            "candidate_windows": null,
+            "eligible_windows": null
+          },
+          "7": {
+            "reason": "empty_keypress",
+            "basis": "archive_metadata",
+            "activity_contents_inspected": false,
+            "candidate_windows": null,
+            "eligible_windows": null
+          },
+          "8": {
+            "reason": "empty_keypress",
+            "basis": "archive_metadata",
+            "activity_contents_inspected": false,
+            "candidate_windows": null,
+            "eligible_windows": null
+          }
+        },
+        "excluded_session_candidate_windows": null
+      },
+      "dev_probe": {
+        "candidate_windows": 41,
+        "eligible_windows": 24,
+        "missing_windows": 17,
+        "coverage": 0.5853658536585366,
+        "denominator_scope": "inspected metadata-nonempty sessions only",
+        "excluded_sessions": {
+          "11": {
+            "reason": "empty_keypress",
+            "basis": "archive_metadata",
+            "activity_contents_inspected": false,
+            "candidate_windows": null,
+            "eligible_windows": null
+          },
+          "12": {
+            "reason": "empty_keypress",
+            "basis": "archive_metadata",
+            "activity_contents_inspected": false,
+            "candidate_windows": null,
+            "eligible_windows": null
+          },
+          "13": {
+            "reason": "empty_keypress",
+            "basis": "archive_metadata",
+            "activity_contents_inspected": false,
+            "candidate_windows": null,
+            "eligible_windows": null
+          },
+          "14": {
+            "reason": "empty_keypress",
+            "basis": "archive_metadata",
+            "activity_contents_inspected": false,
+            "candidate_windows": null,
+            "eligible_windows": null
+          },
+          "15": {
+            "reason": "empty_keypress",
+            "basis": "archive_metadata",
+            "activity_contents_inspected": false,
+            "candidate_windows": null,
+            "eligible_windows": null
+          }
+        },
+        "excluded_session_candidate_windows": null
+      }
+    }
+  },
+  "replay_sha256": "7f3bfc22af8362be0fc0b5b0aea467550965850282ac531422231ecd47b5f90c",
+  "calibration_provenance": {
+    "plan_fields": {
+      "calibration_protocol_sha256": "61a722a2d4d4aeaddc3905adface23529869b0f55936f22ddf30fdae6607eef0",
+      "calibration_scope": "encoder-trained fit identities; disjoint unused enrollment sessions1\u20138 only",
+      "limitation": "Calibration observations were not used for optimizer updates, but these are encoder-trained identities; thresholds may be optimistic for novel DEV identities. This does not replace failed original calibration evidence."
+    },
+    "report_fields": {
+      "calibration_protocol_sha256": "61a722a2d4d4aeaddc3905adface23529869b0f55936f22ddf30fdae6607eef0",
+      "calibration_scope": "encoder-trained fit identities; disjoint unused enrollment sessions1\u20138 only",
+      "limitation": "Calibration observations were not used for optimizer updates, but these are encoder-trained identities; thresholds may be optimistic for novel DEV identities. This does not replace failed original calibration evidence."
+    },
+    "calibration_protocol_sha256": "61a722a2d4d4aeaddc3905adface23529869b0f55936f22ddf30fdae6607eef0",
+    "calibration_scope": "encoder-trained fit identities; disjoint unused enrollment sessions1\u20138 only",
+    "limitation": "Calibration observations were not used for optimizer updates, but these are encoder-trained identities; thresholds may be optimistic for novel DEV identities. This does not replace failed original calibration evidence."
+  },
+  "profiles_sha256": "75d34306f3ead039927221fbb92befdfad07bed3f82f6bd9754f0edecff361d7",
+  "dev_features_sha256": "c15f77f0c291851f50d3c3dccf96f307ed480f453d73b441f71660cba993c0c6",
+  "validation_only": true,
+  "test_measurements_read": false,
+  "production_database_used": false,
+  "listener_started": false
+}

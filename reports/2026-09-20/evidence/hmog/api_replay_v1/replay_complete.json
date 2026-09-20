@@ -1,0 +1,584 @@
+{
+  "plan": {
+    "created_at_utc": "2026-09-19T23:59:27.088149+00:00",
+    "sources_and_inputs": {
+      "code/bioprint/research_api.py": "1d95512a852442c9c8ce2ebd939b3f0f7e67d79d3e0143b5e4a6c44a49fc900c",
+      "code/bioprint/research_hmog_api.py": "4b12edfcebe820747f97dd9463e8a25d52df745e93c7ca230d28e95a668e1e45",
+      "scripts/hmog_release.py": "f7a69698787f7cff8f3ebffccba528809f497a3048003e1265d2a1d75c9eb080",
+      "research/benchmarks/hmog/release_v1/manifest.json": "5df75fa341a6b5c0706287f87488a02c2a36ba5185fe2c0033c62a1dc210a111",
+      "research/benchmarks/hmog/validation_v1/dev_replay.npz": "7f3bfc22af8362be0fc0b5b0aea467550965850282ac531422231ecd47b5f90c",
+      "research/benchmarks/hmog/validation_v1/validation_complete.json": "1ad1dd6a9898c176c880768d1a8999ff5d877cfa8aac941032779ea7b11f9175"
+    },
+    "validation_report_sha256": "1ad1dd6a9898c176c880768d1a8999ff5d877cfa8aac941032779ea7b11f9175",
+    "batch_size": 8,
+    "rtol": 1e-05,
+    "atol": 1e-07,
+    "decisions": "exact at every frozen threshold",
+    "test_measurements_read": false,
+    "listener_started": false
+  },
+  "probe_windows": 31,
+  "accounts": [
+    "219303",
+    "556357",
+    "737973",
+    "777078"
+  ],
+  "validation_status": "infeasible",
+  "missing": [
+    {
+      "subject": "556357",
+      "missing_role": "dev_probe"
+    },
+    {
+      "subject": "737973",
+      "missing_role": "dev_probe"
+    }
+  ],
+  "coverage": {
+    "219303": {
+      "train_support": {
+        "candidate_windows": 36,
+        "eligible_windows": 24,
+        "missing_windows": 12,
+        "coverage": 0.6666666666666666,
+        "denominator_scope": "inspected metadata-nonempty sessions only",
+        "excluded_sessions": {
+          "2": {
+            "reason": "empty_keypress",
+            "basis": "archive_metadata",
+            "activity_contents_inspected": false,
+            "candidate_windows": null,
+            "eligible_windows": null
+          },
+          "4": {
+            "reason": "empty_keypress",
+            "basis": "archive_metadata",
+            "activity_contents_inspected": false,
+            "candidate_windows": null,
+            "eligible_windows": null
+          },
+          "5": {
+            "reason": "empty_keypress",
+            "basis": "archive_metadata",
+            "activity_contents_inspected": false,
+            "candidate_windows": null,
+            "eligible_windows": null
+          },
+          "7": {
+            "reason": "empty_keypress",
+            "basis": "archive_metadata",
+            "activity_contents_inspected": false,
+            "candidate_windows": null,
+            "eligible_windows": null
+          },
+          "8": {
+            "reason": "empty_keypress",
+            "basis": "archive_metadata",
+            "activity_contents_inspected": false,
+            "candidate_windows": null,
+            "eligible_windows": null
+          }
+        },
+        "excluded_session_candidate_windows": null
+      },
+      "dev_probe": {
+        "candidate_windows": 29,
+        "eligible_windows": 7,
+        "missing_windows": 22,
+        "coverage": 0.2413793103448276,
+        "denominator_scope": "inspected metadata-nonempty sessions only",
+        "excluded_sessions": {
+          "9": {
+            "reason": "empty_keypress",
+            "basis": "archive_metadata",
+            "activity_contents_inspected": false,
+            "candidate_windows": null,
+            "eligible_windows": null
+          },
+          "11": {
+            "reason": "empty_keypress",
+            "basis": "archive_metadata",
+            "activity_contents_inspected": false,
+            "candidate_windows": null,
+            "eligible_windows": null
+          },
+          "12": {
+            "reason": "empty_keypress",
+            "basis": "archive_metadata",
+            "activity_contents_inspected": false,
+            "candidate_windows": null,
+            "eligible_windows": null
+          },
+          "14": {
+            "reason": "empty_keypress",
+            "basis": "archive_metadata",
+            "activity_contents_inspected": false,
+            "candidate_windows": null,
+            "eligible_windows": null
+          },
+          "16": {
+            "reason": "empty_keypress",
+            "basis": "archive_metadata",
+            "activity_contents_inspected": false,
+            "candidate_windows": null,
+            "eligible_windows": null
+          }
+        },
+        "excluded_session_candidate_windows": null
+      }
+    },
+    "556357": {
+      "train_support": {
+        "candidate_windows": 36,
+        "eligible_windows": 1,
+        "missing_windows": 35,
+        "coverage": 0.027777777777777776,
+        "denominator_scope": "inspected metadata-nonempty sessions only",
+        "excluded_sessions": {
+          "1": {
+            "reason": "empty_keypress",
+            "basis": "archive_metadata",
+            "activity_contents_inspected": false,
+            "candidate_windows": null,
+            "eligible_windows": null
+          },
+          "2": {
+            "reason": "empty_keypress",
+            "basis": "archive_metadata",
+            "activity_contents_inspected": false,
+            "candidate_windows": null,
+            "eligible_windows": null
+          },
+          "3": {
+            "reason": "empty_keypress",
+            "basis": "archive_metadata",
+            "activity_contents_inspected": false,
+            "candidate_windows": null,
+            "eligible_windows": null
+          },
+          "4": {
+            "reason": "empty_keypress",
+            "basis": "archive_metadata",
+            "activity_contents_inspected": false,
+            "candidate_windows": null,
+            "eligible_windows": null
+          },
+          "6": {
+            "reason": "empty_keypress",
+            "basis": "archive_metadata",
+            "activity_contents_inspected": false,
+            "candidate_windows": null,
+            "eligible_windows": null
+          },
+          "7": {
+            "reason": "empty_keypress",
+            "basis": "archive_metadata",
+            "activity_contents_inspected": false,
+            "candidate_windows": null,
+            "eligible_windows": null
+          }
+        },
+        "excluded_session_candidate_windows": null
+      },
+      "dev_probe": {
+        "candidate_windows": 60,
+        "eligible_windows": 0,
+        "missing_windows": 60,
+        "coverage": 0.0,
+        "denominator_scope": "inspected metadata-nonempty sessions only",
+        "excluded_sessions": {
+          "9": {
+            "reason": "empty_keypress",
+            "basis": "archive_metadata",
+            "activity_contents_inspected": false,
+            "candidate_windows": null,
+            "eligible_windows": null
+          },
+          "10": {
+            "reason": "empty_keypress",
+            "basis": "archive_metadata",
+            "activity_contents_inspected": false,
+            "candidate_windows": null,
+            "eligible_windows": null
+          },
+          "14": {
+            "reason": "empty_keypress",
+            "basis": "archive_metadata",
+            "activity_contents_inspected": false,
+            "candidate_windows": null,
+            "eligible_windows": null
+          }
+        },
+        "excluded_session_candidate_windows": null
+      }
+    },
+    "737973": {
+      "train_support": {
+        "candidate_windows": 32,
+        "eligible_windows": 1,
+        "missing_windows": 31,
+        "coverage": 0.03125,
+        "denominator_scope": "inspected metadata-nonempty sessions only",
+        "excluded_sessions": {
+          "3": {
+            "reason": "empty_keypress",
+            "basis": "archive_metadata",
+            "activity_contents_inspected": false,
+            "candidate_windows": null,
+            "eligible_windows": null
+          },
+          "4": {
+            "reason": "empty_keypress",
+            "basis": "archive_metadata",
+            "activity_contents_inspected": false,
+            "candidate_windows": null,
+            "eligible_windows": null
+          },
+          "6": {
+            "reason": "empty_keypress",
+            "basis": "archive_metadata",
+            "activity_contents_inspected": false,
+            "candidate_windows": null,
+            "eligible_windows": null
+          },
+          "7": {
+            "reason": "empty_keypress",
+            "basis": "archive_metadata",
+            "activity_contents_inspected": false,
+            "candidate_windows": null,
+            "eligible_windows": null
+          },
+          "8": {
+            "reason": "empty_keypress",
+            "basis": "archive_metadata",
+            "activity_contents_inspected": false,
+            "candidate_windows": null,
+            "eligible_windows": null
+          }
+        },
+        "excluded_session_candidate_windows": null
+      },
+      "dev_probe": {
+        "candidate_windows": 24,
+        "eligible_windows": 0,
+        "missing_windows": 24,
+        "coverage": 0.0,
+        "denominator_scope": "inspected metadata-nonempty sessions only",
+        "excluded_sessions": {
+          "9": {
+            "reason": "empty_keypress",
+            "basis": "archive_metadata",
+            "activity_contents_inspected": false,
+            "candidate_windows": null,
+            "eligible_windows": null
+          },
+          "10": {
+            "reason": "empty_keypress",
+            "basis": "archive_metadata",
+            "activity_contents_inspected": false,
+            "candidate_windows": null,
+            "eligible_windows": null
+          },
+          "13": {
+            "reason": "empty_keypress",
+            "basis": "archive_metadata",
+            "activity_contents_inspected": false,
+            "candidate_windows": null,
+            "eligible_windows": null
+          },
+          "15": {
+            "reason": "empty_keypress",
+            "basis": "archive_metadata",
+            "activity_contents_inspected": false,
+            "candidate_windows": null,
+            "eligible_windows": null
+          },
+          "16": {
+            "reason": "empty_keypress",
+            "basis": "archive_metadata",
+            "activity_contents_inspected": false,
+            "candidate_windows": null,
+            "eligible_windows": null
+          }
+        },
+        "excluded_session_candidate_windows": null
+      }
+    },
+    "777078": {
+      "train_support": {
+        "candidate_windows": 30,
+        "eligible_windows": 11,
+        "missing_windows": 19,
+        "coverage": 0.36666666666666664,
+        "denominator_scope": "inspected metadata-nonempty sessions only",
+        "excluded_sessions": {
+          "3": {
+            "reason": "empty_keypress",
+            "basis": "archive_metadata",
+            "activity_contents_inspected": false,
+            "candidate_windows": null,
+            "eligible_windows": null
+          },
+          "4": {
+            "reason": "empty_keypress",
+            "basis": "archive_metadata",
+            "activity_contents_inspected": false,
+            "candidate_windows": null,
+            "eligible_windows": null
+          },
+          "5": {
+            "reason": "empty_keypress",
+            "basis": "archive_metadata",
+            "activity_contents_inspected": false,
+            "candidate_windows": null,
+            "eligible_windows": null
+          },
+          "6": {
+            "reason": "empty_keypress",
+            "basis": "archive_metadata",
+            "activity_contents_inspected": false,
+            "candidate_windows": null,
+            "eligible_windows": null
+          },
+          "7": {
+            "reason": "empty_keypress",
+            "basis": "archive_metadata",
+            "activity_contents_inspected": false,
+            "candidate_windows": null,
+            "eligible_windows": null
+          },
+          "8": {
+            "reason": "empty_keypress",
+            "basis": "archive_metadata",
+            "activity_contents_inspected": false,
+            "candidate_windows": null,
+            "eligible_windows": null
+          }
+        },
+        "excluded_session_candidate_windows": null
+      },
+      "dev_probe": {
+        "candidate_windows": 41,
+        "eligible_windows": 24,
+        "missing_windows": 17,
+        "coverage": 0.5853658536585366,
+        "denominator_scope": "inspected metadata-nonempty sessions only",
+        "excluded_sessions": {
+          "11": {
+            "reason": "empty_keypress",
+            "basis": "archive_metadata",
+            "activity_contents_inspected": false,
+            "candidate_windows": null,
+            "eligible_windows": null
+          },
+          "12": {
+            "reason": "empty_keypress",
+            "basis": "archive_metadata",
+            "activity_contents_inspected": false,
+            "candidate_windows": null,
+            "eligible_windows": null
+          },
+          "13": {
+            "reason": "empty_keypress",
+            "basis": "archive_metadata",
+            "activity_contents_inspected": false,
+            "candidate_windows": null,
+            "eligible_windows": null
+          },
+          "14": {
+            "reason": "empty_keypress",
+            "basis": "archive_metadata",
+            "activity_contents_inspected": false,
+            "candidate_windows": null,
+            "eligible_windows": null
+          },
+          "15": {
+            "reason": "empty_keypress",
+            "basis": "archive_metadata",
+            "activity_contents_inspected": false,
+            "candidate_windows": null,
+            "eligible_windows": null
+          }
+        },
+        "excluded_session_candidate_windows": null
+      }
+    }
+  },
+  "branches": [
+    "joint",
+    "key",
+    "imu"
+  ],
+  "scalar_scores": 372,
+  "maximum_absolute_error": {
+    "joint": 1.0756630222097385e-06,
+    "key": 1.747336908275443e-06,
+    "imu": 3.219392382458608e-06
+  },
+  "acceptance_flips": 0,
+  "metrics": {
+    "joint": {
+      "eer": 0.4516129032258065,
+      "operating_points": {
+        "0.001": {
+          "frr": 1.0,
+          "far": 0.0,
+          "genuine_count": 31,
+          "impostor_count": 93,
+          "expected_genuine": 154,
+          "expected_impostor": 462,
+          "missing_genuine": 123,
+          "missing_impostor": 369,
+          "genuine_coverage": 0.2012987012987013,
+          "impostor_coverage": 0.2012987012987013,
+          "genuine_rejections": 31,
+          "impostor_acceptances": 0,
+          "genuine_not_accepted_rate": 1.0,
+          "impostor_acceptances_per_expected_claim": 0.0
+        },
+        "0.01": {
+          "frr": 1.0,
+          "far": 0.0,
+          "genuine_count": 31,
+          "impostor_count": 93,
+          "expected_genuine": 154,
+          "expected_impostor": 462,
+          "missing_genuine": 123,
+          "missing_impostor": 369,
+          "genuine_coverage": 0.2012987012987013,
+          "impostor_coverage": 0.2012987012987013,
+          "genuine_rejections": 31,
+          "impostor_acceptances": 0,
+          "genuine_not_accepted_rate": 1.0,
+          "impostor_acceptances_per_expected_claim": 0.0
+        },
+        "0.05": {
+          "frr": 0.9032258064516129,
+          "far": 0.043010752688172046,
+          "genuine_count": 31,
+          "impostor_count": 93,
+          "expected_genuine": 154,
+          "expected_impostor": 462,
+          "missing_genuine": 123,
+          "missing_impostor": 369,
+          "genuine_coverage": 0.2012987012987013,
+          "impostor_coverage": 0.2012987012987013,
+          "genuine_rejections": 28,
+          "impostor_acceptances": 4,
+          "genuine_not_accepted_rate": 0.9805194805194806,
+          "impostor_acceptances_per_expected_claim": 0.008658008658008658
+        }
+      }
+    },
+    "key": {
+      "eer": 0.26881720430107525,
+      "operating_points": {
+        "0.001": {
+          "frr": 0.9354838709677419,
+          "far": 0.0,
+          "genuine_count": 31,
+          "impostor_count": 93,
+          "expected_genuine": 154,
+          "expected_impostor": 462,
+          "missing_genuine": 123,
+          "missing_impostor": 369,
+          "genuine_coverage": 0.2012987012987013,
+          "impostor_coverage": 0.2012987012987013,
+          "genuine_rejections": 29,
+          "impostor_acceptances": 0,
+          "genuine_not_accepted_rate": 0.987012987012987,
+          "impostor_acceptances_per_expected_claim": 0.0
+        },
+        "0.01": {
+          "frr": 0.9354838709677419,
+          "far": 0.0,
+          "genuine_count": 31,
+          "impostor_count": 93,
+          "expected_genuine": 154,
+          "expected_impostor": 462,
+          "missing_genuine": 123,
+          "missing_impostor": 369,
+          "genuine_coverage": 0.2012987012987013,
+          "impostor_coverage": 0.2012987012987013,
+          "genuine_rejections": 29,
+          "impostor_acceptances": 0,
+          "genuine_not_accepted_rate": 0.987012987012987,
+          "impostor_acceptances_per_expected_claim": 0.0
+        },
+        "0.05": {
+          "frr": 0.8064516129032258,
+          "far": 0.010752688172043012,
+          "genuine_count": 31,
+          "impostor_count": 93,
+          "expected_genuine": 154,
+          "expected_impostor": 462,
+          "missing_genuine": 123,
+          "missing_impostor": 369,
+          "genuine_coverage": 0.2012987012987013,
+          "impostor_coverage": 0.2012987012987013,
+          "genuine_rejections": 25,
+          "impostor_acceptances": 1,
+          "genuine_not_accepted_rate": 0.961038961038961,
+          "impostor_acceptances_per_expected_claim": 0.0021645021645021645
+        }
+      }
+    },
+    "imu": {
+      "eer": 0.5053763440860215,
+      "operating_points": {
+        "0.001": {
+          "frr": 0.967741935483871,
+          "far": 0.021505376344086023,
+          "genuine_count": 31,
+          "impostor_count": 93,
+          "expected_genuine": 154,
+          "expected_impostor": 462,
+          "missing_genuine": 123,
+          "missing_impostor": 369,
+          "genuine_coverage": 0.2012987012987013,
+          "impostor_coverage": 0.2012987012987013,
+          "genuine_rejections": 30,
+          "impostor_acceptances": 2,
+          "genuine_not_accepted_rate": 0.9935064935064936,
+          "impostor_acceptances_per_expected_claim": 0.004329004329004329
+        },
+        "0.01": {
+          "frr": 0.967741935483871,
+          "far": 0.043010752688172046,
+          "genuine_count": 31,
+          "impostor_count": 93,
+          "expected_genuine": 154,
+          "expected_impostor": 462,
+          "missing_genuine": 123,
+          "missing_impostor": 369,
+          "genuine_coverage": 0.2012987012987013,
+          "impostor_coverage": 0.2012987012987013,
+          "genuine_rejections": 30,
+          "impostor_acceptances": 4,
+          "genuine_not_accepted_rate": 0.9935064935064936,
+          "impostor_acceptances_per_expected_claim": 0.008658008658008658
+        },
+        "0.05": {
+          "frr": 0.8709677419354839,
+          "far": 0.13978494623655913,
+          "genuine_count": 31,
+          "impostor_count": 93,
+          "expected_genuine": 154,
+          "expected_impostor": 462,
+          "missing_genuine": 123,
+          "missing_impostor": 369,
+          "genuine_coverage": 0.2012987012987013,
+          "impostor_coverage": 0.2012987012987013,
+          "genuine_rejections": 27,
+          "impostor_acceptances": 13,
+          "genuine_not_accepted_rate": 0.974025974025974,
+          "impostor_acceptances_per_expected_claim": 0.02813852813852814
+        }
+      }
+    }
+  },
+  "test_route_status": 403,
+  "listener_started": false,
+  "production_database_used": false
+}

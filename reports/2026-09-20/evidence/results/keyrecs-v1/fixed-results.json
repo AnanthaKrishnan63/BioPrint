@@ -1,0 +1,1495 @@
+{
+  "dataset": "KeyRecs 2023",
+  "track": "fixed",
+  "evaluation_split": "dev",
+  "development_n": 7896,
+  "subjects": 79,
+  "validation": {
+    "reference_logistic": {
+      "aggregate_macro_user": {
+        "eer": 0.17080271785943626,
+        "oracle_frr_at_far_1pct": 0.7904506864252916,
+        "frr": 0.7638890167357718,
+        "far": 0.012568777122187938,
+        "eer_user_bootstrap_95ci": [
+          0.14957448929593622,
+          0.19232582072029608
+        ],
+        "oracle_frr_at_far_1pct_user_bootstrap_95ci": [
+          0.7310919837592129,
+          0.8473688783368906
+        ],
+        "frr_user_bootstrap_95ci": [
+          0.7061600863359777,
+          0.8231671971930206
+        ],
+        "far_user_bootstrap_95ci": [
+          0.010573084849243923,
+          0.014830656013702006
+        ]
+      },
+      "per_user": [
+        {
+          "subject": "p002",
+          "genuine_n": 100,
+          "impostor_n": 7796,
+          "eer": 0.161772703950744,
+          "oracle_frr_at_far_1pct": 0.86,
+          "frr": 0.94,
+          "far": 0.007567983581323756
+        },
+        {
+          "subject": "p003",
+          "genuine_n": 100,
+          "impostor_n": 7796,
+          "eer": 0.03859928168291431,
+          "oracle_frr_at_far_1pct": 1.0,
+          "frr": 0.02,
+          "far": 0.04027706516162134
+        },
+        {
+          "subject": "p004",
+          "genuine_n": 100,
+          "impostor_n": 7796,
+          "eer": 0.01885069266290406,
+          "oracle_frr_at_far_1pct": 0.02,
+          "frr": 0.02,
+          "far": 0.007054899948691636
+        },
+        {
+          "subject": "p005",
+          "genuine_n": 100,
+          "impostor_n": 7796,
+          "eer": 0.22999486916367368,
+          "oracle_frr_at_far_1pct": 0.96,
+          "frr": 0.98,
+          "far": 0.00513083632632119
+        },
+        {
+          "subject": "p006",
+          "genuine_n": 100,
+          "impostor_n": 7796,
+          "eer": 0.09002308876346844,
+          "oracle_frr_at_far_1pct": 0.77,
+          "frr": 0.27,
+          "far": 0.02642380708055413
+        },
+        {
+          "subject": "p009",
+          "genuine_n": 100,
+          "impostor_n": 7796,
+          "eer": 0.328481272447409,
+          "oracle_frr_at_far_1pct": 0.99,
+          "frr": 0.99,
+          "far": 0.01090302719343253
+        },
+        {
+          "subject": "p010",
+          "genuine_n": 100,
+          "impostor_n": 7796,
+          "eer": 0.25782195997947666,
+          "oracle_frr_at_far_1pct": 0.92,
+          "frr": 0.94,
+          "far": 0.00513083632632119
+        },
+        {
+          "subject": "p011",
+          "genuine_n": 100,
+          "impostor_n": 7796,
+          "eer": 0.26045151359671626,
+          "oracle_frr_at_far_1pct": 0.96,
+          "frr": 0.98,
+          "far": 0.0029502308876346844
+        },
+        {
+          "subject": "p012",
+          "genuine_n": 99,
+          "impostor_n": 7797,
+          "eer": 0.14143940365564067,
+          "oracle_frr_at_far_1pct": 0.9797979797979798,
+          "frr": 0.9595959595959596,
+          "far": 0.01385148133897653
+        },
+        {
+          "subject": "p013",
+          "genuine_n": 100,
+          "impostor_n": 7796,
+          "eer": 0.4899974345818368,
+          "oracle_frr_at_far_1pct": 0.99,
+          "frr": 0.99,
+          "far": 0.011159569009748588
+        },
+        {
+          "subject": "p014",
+          "genuine_n": 100,
+          "impostor_n": 7796,
+          "eer": 0.09136993329912775,
+          "oracle_frr_at_far_1pct": 1.0,
+          "frr": 0.54,
+          "far": 0.021549512570549
+        },
+        {
+          "subject": "p015",
+          "genuine_n": 100,
+          "impostor_n": 7796,
+          "eer": 0.06001539250897894,
+          "oracle_frr_at_far_1pct": 0.16,
+          "frr": 0.12,
+          "far": 0.029117496151872754
+        },
+        {
+          "subject": "p016",
+          "genuine_n": 100,
+          "impostor_n": 7796,
+          "eer": 0.2199923037455105,
+          "oracle_frr_at_far_1pct": 0.86,
+          "frr": 0.93,
+          "far": 0.006541816316059518
+        },
+        {
+          "subject": "p018",
+          "genuine_n": 100,
+          "impostor_n": 7796,
+          "eer": 0.050012827090815816,
+          "oracle_frr_at_far_1pct": 0.23,
+          "frr": 0.47,
+          "far": 0.003976398152898923
+        },
+        {
+          "subject": "p019",
+          "genuine_n": 100,
+          "impostor_n": 7796,
+          "eer": 0.3881118522319138,
+          "oracle_frr_at_far_1pct": 0.99,
+          "frr": 0.99,
+          "far": 0.0067983581323755775
+        },
+        {
+          "subject": "p020",
+          "genuine_n": 107,
+          "impostor_n": 7789,
+          "eer": 0.14897357044382026,
+          "oracle_frr_at_far_1pct": 0.9065420560747663,
+          "frr": 0.9532710280373832,
+          "far": 0.0052638336115034025
+        },
+        {
+          "subject": "p022",
+          "genuine_n": 100,
+          "impostor_n": 7796,
+          "eer": 0.20947665469471521,
+          "oracle_frr_at_far_1pct": 0.92,
+          "frr": 0.91,
+          "far": 0.012955361723961006
+        },
+        {
+          "subject": "p024",
+          "genuine_n": 100,
+          "impostor_n": 7796,
+          "eer": 0.32001795792714216,
+          "oracle_frr_at_far_1pct": 0.95,
+          "frr": 0.98,
+          "far": 0.0033350436121087736
+        },
+        {
+          "subject": "p025",
+          "genuine_n": 100,
+          "impostor_n": 7796,
+          "eer": 0.07110826064648537,
+          "oracle_frr_at_far_1pct": 0.65,
+          "frr": 0.74,
+          "far": 0.005002565418163161
+        },
+        {
+          "subject": "p026",
+          "genuine_n": 99,
+          "impostor_n": 7797,
+          "eer": 0.07068763821360974,
+          "oracle_frr_at_far_1pct": 0.30303030303030304,
+          "frr": 0.5252525252525253,
+          "far": 0.0035911247915865075
+        },
+        {
+          "subject": "p027",
+          "genuine_n": 100,
+          "impostor_n": 7796,
+          "eer": 0.11002821959979475,
+          "oracle_frr_at_far_1pct": 0.84,
+          "frr": 0.89,
+          "far": 0.00525910723447922
+        },
+        {
+          "subject": "p028",
+          "genuine_n": 100,
+          "impostor_n": 7796,
+          "eer": 0.15997691123653157,
+          "oracle_frr_at_far_1pct": 0.69,
+          "frr": 0.77,
+          "far": 0.00538737814263725
+        },
+        {
+          "subject": "p029",
+          "genuine_n": 100,
+          "impostor_n": 7796,
+          "eer": 0.29001026167265265,
+          "oracle_frr_at_far_1pct": 0.97,
+          "frr": 0.97,
+          "far": 0.009620318111852232
+        },
+        {
+          "subject": "p030",
+          "genuine_n": 100,
+          "impostor_n": 7796,
+          "eer": 0.2600025654181632,
+          "oracle_frr_at_far_1pct": 0.92,
+          "frr": 0.95,
+          "far": 0.005900461775269369
+        },
+        {
+          "subject": "p031",
+          "genuine_n": 100,
+          "impostor_n": 7796,
+          "eer": 0.15997691123653157,
+          "oracle_frr_at_far_1pct": 0.87,
+          "frr": 0.88,
+          "far": 0.008850692662904053
+        },
+        {
+          "subject": "p032",
+          "genuine_n": 100,
+          "impostor_n": 7796,
+          "eer": 0.3210441251924063,
+          "oracle_frr_at_far_1pct": 0.97,
+          "frr": 0.99,
+          "far": 0.0035915854284248334
+        },
+        {
+          "subject": "p033",
+          "genuine_n": 100,
+          "impostor_n": 7796,
+          "eer": 0.2902026680348897,
+          "oracle_frr_at_far_1pct": 1.0,
+          "frr": 0.98,
+          "far": 0.044253463314520264
+        },
+        {
+          "subject": "p034",
+          "genuine_n": 100,
+          "impostor_n": 7796,
+          "eer": 0.13099538224730634,
+          "oracle_frr_at_far_1pct": 0.94,
+          "frr": 0.91,
+          "far": 0.022062596203181118
+        },
+        {
+          "subject": "p035",
+          "genuine_n": 99,
+          "impostor_n": 7797,
+          "eer": 0.17172494471455613,
+          "oracle_frr_at_far_1pct": 0.8282828282828283,
+          "frr": 0.9494949494949495,
+          "far": 0.0025650891368475055
+        },
+        {
+          "subject": "p036",
+          "genuine_n": 100,
+          "impostor_n": 7796,
+          "eer": 0.11002821959979475,
+          "oracle_frr_at_far_1pct": 0.56,
+          "frr": 0.42,
+          "far": 0.015264238070805541
+        },
+        {
+          "subject": "p038",
+          "genuine_n": 100,
+          "impostor_n": 7796,
+          "eer": 0.2293535146228835,
+          "oracle_frr_at_far_1pct": 0.77,
+          "frr": 0.83,
+          "far": 0.006926629040533607
+        },
+        {
+          "subject": "p039",
+          "genuine_n": 100,
+          "impostor_n": 7796,
+          "eer": 0.08002052334530527,
+          "oracle_frr_at_far_1pct": 0.6,
+          "frr": 0.32,
+          "far": 0.018471010774756286
+        },
+        {
+          "subject": "p040",
+          "genuine_n": 100,
+          "impostor_n": 7796,
+          "eer": 0.08046947152385839,
+          "oracle_frr_at_far_1pct": 0.66,
+          "frr": 0.61,
+          "far": 0.012185736275012828
+        },
+        {
+          "subject": "p042",
+          "genuine_n": 99,
+          "impostor_n": 7797,
+          "eer": 0.14143940365564067,
+          "oracle_frr_at_far_1pct": 0.9696969696969697,
+          "frr": 0.5757575757575758,
+          "far": 0.04963447479799923
+        },
+        {
+          "subject": "p043",
+          "genuine_n": 100,
+          "impostor_n": 7796,
+          "eer": 0.06001539250897894,
+          "oracle_frr_at_far_1pct": 0.45,
+          "frr": 0.15,
+          "far": 0.03193945613134941
+        },
+        {
+          "subject": "p044",
+          "genuine_n": 100,
+          "impostor_n": 7796,
+          "eer": 0.07001795792714213,
+          "oracle_frr_at_far_1pct": 0.33,
+          "frr": 0.29,
+          "far": 0.014494612621857363
+        },
+        {
+          "subject": "p045",
+          "genuine_n": 100,
+          "impostor_n": 7796,
+          "eer": 0.17998204207285787,
+          "oracle_frr_at_far_1pct": 0.93,
+          "frr": 0.92,
+          "far": 0.020266803488968702
+        },
+        {
+          "subject": "p048",
+          "genuine_n": 100,
+          "impostor_n": 7796,
+          "eer": 0.3300205233453053,
+          "oracle_frr_at_far_1pct": 0.95,
+          "frr": 0.97,
+          "far": 0.0048742945100051305
+        },
+        {
+          "subject": "p049",
+          "genuine_n": 100,
+          "impostor_n": 7796,
+          "eer": 0.11887634684453563,
+          "oracle_frr_at_far_1pct": 0.73,
+          "frr": 0.8,
+          "far": 0.007567983581323756
+        },
+        {
+          "subject": "p050",
+          "genuine_n": 100,
+          "impostor_n": 7796,
+          "eer": 0.2487172909184197,
+          "oracle_frr_at_far_1pct": 0.9,
+          "frr": 0.94,
+          "far": 0.006028732683427399
+        },
+        {
+          "subject": "p051",
+          "genuine_n": 99,
+          "impostor_n": 7797,
+          "eer": 0.21462800377767677,
+          "oracle_frr_at_far_1pct": 1.0,
+          "frr": 1.0,
+          "far": 0.019622931896883418
+        },
+        {
+          "subject": "p054",
+          "genuine_n": 99,
+          "impostor_n": 7797,
+          "eer": 0.06063520934625208,
+          "oracle_frr_at_far_1pct": 0.6262626262626263,
+          "frr": 0.7676767676767676,
+          "far": 0.008336539694754393
+        },
+        {
+          "subject": "p055",
+          "genuine_n": 100,
+          "impostor_n": 7796,
+          "eer": 0.28994612621857363,
+          "oracle_frr_at_far_1pct": 0.52,
+          "frr": 0.5,
+          "far": 0.011031298101590559
+        },
+        {
+          "subject": "p058",
+          "genuine_n": 100,
+          "impostor_n": 7796,
+          "eer": 0.1808158029758851,
+          "oracle_frr_at_far_1pct": 0.95,
+          "frr": 0.96,
+          "far": 0.008850692662904053
+        },
+        {
+          "subject": "p059",
+          "genuine_n": 100,
+          "impostor_n": 7796,
+          "eer": 0.14856336582863006,
+          "oracle_frr_at_far_1pct": 0.97,
+          "frr": 0.9,
+          "far": 0.01654694715238584
+        },
+        {
+          "subject": "p062",
+          "genuine_n": 100,
+          "impostor_n": 7796,
+          "eer": 0.1208004104669061,
+          "oracle_frr_at_far_1pct": 0.95,
+          "frr": 0.98,
+          "far": 0.005643919958953309
+        },
+        {
+          "subject": "p063",
+          "genuine_n": 100,
+          "impostor_n": 7796,
+          "eer": 0.13766290405336068,
+          "oracle_frr_at_far_1pct": 0.98,
+          "frr": 0.98,
+          "far": 0.017444843509492047
+        },
+        {
+          "subject": "p064",
+          "genuine_n": 100,
+          "impostor_n": 7796,
+          "eer": 0.03135454079014881,
+          "oracle_frr_at_far_1pct": 0.21,
+          "frr": 0.11,
+          "far": 0.022575679835813236
+        },
+        {
+          "subject": "p065",
+          "genuine_n": 100,
+          "impostor_n": 7796,
+          "eer": 0.35964340687532065,
+          "oracle_frr_at_far_1pct": 0.98,
+          "frr": 0.98,
+          "far": 0.009107234479220112
+        },
+        {
+          "subject": "p066",
+          "genuine_n": 100,
+          "impostor_n": 7796,
+          "eer": 0.3307901487942535,
+          "oracle_frr_at_far_1pct": 1.0,
+          "frr": 1.0,
+          "far": 0.007567983581323756
+        },
+        {
+          "subject": "p067",
+          "genuine_n": 100,
+          "impostor_n": 7796,
+          "eer": 0.11785017957927141,
+          "oracle_frr_at_far_1pct": 0.86,
+          "frr": 0.94,
+          "far": 0.004104669061056952
+        },
+        {
+          "subject": "p068",
+          "genuine_n": 100,
+          "impostor_n": 7796,
+          "eer": 0.18799640841457158,
+          "oracle_frr_at_far_1pct": 1.0,
+          "frr": 0.91,
+          "far": 0.03040020523345305
+        },
+        {
+          "subject": "p069",
+          "genuine_n": 100,
+          "impostor_n": 7796,
+          "eer": 0.17158286300667008,
+          "oracle_frr_at_far_1pct": 0.96,
+          "frr": 0.96,
+          "far": 0.004746023601847101
+        },
+        {
+          "subject": "p070",
+          "genuine_n": 100,
+          "impostor_n": 7796,
+          "eer": 0.2600025654181632,
+          "oracle_frr_at_far_1pct": 1.0,
+          "frr": 0.99,
+          "far": 0.014622883530015392
+        },
+        {
+          "subject": "p071",
+          "genuine_n": 100,
+          "impostor_n": 7796,
+          "eer": 0.15997691123653157,
+          "oracle_frr_at_far_1pct": 0.77,
+          "frr": 0.61,
+          "far": 0.022575679835813236
+        },
+        {
+          "subject": "p072",
+          "genuine_n": 100,
+          "impostor_n": 7796,
+          "eer": 0.10188558234992302,
+          "oracle_frr_at_far_1pct": 0.8,
+          "frr": 0.76,
+          "far": 0.012955361723961006
+        },
+        {
+          "subject": "p073",
+          "genuine_n": 98,
+          "impostor_n": 7798,
+          "eer": 0.19292492580515153,
+          "oracle_frr_at_far_1pct": 0.8775510204081632,
+          "frr": 0.8163265306122449,
+          "far": 0.012823800974608874
+        },
+        {
+          "subject": "p074",
+          "genuine_n": 100,
+          "impostor_n": 7796,
+          "eer": 0.1999871729091842,
+          "oracle_frr_at_far_1pct": 0.73,
+          "frr": 0.87,
+          "far": 0.005002565418163161
+        },
+        {
+          "subject": "p075",
+          "genuine_n": 100,
+          "impostor_n": 7796,
+          "eer": 0.09002308876346844,
+          "oracle_frr_at_far_1pct": 0.66,
+          "frr": 0.75,
+          "far": 0.006926629040533607
+        },
+        {
+          "subject": "p076",
+          "genuine_n": 100,
+          "impostor_n": 7796,
+          "eer": 0.15106464853771168,
+          "oracle_frr_at_far_1pct": 0.81,
+          "frr": 0.72,
+          "far": 0.013211903540277065
+        },
+        {
+          "subject": "p077",
+          "genuine_n": 100,
+          "impostor_n": 7796,
+          "eer": 0.04001026167265263,
+          "oracle_frr_at_far_1pct": 0.27,
+          "frr": 0.39,
+          "far": 0.004361210877373012
+        },
+        {
+          "subject": "p078",
+          "genuine_n": 100,
+          "impostor_n": 7796,
+          "eer": 0.2782760389943561,
+          "oracle_frr_at_far_1pct": 0.97,
+          "frr": 0.96,
+          "far": 0.01064648537711647
+        },
+        {
+          "subject": "p079",
+          "genuine_n": 100,
+          "impostor_n": 7796,
+          "eer": 0.08002052334530527,
+          "oracle_frr_at_far_1pct": 0.93,
+          "frr": 0.93,
+          "far": 0.006413545407901488
+        },
+        {
+          "subject": "p080",
+          "genuine_n": 100,
+          "impostor_n": 7796,
+          "eer": 0.23082863006670085,
+          "oracle_frr_at_far_1pct": 0.97,
+          "frr": 0.92,
+          "far": 0.023858388917393534
+        },
+        {
+          "subject": "p081",
+          "genuine_n": 101,
+          "impostor_n": 7795,
+          "eer": 0.09863901079011046,
+          "oracle_frr_at_far_1pct": 0.9801980198019802,
+          "frr": 0.7920792079207921,
+          "far": 0.02026940346375882
+        },
+        {
+          "subject": "p082",
+          "genuine_n": 99,
+          "impostor_n": 7797,
+          "eer": 0.07017462038624023,
+          "oracle_frr_at_far_1pct": 0.3939393939393939,
+          "frr": 0.3939393939393939,
+          "far": 0.010003847633705272
+        },
+        {
+          "subject": "p083",
+          "genuine_n": 100,
+          "impostor_n": 7796,
+          "eer": 0.15997691123653157,
+          "oracle_frr_at_far_1pct": 0.98,
+          "frr": 0.94,
+          "far": 0.022703950743971267
+        },
+        {
+          "subject": "p084",
+          "genuine_n": 100,
+          "impostor_n": 7796,
+          "eer": 0.15247562852745,
+          "oracle_frr_at_far_1pct": 1.0,
+          "frr": 0.88,
+          "far": 0.021549512570549
+        },
+        {
+          "subject": "p085",
+          "genuine_n": 99,
+          "impostor_n": 7797,
+          "eer": 0.019976603277872977,
+          "oracle_frr_at_far_1pct": 0.10101010101010101,
+          "frr": 0.25252525252525254,
+          "far": 0.005771450557906887
+        },
+        {
+          "subject": "p086",
+          "genuine_n": 100,
+          "impostor_n": 7796,
+          "eer": 0.051359671626475124,
+          "oracle_frr_at_far_1pct": 0.57,
+          "frr": 0.45,
+          "far": 0.012827090815802977
+        },
+        {
+          "subject": "p087",
+          "genuine_n": 100,
+          "impostor_n": 7796,
+          "eer": 0.20197537198563367,
+          "oracle_frr_at_far_1pct": 0.71,
+          "frr": 0.75,
+          "far": 0.007439712673165726
+        },
+        {
+          "subject": "p089",
+          "genuine_n": 99,
+          "impostor_n": 7797,
+          "eer": 0.13132284755986182,
+          "oracle_frr_at_far_1pct": 0.8383838383838383,
+          "frr": 0.8787878787878788,
+          "far": 0.006284468385276389
+        },
+        {
+          "subject": "p092",
+          "genuine_n": 99,
+          "impostor_n": 7797,
+          "eer": 0.040017333784167206,
+          "oracle_frr_at_far_1pct": 0.09090909090909091,
+          "frr": 0.25252525252525254,
+          "far": 0.0030781069642170067
+        },
+        {
+          "subject": "p093",
+          "genuine_n": 100,
+          "impostor_n": 7796,
+          "eer": 0.2107593637762955,
+          "oracle_frr_at_far_1pct": 1.0,
+          "frr": 0.99,
+          "far": 0.017444843509492047
+        },
+        {
+          "subject": "p094",
+          "genuine_n": 100,
+          "impostor_n": 7796,
+          "eer": 0.21979989738327343,
+          "oracle_frr_at_far_1pct": 0.98,
+          "frr": 0.99,
+          "far": 0.008978963571062083
+        },
+        {
+          "subject": "p095",
+          "genuine_n": 100,
+          "impostor_n": 7796,
+          "eer": 0.16895330938943048,
+          "oracle_frr_at_far_1pct": 0.98,
+          "frr": 0.98,
+          "far": 0.00538737814263725
+        },
+        {
+          "subject": "p097",
+          "genuine_n": 100,
+          "impostor_n": 7796,
+          "eer": 0.24018984094407386,
+          "oracle_frr_at_far_1pct": 0.94,
+          "frr": 0.94,
+          "far": 0.010133401744484351
+        },
+        {
+          "subject": "p099",
+          "genuine_n": 100,
+          "impostor_n": 7796,
+          "eer": 0.17042842483324783,
+          "oracle_frr_at_far_1pct": 0.89,
+          "frr": 0.86,
+          "far": 0.011672652642380708
+        },
+        {
+          "subject": "p100",
+          "genuine_n": 100,
+          "impostor_n": 7796,
+          "eer": 0.22999486916367368,
+          "oracle_frr_at_far_1pct": 0.9,
+          "frr": 0.93,
+          "far": 0.006285274499743458
+        }
+      ],
+      "score_seconds": 0.2210150939936284
+    },
+    "train_selected": {
+      "aggregate_macro_user": {
+        "eer": 0.11618161203340528,
+        "oracle_frr_at_far_1pct": 0.4489660151103366,
+        "frr": 0.4591429299860141,
+        "far": 0.012930946442501421,
+        "eer_user_bootstrap_95ci": [
+          0.09323849997439645,
+          0.14407371216127804
+        ],
+        "oracle_frr_at_far_1pct_user_bootstrap_95ci": [
+          0.3849038179893142,
+          0.5179044825158547
+        ],
+        "frr_user_bootstrap_95ci": [
+          0.39360925269518815,
+          0.5270853935022424
+        ],
+        "far_user_bootstrap_95ci": [
+          0.01049523641873907,
+          0.015719038025795044
+        ]
+      },
+      "per_user": [
+        {
+          "subject": "p002",
+          "genuine_n": 100,
+          "impostor_n": 7796,
+          "eer": 0.09002308876346844,
+          "oracle_frr_at_far_1pct": 0.44,
+          "frr": 0.39,
+          "far": 0.013724987172909184
+        },
+        {
+          "subject": "p003",
+          "genuine_n": 100,
+          "impostor_n": 7796,
+          "eer": 0.019812724474089265,
+          "oracle_frr_at_far_1pct": 0.14,
+          "frr": 0.0,
+          "far": 0.06387891226269882
+        },
+        {
+          "subject": "p004",
+          "genuine_n": 100,
+          "impostor_n": 7796,
+          "eer": 0.7257696254489482,
+          "oracle_frr_at_far_1pct": 0.96,
+          "frr": 0.96,
+          "far": 0.009620318111852232
+        },
+        {
+          "subject": "p005",
+          "genuine_n": 100,
+          "impostor_n": 7796,
+          "eer": 0.13150846587993842,
+          "oracle_frr_at_far_1pct": 0.91,
+          "frr": 0.91,
+          "far": 0.008337609030271934
+        },
+        {
+          "subject": "p006",
+          "genuine_n": 100,
+          "impostor_n": 7796,
+          "eer": 0.029558748075936378,
+          "oracle_frr_at_far_1pct": 0.07,
+          "frr": 0.05,
+          "far": 0.019497178040020522
+        },
+        {
+          "subject": "p009",
+          "genuine_n": 100,
+          "impostor_n": 7796,
+          "eer": 0.2894971780400205,
+          "oracle_frr_at_far_1pct": 0.96,
+          "frr": 0.94,
+          "far": 0.017957927142124165
+        },
+        {
+          "subject": "p010",
+          "genuine_n": 100,
+          "impostor_n": 7796,
+          "eer": 0.12003078501795794,
+          "oracle_frr_at_far_1pct": 0.47,
+          "frr": 0.52,
+          "far": 0.007567983581323756
+        },
+        {
+          "subject": "p011",
+          "genuine_n": 100,
+          "impostor_n": 7796,
+          "eer": 0.10053873781426372,
+          "oracle_frr_at_far_1pct": 0.57,
+          "frr": 0.85,
+          "far": 0.0007696254489481786
+        },
+        {
+          "subject": "p012",
+          "genuine_n": 99,
+          "impostor_n": 7797,
+          "eer": 0.07267558229466659,
+          "oracle_frr_at_far_1pct": 0.4444444444444444,
+          "frr": 0.24242424242424243,
+          "far": 0.023342311145312298
+        },
+        {
+          "subject": "p013",
+          "genuine_n": 100,
+          "impostor_n": 7796,
+          "eer": 0.37676244227809136,
+          "oracle_frr_at_far_1pct": 1.0,
+          "frr": 0.99,
+          "far": 0.02090815802975885
+        },
+        {
+          "subject": "p014",
+          "genuine_n": 100,
+          "impostor_n": 7796,
+          "eer": 0.0300076962544895,
+          "oracle_frr_at_far_1pct": 0.12,
+          "frr": 0.19,
+          "far": 0.007183170856849667
+        },
+        {
+          "subject": "p015",
+          "genuine_n": 100,
+          "impostor_n": 7796,
+          "eer": 0.0300076962544895,
+          "oracle_frr_at_far_1pct": 0.08,
+          "frr": 0.03,
+          "far": 0.03168291431503335
+        },
+        {
+          "subject": "p016",
+          "genuine_n": 100,
+          "impostor_n": 7796,
+          "eer": 0.12003078501795794,
+          "oracle_frr_at_far_1pct": 0.62,
+          "frr": 0.65,
+          "far": 0.008594150846587994
+        },
+        {
+          "subject": "p018",
+          "genuine_n": 100,
+          "impostor_n": 7796,
+          "eer": 0.022314007183170885,
+          "oracle_frr_at_far_1pct": 0.08,
+          "frr": 0.12,
+          "far": 0.0030785017957927143
+        },
+        {
+          "subject": "p019",
+          "genuine_n": 100,
+          "impostor_n": 7796,
+          "eer": 0.5493022062596202,
+          "oracle_frr_at_far_1pct": 0.96,
+          "frr": 0.99,
+          "far": 0.002693689071318625
+        },
+        {
+          "subject": "p020",
+          "genuine_n": 107,
+          "impostor_n": 7789,
+          "eer": 0.05692427494801561,
+          "oracle_frr_at_far_1pct": 0.19626168224299065,
+          "frr": 0.19626168224299065,
+          "far": 0.010527667223006805
+        },
+        {
+          "subject": "p022",
+          "genuine_n": 100,
+          "impostor_n": 7796,
+          "eer": 0.2199923037455105,
+          "oracle_frr_at_far_1pct": 0.64,
+          "frr": 0.64,
+          "far": 0.009363776295536173
+        },
+        {
+          "subject": "p024",
+          "genuine_n": 100,
+          "impostor_n": 7796,
+          "eer": 0.2679527963057979,
+          "oracle_frr_at_far_1pct": 0.94,
+          "frr": 0.94,
+          "far": 0.019112365315546435
+        },
+        {
+          "subject": "p025",
+          "genuine_n": 100,
+          "impostor_n": 7796,
+          "eer": 0.0801487942534633,
+          "oracle_frr_at_far_1pct": 0.34,
+          "frr": 0.39,
+          "far": 0.0038481272447408927
+        },
+        {
+          "subject": "p026",
+          "genuine_n": 99,
+          "impostor_n": 7797,
+          "eer": 0.019527712678924662,
+          "oracle_frr_at_far_1pct": 0.04040404040404041,
+          "frr": 0.0707070707070707,
+          "far": 0.0034628703347441324
+        },
+        {
+          "subject": "p027",
+          "genuine_n": 100,
+          "impostor_n": 7796,
+          "eer": 0.0402668034889687,
+          "oracle_frr_at_far_1pct": 0.17,
+          "frr": 0.39,
+          "far": 0.002308876346844536
+        },
+        {
+          "subject": "p028",
+          "genuine_n": 100,
+          "impostor_n": 7796,
+          "eer": 0.049050795279630556,
+          "oracle_frr_at_far_1pct": 0.24,
+          "frr": 0.34,
+          "far": 0.002693689071318625
+        },
+        {
+          "subject": "p029",
+          "genuine_n": 100,
+          "impostor_n": 7796,
+          "eer": 0.11034889687018984,
+          "oracle_frr_at_far_1pct": 0.71,
+          "frr": 0.66,
+          "far": 0.013468445356593124
+        },
+        {
+          "subject": "p030",
+          "genuine_n": 100,
+          "impostor_n": 7796,
+          "eer": 0.07021036428937918,
+          "oracle_frr_at_far_1pct": 0.24,
+          "frr": 0.32,
+          "far": 0.004746023601847101
+        },
+        {
+          "subject": "p031",
+          "genuine_n": 100,
+          "impostor_n": 7796,
+          "eer": 0.08002052334530527,
+          "oracle_frr_at_far_1pct": 0.62,
+          "frr": 0.58,
+          "far": 0.011287839917906618
+        },
+        {
+          "subject": "p032",
+          "genuine_n": 100,
+          "impostor_n": 7796,
+          "eer": 0.1729758850692663,
+          "oracle_frr_at_far_1pct": 0.76,
+          "frr": 0.81,
+          "far": 0.003976398152898923
+        },
+        {
+          "subject": "p033",
+          "genuine_n": 100,
+          "impostor_n": 7796,
+          "eer": 0.18870189840944077,
+          "oracle_frr_at_far_1pct": 0.62,
+          "frr": 0.5,
+          "far": 0.026295536172396102
+        },
+        {
+          "subject": "p034",
+          "genuine_n": 100,
+          "impostor_n": 7796,
+          "eer": 0.03750897896357107,
+          "oracle_frr_at_far_1pct": 0.09,
+          "frr": 0.03,
+          "far": 0.05336069779374038
+        },
+        {
+          "subject": "p035",
+          "genuine_n": 99,
+          "impostor_n": 7797,
+          "eer": 0.05051865325047317,
+          "oracle_frr_at_far_1pct": 0.3434343434343434,
+          "frr": 0.5151515151515151,
+          "far": 0.003975888162113634
+        },
+        {
+          "subject": "p036",
+          "genuine_n": 100,
+          "impostor_n": 7796,
+          "eer": 0.08784248332478196,
+          "oracle_frr_at_far_1pct": 0.26,
+          "frr": 0.22,
+          "far": 0.012185736275012828
+        },
+        {
+          "subject": "p038",
+          "genuine_n": 100,
+          "impostor_n": 7796,
+          "eer": 0.18786813750641354,
+          "oracle_frr_at_far_1pct": 0.66,
+          "frr": 0.67,
+          "far": 0.009876859928168292
+        },
+        {
+          "subject": "p039",
+          "genuine_n": 100,
+          "impostor_n": 7796,
+          "eer": 0.07168547973319653,
+          "oracle_frr_at_far_1pct": 0.42,
+          "frr": 0.2,
+          "far": 0.02668034889687019
+        },
+        {
+          "subject": "p040",
+          "genuine_n": 100,
+          "impostor_n": 7796,
+          "eer": 0.04001026167265263,
+          "oracle_frr_at_far_1pct": 0.27,
+          "frr": 0.67,
+          "far": 0.0034633145202668035
+        },
+        {
+          "subject": "p042",
+          "genuine_n": 99,
+          "impostor_n": 7797,
+          "eer": 0.07068763821360974,
+          "oracle_frr_at_far_1pct": 0.18181818181818182,
+          "frr": 0.0707070707070707,
+          "far": 0.0471976401179941
+        },
+        {
+          "subject": "p043",
+          "genuine_n": 100,
+          "impostor_n": 7796,
+          "eer": 0.020005130836326317,
+          "oracle_frr_at_far_1pct": 0.03,
+          "frr": 0.02,
+          "far": 0.020651616213442792
+        },
+        {
+          "subject": "p044",
+          "genuine_n": 100,
+          "impostor_n": 7796,
+          "eer": 0.019876859928168282,
+          "oracle_frr_at_far_1pct": 0.04,
+          "frr": 0.02,
+          "far": 0.019240636223704463
+        },
+        {
+          "subject": "p045",
+          "genuine_n": 100,
+          "impostor_n": 7796,
+          "eer": 0.1999871729091842,
+          "oracle_frr_at_far_1pct": 0.8,
+          "frr": 0.85,
+          "far": 0.007824525397639816
+        },
+        {
+          "subject": "p048",
+          "genuine_n": 100,
+          "impostor_n": 7796,
+          "eer": 0.31020779887121597,
+          "oracle_frr_at_far_1pct": 0.96,
+          "frr": 0.96,
+          "far": 0.01038994356080041
+        },
+        {
+          "subject": "p049",
+          "genuine_n": 100,
+          "impostor_n": 7796,
+          "eer": 0.06168291431503334,
+          "oracle_frr_at_far_1pct": 0.37,
+          "frr": 0.38,
+          "far": 0.008722421754746024
+        },
+        {
+          "subject": "p050",
+          "genuine_n": 100,
+          "impostor_n": 7796,
+          "eer": 0.14003591585428427,
+          "oracle_frr_at_far_1pct": 0.66,
+          "frr": 0.74,
+          "far": 0.008465879938429965
+        },
+        {
+          "subject": "p051",
+          "genuine_n": 99,
+          "impostor_n": 7797,
+          "eer": 0.06063520934625208,
+          "oracle_frr_at_far_1pct": 0.1717171717171717,
+          "frr": 0.20202020202020202,
+          "far": 0.006669231755803514
+        },
+        {
+          "subject": "p054",
+          "genuine_n": 99,
+          "impostor_n": 7797,
+          "eer": 0.0488513453115223,
+          "oracle_frr_at_far_1pct": 0.5252525252525253,
+          "frr": 0.6161616161616161,
+          "far": 0.0061562139284340135
+        },
+        {
+          "subject": "p055",
+          "genuine_n": 100,
+          "impostor_n": 7796,
+          "eer": 0.22325295023088765,
+          "oracle_frr_at_far_1pct": 0.5,
+          "frr": 0.64,
+          "far": 0.003206772703950744
+        },
+        {
+          "subject": "p058",
+          "genuine_n": 100,
+          "impostor_n": 7796,
+          "eer": 0.1999871729091842,
+          "oracle_frr_at_far_1pct": 0.74,
+          "frr": 0.81,
+          "far": 0.004232939969214982
+        },
+        {
+          "subject": "p059",
+          "genuine_n": 100,
+          "impostor_n": 7796,
+          "eer": 0.17004361210877372,
+          "oracle_frr_at_far_1pct": 0.71,
+          "frr": 0.59,
+          "far": 0.017701385325808106
+        },
+        {
+          "subject": "p062",
+          "genuine_n": 100,
+          "impostor_n": 7796,
+          "eer": 0.07046690610569525,
+          "oracle_frr_at_far_1pct": 0.25,
+          "frr": 0.32,
+          "far": 0.0055156490507952795
+        },
+        {
+          "subject": "p063",
+          "genuine_n": 100,
+          "impostor_n": 7796,
+          "eer": 0.04892252437147258,
+          "oracle_frr_at_far_1pct": 0.34,
+          "frr": 0.62,
+          "far": 0.0019240636223704464
+        },
+        {
+          "subject": "p064",
+          "genuine_n": 100,
+          "impostor_n": 7796,
+          "eer": 0.020005130836326317,
+          "oracle_frr_at_far_1pct": 0.04,
+          "frr": 0.04,
+          "far": 0.009748589020010261
+        },
+        {
+          "subject": "p065",
+          "genuine_n": 100,
+          "impostor_n": 7796,
+          "eer": 0.2399974345818368,
+          "oracle_frr_at_far_1pct": 0.92,
+          "frr": 0.91,
+          "far": 0.0107747562852745
+        },
+        {
+          "subject": "p066",
+          "genuine_n": 100,
+          "impostor_n": 7796,
+          "eer": 0.24211390456644433,
+          "oracle_frr_at_far_1pct": 0.91,
+          "frr": 0.92,
+          "far": 0.0061570035915854285
+        },
+        {
+          "subject": "p067",
+          "genuine_n": 100,
+          "impostor_n": 7796,
+          "eer": 0.02148024628014366,
+          "oracle_frr_at_far_1pct": 0.05,
+          "frr": 0.07,
+          "far": 0.006413545407901488
+        },
+        {
+          "subject": "p068",
+          "genuine_n": 100,
+          "impostor_n": 7796,
+          "eer": 0.16997947665469476,
+          "oracle_frr_at_far_1pct": 0.72,
+          "frr": 0.46,
+          "far": 0.045664443304258596
+        },
+        {
+          "subject": "p069",
+          "genuine_n": 100,
+          "impostor_n": 7796,
+          "eer": 0.10906618778860955,
+          "oracle_frr_at_far_1pct": 0.63,
+          "frr": 0.68,
+          "far": 0.007311441765007696
+        },
+        {
+          "subject": "p070",
+          "genuine_n": 100,
+          "impostor_n": 7796,
+          "eer": 0.08002052334530527,
+          "oracle_frr_at_far_1pct": 0.55,
+          "frr": 0.55,
+          "far": 0.01064648537711647
+        },
+        {
+          "subject": "p071",
+          "genuine_n": 100,
+          "impostor_n": 7796,
+          "eer": 0.18985633658286302,
+          "oracle_frr_at_far_1pct": 0.79,
+          "frr": 0.6,
+          "far": 0.02578245253976398
+        },
+        {
+          "subject": "p072",
+          "genuine_n": 100,
+          "impostor_n": 7796,
+          "eer": 0.07001795792714213,
+          "oracle_frr_at_far_1pct": 0.32,
+          "frr": 0.32,
+          "far": 0.009363776295536173
+        },
+        {
+          "subject": "p073",
+          "genuine_n": 98,
+          "impostor_n": 7798,
+          "eer": 0.14285714285714288,
+          "oracle_frr_at_far_1pct": 0.5510204081632653,
+          "frr": 0.5306122448979592,
+          "far": 0.010900230828417543
+        },
+        {
+          "subject": "p074",
+          "genuine_n": 100,
+          "impostor_n": 7796,
+          "eer": 0.12131349409953823,
+          "oracle_frr_at_far_1pct": 0.44,
+          "frr": 0.58,
+          "far": 0.0048742945100051305
+        },
+        {
+          "subject": "p075",
+          "genuine_n": 100,
+          "impostor_n": 7796,
+          "eer": 0.04917906618778859,
+          "oracle_frr_at_far_1pct": 0.4,
+          "frr": 0.48,
+          "far": 0.007952796305797845
+        },
+        {
+          "subject": "p076",
+          "genuine_n": 100,
+          "impostor_n": 7796,
+          "eer": 0.11073370959466394,
+          "oracle_frr_at_far_1pct": 0.53,
+          "frr": 0.58,
+          "far": 0.007054899948691636
+        },
+        {
+          "subject": "p077",
+          "genuine_n": 100,
+          "impostor_n": 7796,
+          "eer": 0.018722421754746026,
+          "oracle_frr_at_far_1pct": 0.02,
+          "frr": 0.02,
+          "far": 0.008978963571062083
+        },
+        {
+          "subject": "p078",
+          "genuine_n": 100,
+          "impostor_n": 7796,
+          "eer": 0.12015905592611598,
+          "oracle_frr_at_far_1pct": 0.63,
+          "frr": 0.61,
+          "far": 0.012185736275012828
+        },
+        {
+          "subject": "p079",
+          "genuine_n": 100,
+          "impostor_n": 7796,
+          "eer": 0.01859415084658799,
+          "oracle_frr_at_far_1pct": 0.04,
+          "frr": 0.04,
+          "far": 0.01090302719343253
+        },
+        {
+          "subject": "p080",
+          "genuine_n": 100,
+          "impostor_n": 7796,
+          "eer": 0.0678373524884556,
+          "oracle_frr_at_far_1pct": 0.16,
+          "frr": 0.08,
+          "far": 0.03129810159055926
+        },
+        {
+          "subject": "p081",
+          "genuine_n": 101,
+          "impostor_n": 7795,
+          "eer": 0.06164652385700406,
+          "oracle_frr_at_far_1pct": 0.6138613861386139,
+          "frr": 0.31683168316831684,
+          "far": 0.023091725465041693
+        },
+        {
+          "subject": "p082",
+          "genuine_n": 99,
+          "impostor_n": 7797,
+          "eer": 0.038734789215743456,
+          "oracle_frr_at_far_1pct": 0.2222222222222222,
+          "frr": 0.2222222222222222,
+          "far": 0.011414646658971399
+        },
+        {
+          "subject": "p083",
+          "genuine_n": 100,
+          "impostor_n": 7796,
+          "eer": 0.01865828630066701,
+          "oracle_frr_at_far_1pct": 0.02,
+          "frr": 0.0,
+          "far": 0.02642380708055413
+        },
+        {
+          "subject": "p084",
+          "genuine_n": 100,
+          "impostor_n": 7796,
+          "eer": 0.09002308876346844,
+          "oracle_frr_at_far_1pct": 0.75,
+          "frr": 0.67,
+          "far": 0.01564905079527963
+        },
+        {
+          "subject": "p085",
+          "genuine_n": 99,
+          "impostor_n": 7797,
+          "eer": 0.010116556095778852,
+          "oracle_frr_at_far_1pct": 0.010101010101010102,
+          "frr": 0.050505050505050504,
+          "far": 0.002308580223162755
+        },
+        {
+          "subject": "p086",
+          "genuine_n": 100,
+          "impostor_n": 7796,
+          "eer": 0.021095433555669556,
+          "oracle_frr_at_far_1pct": 0.15,
+          "frr": 0.15,
+          "far": 0.01051821446895844
+        },
+        {
+          "subject": "p087",
+          "genuine_n": 100,
+          "impostor_n": 7796,
+          "eer": 0.09002308876346844,
+          "oracle_frr_at_far_1pct": 0.37,
+          "frr": 0.39,
+          "far": 0.006028732683427399
+        },
+        {
+          "subject": "p089",
+          "genuine_n": 99,
+          "impostor_n": 7797,
+          "eer": 0.12261709048934905,
+          "oracle_frr_at_far_1pct": 0.7171717171717171,
+          "frr": 0.7777777777777778,
+          "far": 0.004104142618956009
+        },
+        {
+          "subject": "p092",
+          "genuine_n": 99,
+          "impostor_n": 7797,
+          "eer": 0.02010485773471537,
+          "oracle_frr_at_far_1pct": 0.06060606060606061,
+          "frr": 0.09090909090909091,
+          "far": 0.003334615877901757
+        },
+        {
+          "subject": "p093",
+          "genuine_n": 100,
+          "impostor_n": 7796,
+          "eer": 0.09765264238070805,
+          "oracle_frr_at_far_1pct": 0.52,
+          "frr": 0.44,
+          "far": 0.017829656233966137
+        },
+        {
+          "subject": "p094",
+          "genuine_n": 100,
+          "impostor_n": 7796,
+          "eer": 0.059951257054899926,
+          "oracle_frr_at_far_1pct": 0.2,
+          "frr": 0.15,
+          "far": 0.012698819907644945
+        },
+        {
+          "subject": "p095",
+          "genuine_n": 100,
+          "impostor_n": 7796,
+          "eer": 0.05309132888660854,
+          "oracle_frr_at_far_1pct": 0.47,
+          "frr": 0.73,
+          "far": 0.003976398152898923
+        },
+        {
+          "subject": "p097",
+          "genuine_n": 100,
+          "impostor_n": 7796,
+          "eer": 0.08002052334530527,
+          "oracle_frr_at_far_1pct": 0.36,
+          "frr": 0.37,
+          "far": 0.009363776295536173
+        },
+        {
+          "subject": "p099",
+          "genuine_n": 100,
+          "impostor_n": 7796,
+          "eer": 0.13112365315546437,
+          "oracle_frr_at_far_1pct": 0.74,
+          "frr": 0.69,
+          "far": 0.01616213442791175
+        },
+        {
+          "subject": "p100",
+          "genuine_n": 100,
+          "impostor_n": 7796,
+          "eer": 0.3075166752180606,
+          "oracle_frr_at_far_1pct": 0.9,
+          "frr": 0.94,
+          "far": 0.00525910723447922
+        }
+      ],
+      "score_seconds": 0.4844029070227407
+    }
+  },
+  "frozen_config_sha256": "ec21a3a7b464f335ee9addb919465253cefba0d24415183d6613259593d9dc79",
+  "elapsed_seconds": 31.664127467985963,
+  "limitations": [
+    "No test measurements accessed",
+    "Within-session S1 selection/calibration; S2 validation is cross-session, not proven cross-day",
+    "Fixed uses 47 positional timing values; free uses 35 summaries of 50 nonoverlapping digraphs",
+    "Published method family baseline, not exact paper reproduction or SOTA claim",
+    "Oracle ROC metrics describe dev separation; deployed operating rates use frozen S1 thresholds",
+    "Per-user bootstrap does not make correlated impostor attempts independent"
+  ]
+}

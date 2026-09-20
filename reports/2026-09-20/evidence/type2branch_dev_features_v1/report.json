@@ -1,0 +1,828 @@
+{
+  "status": "infeasible_prescribed_cohort",
+  "roles": {
+    "gallery": {
+      "shape": [
+        395,
+        100,
+        5
+      ],
+      "sha256": "cd58626fead208c2739b87939d7c9967032eca09546ec2f9b9a33d2088d2966d",
+      "fallback_HT_FT": [
+        40,
+        40
+      ],
+      "missing_residual_HT_FT": [
+        0,
+        395
+      ],
+      "per_identity": {
+        "p002": {
+          "events": 2000,
+          "full_windows": 20,
+          "tail_events": 0,
+          "unparseable_key_prefixes": 0,
+          "unknown_codes": 0,
+          "terminal_events": 0,
+          "adjacencies_with_uncheckable_keys": 0,
+          "negative_incoming_in_full_windows": 6
+        },
+        "p003": {
+          "events": 2000,
+          "full_windows": 20,
+          "tail_events": 0,
+          "unparseable_key_prefixes": 0,
+          "unknown_codes": 0,
+          "terminal_events": 0,
+          "adjacencies_with_uncheckable_keys": 0,
+          "negative_incoming_in_full_windows": 52
+        },
+        "p004": {
+          "events": 2000,
+          "full_windows": 20,
+          "tail_events": 0,
+          "unparseable_key_prefixes": 0,
+          "unknown_codes": 0,
+          "terminal_events": 0,
+          "adjacencies_with_uncheckable_keys": 0,
+          "negative_incoming_in_full_windows": 49
+        },
+        "p005": {
+          "events": 2000,
+          "full_windows": 20,
+          "tail_events": 0,
+          "unparseable_key_prefixes": 0,
+          "unknown_codes": 0,
+          "terminal_events": 0,
+          "adjacencies_with_uncheckable_keys": 0,
+          "negative_incoming_in_full_windows": 34
+        },
+        "p006": {
+          "events": 2000,
+          "full_windows": 20,
+          "tail_events": 0,
+          "unparseable_key_prefixes": 0,
+          "unknown_codes": 0,
+          "terminal_events": 0,
+          "adjacencies_with_uncheckable_keys": 0,
+          "negative_incoming_in_full_windows": 33
+        },
+        "p009": {
+          "events": 2000,
+          "full_windows": 20,
+          "tail_events": 0,
+          "unparseable_key_prefixes": 0,
+          "unknown_codes": 0,
+          "terminal_events": 0,
+          "adjacencies_with_uncheckable_keys": 0,
+          "negative_incoming_in_full_windows": 1
+        },
+        "p010": {
+          "events": 2000,
+          "full_windows": 20,
+          "tail_events": 0,
+          "unparseable_key_prefixes": 0,
+          "unknown_codes": 0,
+          "terminal_events": 0,
+          "adjacencies_with_uncheckable_keys": 0,
+          "negative_incoming_in_full_windows": 22
+        },
+        "p011": {
+          "events": 2000,
+          "full_windows": 20,
+          "tail_events": 0,
+          "unparseable_key_prefixes": 0,
+          "unknown_codes": 0,
+          "terminal_events": 0,
+          "adjacencies_with_uncheckable_keys": 0,
+          "negative_incoming_in_full_windows": 21
+        },
+        "p012": {
+          "events": 2000,
+          "full_windows": 20,
+          "tail_events": 0,
+          "unparseable_key_prefixes": 0,
+          "unknown_codes": 0,
+          "terminal_events": 0,
+          "adjacencies_with_uncheckable_keys": 0,
+          "negative_incoming_in_full_windows": 27
+        },
+        "p013": {
+          "events": 2000,
+          "full_windows": 20,
+          "tail_events": 0,
+          "unparseable_key_prefixes": 0,
+          "unknown_codes": 0,
+          "terminal_events": 0,
+          "adjacencies_with_uncheckable_keys": 0,
+          "negative_incoming_in_full_windows": 8
+        },
+        "p014": {
+          "events": 2000,
+          "full_windows": 20,
+          "tail_events": 0,
+          "unparseable_key_prefixes": 0,
+          "unknown_codes": 1,
+          "terminal_events": 0,
+          "adjacencies_with_uncheckable_keys": 0,
+          "negative_incoming_in_full_windows": 17
+        },
+        "p015": {
+          "events": 2000,
+          "full_windows": 20,
+          "tail_events": 0,
+          "unparseable_key_prefixes": 0,
+          "unknown_codes": 0,
+          "terminal_events": 0,
+          "adjacencies_with_uncheckable_keys": 0,
+          "negative_incoming_in_full_windows": 29
+        },
+        "p016": {
+          "events": 2000,
+          "full_windows": 20,
+          "tail_events": 0,
+          "unparseable_key_prefixes": 0,
+          "unknown_codes": 0,
+          "terminal_events": 0,
+          "adjacencies_with_uncheckable_keys": 0,
+          "negative_incoming_in_full_windows": 13
+        },
+        "p018": {
+          "events": 2000,
+          "full_windows": 20,
+          "tail_events": 0,
+          "unparseable_key_prefixes": 0,
+          "unknown_codes": 10,
+          "terminal_events": 0,
+          "adjacencies_with_uncheckable_keys": 0,
+          "negative_incoming_in_full_windows": 10
+        },
+        "p019": {
+          "events": 2000,
+          "full_windows": 20,
+          "tail_events": 0,
+          "unparseable_key_prefixes": 0,
+          "unknown_codes": 0,
+          "terminal_events": 0,
+          "adjacencies_with_uncheckable_keys": 0,
+          "negative_incoming_in_full_windows": 11
+        },
+        "p020": {
+          "events": 2000,
+          "full_windows": 20,
+          "tail_events": 0,
+          "unparseable_key_prefixes": 0,
+          "unknown_codes": 0,
+          "terminal_events": 0,
+          "adjacencies_with_uncheckable_keys": 0,
+          "negative_incoming_in_full_windows": 8
+        },
+        "p022": {
+          "events": 2000,
+          "full_windows": 20,
+          "tail_events": 0,
+          "unparseable_key_prefixes": 0,
+          "unknown_codes": 0,
+          "terminal_events": 0,
+          "adjacencies_with_uncheckable_keys": 0,
+          "negative_incoming_in_full_windows": 12
+        },
+        "p024": {
+          "events": 2000,
+          "full_windows": 20,
+          "tail_events": 0,
+          "unparseable_key_prefixes": 0,
+          "unknown_codes": 0,
+          "terminal_events": 0,
+          "adjacencies_with_uncheckable_keys": 0,
+          "negative_incoming_in_full_windows": 11
+        },
+        "p025": {
+          "events": 2000,
+          "full_windows": 20,
+          "tail_events": 0,
+          "unparseable_key_prefixes": 0,
+          "unknown_codes": 1,
+          "terminal_events": 0,
+          "adjacencies_with_uncheckable_keys": 0,
+          "negative_incoming_in_full_windows": 27
+        },
+        "p026": {
+          "events": 2000,
+          "full_windows": 20,
+          "tail_events": 0,
+          "unparseable_key_prefixes": 0,
+          "unknown_codes": 0,
+          "terminal_events": 0,
+          "adjacencies_with_uncheckable_keys": 0,
+          "negative_incoming_in_full_windows": 18
+        },
+        "p027": {
+          "events": 2000,
+          "full_windows": 20,
+          "tail_events": 0,
+          "unparseable_key_prefixes": 0,
+          "unknown_codes": 0,
+          "terminal_events": 0,
+          "adjacencies_with_uncheckable_keys": 0,
+          "negative_incoming_in_full_windows": 9
+        },
+        "p028": {
+          "events": 2000,
+          "full_windows": 20,
+          "tail_events": 0,
+          "unparseable_key_prefixes": 0,
+          "unknown_codes": 0,
+          "terminal_events": 0,
+          "adjacencies_with_uncheckable_keys": 0,
+          "negative_incoming_in_full_windows": 18
+        },
+        "p029": {
+          "events": 2000,
+          "full_windows": 20,
+          "tail_events": 0,
+          "unparseable_key_prefixes": 0,
+          "unknown_codes": 0,
+          "terminal_events": 0,
+          "adjacencies_with_uncheckable_keys": 0,
+          "negative_incoming_in_full_windows": 26
+        },
+        "p030": {
+          "events": 2000,
+          "full_windows": 20,
+          "tail_events": 0,
+          "unparseable_key_prefixes": 0,
+          "unknown_codes": 4,
+          "terminal_events": 0,
+          "adjacencies_with_uncheckable_keys": 0,
+          "negative_incoming_in_full_windows": 3
+        },
+        "p031": {
+          "events": 2000,
+          "full_windows": 20,
+          "tail_events": 0,
+          "unparseable_key_prefixes": 0,
+          "unknown_codes": 0,
+          "terminal_events": 0,
+          "adjacencies_with_uncheckable_keys": 0,
+          "negative_incoming_in_full_windows": 35
+        },
+        "p032": {
+          "events": 2000,
+          "full_windows": 20,
+          "tail_events": 0,
+          "unparseable_key_prefixes": 0,
+          "unknown_codes": 0,
+          "terminal_events": 0,
+          "adjacencies_with_uncheckable_keys": 0,
+          "negative_incoming_in_full_windows": 25
+        },
+        "p033": {
+          "events": 2000,
+          "full_windows": 20,
+          "tail_events": 0,
+          "unparseable_key_prefixes": 2,
+          "unknown_codes": 2,
+          "terminal_events": 0,
+          "adjacencies_with_uncheckable_keys": 3,
+          "negative_incoming_in_full_windows": 62
+        },
+        "p034": {
+          "events": 2000,
+          "full_windows": 20,
+          "tail_events": 0,
+          "unparseable_key_prefixes": 0,
+          "unknown_codes": 0,
+          "terminal_events": 0,
+          "adjacencies_with_uncheckable_keys": 0,
+          "negative_incoming_in_full_windows": 3
+        },
+        "p035": {
+          "events": 2000,
+          "full_windows": 20,
+          "tail_events": 0,
+          "unparseable_key_prefixes": 0,
+          "unknown_codes": 0,
+          "terminal_events": 0,
+          "adjacencies_with_uncheckable_keys": 0,
+          "negative_incoming_in_full_windows": 17
+        },
+        "p036": {
+          "events": 2000,
+          "full_windows": 20,
+          "tail_events": 0,
+          "unparseable_key_prefixes": 0,
+          "unknown_codes": 0,
+          "terminal_events": 0,
+          "adjacencies_with_uncheckable_keys": 0,
+          "negative_incoming_in_full_windows": 4
+        },
+        "p038": {
+          "events": 2000,
+          "full_windows": 20,
+          "tail_events": 0,
+          "unparseable_key_prefixes": 0,
+          "unknown_codes": 0,
+          "terminal_events": 0,
+          "adjacencies_with_uncheckable_keys": 0,
+          "negative_incoming_in_full_windows": 28
+        },
+        "p039": {
+          "events": 2000,
+          "full_windows": 20,
+          "tail_events": 0,
+          "unparseable_key_prefixes": 0,
+          "unknown_codes": 0,
+          "terminal_events": 0,
+          "adjacencies_with_uncheckable_keys": 0,
+          "negative_incoming_in_full_windows": 36
+        },
+        "p040": {
+          "events": 2000,
+          "full_windows": 20,
+          "tail_events": 0,
+          "unparseable_key_prefixes": 0,
+          "unknown_codes": 0,
+          "terminal_events": 0,
+          "adjacencies_with_uncheckable_keys": 0,
+          "negative_incoming_in_full_windows": 25
+        },
+        "p042": {
+          "events": 2000,
+          "full_windows": 20,
+          "tail_events": 0,
+          "unparseable_key_prefixes": 0,
+          "unknown_codes": 0,
+          "terminal_events": 0,
+          "adjacencies_with_uncheckable_keys": 0,
+          "negative_incoming_in_full_windows": 19
+        },
+        "p043": {
+          "events": 2000,
+          "full_windows": 20,
+          "tail_events": 0,
+          "unparseable_key_prefixes": 0,
+          "unknown_codes": 0,
+          "terminal_events": 0,
+          "adjacencies_with_uncheckable_keys": 0,
+          "negative_incoming_in_full_windows": 20
+        },
+        "p044": {
+          "events": 2000,
+          "full_windows": 20,
+          "tail_events": 0,
+          "unparseable_key_prefixes": 0,
+          "unknown_codes": 0,
+          "terminal_events": 0,
+          "adjacencies_with_uncheckable_keys": 0,
+          "negative_incoming_in_full_windows": 13
+        },
+        "p045": {
+          "events": 2000,
+          "full_windows": 20,
+          "tail_events": 0,
+          "unparseable_key_prefixes": 0,
+          "unknown_codes": 0,
+          "terminal_events": 0,
+          "adjacencies_with_uncheckable_keys": 0,
+          "negative_incoming_in_full_windows": 15
+        },
+        "p048": {
+          "events": 2000,
+          "full_windows": 20,
+          "tail_events": 0,
+          "unparseable_key_prefixes": 0,
+          "unknown_codes": 1,
+          "terminal_events": 0,
+          "adjacencies_with_uncheckable_keys": 0,
+          "negative_incoming_in_full_windows": 7
+        },
+        "p049": {
+          "events": 2000,
+          "full_windows": 20,
+          "tail_events": 0,
+          "unparseable_key_prefixes": 0,
+          "unknown_codes": 0,
+          "terminal_events": 0,
+          "adjacencies_with_uncheckable_keys": 0,
+          "negative_incoming_in_full_windows": 30
+        },
+        "p050": {
+          "events": 2000,
+          "full_windows": 20,
+          "tail_events": 0,
+          "unparseable_key_prefixes": 0,
+          "unknown_codes": 1,
+          "terminal_events": 0,
+          "adjacencies_with_uncheckable_keys": 0,
+          "negative_incoming_in_full_windows": 28
+        },
+        "p051": {
+          "events": 2000,
+          "full_windows": 20,
+          "tail_events": 0,
+          "unparseable_key_prefixes": 0,
+          "unknown_codes": 0,
+          "terminal_events": 0,
+          "adjacencies_with_uncheckable_keys": 0,
+          "negative_incoming_in_full_windows": 23
+        },
+        "p054": {
+          "events": 2000,
+          "full_windows": 20,
+          "tail_events": 0,
+          "unparseable_key_prefixes": 0,
+          "unknown_codes": 0,
+          "terminal_events": 0,
+          "adjacencies_with_uncheckable_keys": 0,
+          "negative_incoming_in_full_windows": 14
+        },
+        "p055": {
+          "events": 2000,
+          "full_windows": 20,
+          "tail_events": 0,
+          "unparseable_key_prefixes": 2,
+          "unknown_codes": 3,
+          "terminal_events": 0,
+          "adjacencies_with_uncheckable_keys": 3,
+          "negative_incoming_in_full_windows": 24
+        },
+        "p058": {
+          "events": 2000,
+          "full_windows": 20,
+          "tail_events": 0,
+          "unparseable_key_prefixes": 0,
+          "unknown_codes": 0,
+          "terminal_events": 0,
+          "adjacencies_with_uncheckable_keys": 0,
+          "negative_incoming_in_full_windows": 7
+        },
+        "p059": {
+          "events": 2000,
+          "full_windows": 20,
+          "tail_events": 0,
+          "unparseable_key_prefixes": 0,
+          "unknown_codes": 0,
+          "terminal_events": 0,
+          "adjacencies_with_uncheckable_keys": 0,
+          "negative_incoming_in_full_windows": 6
+        },
+        "p062": {
+          "events": 2000,
+          "full_windows": 20,
+          "tail_events": 0,
+          "unparseable_key_prefixes": 0,
+          "unknown_codes": 0,
+          "terminal_events": 0,
+          "adjacencies_with_uncheckable_keys": 0,
+          "negative_incoming_in_full_windows": 3
+        },
+        "p063": {
+          "events": 2000,
+          "full_windows": 20,
+          "tail_events": 0,
+          "unparseable_key_prefixes": 0,
+          "unknown_codes": 0,
+          "terminal_events": 0,
+          "adjacencies_with_uncheckable_keys": 0,
+          "negative_incoming_in_full_windows": 30
+        },
+        "p064": {
+          "events": 2000,
+          "full_windows": 20,
+          "tail_events": 0,
+          "unparseable_key_prefixes": 0,
+          "unknown_codes": 0,
+          "terminal_events": 0,
+          "adjacencies_with_uncheckable_keys": 0,
+          "negative_incoming_in_full_windows": 23
+        },
+        "p065": {
+          "events": 2000,
+          "full_windows": 20,
+          "tail_events": 0,
+          "unparseable_key_prefixes": 0,
+          "unknown_codes": 0,
+          "terminal_events": 0,
+          "adjacencies_with_uncheckable_keys": 0,
+          "negative_incoming_in_full_windows": 21
+        },
+        "p066": {
+          "events": 2000,
+          "full_windows": 20,
+          "tail_events": 0,
+          "unparseable_key_prefixes": 0,
+          "unknown_codes": 0,
+          "terminal_events": 0,
+          "adjacencies_with_uncheckable_keys": 0,
+          "negative_incoming_in_full_windows": 8
+        },
+        "p067": {
+          "events": 2000,
+          "full_windows": 20,
+          "tail_events": 0,
+          "unparseable_key_prefixes": 0,
+          "unknown_codes": 0,
+          "terminal_events": 0,
+          "adjacencies_with_uncheckable_keys": 0,
+          "negative_incoming_in_full_windows": 23
+        },
+        "p068": {
+          "events": 2000,
+          "full_windows": 20,
+          "tail_events": 0,
+          "unparseable_key_prefixes": 0,
+          "unknown_codes": 0,
+          "terminal_events": 0,
+          "adjacencies_with_uncheckable_keys": 0,
+          "negative_incoming_in_full_windows": 12
+        },
+        "p069": {
+          "events": 2000,
+          "full_windows": 20,
+          "tail_events": 0,
+          "unparseable_key_prefixes": 0,
+          "unknown_codes": 0,
+          "terminal_events": 0,
+          "adjacencies_with_uncheckable_keys": 0,
+          "negative_incoming_in_full_windows": 27
+        },
+        "p070": {
+          "events": 2000,
+          "full_windows": 20,
+          "tail_events": 0,
+          "unparseable_key_prefixes": 0,
+          "unknown_codes": 0,
+          "terminal_events": 0,
+          "adjacencies_with_uncheckable_keys": 0,
+          "negative_incoming_in_full_windows": 27
+        },
+        "p071": {
+          "events": 2000,
+          "full_windows": 20,
+          "tail_events": 0,
+          "unparseable_key_prefixes": 0,
+          "unknown_codes": 0,
+          "terminal_events": 0,
+          "adjacencies_with_uncheckable_keys": 0,
+          "negative_incoming_in_full_windows": 20
+        },
+        "p072": {
+          "events": 2000,
+          "full_windows": 20,
+          "tail_events": 0,
+          "unparseable_key_prefixes": 0,
+          "unknown_codes": 0,
+          "terminal_events": 0,
+          "adjacencies_with_uncheckable_keys": 0,
+          "negative_incoming_in_full_windows": 17
+        },
+        "p073": {
+          "events": 2000,
+          "full_windows": 20,
+          "tail_events": 0,
+          "unparseable_key_prefixes": 0,
+          "unknown_codes": 0,
+          "terminal_events": 0,
+          "adjacencies_with_uncheckable_keys": 0,
+          "negative_incoming_in_full_windows": 8
+        },
+        "p074": {
+          "events": 2000,
+          "full_windows": 20,
+          "tail_events": 0,
+          "unparseable_key_prefixes": 0,
+          "unknown_codes": 3,
+          "terminal_events": 0,
+          "adjacencies_with_uncheckable_keys": 0,
+          "negative_incoming_in_full_windows": 8
+        },
+        "p075": {
+          "events": 2000,
+          "full_windows": 20,
+          "tail_events": 0,
+          "unparseable_key_prefixes": 0,
+          "unknown_codes": 0,
+          "terminal_events": 0,
+          "adjacencies_with_uncheckable_keys": 0,
+          "negative_incoming_in_full_windows": 9
+        },
+        "p076": {
+          "events": 2000,
+          "full_windows": 20,
+          "tail_events": 0,
+          "unparseable_key_prefixes": 0,
+          "unknown_codes": 0,
+          "terminal_events": 0,
+          "adjacencies_with_uncheckable_keys": 0,
+          "negative_incoming_in_full_windows": 18
+        },
+        "p077": {
+          "events": 2000,
+          "full_windows": 20,
+          "tail_events": 0,
+          "unparseable_key_prefixes": 0,
+          "unknown_codes": 0,
+          "terminal_events": 0,
+          "adjacencies_with_uncheckable_keys": 0,
+          "negative_incoming_in_full_windows": 23
+        },
+        "p078": {
+          "events": 2000,
+          "full_windows": 20,
+          "tail_events": 0,
+          "unparseable_key_prefixes": 0,
+          "unknown_codes": 0,
+          "terminal_events": 0,
+          "adjacencies_with_uncheckable_keys": 0,
+          "negative_incoming_in_full_windows": 67
+        },
+        "p079": {
+          "events": 2000,
+          "full_windows": 20,
+          "tail_events": 0,
+          "unparseable_key_prefixes": 0,
+          "unknown_codes": 0,
+          "terminal_events": 0,
+          "adjacencies_with_uncheckable_keys": 0,
+          "negative_incoming_in_full_windows": 6
+        },
+        "p080": {
+          "events": 2000,
+          "full_windows": 20,
+          "tail_events": 0,
+          "unparseable_key_prefixes": 0,
+          "unknown_codes": 0,
+          "terminal_events": 0,
+          "adjacencies_with_uncheckable_keys": 0,
+          "negative_incoming_in_full_windows": 6
+        },
+        "p081": {
+          "events": 2000,
+          "full_windows": 20,
+          "tail_events": 0,
+          "unparseable_key_prefixes": 0,
+          "unknown_codes": 0,
+          "terminal_events": 0,
+          "adjacencies_with_uncheckable_keys": 0,
+          "negative_incoming_in_full_windows": 20
+        },
+        "p082": {
+          "events": 2000,
+          "full_windows": 20,
+          "tail_events": 0,
+          "unparseable_key_prefixes": 0,
+          "unknown_codes": 0,
+          "terminal_events": 0,
+          "adjacencies_with_uncheckable_keys": 0,
+          "negative_incoming_in_full_windows": 432
+        },
+        "p083": {
+          "events": 2000,
+          "full_windows": 20,
+          "tail_events": 0,
+          "unparseable_key_prefixes": 0,
+          "unknown_codes": 0,
+          "terminal_events": 0,
+          "adjacencies_with_uncheckable_keys": 0,
+          "negative_incoming_in_full_windows": 301
+        },
+        "p084": {
+          "events": 2000,
+          "full_windows": 20,
+          "tail_events": 0,
+          "unparseable_key_prefixes": 0,
+          "unknown_codes": 0,
+          "terminal_events": 0,
+          "adjacencies_with_uncheckable_keys": 0,
+          "negative_incoming_in_full_windows": 19
+        },
+        "p085": {
+          "events": 2000,
+          "full_windows": 20,
+          "tail_events": 0,
+          "unparseable_key_prefixes": 0,
+          "unknown_codes": 5,
+          "terminal_events": 0,
+          "adjacencies_with_uncheckable_keys": 0,
+          "negative_incoming_in_full_windows": 10
+        },
+        "p086": {
+          "events": 2000,
+          "full_windows": 20,
+          "tail_events": 0,
+          "unparseable_key_prefixes": 0,
+          "unknown_codes": 0,
+          "terminal_events": 0,
+          "adjacencies_with_uncheckable_keys": 0,
+          "negative_incoming_in_full_windows": 31
+        },
+        "p087": {
+          "events": 2000,
+          "full_windows": 20,
+          "tail_events": 0,
+          "unparseable_key_prefixes": 6,
+          "unknown_codes": 7,
+          "terminal_events": 0,
+          "adjacencies_with_uncheckable_keys": 9,
+          "negative_incoming_in_full_windows": 17
+        },
+        "p089": {
+          "events": 2000,
+          "full_windows": 20,
+          "tail_events": 0,
+          "unparseable_key_prefixes": 0,
+          "unknown_codes": 0,
+          "terminal_events": 0,
+          "adjacencies_with_uncheckable_keys": 0,
+          "negative_incoming_in_full_windows": 18
+        },
+        "p092": {
+          "events": 2000,
+          "full_windows": 20,
+          "tail_events": 0,
+          "unparseable_key_prefixes": 0,
+          "unknown_codes": 0,
+          "terminal_events": 0,
+          "adjacencies_with_uncheckable_keys": 0,
+          "negative_incoming_in_full_windows": 10
+        },
+        "p093": {
+          "events": 2000,
+          "full_windows": 20,
+          "tail_events": 0,
+          "unparseable_key_prefixes": 0,
+          "unknown_codes": 0,
+          "terminal_events": 0,
+          "adjacencies_with_uncheckable_keys": 0,
+          "negative_incoming_in_full_windows": 43
+        },
+        "p094": {
+          "events": 2000,
+          "full_windows": 20,
+          "tail_events": 0,
+          "unparseable_key_prefixes": 0,
+          "unknown_codes": 0,
+          "terminal_events": 0,
+          "adjacencies_with_uncheckable_keys": 0,
+          "negative_incoming_in_full_windows": 7
+        },
+        "p095": {
+          "events": 2000,
+          "full_windows": 20,
+          "tail_events": 0,
+          "unparseable_key_prefixes": 0,
+          "unknown_codes": 1,
+          "terminal_events": 0,
+          "adjacencies_with_uncheckable_keys": 0,
+          "negative_incoming_in_full_windows": 24
+        },
+        "p097": {
+          "events": 2000,
+          "full_windows": 20,
+          "tail_events": 0,
+          "unparseable_key_prefixes": 0,
+          "unknown_codes": 0,
+          "terminal_events": 0,
+          "adjacencies_with_uncheckable_keys": 0,
+          "negative_incoming_in_full_windows": 9
+        },
+        "p099": {
+          "events": 2000,
+          "full_windows": 20,
+          "tail_events": 0,
+          "unparseable_key_prefixes": 4,
+          "unknown_codes": 4,
+          "terminal_events": 0,
+          "adjacencies_with_uncheckable_keys": 6,
+          "negative_incoming_in_full_windows": 23
+        },
+        "p100": {
+          "events": 2000,
+          "full_windows": 20,
+          "tail_events": 0,
+          "unparseable_key_prefixes": 0,
+          "unknown_codes": 0,
+          "terminal_events": 0,
+          "adjacencies_with_uncheckable_keys": 0,
+          "negative_incoming_in_full_windows": 35
+        }
+      }
+    }
+  },
+  "failures": [
+    {
+      "role": "probes",
+      "subject": "p004",
+      "error": "Prescribed event prefix unavailable"
+    }
+  ],
+  "metrics": {},
+  "sealed_test_payloads_decoded": false,
+  "limitations": [
+    "Cross-session threshold transfer is unverified",
+    "S1reservedwindows may have been inspected in prior fitting diagnostics but excluded from all fitting/selection/calibration computations",
+    "Active79identities are not untouched identity holdouts; prior DEV exposure exists in earlier experiments",
+    "Initial3epochbudget does not reach source curriculum"
+  ]
+}

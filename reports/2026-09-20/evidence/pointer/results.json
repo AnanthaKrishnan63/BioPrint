@@ -1,0 +1,594 @@
+{
+  "dataset": "Balabit official training subset only",
+  "window": "128 consecutive Move events; no session overlap",
+  "feature_count": 29,
+  "split": "whole-session hash split before reading contents; chronology unavailable",
+  "selected_from_training_only": "extra_1",
+  "calibration": {
+    "existing_scaled_manhattan": {
+      "far": 0.009433962264150943,
+      "frr": 0.9292452830188679,
+      "eer_descriptive": 0.3248820754716981,
+      "auc": 0.7649741901032396,
+      "genuine_comparisons": 212,
+      "impostor_comparisons": 1696
+    },
+    "rf_1": {
+      "far": 0.009433962264150943,
+      "frr": 0.8349056603773585,
+      "eer_descriptive": 0.25501179245283023,
+      "auc": 0.8262156795122818,
+      "genuine_comparisons": 212,
+      "impostor_comparisons": 1696
+    },
+    "rf_5": {
+      "far": 0.009433962264150943,
+      "frr": 0.8207547169811321,
+      "eer_descriptive": 0.24557783018867918,
+      "auc": 0.8379010546457815,
+      "genuine_comparisons": 212,
+      "impostor_comparisons": 1696
+    },
+    "extra_1": {
+      "far": 0.009433962264150943,
+      "frr": 0.7783018867924528,
+      "eer_descriptive": 0.24410377358490565,
+      "auc": 0.8411314635991456,
+      "genuine_comparisons": 212,
+      "impostor_comparisons": 1696
+    },
+    "extra_5": {
+      "far": 0.009433962264150943,
+      "frr": 0.8207547169811321,
+      "eer_descriptive": 0.23172169811320753,
+      "auc": 0.8481916384834461,
+      "genuine_comparisons": 212,
+      "impostor_comparisons": 1696
+    }
+  },
+  "dev": {
+    "existing_scaled_manhattan": {
+      "0.001": {
+        "far": 0.0017985611510791368,
+        "frr": 1.0,
+        "eer_descriptive": 0.48606115107913667,
+        "auc": 0.5525885047357798,
+        "genuine_comparisons": 278,
+        "impostor_comparisons": 2224,
+        "per_claimed_user": {
+          "user12": {
+            "far": 0.0,
+            "frr": 1.0,
+            "eer_descriptive": 0.3978021978021978,
+            "auc": 0.6644688644688644,
+            "genuine_comparisons": 5,
+            "impostor_comparisons": 273
+          },
+          "user15": {
+            "far": 0.007633587786259542,
+            "frr": 1.0,
+            "eer_descriptive": 0.5229007633587786,
+            "auc": 0.5675095419847329,
+            "genuine_comparisons": 16,
+            "impostor_comparisons": 262
+          },
+          "user16": {
+            "far": 0.0,
+            "frr": 1.0,
+            "eer_descriptive": 0.4738084698244061,
+            "auc": 0.5235354876789139,
+            "genuine_comparisons": 27,
+            "impostor_comparisons": 251
+          },
+          "user20": {
+            "far": 0.015625,
+            "frr": 1.0,
+            "eer_descriptive": 0.4994270833333333,
+            "auc": 0.5155208333333333,
+            "genuine_comparisons": 150,
+            "impostor_comparisons": 128
+          },
+          "user21": {
+            "far": 0.0,
+            "frr": 1.0,
+            "eer_descriptive": 0.2773504273504273,
+            "auc": 0.752991452991453,
+            "genuine_comparisons": 18,
+            "impostor_comparisons": 260
+          },
+          "user23": {
+            "far": 0.0,
+            "frr": 1.0,
+            "eer_descriptive": 0.5,
+            "auc": 0.5744047619047619,
+            "genuine_comparisons": 14,
+            "impostor_comparisons": 264
+          },
+          "user29": {
+            "far": 0.0,
+            "frr": 1.0,
+            "eer_descriptive": 0.22901459854014594,
+            "auc": 0.7664233576642335,
+            "genuine_comparisons": 4,
+            "impostor_comparisons": 274
+          },
+          "user35": {
+            "far": 0.0,
+            "frr": 1.0,
+            "eer_descriptive": 0.49092333812197986,
+            "auc": 0.5502154890949458,
+            "genuine_comparisons": 31,
+            "impostor_comparisons": 247
+          },
+          "user7": {
+            "far": 0.0,
+            "frr": 1.0,
+            "eer_descriptive": 0.05544267053701013,
+            "auc": 0.979390420899855,
+            "genuine_comparisons": 13,
+            "impostor_comparisons": 265
+          }
+        },
+        "macro_far": 0.0025842875318066155,
+        "macro_frr": 1.0,
+        "macro_eer_descriptive": 0.38296328320758655
+      },
+      "0.01": {
+        "far": 0.018884892086330936,
+        "frr": 0.9820143884892086,
+        "eer_descriptive": 0.48606115107913667,
+        "auc": 0.5525885047357798,
+        "genuine_comparisons": 278,
+        "impostor_comparisons": 2224,
+        "per_claimed_user": {
+          "user12": {
+            "far": 0.0,
+            "frr": 1.0,
+            "eer_descriptive": 0.3978021978021978,
+            "auc": 0.6644688644688644,
+            "genuine_comparisons": 5,
+            "impostor_comparisons": 273
+          },
+          "user15": {
+            "far": 0.10305343511450382,
+            "frr": 0.8125,
+            "eer_descriptive": 0.5229007633587786,
+            "auc": 0.5675095419847329,
+            "genuine_comparisons": 16,
+            "impostor_comparisons": 262
+          },
+          "user16": {
+            "far": 0.03187250996015936,
+            "frr": 0.9629629629629629,
+            "eer_descriptive": 0.4738084698244061,
+            "auc": 0.5235354876789139,
+            "genuine_comparisons": 27,
+            "impostor_comparisons": 251
+          },
+          "user20": {
+            "far": 0.03125,
+            "frr": 1.0,
+            "eer_descriptive": 0.4994270833333333,
+            "auc": 0.5155208333333333,
+            "genuine_comparisons": 150,
+            "impostor_comparisons": 128
+          },
+          "user21": {
+            "far": 0.0,
+            "frr": 1.0,
+            "eer_descriptive": 0.2773504273504273,
+            "auc": 0.752991452991453,
+            "genuine_comparisons": 18,
+            "impostor_comparisons": 260
+          },
+          "user23": {
+            "far": 0.011363636363636364,
+            "frr": 1.0,
+            "eer_descriptive": 0.5,
+            "auc": 0.5744047619047619,
+            "genuine_comparisons": 14,
+            "impostor_comparisons": 264
+          },
+          "user29": {
+            "far": 0.0,
+            "frr": 1.0,
+            "eer_descriptive": 0.22901459854014594,
+            "auc": 0.7664233576642335,
+            "genuine_comparisons": 4,
+            "impostor_comparisons": 274
+          },
+          "user35": {
+            "far": 0.0,
+            "frr": 1.0,
+            "eer_descriptive": 0.49092333812197986,
+            "auc": 0.5502154890949458,
+            "genuine_comparisons": 31,
+            "impostor_comparisons": 247
+          },
+          "user7": {
+            "far": 0.0,
+            "frr": 0.9230769230769231,
+            "eer_descriptive": 0.05544267053701013,
+            "auc": 0.979390420899855,
+            "genuine_comparisons": 13,
+            "impostor_comparisons": 265
+          }
+        },
+        "macro_far": 0.01972662015981106,
+        "macro_frr": 0.9665044317822095,
+        "macro_eer_descriptive": 0.38296328320758655
+      },
+      "0.05": {
+        "far": 0.0764388489208633,
+        "frr": 0.9136690647482014,
+        "eer_descriptive": 0.48606115107913667,
+        "auc": 0.5525885047357798,
+        "genuine_comparisons": 278,
+        "impostor_comparisons": 2224,
+        "per_claimed_user": {
+          "user12": {
+            "far": 0.014652014652014652,
+            "frr": 0.8,
+            "eer_descriptive": 0.3978021978021978,
+            "auc": 0.6644688644688644,
+            "genuine_comparisons": 5,
+            "impostor_comparisons": 273
+          },
+          "user15": {
+            "far": 0.3244274809160305,
+            "frr": 0.5625,
+            "eer_descriptive": 0.5229007633587786,
+            "auc": 0.5675095419847329,
+            "genuine_comparisons": 16,
+            "impostor_comparisons": 262
+          },
+          "user16": {
+            "far": 0.13147410358565736,
+            "frr": 0.8518518518518519,
+            "eer_descriptive": 0.4738084698244061,
+            "auc": 0.5235354876789139,
+            "genuine_comparisons": 27,
+            "impostor_comparisons": 251
+          },
+          "user20": {
+            "far": 0.0390625,
+            "frr": 1.0,
+            "eer_descriptive": 0.4994270833333333,
+            "auc": 0.5155208333333333,
+            "genuine_comparisons": 150,
+            "impostor_comparisons": 128
+          },
+          "user21": {
+            "far": 0.03461538461538462,
+            "frr": 0.8333333333333334,
+            "eer_descriptive": 0.2773504273504273,
+            "auc": 0.752991452991453,
+            "genuine_comparisons": 18,
+            "impostor_comparisons": 260
+          },
+          "user23": {
+            "far": 0.10984848484848485,
+            "frr": 0.7142857142857143,
+            "eer_descriptive": 0.5,
+            "auc": 0.5744047619047619,
+            "genuine_comparisons": 14,
+            "impostor_comparisons": 264
+          },
+          "user29": {
+            "far": 0.0,
+            "frr": 1.0,
+            "eer_descriptive": 0.22901459854014594,
+            "auc": 0.7664233576642335,
+            "genuine_comparisons": 4,
+            "impostor_comparisons": 274
+          },
+          "user35": {
+            "far": 0.020242914979757085,
+            "frr": 1.0,
+            "eer_descriptive": 0.49092333812197986,
+            "auc": 0.5502154890949458,
+            "genuine_comparisons": 31,
+            "impostor_comparisons": 247
+          },
+          "user7": {
+            "far": 0.0,
+            "frr": 0.6153846153846154,
+            "eer_descriptive": 0.05544267053701013,
+            "auc": 0.979390420899855,
+            "genuine_comparisons": 13,
+            "impostor_comparisons": 265
+          }
+        },
+        "macro_far": 0.07492476484414767,
+        "macro_frr": 0.8197061683172794,
+        "macro_eer_descriptive": 0.38296328320758655
+      }
+    },
+    "extra_1": {
+      "0.001": {
+        "far": 0.007194244604316547,
+        "frr": 0.9712230215827338,
+        "eer_descriptive": 0.5618255395683454,
+        "auc": 0.47109362869416704,
+        "genuine_comparisons": 278,
+        "impostor_comparisons": 2224,
+        "per_claimed_user": {
+          "user12": {
+            "far": 0.0,
+            "frr": 1.0,
+            "eer_descriptive": 0.2025641025641025,
+            "auc": 0.8197802197802198,
+            "genuine_comparisons": 5,
+            "impostor_comparisons": 273
+          },
+          "user15": {
+            "far": 0.0,
+            "frr": 1.0,
+            "eer_descriptive": 0.3005725190839694,
+            "auc": 0.7311545801526718,
+            "genuine_comparisons": 16,
+            "impostor_comparisons": 262
+          },
+          "user16": {
+            "far": 0.0,
+            "frr": 1.0,
+            "eer_descriptive": 0.3280212483399734,
+            "auc": 0.7467168363582706,
+            "genuine_comparisons": 27,
+            "impostor_comparisons": 251
+          },
+          "user20": {
+            "far": 0.0234375,
+            "frr": 1.0,
+            "eer_descriptive": 0.5502083333333333,
+            "auc": 0.40203125,
+            "genuine_comparisons": 150,
+            "impostor_comparisons": 128
+          },
+          "user21": {
+            "far": 0.0,
+            "frr": 0.8888888888888888,
+            "eer_descriptive": 0.10940170940170946,
+            "auc": 0.9621794871794872,
+            "genuine_comparisons": 18,
+            "impostor_comparisons": 260
+          },
+          "user23": {
+            "far": 0.04924242424242424,
+            "frr": 0.7857142857142857,
+            "eer_descriptive": 0.4188311688311689,
+            "auc": 0.7053571428571429,
+            "genuine_comparisons": 14,
+            "impostor_comparisons": 264
+          },
+          "user29": {
+            "far": 0.0,
+            "frr": 1.0,
+            "eer_descriptive": 0.3001824817518248,
+            "auc": 0.698905109489051,
+            "genuine_comparisons": 4,
+            "impostor_comparisons": 274
+          },
+          "user35": {
+            "far": 0.0,
+            "frr": 1.0,
+            "eer_descriptive": 0.49301292934569685,
+            "auc": 0.489682643332898,
+            "genuine_comparisons": 31,
+            "impostor_comparisons": 247
+          },
+          "user7": {
+            "far": 0.0,
+            "frr": 0.7692307692307693,
+            "eer_descriptive": 0.005660377358490565,
+            "auc": 0.9992743105950653,
+            "genuine_comparisons": 13,
+            "impostor_comparisons": 265
+          }
+        },
+        "macro_far": 0.008075547138047139,
+        "macro_frr": 0.9382037715371049,
+        "macro_eer_descriptive": 0.30093943000114104
+      },
+      "0.01": {
+        "far": 0.01933453237410072,
+        "frr": 0.9244604316546763,
+        "eer_descriptive": 0.5618255395683454,
+        "auc": 0.47109362869416704,
+        "genuine_comparisons": 278,
+        "impostor_comparisons": 2224,
+        "per_claimed_user": {
+          "user12": {
+            "far": 0.0,
+            "frr": 1.0,
+            "eer_descriptive": 0.2025641025641025,
+            "auc": 0.8197802197802198,
+            "genuine_comparisons": 5,
+            "impostor_comparisons": 273
+          },
+          "user15": {
+            "far": 0.0,
+            "frr": 1.0,
+            "eer_descriptive": 0.3005725190839694,
+            "auc": 0.7311545801526718,
+            "genuine_comparisons": 16,
+            "impostor_comparisons": 262
+          },
+          "user16": {
+            "far": 0.0,
+            "frr": 1.0,
+            "eer_descriptive": 0.3280212483399734,
+            "auc": 0.7467168363582706,
+            "genuine_comparisons": 27,
+            "impostor_comparisons": 251
+          },
+          "user20": {
+            "far": 0.0234375,
+            "frr": 1.0,
+            "eer_descriptive": 0.5502083333333333,
+            "auc": 0.40203125,
+            "genuine_comparisons": 150,
+            "impostor_comparisons": 128
+          },
+          "user21": {
+            "far": 0.007692307692307693,
+            "frr": 0.5,
+            "eer_descriptive": 0.10940170940170946,
+            "auc": 0.9621794871794872,
+            "genuine_comparisons": 18,
+            "impostor_comparisons": 260
+          },
+          "user23": {
+            "far": 0.14393939393939395,
+            "frr": 0.6428571428571429,
+            "eer_descriptive": 0.4188311688311689,
+            "auc": 0.7053571428571429,
+            "genuine_comparisons": 14,
+            "impostor_comparisons": 264
+          },
+          "user29": {
+            "far": 0.0,
+            "frr": 1.0,
+            "eer_descriptive": 0.3001824817518248,
+            "auc": 0.698905109489051,
+            "genuine_comparisons": 4,
+            "impostor_comparisons": 274
+          },
+          "user35": {
+            "far": 0.0,
+            "frr": 1.0,
+            "eer_descriptive": 0.49301292934569685,
+            "auc": 0.489682643332898,
+            "genuine_comparisons": 31,
+            "impostor_comparisons": 247
+          },
+          "user7": {
+            "far": 0.0,
+            "frr": 0.46153846153846156,
+            "eer_descriptive": 0.005660377358490565,
+            "auc": 0.9992743105950653,
+            "genuine_comparisons": 13,
+            "impostor_comparisons": 265
+          }
+        },
+        "macro_far": 0.019452133514633516,
+        "macro_frr": 0.8449328449328449,
+        "macro_eer_descriptive": 0.30093943000114104
+      },
+      "0.05": {
+        "far": 0.07059352517985612,
+        "frr": 0.8345323741007195,
+        "eer_descriptive": 0.5618255395683454,
+        "auc": 0.47109362869416704,
+        "genuine_comparisons": 278,
+        "impostor_comparisons": 2224,
+        "per_claimed_user": {
+          "user12": {
+            "far": 0.007326007326007326,
+            "frr": 1.0,
+            "eer_descriptive": 0.2025641025641025,
+            "auc": 0.8197802197802198,
+            "genuine_comparisons": 5,
+            "impostor_comparisons": 273
+          },
+          "user15": {
+            "far": 0.10687022900763359,
+            "frr": 0.625,
+            "eer_descriptive": 0.3005725190839694,
+            "auc": 0.7311545801526718,
+            "genuine_comparisons": 16,
+            "impostor_comparisons": 262
+          },
+          "user16": {
+            "far": 0.035856573705179286,
+            "frr": 0.8148148148148148,
+            "eer_descriptive": 0.3280212483399734,
+            "auc": 0.7467168363582706,
+            "genuine_comparisons": 27,
+            "impostor_comparisons": 251
+          },
+          "user20": {
+            "far": 0.0390625,
+            "frr": 0.9933333333333333,
+            "eer_descriptive": 0.5502083333333333,
+            "auc": 0.40203125,
+            "genuine_comparisons": 150,
+            "impostor_comparisons": 128
+          },
+          "user21": {
+            "far": 0.05,
+            "frr": 0.1111111111111111,
+            "eer_descriptive": 0.10940170940170946,
+            "auc": 0.9621794871794872,
+            "genuine_comparisons": 18,
+            "impostor_comparisons": 260
+          },
+          "user23": {
+            "far": 0.3787878787878788,
+            "frr": 0.42857142857142855,
+            "eer_descriptive": 0.4188311688311689,
+            "auc": 0.7053571428571429,
+            "genuine_comparisons": 14,
+            "impostor_comparisons": 264
+          },
+          "user29": {
+            "far": 0.0,
+            "frr": 1.0,
+            "eer_descriptive": 0.3001824817518248,
+            "auc": 0.698905109489051,
+            "genuine_comparisons": 4,
+            "impostor_comparisons": 274
+          },
+          "user35": {
+            "far": 0.0,
+            "frr": 1.0,
+            "eer_descriptive": 0.49301292934569685,
+            "auc": 0.489682643332898,
+            "genuine_comparisons": 31,
+            "impostor_comparisons": 247
+          },
+          "user7": {
+            "far": 0.0,
+            "frr": 0.23076923076923078,
+            "eer_descriptive": 0.005660377358490565,
+            "auc": 0.9992743105950653,
+            "genuine_comparisons": 13,
+            "impostor_comparisons": 265
+          }
+        },
+        "macro_far": 0.06865590986963323,
+        "macro_frr": 0.6892888798444354,
+        "macro_eer_descriptive": 0.30093943000114104
+      }
+    }
+  },
+  "counts": {
+    "fit_windows": 1206,
+    "calibration_windows": 212,
+    "dev_windows": 278,
+    "fit_sessions": 26,
+    "calibration_sessions": 7,
+    "dev_sessions": 9,
+    "sealed_sessions_not_downloaded": 10
+  },
+  "elapsed_seconds": 49.31978511810303,
+  "limitations": [
+    "Ten users; correlated within-session windows; no population-level confidence claim.",
+    "Remote-desktop data; device/task confounds unresolved.",
+    "Existing scorer evaluated on compatible trajectory descriptors, not production submit-target extractor.",
+    "EER is dev descriptive; operating thresholds frozen from train calibration only.",
+    "No official test files or reserved test measurements accessed.",
+    "Continuity filters yielded usable windows for only nine of ten identities, 26 fit sessions, seven calibration sessions, and nine dev sessions. This is incomplete collection coverage, not a full ten-user benchmark."
+  ],
+  "evaluated_users": [
+    "user12",
+    "user15",
+    "user16",
+    "user20",
+    "user21",
+    "user23",
+    "user29",
+    "user35",
+    "user7"
+  ]
+}

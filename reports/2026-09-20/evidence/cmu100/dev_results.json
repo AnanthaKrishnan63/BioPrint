@@ -1,0 +1,2227 @@
+{
+  "protocol": {
+    "version": 1,
+    "train_sessions": [
+      1,
+      2,
+      3,
+      4
+    ],
+    "dev_sessions": [
+      5,
+      6
+    ],
+    "sealed_test_sessions": [
+      7,
+      8
+    ],
+    "enrollment": "100 repetitions across sessions 1 and 2",
+    "selection": "session 3 only; macro per-user EER",
+    "calibration": "session 4; operational thresholds frozen before dev",
+    "historical_exposure": "Legacy CMU scripts previously explored all sessions. No pristine test claim.",
+    "population_training": "Background metric uses sessions 1\u20132 of OTHER subjects only.",
+    "test_measurements_parsed": false,
+    "comparison_warning": "Higher enrollment budget; compare only to matched 100-sample baseline."
+  },
+  "artifact_sha256": "3abd7488421cb20155970fa999927c59dbf47cc4652833d18609e55a62fa2c0b",
+  "selected_on_training": "svm-1-1",
+  "split": "validation_dev",
+  "results": {
+    "baseline": {
+      "summary": {
+        "macro_eer_diagnostic": 0.13990980392156863,
+        "subject_bootstrap_95pct_ci": [
+          0.1141425,
+          0.16708588235294117
+        ],
+        "operating_points": {
+          "eer": {
+            "far": 0.12154901960784312,
+            "frr": 0.18039215686274512
+          },
+          "far_1pct": {
+            "far": 0.010149019607843139,
+            "frr": 0.497843137254902
+          },
+          "far_5pct": {
+            "far": 0.04999607843137255,
+            "frr": 0.3305882352941176
+          }
+        },
+        "shipped_threshold": {
+          "far": 0.3934196078431372,
+          "frr": 0.04823529411764706
+        }
+      },
+      "per_user": {
+        "s002": {
+          "eer_diagnostic": 0.158,
+          "genuine_count": 100,
+          "impostor_count": 5000,
+          "operating_points": {
+            "eer": {
+              "frr": 0.23,
+              "far": 0.1286
+            },
+            "far_1pct": {
+              "frr": 0.92,
+              "far": 0.0122
+            },
+            "far_5pct": {
+              "frr": 0.6,
+              "far": 0.062
+            }
+          },
+          "shipped_threshold": {
+            "frr": 0.02,
+            "far": 0.4186
+          }
+        },
+        "s003": {
+          "eer_diagnostic": 0.2202,
+          "genuine_count": 100,
+          "impostor_count": 5000,
+          "operating_points": {
+            "eer": {
+              "frr": 0.25,
+              "far": 0.201
+            },
+            "far_1pct": {
+              "frr": 0.82,
+              "far": 0.0116
+            },
+            "far_5pct": {
+              "frr": 0.56,
+              "far": 0.0606
+            }
+          },
+          "shipped_threshold": {
+            "frr": 0.04,
+            "far": 0.501
+          }
+        },
+        "s004": {
+          "eer_diagnostic": 0.2285,
+          "genuine_count": 100,
+          "impostor_count": 5000,
+          "operating_points": {
+            "eer": {
+              "frr": 0.32,
+              "far": 0.1314
+            },
+            "far_1pct": {
+              "frr": 0.85,
+              "far": 0.013
+            },
+            "far_5pct": {
+              "frr": 0.6,
+              "far": 0.0466
+            }
+          },
+          "shipped_threshold": {
+            "frr": 0.07,
+            "far": 0.3902
+          }
+        },
+        "s005": {
+          "eer_diagnostic": 0.0494,
+          "genuine_count": 100,
+          "impostor_count": 5000,
+          "operating_points": {
+            "eer": {
+              "frr": 0.04,
+              "far": 0.0852
+            },
+            "far_1pct": {
+              "frr": 0.12,
+              "far": 0.0114
+            },
+            "far_5pct": {
+              "frr": 0.05,
+              "far": 0.045
+            }
+          },
+          "shipped_threshold": {
+            "frr": 0.0,
+            "far": 0.1624
+          }
+        },
+        "s007": {
+          "eer_diagnostic": 0.3901,
+          "genuine_count": 100,
+          "impostor_count": 5000,
+          "operating_points": {
+            "eer": {
+              "frr": 0.81,
+              "far": 0.141
+            },
+            "far_1pct": {
+              "frr": 1.0,
+              "far": 0.008
+            },
+            "far_5pct": {
+              "frr": 0.94,
+              "far": 0.0576
+            }
+          },
+          "shipped_threshold": {
+            "frr": 0.25,
+            "far": 0.4482
+          }
+        },
+        "s008": {
+          "eer_diagnostic": 0.1483,
+          "genuine_count": 100,
+          "impostor_count": 5000,
+          "operating_points": {
+            "eer": {
+              "frr": 0.1,
+              "far": 0.1852
+            },
+            "far_1pct": {
+              "frr": 0.81,
+              "far": 0.007
+            },
+            "far_5pct": {
+              "frr": 0.53,
+              "far": 0.0408
+            }
+          },
+          "shipped_threshold": {
+            "frr": 0.04,
+            "far": 0.4104
+          }
+        },
+        "s010": {
+          "eer_diagnostic": 0.0217,
+          "genuine_count": 100,
+          "impostor_count": 5000,
+          "operating_points": {
+            "eer": {
+              "frr": 0.03,
+              "far": 0.0164
+            },
+            "far_1pct": {
+              "frr": 0.06,
+              "far": 0.0056
+            },
+            "far_5pct": {
+              "frr": 0.02,
+              "far": 0.049
+            }
+          },
+          "shipped_threshold": {
+            "frr": 0.01,
+            "far": 0.1048
+          }
+        },
+        "s011": {
+          "eer_diagnostic": 0.23,
+          "genuine_count": 100,
+          "impostor_count": 5000,
+          "operating_points": {
+            "eer": {
+              "frr": 0.27,
+              "far": 0.2106
+            },
+            "far_1pct": {
+              "frr": 0.97,
+              "far": 0.0092
+            },
+            "far_5pct": {
+              "frr": 0.86,
+              "far": 0.0486
+            }
+          },
+          "shipped_threshold": {
+            "frr": 0.01,
+            "far": 0.66
+          }
+        },
+        "s012": {
+          "eer_diagnostic": 0.1196,
+          "genuine_count": 100,
+          "impostor_count": 5000,
+          "operating_points": {
+            "eer": {
+              "frr": 0.1,
+              "far": 0.1352
+            },
+            "far_1pct": {
+              "frr": 0.57,
+              "far": 0.0082
+            },
+            "far_5pct": {
+              "frr": 0.28,
+              "far": 0.0478
+            }
+          },
+          "shipped_threshold": {
+            "frr": 0.0,
+            "far": 0.5892
+          }
+        },
+        "s013": {
+          "eer_diagnostic": 0.12,
+          "genuine_count": 100,
+          "impostor_count": 5000,
+          "operating_points": {
+            "eer": {
+              "frr": 0.29,
+              "far": 0.0304
+            },
+            "far_1pct": {
+              "frr": 0.39,
+              "far": 0.013
+            },
+            "far_5pct": {
+              "frr": 0.23,
+              "far": 0.053
+            }
+          },
+          "shipped_threshold": {
+            "frr": 0.05,
+            "far": 0.1946
+          }
+        },
+        "s015": {
+          "eer_diagnostic": 0.25,
+          "genuine_count": 100,
+          "impostor_count": 5000,
+          "operating_points": {
+            "eer": {
+              "frr": 0.43,
+              "far": 0.1658
+            },
+            "far_1pct": {
+              "frr": 0.89,
+              "far": 0.0142
+            },
+            "far_5pct": {
+              "frr": 0.67,
+              "far": 0.0516
+            }
+          },
+          "shipped_threshold": {
+            "frr": 0.01,
+            "far": 0.6446
+          }
+        },
+        "s016": {
+          "eer_diagnostic": 0.02,
+          "genuine_count": 100,
+          "impostor_count": 5000,
+          "operating_points": {
+            "eer": {
+              "frr": 0.01,
+              "far": 0.0394
+            },
+            "far_1pct": {
+              "frr": 0.06,
+              "far": 0.0074
+            },
+            "far_5pct": {
+              "frr": 0.01,
+              "far": 0.0406
+            }
+          },
+          "shipped_threshold": {
+            "frr": 0.02,
+            "far": 0.0178
+          }
+        },
+        "s017": {
+          "eer_diagnostic": 0.0304,
+          "genuine_count": 100,
+          "impostor_count": 5000,
+          "operating_points": {
+            "eer": {
+              "frr": 0.07,
+              "far": 0.0222
+            },
+            "far_1pct": {
+              "frr": 0.19,
+              "far": 0.0038
+            },
+            "far_5pct": {
+              "frr": 0.02,
+              "far": 0.0406
+            }
+          },
+          "shipped_threshold": {
+            "frr": 0.06,
+            "far": 0.0252
+          }
+        },
+        "s018": {
+          "eer_diagnostic": 0.23,
+          "genuine_count": 100,
+          "impostor_count": 5000,
+          "operating_points": {
+            "eer": {
+              "frr": 0.16,
+              "far": 0.2864
+            },
+            "far_1pct": {
+              "frr": 0.89,
+              "far": 0.0048
+            },
+            "far_5pct": {
+              "frr": 0.54,
+              "far": 0.047
+            }
+          },
+          "shipped_threshold": {
+            "frr": 0.03,
+            "far": 0.6616
+          }
+        },
+        "s019": {
+          "eer_diagnostic": 0.0299,
+          "genuine_count": 100,
+          "impostor_count": 5000,
+          "operating_points": {
+            "eer": {
+              "frr": 0.02,
+              "far": 0.0514
+            },
+            "far_1pct": {
+              "frr": 0.04,
+              "far": 0.0108
+            },
+            "far_5pct": {
+              "frr": 0.02,
+              "far": 0.0584
+            }
+          },
+          "shipped_threshold": {
+            "frr": 0.02,
+            "far": 0.0326
+          }
+        },
+        "s020": {
+          "eer_diagnostic": 0.2096,
+          "genuine_count": 100,
+          "impostor_count": 5000,
+          "operating_points": {
+            "eer": {
+              "frr": 0.21,
+              "far": 0.2088
+            },
+            "far_1pct": {
+              "frr": 0.66,
+              "far": 0.014
+            },
+            "far_5pct": {
+              "frr": 0.38,
+              "far": 0.0538
+            }
+          },
+          "shipped_threshold": {
+            "frr": 0.05,
+            "far": 0.7162
+          }
+        },
+        "s021": {
+          "eer_diagnostic": 0.2002,
+          "genuine_count": 100,
+          "impostor_count": 5000,
+          "operating_points": {
+            "eer": {
+              "frr": 0.36,
+              "far": 0.0592
+            },
+            "far_1pct": {
+              "frr": 0.7,
+              "far": 0.0042
+            },
+            "far_5pct": {
+              "frr": 0.47,
+              "far": 0.0352
+            }
+          },
+          "shipped_threshold": {
+            "frr": 0.11,
+            "far": 0.3116
+          }
+        },
+        "s022": {
+          "eer_diagnostic": 0.05,
+          "genuine_count": 100,
+          "impostor_count": 5000,
+          "operating_points": {
+            "eer": {
+              "frr": 0.06,
+              "far": 0.0412
+            },
+            "far_1pct": {
+              "frr": 0.15,
+              "far": 0.0134
+            },
+            "far_5pct": {
+              "frr": 0.05,
+              "far": 0.0496
+            }
+          },
+          "shipped_threshold": {
+            "frr": 0.04,
+            "far": 0.0568
+          }
+        },
+        "s024": {
+          "eer_diagnostic": 0.0397,
+          "genuine_count": 100,
+          "impostor_count": 5000,
+          "operating_points": {
+            "eer": {
+              "frr": 0.05,
+              "far": 0.0278
+            },
+            "far_1pct": {
+              "frr": 0.17,
+              "far": 0.0036
+            },
+            "far_5pct": {
+              "frr": 0.04,
+              "far": 0.0352
+            }
+          },
+          "shipped_threshold": {
+            "frr": 0.04,
+            "far": 0.0292
+          }
+        },
+        "s025": {
+          "eer_diagnostic": 0.1,
+          "genuine_count": 100,
+          "impostor_count": 5000,
+          "operating_points": {
+            "eer": {
+              "frr": 0.1,
+              "far": 0.0954
+            },
+            "far_1pct": {
+              "frr": 0.16,
+              "far": 0.0056
+            },
+            "far_5pct": {
+              "frr": 0.11,
+              "far": 0.045
+            }
+          },
+          "shipped_threshold": {
+            "frr": 0.03,
+            "far": 0.364
+          }
+        },
+        "s026": {
+          "eer_diagnostic": 0.1116,
+          "genuine_count": 100,
+          "impostor_count": 5000,
+          "operating_points": {
+            "eer": {
+              "frr": 0.13,
+              "far": 0.0912
+            },
+            "far_1pct": {
+              "frr": 0.22,
+              "far": 0.016
+            },
+            "far_5pct": {
+              "frr": 0.17,
+              "far": 0.0634
+            }
+          },
+          "shipped_threshold": {
+            "frr": 0.07,
+            "far": 0.2692
+          }
+        },
+        "s027": {
+          "eer_diagnostic": 0.06,
+          "genuine_count": 100,
+          "impostor_count": 5000,
+          "operating_points": {
+            "eer": {
+              "frr": 0.09,
+              "far": 0.0136
+            },
+            "far_1pct": {
+              "frr": 0.13,
+              "far": 0.006
+            },
+            "far_5pct": {
+              "frr": 0.06,
+              "far": 0.0452
+            }
+          },
+          "shipped_threshold": {
+            "frr": 0.03,
+            "far": 0.3174
+          }
+        },
+        "s028": {
+          "eer_diagnostic": 0.05,
+          "genuine_count": 100,
+          "impostor_count": 5000,
+          "operating_points": {
+            "eer": {
+              "frr": 0.11,
+              "far": 0.0366
+            },
+            "far_1pct": {
+              "frr": 0.42,
+              "far": 0.0066
+            },
+            "far_5pct": {
+              "frr": 0.06,
+              "far": 0.0456
+            }
+          },
+          "shipped_threshold": {
+            "frr": 0.32,
+            "far": 0.012
+          }
+        },
+        "s029": {
+          "eer_diagnostic": 0.09,
+          "genuine_count": 100,
+          "impostor_count": 5000,
+          "operating_points": {
+            "eer": {
+              "frr": 0.12,
+              "far": 0.0684
+            },
+            "far_1pct": {
+              "frr": 0.56,
+              "far": 0.0032
+            },
+            "far_5pct": {
+              "frr": 0.17,
+              "far": 0.0394
+            }
+          },
+          "shipped_threshold": {
+            "frr": 0.07,
+            "far": 0.1066
+          }
+        },
+        "s030": {
+          "eer_diagnostic": 0.13,
+          "genuine_count": 100,
+          "impostor_count": 5000,
+          "operating_points": {
+            "eer": {
+              "frr": 0.13,
+              "far": 0.1196
+            },
+            "far_1pct": {
+              "frr": 0.29,
+              "far": 0.0088
+            },
+            "far_5pct": {
+              "frr": 0.22,
+              "far": 0.0498
+            }
+          },
+          "shipped_threshold": {
+            "frr": 0.01,
+            "far": 0.5892
+          }
+        },
+        "s031": {
+          "eer_diagnostic": 0.22,
+          "genuine_count": 100,
+          "impostor_count": 5000,
+          "operating_points": {
+            "eer": {
+              "frr": 0.19,
+              "far": 0.2642
+            },
+            "far_1pct": {
+              "frr": 0.63,
+              "far": 0.0186
+            },
+            "far_5pct": {
+              "frr": 0.52,
+              "far": 0.0606
+            }
+          },
+          "shipped_threshold": {
+            "frr": 0.0,
+            "far": 0.803
+          }
+        },
+        "s032": {
+          "eer_diagnostic": 0.42,
+          "genuine_count": 100,
+          "impostor_count": 5000,
+          "operating_points": {
+            "eer": {
+              "frr": 0.63,
+              "far": 0.2646
+            },
+            "far_1pct": {
+              "frr": 0.95,
+              "far": 0.0138
+            },
+            "far_5pct": {
+              "frr": 0.88,
+              "far": 0.0426
+            }
+          },
+          "shipped_threshold": {
+            "frr": 0.27,
+            "far": 0.5814
+          }
+        },
+        "s033": {
+          "eer_diagnostic": 0.08,
+          "genuine_count": 100,
+          "impostor_count": 5000,
+          "operating_points": {
+            "eer": {
+              "frr": 0.07,
+              "far": 0.132
+            },
+            "far_1pct": {
+              "frr": 0.25,
+              "far": 0.0074
+            },
+            "far_5pct": {
+              "frr": 0.1,
+              "far": 0.0532
+            }
+          },
+          "shipped_threshold": {
+            "frr": 0.01,
+            "far": 0.841
+          }
+        },
+        "s034": {
+          "eer_diagnostic": 0.2721,
+          "genuine_count": 100,
+          "impostor_count": 5000,
+          "operating_points": {
+            "eer": {
+              "frr": 0.35,
+              "far": 0.2402
+            },
+            "far_1pct": {
+              "frr": 0.93,
+              "far": 0.0122
+            },
+            "far_5pct": {
+              "frr": 0.81,
+              "far": 0.0434
+            }
+          },
+          "shipped_threshold": {
+            "frr": 0.09,
+            "far": 0.5368
+          }
+        },
+        "s035": {
+          "eer_diagnostic": 0.14,
+          "genuine_count": 100,
+          "impostor_count": 5000,
+          "operating_points": {
+            "eer": {
+              "frr": 0.14,
+              "far": 0.1604
+            },
+            "far_1pct": {
+              "frr": 0.43,
+              "far": 0.024
+            },
+            "far_5pct": {
+              "frr": 0.28,
+              "far": 0.0692
+            }
+          },
+          "shipped_threshold": {
+            "frr": 0.01,
+            "far": 0.6448
+          }
+        },
+        "s036": {
+          "eer_diagnostic": 0.0,
+          "genuine_count": 100,
+          "impostor_count": 5000,
+          "operating_points": {
+            "eer": {
+              "frr": 0.0,
+              "far": 0.0104
+            },
+            "far_1pct": {
+              "frr": 0.0,
+              "far": 0.0078
+            },
+            "far_5pct": {
+              "frr": 0.0,
+              "far": 0.0378
+            }
+          },
+          "shipped_threshold": {
+            "frr": 0.0,
+            "far": 0.008
+          }
+        },
+        "s037": {
+          "eer_diagnostic": 0.17,
+          "genuine_count": 100,
+          "impostor_count": 5000,
+          "operating_points": {
+            "eer": {
+              "frr": 0.26,
+              "far": 0.1166
+            },
+            "far_1pct": {
+              "frr": 0.76,
+              "far": 0.0084
+            },
+            "far_5pct": {
+              "frr": 0.41,
+              "far": 0.0486
+            }
+          },
+          "shipped_threshold": {
+            "frr": 0.03,
+            "far": 0.5426
+          }
+        },
+        "s038": {
+          "eer_diagnostic": 0.11,
+          "genuine_count": 100,
+          "impostor_count": 5000,
+          "operating_points": {
+            "eer": {
+              "frr": 0.06,
+              "far": 0.2104
+            },
+            "far_1pct": {
+              "frr": 0.44,
+              "far": 0.0218
+            },
+            "far_5pct": {
+              "frr": 0.28,
+              "far": 0.0616
+            }
+          },
+          "shipped_threshold": {
+            "frr": 0.0,
+            "far": 0.5792
+          }
+        },
+        "s039": {
+          "eer_diagnostic": 0.05,
+          "genuine_count": 100,
+          "impostor_count": 5000,
+          "operating_points": {
+            "eer": {
+              "frr": 0.02,
+              "far": 0.0744
+            },
+            "far_1pct": {
+              "frr": 0.15,
+              "far": 0.0108
+            },
+            "far_5pct": {
+              "frr": 0.04,
+              "far": 0.0536
+            }
+          },
+          "shipped_threshold": {
+            "frr": 0.01,
+            "far": 0.302
+          }
+        },
+        "s040": {
+          "eer_diagnostic": 0.19,
+          "genuine_count": 100,
+          "impostor_count": 5000,
+          "operating_points": {
+            "eer": {
+              "frr": 0.23,
+              "far": 0.1384
+            },
+            "far_1pct": {
+              "frr": 0.49,
+              "far": 0.005
+            },
+            "far_5pct": {
+              "frr": 0.37,
+              "far": 0.0322
+            }
+          },
+          "shipped_threshold": {
+            "frr": 0.02,
+            "far": 0.8228
+          }
+        },
+        "s041": {
+          "eer_diagnostic": 0.2275,
+          "genuine_count": 100,
+          "impostor_count": 5000,
+          "operating_points": {
+            "eer": {
+              "frr": 0.22,
+              "far": 0.226
+            },
+            "far_1pct": {
+              "frr": 0.71,
+              "far": 0.0066
+            },
+            "far_5pct": {
+              "frr": 0.53,
+              "far": 0.0468
+            }
+          },
+          "shipped_threshold": {
+            "frr": 0.03,
+            "far": 0.799
+          }
+        },
+        "s042": {
+          "eer_diagnostic": 0.0112,
+          "genuine_count": 100,
+          "impostor_count": 5000,
+          "operating_points": {
+            "eer": {
+              "frr": 0.02,
+              "far": 0.0118
+            },
+            "far_1pct": {
+              "frr": 0.03,
+              "far": 0.0098
+            },
+            "far_5pct": {
+              "frr": 0.01,
+              "far": 0.048
+            }
+          },
+          "shipped_threshold": {
+            "frr": 0.01,
+            "far": 0.0154
+          }
+        },
+        "s043": {
+          "eer_diagnostic": 0.0503,
+          "genuine_count": 100,
+          "impostor_count": 5000,
+          "operating_points": {
+            "eer": {
+              "frr": 0.02,
+              "far": 0.063
+            },
+            "far_1pct": {
+              "frr": 0.26,
+              "far": 0.0088
+            },
+            "far_5pct": {
+              "frr": 0.08,
+              "far": 0.045
+            }
+          },
+          "shipped_threshold": {
+            "frr": 0.05,
+            "far": 0.052
+          }
+        },
+        "s044": {
+          "eer_diagnostic": 0.07100000000000001,
+          "genuine_count": 100,
+          "impostor_count": 5000,
+          "operating_points": {
+            "eer": {
+              "frr": 0.13,
+              "far": 0.0534
+            },
+            "far_1pct": {
+              "frr": 0.52,
+              "far": 0.0142
+            },
+            "far_5pct": {
+              "frr": 0.15,
+              "far": 0.046
+            }
+          },
+          "shipped_threshold": {
+            "frr": 0.03,
+            "far": 0.1604
+          }
+        },
+        "s046": {
+          "eer_diagnostic": 0.2797,
+          "genuine_count": 100,
+          "impostor_count": 5000,
+          "operating_points": {
+            "eer": {
+              "frr": 0.49,
+              "far": 0.1432
+            },
+            "far_1pct": {
+              "frr": 0.86,
+              "far": 0.0082
+            },
+            "far_5pct": {
+              "frr": 0.7,
+              "far": 0.0446
+            }
+          },
+          "shipped_threshold": {
+            "frr": 0.0,
+            "far": 0.9526
+          }
+        },
+        "s047": {
+          "eer_diagnostic": 0.2419,
+          "genuine_count": 100,
+          "impostor_count": 5000,
+          "operating_points": {
+            "eer": {
+              "frr": 0.27,
+              "far": 0.2242
+            },
+            "far_1pct": {
+              "frr": 0.7,
+              "far": 0.0132
+            },
+            "far_5pct": {
+              "frr": 0.58,
+              "far": 0.0546
+            }
+          },
+          "shipped_threshold": {
+            "frr": 0.01,
+            "far": 0.7582
+          }
+        },
+        "s048": {
+          "eer_diagnostic": 0.13,
+          "genuine_count": 100,
+          "impostor_count": 5000,
+          "operating_points": {
+            "eer": {
+              "frr": 0.12,
+              "far": 0.1522
+            },
+            "far_1pct": {
+              "frr": 0.67,
+              "far": 0.0098
+            },
+            "far_5pct": {
+              "frr": 0.28,
+              "far": 0.0532
+            }
+          },
+          "shipped_threshold": {
+            "frr": 0.0,
+            "far": 0.3866
+          }
+        },
+        "s049": {
+          "eer_diagnostic": 0.0224,
+          "genuine_count": 100,
+          "impostor_count": 5000,
+          "operating_points": {
+            "eer": {
+              "frr": 0.02,
+              "far": 0.0574
+            },
+            "far_1pct": {
+              "frr": 0.07,
+              "far": 0.0052
+            },
+            "far_5pct": {
+              "frr": 0.02,
+              "far": 0.044
+            }
+          },
+          "shipped_threshold": {
+            "frr": 0.02,
+            "far": 0.3518
+          }
+        },
+        "s050": {
+          "eer_diagnostic": 0.11,
+          "genuine_count": 100,
+          "impostor_count": 5000,
+          "operating_points": {
+            "eer": {
+              "frr": 0.1,
+              "far": 0.1136
+            },
+            "far_1pct": {
+              "frr": 0.44,
+              "far": 0.0158
+            },
+            "far_5pct": {
+              "frr": 0.23,
+              "far": 0.0534
+            }
+          },
+          "shipped_threshold": {
+            "frr": 0.03,
+            "far": 0.5932
+          }
+        },
+        "s051": {
+          "eer_diagnostic": 0.3086,
+          "genuine_count": 100,
+          "impostor_count": 5000,
+          "operating_points": {
+            "eer": {
+              "frr": 0.4,
+              "far": 0.2434
+            },
+            "far_1pct": {
+              "frr": 0.93,
+              "far": 0.0022
+            },
+            "far_5pct": {
+              "frr": 0.82,
+              "far": 0.0404
+            }
+          },
+          "shipped_threshold": {
+            "frr": 0.02,
+            "far": 0.5508
+          }
+        },
+        "s052": {
+          "eer_diagnostic": 0.01,
+          "genuine_count": 100,
+          "impostor_count": 5000,
+          "operating_points": {
+            "eer": {
+              "frr": 0.05,
+              "far": 0.0002
+            },
+            "far_1pct": {
+              "frr": 0.01,
+              "far": 0.0082
+            },
+            "far_5pct": {
+              "frr": 0.0,
+              "far": 0.046
+            }
+          },
+          "shipped_threshold": {
+            "frr": 0.01,
+            "far": 0.0116
+          }
+        },
+        "s053": {
+          "eer_diagnostic": 0.07,
+          "genuine_count": 100,
+          "impostor_count": 5000,
+          "operating_points": {
+            "eer": {
+              "frr": 0.08,
+              "far": 0.0662
+            },
+            "far_1pct": {
+              "frr": 0.33,
+              "far": 0.0048
+            },
+            "far_5pct": {
+              "frr": 0.11,
+              "far": 0.0466
+            }
+          },
+          "shipped_threshold": {
+            "frr": 0.01,
+            "far": 0.2322
+          }
+        },
+        "s054": {
+          "eer_diagnostic": 0.212,
+          "genuine_count": 100,
+          "impostor_count": 5000,
+          "operating_points": {
+            "eer": {
+              "frr": 0.18,
+              "far": 0.2392
+            },
+            "far_1pct": {
+              "frr": 0.95,
+              "far": 0.0148
+            },
+            "far_5pct": {
+              "frr": 0.72,
+              "far": 0.0684
+            }
+          },
+          "shipped_threshold": {
+            "frr": 0.34,
+            "far": 0.1674
+          }
+        },
+        "s055": {
+          "eer_diagnostic": 0.031799999999999995,
+          "genuine_count": 100,
+          "impostor_count": 5000,
+          "operating_points": {
+            "eer": {
+              "frr": 0.02,
+              "far": 0.0854
+            },
+            "far_1pct": {
+              "frr": 0.07,
+              "far": 0.021
+            },
+            "far_5pct": {
+              "frr": 0.03,
+              "far": 0.0756
+            }
+          },
+          "shipped_threshold": {
+            "frr": 0.03,
+            "far": 0.0692
+          }
+        },
+        "s056": {
+          "eer_diagnostic": 0.19,
+          "genuine_count": 100,
+          "impostor_count": 5000,
+          "operating_points": {
+            "eer": {
+              "frr": 0.22,
+              "far": 0.1636
+            },
+            "far_1pct": {
+              "frr": 0.82,
+              "far": 0.0174
+            },
+            "far_5pct": {
+              "frr": 0.54,
+              "far": 0.0566
+            }
+          },
+          "shipped_threshold": {
+            "frr": 0.02,
+            "far": 0.595
+          }
+        },
+        "s057": {
+          "eer_diagnostic": 0.22970000000000002,
+          "genuine_count": 100,
+          "impostor_count": 5000,
+          "operating_points": {
+            "eer": {
+              "frr": 0.42,
+              "far": 0.1526
+            },
+            "far_1pct": {
+              "frr": 0.95,
+              "far": 0.0062
+            },
+            "far_5pct": {
+              "frr": 0.71,
+              "far": 0.0664
+            }
+          },
+          "shipped_threshold": {
+            "frr": 0.01,
+            "far": 0.674
+          }
+        }
+      }
+    },
+    "svm-1-1": {
+      "summary": {
+        "macro_eer_diagnostic": 0.09140392156862745,
+        "subject_bootstrap_95pct_ci": [
+          0.0716918137254902,
+          0.11383249999999999
+        ],
+        "operating_points": {
+          "eer": {
+            "far": 0.08043137254901961,
+            "frr": 0.13823529411764707
+          },
+          "far_1pct": {
+            "far": 0.010298039215686275,
+            "frr": 0.4443137254901961
+          },
+          "far_5pct": {
+            "far": 0.05207843137254902,
+            "frr": 0.19392156862745097
+          }
+        }
+      },
+      "per_user": {
+        "s002": {
+          "eer_diagnostic": 0.13,
+          "genuine_count": 100,
+          "impostor_count": 5000,
+          "operating_points": {
+            "eer": {
+              "frr": 0.23,
+              "far": 0.0868
+            },
+            "far_1pct": {
+              "frr": 0.88,
+              "far": 0.0066
+            },
+            "far_5pct": {
+              "frr": 0.52,
+              "far": 0.03
+            }
+          }
+        },
+        "s003": {
+          "eer_diagnostic": 0.10170000000000001,
+          "genuine_count": 100,
+          "impostor_count": 5000,
+          "operating_points": {
+            "eer": {
+              "frr": 0.09,
+              "far": 0.1366
+            },
+            "far_1pct": {
+              "frr": 0.65,
+              "far": 0.008
+            },
+            "far_5pct": {
+              "frr": 0.14,
+              "far": 0.0856
+            }
+          }
+        },
+        "s004": {
+          "eer_diagnostic": 0.1,
+          "genuine_count": 100,
+          "impostor_count": 5000,
+          "operating_points": {
+            "eer": {
+              "frr": 0.17,
+              "far": 0.0468
+            },
+            "far_1pct": {
+              "frr": 0.54,
+              "far": 0.0052
+            },
+            "far_5pct": {
+              "frr": 0.16,
+              "far": 0.0488
+            }
+          }
+        },
+        "s005": {
+          "eer_diagnostic": 0.05,
+          "genuine_count": 100,
+          "impostor_count": 5000,
+          "operating_points": {
+            "eer": {
+              "frr": 0.08,
+              "far": 0.0476
+            },
+            "far_1pct": {
+              "frr": 0.48,
+              "far": 0.0162
+            },
+            "far_5pct": {
+              "frr": 0.03,
+              "far": 0.0624
+            }
+          }
+        },
+        "s007": {
+          "eer_diagnostic": 0.1623,
+          "genuine_count": 100,
+          "impostor_count": 5000,
+          "operating_points": {
+            "eer": {
+              "frr": 0.47,
+              "far": 0.0668
+            },
+            "far_1pct": {
+              "frr": 0.95,
+              "far": 0.0108
+            },
+            "far_5pct": {
+              "frr": 0.57,
+              "far": 0.0552
+            }
+          }
+        },
+        "s008": {
+          "eer_diagnostic": 0.2,
+          "genuine_count": 100,
+          "impostor_count": 5000,
+          "operating_points": {
+            "eer": {
+              "frr": 0.15,
+              "far": 0.2888
+            },
+            "far_1pct": {
+              "frr": 0.85,
+              "far": 0.0102
+            },
+            "far_5pct": {
+              "frr": 0.59,
+              "far": 0.0454
+            }
+          }
+        },
+        "s010": {
+          "eer_diagnostic": 0.0278,
+          "genuine_count": 100,
+          "impostor_count": 5000,
+          "operating_points": {
+            "eer": {
+              "frr": 0.02,
+              "far": 0.0258
+            },
+            "far_1pct": {
+              "frr": 0.09,
+              "far": 0.0054
+            },
+            "far_5pct": {
+              "frr": 0.01,
+              "far": 0.042
+            }
+          }
+        },
+        "s011": {
+          "eer_diagnostic": 0.11,
+          "genuine_count": 100,
+          "impostor_count": 5000,
+          "operating_points": {
+            "eer": {
+              "frr": 0.09,
+              "far": 0.1372
+            },
+            "far_1pct": {
+              "frr": 0.86,
+              "far": 0.0106
+            },
+            "far_5pct": {
+              "frr": 0.32,
+              "far": 0.0538
+            }
+          }
+        },
+        "s012": {
+          "eer_diagnostic": 0.06,
+          "genuine_count": 100,
+          "impostor_count": 5000,
+          "operating_points": {
+            "eer": {
+              "frr": 0.05,
+              "far": 0.0718
+            },
+            "far_1pct": {
+              "frr": 0.26,
+              "far": 0.0112
+            },
+            "far_5pct": {
+              "frr": 0.06,
+              "far": 0.0602
+            }
+          }
+        },
+        "s013": {
+          "eer_diagnostic": 0.08,
+          "genuine_count": 100,
+          "impostor_count": 5000,
+          "operating_points": {
+            "eer": {
+              "frr": 0.1,
+              "far": 0.0386
+            },
+            "far_1pct": {
+              "frr": 0.26,
+              "far": 0.0224
+            },
+            "far_5pct": {
+              "frr": 0.09,
+              "far": 0.0606
+            }
+          }
+        },
+        "s015": {
+          "eer_diagnostic": 0.09079999999999999,
+          "genuine_count": 100,
+          "impostor_count": 5000,
+          "operating_points": {
+            "eer": {
+              "frr": 0.07,
+              "far": 0.1178
+            },
+            "far_1pct": {
+              "frr": 0.45,
+              "far": 0.0132
+            },
+            "far_5pct": {
+              "frr": 0.15,
+              "far": 0.0486
+            }
+          }
+        },
+        "s016": {
+          "eer_diagnostic": 0.02,
+          "genuine_count": 100,
+          "impostor_count": 5000,
+          "operating_points": {
+            "eer": {
+              "frr": 0.03,
+              "far": 0.0064
+            },
+            "far_1pct": {
+              "frr": 0.02,
+              "far": 0.0118
+            },
+            "far_5pct": {
+              "frr": 0.01,
+              "far": 0.0602
+            }
+          }
+        },
+        "s017": {
+          "eer_diagnostic": 0.04,
+          "genuine_count": 100,
+          "impostor_count": 5000,
+          "operating_points": {
+            "eer": {
+              "frr": 0.28,
+              "far": 0.012
+            },
+            "far_1pct": {
+              "frr": 0.68,
+              "far": 0.0036
+            },
+            "far_5pct": {
+              "frr": 0.05,
+              "far": 0.0346
+            }
+          }
+        },
+        "s018": {
+          "eer_diagnostic": 0.11,
+          "genuine_count": 100,
+          "impostor_count": 5000,
+          "operating_points": {
+            "eer": {
+              "frr": 0.08,
+              "far": 0.1402
+            },
+            "far_1pct": {
+              "frr": 0.8,
+              "far": 0.0038
+            },
+            "far_5pct": {
+              "frr": 0.23,
+              "far": 0.054
+            }
+          }
+        },
+        "s019": {
+          "eer_diagnostic": 0.0286,
+          "genuine_count": 100,
+          "impostor_count": 5000,
+          "operating_points": {
+            "eer": {
+              "frr": 0.02,
+              "far": 0.029
+            },
+            "far_1pct": {
+              "frr": 0.14,
+              "far": 0.0068
+            },
+            "far_5pct": {
+              "frr": 0.02,
+              "far": 0.045
+            }
+          }
+        },
+        "s020": {
+          "eer_diagnostic": 0.12,
+          "genuine_count": 100,
+          "impostor_count": 5000,
+          "operating_points": {
+            "eer": {
+              "frr": 0.16,
+              "far": 0.0932
+            },
+            "far_1pct": {
+              "frr": 0.75,
+              "far": 0.0088
+            },
+            "far_5pct": {
+              "frr": 0.28,
+              "far": 0.0492
+            }
+          }
+        },
+        "s021": {
+          "eer_diagnostic": 0.14,
+          "genuine_count": 100,
+          "impostor_count": 5000,
+          "operating_points": {
+            "eer": {
+              "frr": 0.36,
+              "far": 0.0372
+            },
+            "far_1pct": {
+              "frr": 0.62,
+              "far": 0.0102
+            },
+            "far_5pct": {
+              "frr": 0.34,
+              "far": 0.0438
+            }
+          }
+        },
+        "s022": {
+          "eer_diagnostic": 0.02,
+          "genuine_count": 100,
+          "impostor_count": 5000,
+          "operating_points": {
+            "eer": {
+              "frr": 0.03,
+              "far": 0.0166
+            },
+            "far_1pct": {
+              "frr": 0.04,
+              "far": 0.0108
+            },
+            "far_5pct": {
+              "frr": 0.0,
+              "far": 0.0584
+            }
+          }
+        },
+        "s024": {
+          "eer_diagnostic": 0.02,
+          "genuine_count": 100,
+          "impostor_count": 5000,
+          "operating_points": {
+            "eer": {
+              "frr": 0.02,
+              "far": 0.0174
+            },
+            "far_1pct": {
+              "frr": 0.07,
+              "far": 0.0012
+            },
+            "far_5pct": {
+              "frr": 0.02,
+              "far": 0.0314
+            }
+          }
+        },
+        "s025": {
+          "eer_diagnostic": 0.02,
+          "genuine_count": 100,
+          "impostor_count": 5000,
+          "operating_points": {
+            "eer": {
+              "frr": 0.03,
+              "far": 0.0134
+            },
+            "far_1pct": {
+              "frr": 0.07,
+              "far": 0.0076
+            },
+            "far_5pct": {
+              "frr": 0.01,
+              "far": 0.04
+            }
+          }
+        },
+        "s026": {
+          "eer_diagnostic": 0.1,
+          "genuine_count": 100,
+          "impostor_count": 5000,
+          "operating_points": {
+            "eer": {
+              "frr": 0.08,
+              "far": 0.1254
+            },
+            "far_1pct": {
+              "frr": 0.48,
+              "far": 0.0214
+            },
+            "far_5pct": {
+              "frr": 0.14,
+              "far": 0.0646
+            }
+          }
+        },
+        "s027": {
+          "eer_diagnostic": 0.02,
+          "genuine_count": 100,
+          "impostor_count": 5000,
+          "operating_points": {
+            "eer": {
+              "frr": 0.03,
+              "far": 0.0146
+            },
+            "far_1pct": {
+              "frr": 0.06,
+              "far": 0.0068
+            },
+            "far_5pct": {
+              "frr": 0.0,
+              "far": 0.044
+            }
+          }
+        },
+        "s028": {
+          "eer_diagnostic": 0.0794,
+          "genuine_count": 100,
+          "impostor_count": 5000,
+          "operating_points": {
+            "eer": {
+              "frr": 0.29,
+              "far": 0.0412
+            },
+            "far_1pct": {
+              "frr": 0.88,
+              "far": 0.0066
+            },
+            "far_5pct": {
+              "frr": 0.2,
+              "far": 0.052
+            }
+          }
+        },
+        "s029": {
+          "eer_diagnostic": 0.07,
+          "genuine_count": 100,
+          "impostor_count": 5000,
+          "operating_points": {
+            "eer": {
+              "frr": 0.06,
+              "far": 0.0822
+            },
+            "far_1pct": {
+              "frr": 0.64,
+              "far": 0.0068
+            },
+            "far_5pct": {
+              "frr": 0.16,
+              "far": 0.0336
+            }
+          }
+        },
+        "s030": {
+          "eer_diagnostic": 0.038599999999999995,
+          "genuine_count": 100,
+          "impostor_count": 5000,
+          "operating_points": {
+            "eer": {
+              "frr": 0.04,
+              "far": 0.029
+            },
+            "far_1pct": {
+              "frr": 0.21,
+              "far": 0.0084
+            },
+            "far_5pct": {
+              "frr": 0.03,
+              "far": 0.056
+            }
+          }
+        },
+        "s031": {
+          "eer_diagnostic": 0.1479,
+          "genuine_count": 100,
+          "impostor_count": 5000,
+          "operating_points": {
+            "eer": {
+              "frr": 0.18,
+              "far": 0.131
+            },
+            "far_1pct": {
+              "frr": 0.76,
+              "far": 0.0098
+            },
+            "far_5pct": {
+              "frr": 0.52,
+              "far": 0.0424
+            }
+          }
+        },
+        "s032": {
+          "eer_diagnostic": 0.3695,
+          "genuine_count": 100,
+          "impostor_count": 5000,
+          "operating_points": {
+            "eer": {
+              "frr": 0.66,
+              "far": 0.1582
+            },
+            "far_1pct": {
+              "frr": 0.96,
+              "far": 0.0114
+            },
+            "far_5pct": {
+              "frr": 0.8,
+              "far": 0.0616
+            }
+          }
+        },
+        "s033": {
+          "eer_diagnostic": 0.0291,
+          "genuine_count": 100,
+          "impostor_count": 5000,
+          "operating_points": {
+            "eer": {
+              "frr": 0.04,
+              "far": 0.019
+            },
+            "far_1pct": {
+              "frr": 0.05,
+              "far": 0.0116
+            },
+            "far_5pct": {
+              "frr": 0.01,
+              "far": 0.055
+            }
+          }
+        },
+        "s034": {
+          "eer_diagnostic": 0.13,
+          "genuine_count": 100,
+          "impostor_count": 5000,
+          "operating_points": {
+            "eer": {
+              "frr": 0.18,
+              "far": 0.0768
+            },
+            "far_1pct": {
+              "frr": 0.5,
+              "far": 0.007
+            },
+            "far_5pct": {
+              "frr": 0.25,
+              "far": 0.0542
+            }
+          }
+        },
+        "s035": {
+          "eer_diagnostic": 0.05,
+          "genuine_count": 100,
+          "impostor_count": 5000,
+          "operating_points": {
+            "eer": {
+              "frr": 0.03,
+              "far": 0.1126
+            },
+            "far_1pct": {
+              "frr": 0.22,
+              "far": 0.0112
+            },
+            "far_5pct": {
+              "frr": 0.05,
+              "far": 0.0648
+            }
+          }
+        },
+        "s036": {
+          "eer_diagnostic": 0.0,
+          "genuine_count": 100,
+          "impostor_count": 5000,
+          "operating_points": {
+            "eer": {
+              "frr": 0.01,
+              "far": 0.0
+            },
+            "far_1pct": {
+              "frr": 0.0,
+              "far": 0.0096
+            },
+            "far_5pct": {
+              "frr": 0.0,
+              "far": 0.055
+            }
+          }
+        },
+        "s037": {
+          "eer_diagnostic": 0.2388,
+          "genuine_count": 100,
+          "impostor_count": 5000,
+          "operating_points": {
+            "eer": {
+              "frr": 0.78,
+              "far": 0.0482
+            },
+            "far_1pct": {
+              "frr": 0.98,
+              "far": 0.0144
+            },
+            "far_5pct": {
+              "frr": 0.71,
+              "far": 0.0628
+            }
+          }
+        },
+        "s038": {
+          "eer_diagnostic": 0.0478,
+          "genuine_count": 100,
+          "impostor_count": 5000,
+          "operating_points": {
+            "eer": {
+              "frr": 0.01,
+              "far": 0.085
+            },
+            "far_1pct": {
+              "frr": 0.41,
+              "far": 0.0094
+            },
+            "far_5pct": {
+              "frr": 0.04,
+              "far": 0.0466
+            }
+          }
+        },
+        "s039": {
+          "eer_diagnostic": 0.060200000000000004,
+          "genuine_count": 100,
+          "impostor_count": 5000,
+          "operating_points": {
+            "eer": {
+              "frr": 0.03,
+              "far": 0.116
+            },
+            "far_1pct": {
+              "frr": 0.34,
+              "far": 0.0042
+            },
+            "far_5pct": {
+              "frr": 0.07,
+              "far": 0.0526
+            }
+          }
+        },
+        "s040": {
+          "eer_diagnostic": 0.03,
+          "genuine_count": 100,
+          "impostor_count": 5000,
+          "operating_points": {
+            "eer": {
+              "frr": 0.02,
+              "far": 0.0366
+            },
+            "far_1pct": {
+              "frr": 0.09,
+              "far": 0.0068
+            },
+            "far_5pct": {
+              "frr": 0.02,
+              "far": 0.0454
+            }
+          }
+        },
+        "s041": {
+          "eer_diagnostic": 0.08,
+          "genuine_count": 100,
+          "impostor_count": 5000,
+          "operating_points": {
+            "eer": {
+              "frr": 0.09,
+              "far": 0.0638
+            },
+            "far_1pct": {
+              "frr": 0.44,
+              "far": 0.0076
+            },
+            "far_5pct": {
+              "frr": 0.1,
+              "far": 0.0552
+            }
+          }
+        },
+        "s042": {
+          "eer_diagnostic": 0.04,
+          "genuine_count": 100,
+          "impostor_count": 5000,
+          "operating_points": {
+            "eer": {
+              "frr": 0.09,
+              "far": 0.0158
+            },
+            "far_1pct": {
+              "frr": 0.11,
+              "far": 0.0082
+            },
+            "far_5pct": {
+              "frr": 0.04,
+              "far": 0.038
+            }
+          }
+        },
+        "s043": {
+          "eer_diagnostic": 0.029699999999999997,
+          "genuine_count": 100,
+          "impostor_count": 5000,
+          "operating_points": {
+            "eer": {
+              "frr": 0.03,
+              "far": 0.026
+            },
+            "far_1pct": {
+              "frr": 0.31,
+              "far": 0.0064
+            },
+            "far_5pct": {
+              "frr": 0.0,
+              "far": 0.0522
+            }
+          }
+        },
+        "s044": {
+          "eer_diagnostic": 0.09,
+          "genuine_count": 100,
+          "impostor_count": 5000,
+          "operating_points": {
+            "eer": {
+              "frr": 0.38,
+              "far": 0.0476
+            },
+            "far_1pct": {
+              "frr": 0.66,
+              "far": 0.0194
+            },
+            "far_5pct": {
+              "frr": 0.34,
+              "far": 0.0564
+            }
+          }
+        },
+        "s046": {
+          "eer_diagnostic": 0.31,
+          "genuine_count": 100,
+          "impostor_count": 5000,
+          "operating_points": {
+            "eer": {
+              "frr": 0.46,
+              "far": 0.1864
+            },
+            "far_1pct": {
+              "frr": 0.85,
+              "far": 0.0108
+            },
+            "far_5pct": {
+              "frr": 0.71,
+              "far": 0.0486
+            }
+          }
+        },
+        "s047": {
+          "eer_diagnostic": 0.12,
+          "genuine_count": 100,
+          "impostor_count": 5000,
+          "operating_points": {
+            "eer": {
+              "frr": 0.37,
+              "far": 0.0278
+            },
+            "far_1pct": {
+              "frr": 0.5,
+              "far": 0.0114
+            },
+            "far_5pct": {
+              "frr": 0.27,
+              "far": 0.0504
+            }
+          }
+        },
+        "s048": {
+          "eer_diagnostic": 0.09179999999999999,
+          "genuine_count": 100,
+          "impostor_count": 5000,
+          "operating_points": {
+            "eer": {
+              "frr": 0.09,
+              "far": 0.1138
+            },
+            "far_1pct": {
+              "frr": 0.42,
+              "far": 0.0116
+            },
+            "far_5pct": {
+              "frr": 0.2,
+              "far": 0.0564
+            }
+          }
+        },
+        "s049": {
+          "eer_diagnostic": 0.0421,
+          "genuine_count": 100,
+          "impostor_count": 5000,
+          "operating_points": {
+            "eer": {
+              "frr": 0.04,
+              "far": 0.0456
+            },
+            "far_1pct": {
+              "frr": 0.21,
+              "far": 0.0114
+            },
+            "far_5pct": {
+              "frr": 0.04,
+              "far": 0.0482
+            }
+          }
+        },
+        "s050": {
+          "eer_diagnostic": 0.0975,
+          "genuine_count": 100,
+          "impostor_count": 5000,
+          "operating_points": {
+            "eer": {
+              "frr": 0.07,
+              "far": 0.1054
+            },
+            "far_1pct": {
+              "frr": 0.33,
+              "far": 0.0152
+            },
+            "far_5pct": {
+              "frr": 0.1,
+              "far": 0.0646
+            }
+          }
+        },
+        "s051": {
+          "eer_diagnostic": 0.12,
+          "genuine_count": 100,
+          "impostor_count": 5000,
+          "operating_points": {
+            "eer": {
+              "frr": 0.13,
+              "far": 0.0976
+            },
+            "far_1pct": {
+              "frr": 0.57,
+              "far": 0.0052
+            },
+            "far_5pct": {
+              "frr": 0.2,
+              "far": 0.0396
+            }
+          }
+        },
+        "s052": {
+          "eer_diagnostic": 0.009600000000000001,
+          "genuine_count": 100,
+          "impostor_count": 5000,
+          "operating_points": {
+            "eer": {
+              "frr": 0.0,
+              "far": 0.0178
+            },
+            "far_1pct": {
+              "frr": 0.0,
+              "far": 0.0116
+            },
+            "far_5pct": {
+              "frr": 0.0,
+              "far": 0.0518
+            }
+          }
+        },
+        "s053": {
+          "eer_diagnostic": 0.031299999999999994,
+          "genuine_count": 100,
+          "impostor_count": 5000,
+          "operating_points": {
+            "eer": {
+              "frr": 0.03,
+              "far": 0.0338
+            },
+            "far_1pct": {
+              "frr": 0.1,
+              "far": 0.007
+            },
+            "far_5pct": {
+              "frr": 0.02,
+              "far": 0.0398
+            }
+          }
+        },
+        "s054": {
+          "eer_diagnostic": 0.2986,
+          "genuine_count": 100,
+          "impostor_count": 5000,
+          "operating_points": {
+            "eer": {
+              "frr": 0.15,
+              "far": 0.3934
+            },
+            "far_1pct": {
+              "frr": 0.96,
+              "far": 0.0212
+            },
+            "far_5pct": {
+              "frr": 0.9,
+              "far": 0.0628
+            }
+          }
+        },
+        "s055": {
+          "eer_diagnostic": 0.0485,
+          "genuine_count": 100,
+          "impostor_count": 5000,
+          "operating_points": {
+            "eer": {
+              "frr": 0.02,
+              "far": 0.08
+            },
+            "far_1pct": {
+              "frr": 0.34,
+              "far": 0.0074
+            },
+            "far_5pct": {
+              "frr": 0.02,
+              "far": 0.0688
+            }
+          }
+        },
+        "s056": {
+          "eer_diagnostic": 0.12,
+          "genuine_count": 100,
+          "impostor_count": 5000,
+          "operating_points": {
+            "eer": {
+              "frr": 0.06,
+              "far": 0.2268
+            },
+            "far_1pct": {
+              "frr": 0.38,
+              "far": 0.0176
+            },
+            "far_5pct": {
+              "frr": 0.16,
+              "far": 0.0676
+            }
+          }
+        },
+        "s057": {
+          "eer_diagnostic": 0.09,
+          "genuine_count": 100,
+          "impostor_count": 5000,
+          "operating_points": {
+            "eer": {
+              "frr": 0.07,
+              "far": 0.1146
+            },
+            "far_1pct": {
+              "frr": 0.44,
+              "far": 0.0234
+            },
+            "far_5pct": {
+              "frr": 0.19,
+              "far": 0.0558
+            }
+          }
+        }
+      }
+    }
+  }
+}

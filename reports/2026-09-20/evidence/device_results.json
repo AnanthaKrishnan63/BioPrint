@@ -1,0 +1,323 @@
+{
+  "dataset": "FPStalker public 15k sample",
+  "version": 2,
+  "task": "unseen-browser identity linkage, NOT person/physical-device verification",
+  "test_accessed": false,
+  "selection": "prespecified models; no dev-based tuning or threshold selection",
+  "eligible_subjects": {
+    "fit": 358,
+    "calibration": 121,
+    "dev": 154
+  },
+  "feature_names": [
+    "userAgentHttp",
+    "languageHttp",
+    "platformJS",
+    "cookiesJS",
+    "dntJS",
+    "timezoneJS",
+    "resolutionJS",
+    "localJS",
+    "sessionJS",
+    "vendorWebGLJS",
+    "rendererWebGLJS",
+    "pluginsJSHashed",
+    "canvasJSHashed",
+    "webGLJsHashed",
+    "osDetailed",
+    "browserDetailed",
+    "browserVersion",
+    "userAgentHttp_similarity",
+    "languageHttp_similarity",
+    "rendererWebGLJS_similarity",
+    "browserVersion_similarity",
+    "mean_equal"
+  ],
+  "methods": {
+    "equal_attribute_agreement": {
+      "dev_eer_descriptive": 0.037877673591959315,
+      "operating_points": {
+        "0.01": {
+          "threshold_selected_on_training_calibration": 0.6470588235294119,
+          "train_calibration": {
+            "far": 0.00681586978636826,
+            "frr": 0.08646998982706001,
+            "false_accepts": 134,
+            "false_rejects": 85,
+            "impostor_trials": 19660,
+            "genuine_trials": 983
+          },
+          "dev": {
+            "far": 0.0068877551020408165,
+            "frr": 0.08333333333333333,
+            "false_accepts": 162,
+            "false_rejects": 98,
+            "impostor_trials": 23520,
+            "genuine_trials": 1176
+          }
+        },
+        "0.001": {
+          "threshold_selected_on_training_calibration": 0.7647058823529412,
+          "train_calibration": {
+            "far": 0.0008138351983723296,
+            "frr": 0.38250254323499494,
+            "false_accepts": 16,
+            "false_rejects": 376,
+            "impostor_trials": 19660,
+            "genuine_trials": 983
+          },
+          "dev": {
+            "far": 0.00025510204081632655,
+            "frr": 0.3401360544217687,
+            "false_accepts": 6,
+            "false_rejects": 400,
+            "impostor_trials": 23520,
+            "genuine_trials": 1176
+          }
+        }
+      }
+    },
+    "exact_fingerprint_match": {
+      "dev_eer_descriptive": 0.47733333333333333,
+      "operating_points": {
+        "0.01": {
+          "threshold_selected_on_training_calibration": 5e-324,
+          "train_calibration": {
+            "far": 0.0,
+            "frr": 0.943031536113937,
+            "false_accepts": 0,
+            "false_rejects": 927,
+            "impostor_trials": 19660,
+            "genuine_trials": 983
+          },
+          "dev": {
+            "far": 0.0,
+            "frr": 0.9132653061224489,
+            "false_accepts": 0,
+            "false_rejects": 1074,
+            "impostor_trials": 23520,
+            "genuine_trials": 1176
+          }
+        },
+        "0.001": {
+          "threshold_selected_on_training_calibration": 5e-324,
+          "train_calibration": {
+            "far": 0.0,
+            "frr": 0.943031536113937,
+            "false_accepts": 0,
+            "false_rejects": 927,
+            "impostor_trials": 19660,
+            "genuine_trials": 983
+          },
+          "dev": {
+            "far": 0.0,
+            "frr": 0.9132653061224489,
+            "false_accepts": 0,
+            "false_rejects": 1074,
+            "impostor_trials": 23520,
+            "genuine_trials": 1176
+          }
+        }
+      }
+    },
+    "bioprint_overlap_device_score": {
+      "dev_eer_descriptive": 0.07568027210884354,
+      "operating_points": {
+        "0.01": {
+          "threshold_selected_on_training_calibration": -2.9599999999999995,
+          "train_calibration": {
+            "far": 0.009766022380467955,
+            "frr": 0.4170905391658189,
+            "false_accepts": 192,
+            "false_rejects": 410,
+            "impostor_trials": 19660,
+            "genuine_trials": 983
+          },
+          "dev": {
+            "far": 0.01211734693877551,
+            "frr": 0.3307823129251701,
+            "false_accepts": 285,
+            "false_rejects": 389,
+            "impostor_trials": 23520,
+            "genuine_trials": 1176
+          }
+        },
+        "0.001": {
+          "threshold_selected_on_training_calibration": -1.0999999999999999,
+          "train_calibration": {
+            "far": 0.0008138351983723296,
+            "frr": 0.5493387589013224,
+            "false_accepts": 16,
+            "false_rejects": 540,
+            "impostor_trials": 19660,
+            "genuine_trials": 983
+          },
+          "dev": {
+            "far": 0.0003826530612244898,
+            "frr": 0.4574829931972789,
+            "false_accepts": 9,
+            "false_rejects": 538,
+            "impostor_trials": 23520,
+            "genuine_trials": 1176
+          }
+        }
+      },
+      "original_threshold_dev": {
+        "far": 0.09115646258503401,
+        "frr": 0.07568027210884354,
+        "false_accepts": 2144,
+        "false_rejects": 89,
+        "impostor_trials": 23520,
+        "genuine_trials": 1176
+      }
+    },
+    "thresholdfp_2025_pairwise_adaptation": {
+      "dev_eer_descriptive": 0.03966836734693877,
+      "operating_points": {
+        "0.01": {
+          "threshold_selected_on_training_calibration": -3.2414117520563406,
+          "train_calibration": {
+            "far": 0.009969481180061038,
+            "frr": 0.06205493387589013,
+            "false_accepts": 196,
+            "false_rejects": 61,
+            "impostor_trials": 19660,
+            "genuine_trials": 983
+          },
+          "dev": {
+            "far": 0.011181972789115646,
+            "frr": 0.07993197278911565,
+            "false_accepts": 263,
+            "false_rejects": 94,
+            "impostor_trials": 23520,
+            "genuine_trials": 1176
+          }
+        },
+        "0.001": {
+          "threshold_selected_on_training_calibration": -2.166536745336272,
+          "train_calibration": {
+            "far": 0.0009664292980671414,
+            "frr": 0.19125127161749747,
+            "false_accepts": 19,
+            "false_rejects": 188,
+            "impostor_trials": 19660,
+            "genuine_trials": 983
+          },
+          "dev": {
+            "far": 0.0006377551020408163,
+            "frr": 0.18962585034013604,
+            "false_accepts": 15,
+            "false_rejects": 223,
+            "impostor_trials": 23520,
+            "genuine_trials": 1176
+          }
+        }
+      }
+    },
+    "fpstalker_inspired_random_forest": {
+      "dev_eer_descriptive": 0.023809523809523836,
+      "operating_points": {
+        "0.01": {
+          "threshold_selected_on_training_calibration": 0.5138614291086502,
+          "train_calibration": {
+            "far": 0.009969481180061038,
+            "frr": 0.03662258392675483,
+            "false_accepts": 196,
+            "false_rejects": 36,
+            "impostor_trials": 19660,
+            "genuine_trials": 983
+          },
+          "dev": {
+            "far": 0.007993197278911564,
+            "frr": 0.05272108843537415,
+            "false_accepts": 188,
+            "false_rejects": 62,
+            "impostor_trials": 23520,
+            "genuine_trials": 1176
+          }
+        },
+        "0.001": {
+          "threshold_selected_on_training_calibration": 0.9429876472266874,
+          "train_calibration": {
+            "far": 0.0009664292980671414,
+            "frr": 0.11597151576805696,
+            "false_accepts": 19,
+            "false_rejects": 114,
+            "impostor_trials": 19660,
+            "genuine_trials": 983
+          },
+          "dev": {
+            "far": 0.0009778911564625851,
+            "frr": 0.1564625850340136,
+            "false_accepts": 23,
+            "false_rejects": 184,
+            "impostor_trials": 23520,
+            "genuine_trials": 1176
+          }
+        }
+      }
+    },
+    "hist_gradient_boosting": {
+      "dev_eer_descriptive": 0.022959183673469385,
+      "operating_points": {
+        "0.01": {
+          "threshold_selected_on_training_calibration": 0.07310782883788666,
+          "train_calibration": {
+            "far": 0.009969481180061038,
+            "frr": 0.03763987792472025,
+            "false_accepts": 196,
+            "false_rejects": 37,
+            "impostor_trials": 19660,
+            "genuine_trials": 983
+          },
+          "dev": {
+            "far": 0.008418367346938776,
+            "frr": 0.04846938775510204,
+            "false_accepts": 198,
+            "false_rejects": 57,
+            "impostor_trials": 23520,
+            "genuine_trials": 1176
+          }
+        },
+        "0.001": {
+          "threshold_selected_on_training_calibration": 0.855064576112325,
+          "train_calibration": {
+            "far": 0.0009664292980671414,
+            "frr": 0.17192268565615462,
+            "false_accepts": 19,
+            "false_rejects": 169,
+            "impostor_trials": 19660,
+            "genuine_trials": 983
+          },
+          "dev": {
+            "far": 0.0005952380952380953,
+            "frr": 0.16156462585034015,
+            "false_accepts": 14,
+            "false_rejects": 190,
+            "impostor_trials": 23520,
+            "genuine_trials": 1176
+          }
+        }
+      }
+    }
+  },
+  "thresholdfp_adapted_stability_weights": {
+    "userAgentHttp": 0.17130799419386056,
+    "languageHttp": 0.7580909628514596,
+    "platformJS": 0.674883070802645,
+    "cookiesJS": 0.9976210956400193,
+    "dntJS": 0.9526369550024192,
+    "timezoneJS": 0.6279904306220095,
+    "resolutionJS": 0.7048680178485027,
+    "localJS": 0.9715606687812484,
+    "sessionJS": 0.9722595559378528,
+    "vendorWebGLJS": 0.9950540293532606,
+    "rendererWebGLJS": 0.9791543465405086,
+    "pluginsJSHashed": 0.4680393527229719,
+    "canvasJSHashed": 0.5510859631202624,
+    "webGLJsHashed": 0.4292914359443041,
+    "osDetailed": 0.9952825116929197,
+    "browserDetailed": 0.9963980431159615,
+    "browserVersion": 1.0
+  }
+}

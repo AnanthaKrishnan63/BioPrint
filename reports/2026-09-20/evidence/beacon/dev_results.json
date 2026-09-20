@@ -1,0 +1,132 @@
+{
+  "subjects": [
+    "P012",
+    "P015",
+    "P022"
+  ],
+  "exclusions": {},
+  "results": {
+    "keyboard": {
+      "eer_diagnostic": 0.3950617283950617,
+      "genuine_comparisons": 81,
+      "impostor_comparisons": 162,
+      "operating_points": {
+        "eer": {
+          "frr": 0.6296296296296297,
+          "far": 0.2345679012345679
+        },
+        "far_1pct": {
+          "frr": 1.0,
+          "far": 0.006172839506172839
+        },
+        "far_5pct": {
+          "frr": 0.9506172839506173,
+          "far": 0.037037037037037035
+        }
+      }
+    },
+    "mouse": {
+      "eer_diagnostic": 0.404320987654321,
+      "genuine_comparisons": 81,
+      "impostor_comparisons": 162,
+      "operating_points": {
+        "eer": {
+          "frr": 0.35802469135802467,
+          "far": 0.41975308641975306
+        },
+        "far_1pct": {
+          "frr": 0.35802469135802467,
+          "far": 0.41975308641975306
+        },
+        "far_5pct": {
+          "frr": 0.024691358024691357,
+          "far": 0.8765432098765432
+        }
+      }
+    },
+    "behavior_fusion": {
+      "eer_diagnostic": 0.441358024691358,
+      "genuine_comparisons": 81,
+      "impostor_comparisons": 162,
+      "operating_points": {
+        "eer": {
+          "frr": 0.5308641975308642,
+          "far": 0.2777777777777778
+        },
+        "far_1pct": {
+          "frr": 0.9876543209876543,
+          "far": 0.024691358024691357
+        },
+        "far_5pct": {
+          "frr": 0.5308641975308642,
+          "far": 0.2962962962962963
+        }
+      }
+    },
+    "behavior_plus_context": {
+      "eer_diagnostic": 0.43209876543209874,
+      "genuine_comparisons": 81,
+      "impostor_comparisons": 162,
+      "operating_points": {
+        "eer": {
+          "frr": 0.43209876543209874,
+          "far": 0.42592592592592593
+        },
+        "far_1pct": {
+          "frr": 0.8641975308641975,
+          "far": 0.08024691358024691
+        },
+        "far_5pct": {
+          "frr": 0.4074074074074074,
+          "far": 0.4567901234567901
+        }
+      }
+    },
+    "untrained_equal_behavior_fusion": {
+      "eer_diagnostic": 0.3950617283950617,
+      "genuine_comparisons": 81,
+      "impostor_comparisons": 162,
+      "operating_points": {
+        "eer": {
+          "frr": 0.5555555555555556,
+          "far": 0.2839506172839506
+        },
+        "far_1pct": {
+          "frr": 0.8888888888888888,
+          "far": 0.11728395061728394
+        },
+        "far_5pct": {
+          "frr": 0.5555555555555556,
+          "far": 0.2839506172839506
+        }
+      }
+    }
+  },
+  "protocol": {
+    "window_seconds": 30.0,
+    "minimum_keys": 5,
+    "minimum_mouse_points": 32,
+    "fit_identities": [
+      "P002",
+      "P003",
+      "P006"
+    ],
+    "selection_identities": [
+      "P007",
+      "P008"
+    ],
+    "calibration_identities": [
+      "P009",
+      "P010"
+    ],
+    "dev": "unseen identities; first session enrollment, second session probes",
+    "sealed_test_read": false
+  },
+  "limitations": [
+    "Gameplay, not login; only three planned dev identities.",
+    "Context may correlate with identity through own-device use; no same-device impostor validation.",
+    "Only a bounded prefix of each paired session used.",
+    "Keypad and malicious bots are not measured in this dataset.",
+    "Dev enrollment builds personal templates, not global weights or thresholds."
+  ]
+}

@@ -1,0 +1,59 @@
+{
+  "mode": "isolated ASGI; no listener/database",
+  "samples_replayed": 5100,
+  "every_flag_matches": true,
+  "every_rule_list_matches": true,
+  "maximum_score_error": 0.0,
+  "summary": {
+    "samples": 5100,
+    "flagged": 15,
+    "flag_rate": 0.0029411764705882353,
+    "per_rule_count": {
+      "untrusted_keys": 0,
+      "untrusted_pointer": 0,
+      "no_probe": 5100,
+      "webdriver": 0,
+      "automation_globals": 0,
+      "headless_ua": 0,
+      "software_gl": 0,
+      "zero_outer_window": 0,
+      "no_plugins": 0,
+      "no_languages": 0,
+      "chrome_object_missing": 0,
+      "permission_mismatch": 0,
+      "mobile_no_touch": 0,
+      "single_core": 0,
+      "paste": 0,
+      "no_typing": 0,
+      "too_few_keys": 0,
+      "impossible_hold": 15,
+      "impossible_dd": 0,
+      "identical_dd": 0,
+      "identical_hold": 0,
+      "low_variance_dd": 0,
+      "low_variance_hold": 0,
+      "round_timings": 0,
+      "replay": 0,
+      "click_without_pointer": 0,
+      "click_without_movement": 0,
+      "pointer_teleport": 0,
+      "probe_error": 0
+    },
+    "score_counts": {
+      "0.4": 5085,
+      "1.4": 15
+    }
+  },
+  "test_guard_status": 403,
+  "test_accessed": false,
+  "limitations": [
+    "CMU rules were historically developed using this legacy corpus; this is not independent or pristine holdout specificity.",
+    "Source lacks isTrusted: true is an explicit reconstruction assumption; zero trust flags are not evidence of trust-rule validity.",
+    "Empty environment contributes constant weak no_probe=0.4; no browser probe/device/pointer telemetry was invented.",
+    "Only timing and replay behavior is observed; environment/pointer/trust bot detection cannot be estimated from this source.",
+    "Synthetic training clones and jitter are not real bots or heldout attacks; flagged fractions are not real-world bot FAR.",
+    "No bot-positive public cohort exists here, so no bot FAR/EER is claimed.",
+    "Reconstructed timing features do not reproduce all browser sampling/event-delivery behavior.",
+    "No database, production user recordings, network listener or sealed test timing values accessed."
+  ]
+}

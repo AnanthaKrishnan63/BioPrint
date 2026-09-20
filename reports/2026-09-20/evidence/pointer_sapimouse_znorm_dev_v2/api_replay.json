@@ -1,0 +1,20 @@
+{
+  "status": "complete",
+  "release_sha256": "cb60dd7660b3ec201e123022ed00fbd5a7678806ee13b3b809a2c3166c409d1c",
+  "models": {
+    "cosine": {
+      "scores": 1824,
+      "maximum_absolute_error": 0.0,
+      "all_three_threshold_decisions_match": true
+    },
+    "znorm": {
+      "scores": 1824,
+      "maximum_absolute_error": 0.0,
+      "all_three_threshold_decisions_match": true
+    }
+  },
+  "source_sha256": "9ed89cd3e3e5059bb0a33d492dcc69aef7083db18be28226d0bf91c794c1fcef",
+  "network_listener_opened": false,
+  "test_route_status": 403,
+  "candidate_promoted": false
+}

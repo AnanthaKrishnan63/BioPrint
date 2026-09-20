@@ -1,0 +1,110 @@
+{
+  "dataset": "cmu-account-selection",
+  "dev_samples": 5100,
+  "enrolled_claims_per_sample": 51,
+  "scalar_scores_compared": 780300,
+  "scores_are_probabilities": false,
+  "score_direction": "negative frozen distance; larger_is_genuine",
+  "models": {
+    "baseline": {
+      "actual_frozen_method": "baseline",
+      "subject_order_exact": true,
+      "labels_exact": true,
+      "thresholds_exact": true,
+      "decision_flips": 0,
+      "score_tolerance": {
+        "atol": 1e-12,
+        "rtol": 1e-12
+      },
+      "max_absolute_score_error": 0.0,
+      "strict_cmu_per_account_and_macro_metrics_exact": true,
+      "summary": {
+        "macro_eer_diagnostic": 0.22044117647058822,
+        "operating_points": {
+          "eer": {
+            "far": 0.18609411764705883,
+            "frr": 0.29274509803921567
+          },
+          "far_1pct": {
+            "far": 0.010968627450980392,
+            "frr": 0.7419607843137256
+          },
+          "far_5pct": {
+            "far": 0.04978039215686275,
+            "frr": 0.5564705882352942
+          }
+        }
+      }
+    },
+    "train_selected": {
+      "actual_frozen_method": "account_selected",
+      "subject_order_exact": true,
+      "labels_exact": true,
+      "thresholds_exact": true,
+      "decision_flips": 0,
+      "score_tolerance": {
+        "atol": 1e-12,
+        "rtol": 1e-12
+      },
+      "max_absolute_score_error": 1.7053025658242404e-13,
+      "strict_cmu_per_account_and_macro_metrics_exact": true,
+      "summary": {
+        "macro_eer_diagnostic": 0.1432450980392157,
+        "operating_points": {
+          "eer": {
+            "far": 0.12450588235294117,
+            "frr": 0.19941176470588234
+          },
+          "far_1pct": {
+            "far": 0.009486274509803922,
+            "frr": 0.6743137254901961
+          },
+          "far_5pct": {
+            "far": 0.048717647058823525,
+            "frr": 0.38000000000000006
+          }
+        }
+      }
+    },
+    "global_reference": {
+      "actual_frozen_method": "svm-10-0.1",
+      "subject_order_exact": true,
+      "labels_exact": true,
+      "thresholds_exact": true,
+      "decision_flips": 0,
+      "score_tolerance": {
+        "atol": 1e-12,
+        "rtol": 1e-12
+      },
+      "max_absolute_score_error": 3.410605131648481e-13,
+      "strict_cmu_per_account_and_macro_metrics_exact": true,
+      "summary": {
+        "macro_eer_diagnostic": 0.1550235294117647,
+        "operating_points": {
+          "eer": {
+            "far": 0.13966274509803922,
+            "frr": 0.20607843137254903
+          },
+          "far_1pct": {
+            "far": 0.009980392156862744,
+            "frr": 0.7298039215686273
+          },
+          "far_5pct": {
+            "far": 0.04903921568627451,
+            "frr": 0.44764705882352945
+          }
+        }
+      }
+    }
+  },
+  "input_artifact_sha256_unchanged": {
+    "frozen_models.json": "967ae90a9821c8a4607b99d02ae1505eee255b42d8e7f41729ba57d9ddf02b62",
+    "dev_results.json": "b415fa103b627411ffe054e5bf18f198deae5269ea8c4c972a3f04705be02f65",
+    "dev_scores.npz": "fb0c747021caec8813b42f614642253f907bd59ad1eba755a8c62eb7cf188916"
+  },
+  "test_access_denied": true,
+  "test_measurements_read": false,
+  "network_listener_started": false,
+  "production_database_used": false,
+  "elapsed_seconds": 7.337146800011396
+}

@@ -1,0 +1,177 @@
+{
+  "version": 1,
+  "dataset": "DELBOT-Mouse",
+  "test_accessed": false,
+  "fit_groups": [
+    "circles_bot_pynput",
+    "circles_human_pc1",
+    "circles_human_pc2_pad"
+  ],
+  "calibration_groups": [
+    "circles_bot_naturalmousemotion",
+    "circles_human_vm"
+  ],
+  "dev_groups": [
+    "circles_bot_pyhm",
+    "circles_human_pc2"
+  ],
+  "train_excluded": [],
+  "dev_excluded": [],
+  "train_valid_counts": {
+    "circles_bot_naturalmousemotion": 234,
+    "circles_bot_pynput": 408,
+    "circles_human_pc1": 187,
+    "circles_human_pc2_pad": 62,
+    "circles_human_vm": 140
+  },
+  "dev_valid_counts": {
+    "circles_bot_pyhm": 55,
+    "circles_human_pc2": 459
+  },
+  "limitations": [
+    "Device-source folders are not known human identities.",
+    "Dev bot family pyhm is held out; GAN reserved test never read.",
+    "Geometry baseline, not DELBOT deep model or BeCAPTCHA neuromotor reproduction.",
+    "The live baseline covers pointer rules only; no actual login/password/browser environment is available.",
+    "Different source acquisition conditions can confound results."
+  ],
+  "methods": {
+    "geometric_random_forest": {
+      "dev_eer_descriptive": 0.14545454545454545,
+      "operating_points": {
+        "0.01": {
+          "threshold_selected_on_training_calibration": 0.787708942008284,
+          "train_calibration": {
+            "far": 0.008547008547008548,
+            "frr": 1.0,
+            "false_accepts": 2,
+            "false_rejects": 140,
+            "impostor_trials": 234,
+            "genuine_trials": 140
+          },
+          "dev": {
+            "far": 0.03636363636363636,
+            "frr": 0.3115468409586057,
+            "false_accepts": 2,
+            "false_rejects": 143,
+            "impostor_trials": 55,
+            "genuine_trials": 459
+          }
+        },
+        "0.001": {
+          "threshold_selected_on_training_calibration": 0.8219288887282308,
+          "train_calibration": {
+            "far": 0.0,
+            "frr": 1.0,
+            "false_accepts": 0,
+            "false_rejects": 140,
+            "impostor_trials": 234,
+            "genuine_trials": 140
+          },
+          "dev": {
+            "far": 0.01818181818181818,
+            "frr": 0.35076252723311546,
+            "false_accepts": 1,
+            "false_rejects": 161,
+            "impostor_trials": 55,
+            "genuine_trials": 459
+          }
+        }
+      }
+    },
+    "geometric_logistic_regression": {
+      "dev_eer_descriptive": 0.14596949891067534,
+      "operating_points": {
+        "0.01": {
+          "threshold_selected_on_training_calibration": 0.9999999669187608,
+          "train_calibration": {
+            "far": 0.008547008547008548,
+            "frr": 1.0,
+            "false_accepts": 2,
+            "false_rejects": 140,
+            "impostor_trials": 234,
+            "genuine_trials": 140
+          },
+          "dev": {
+            "far": 0.0,
+            "frr": 1.0,
+            "false_accepts": 0,
+            "false_rejects": 459,
+            "impostor_trials": 55,
+            "genuine_trials": 459
+          }
+        },
+        "0.001": {
+          "threshold_selected_on_training_calibration": 0.9999999890468216,
+          "train_calibration": {
+            "far": 0.0,
+            "frr": 1.0,
+            "false_accepts": 0,
+            "false_rejects": 140,
+            "impostor_trials": 234,
+            "genuine_trials": 140
+          },
+          "dev": {
+            "far": 0.0,
+            "frr": 1.0,
+            "false_accepts": 0,
+            "false_rejects": 459,
+            "impostor_trials": 55,
+            "genuine_trials": 459
+          }
+        }
+      }
+    },
+    "bioprint_pointer_rules_only": {
+      "dev_eer_descriptive": 0.5049614112458655,
+      "operating_points": {
+        "0.01": {
+          "threshold_selected_on_training_calibration": 5e-324,
+          "train_calibration": {
+            "far": 0.0,
+            "frr": 1.0,
+            "false_accepts": 0,
+            "false_rejects": 140,
+            "impostor_trials": 234,
+            "genuine_trials": 140
+          },
+          "dev": {
+            "far": 0.0,
+            "frr": 1.0,
+            "false_accepts": 0,
+            "false_rejects": 459,
+            "impostor_trials": 55,
+            "genuine_trials": 459
+          }
+        },
+        "0.001": {
+          "threshold_selected_on_training_calibration": 5e-324,
+          "train_calibration": {
+            "far": 0.0,
+            "frr": 1.0,
+            "false_accepts": 0,
+            "false_rejects": 140,
+            "impostor_trials": 234,
+            "genuine_trials": 140
+          },
+          "dev": {
+            "far": 0.0,
+            "frr": 1.0,
+            "false_accepts": 0,
+            "false_rejects": 459,
+            "impostor_trials": 55,
+            "genuine_trials": 459
+          }
+        }
+      },
+      "original_threshold_dev": {
+        "far": 1.0,
+        "frr": 0.02178649237472767,
+        "false_accepts": 55,
+        "false_rejects": 10,
+        "impostor_trials": 55,
+        "genuine_trials": 459
+      }
+    }
+  }
+}

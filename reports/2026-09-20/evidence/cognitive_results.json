@@ -1,0 +1,237 @@
+{
+  "version": 1,
+  "source": "Hedge et al.2018 Study1 raw Stroop+Flanker",
+  "test_accessed": false,
+  "fit_subjects": [
+    "14",
+    "18",
+    "2",
+    "20",
+    "21",
+    "23",
+    "26",
+    "28",
+    "3",
+    "30",
+    "31",
+    "36",
+    "43",
+    "44",
+    "45",
+    "46",
+    "49",
+    "7",
+    "9"
+  ],
+  "calibration_subjects": [
+    "13",
+    "19",
+    "25",
+    "27",
+    "35",
+    "42",
+    "48",
+    "5",
+    "8"
+  ],
+  "dev_subjects": [
+    "10",
+    "11",
+    "12",
+    "15",
+    "32",
+    "34",
+    "39",
+    "4",
+    "41"
+  ],
+  "enrollment_policy": "Session1 observations are training enrollment support, even for unseen dev-cohort accounts; session2 observations are validation probes. No global fitting on dev cohort.",
+  "train_exclusions": {
+    "files_with_insufficient_trials": [],
+    "incomplete_subjects": []
+  },
+  "dev_exclusions": {
+    "files_with_insufficient_trials": [],
+    "incomplete_subjects": []
+  },
+  "limitations": [
+    "Standard cognitive-task transfer, not arithmetic or scrambled keypad validation.",
+    "Three condition indices do not form an equally spaced difficulty scale; slope is arbitrary contrast.",
+    "Uses hundreds of trials per session, not a seconds-long login prompt.",
+    "Small participant counts and dependent comparisons limit low-FAR claims."
+  ],
+  "methods": {
+    "condition_index_slope": {
+      "dev_eer_descriptive": 0.4861111111111111,
+      "operating_points": {
+        "0.01": {
+          "threshold_selected_on_training_calibration": -0.10824936652111847,
+          "train_calibration": {
+            "far": 0.0,
+            "frr": 1.0,
+            "false_accepts": 0,
+            "false_rejects": 9,
+            "impostor_trials": 72,
+            "genuine_trials": 9
+          },
+          "dev": {
+            "far": 0.013888888888888888,
+            "frr": 0.8888888888888888,
+            "false_accepts": 1,
+            "false_rejects": 8,
+            "impostor_trials": 72,
+            "genuine_trials": 9
+          }
+        },
+        "0.001": {
+          "threshold_selected_on_training_calibration": -0.10824936652111847,
+          "train_calibration": {
+            "far": 0.0,
+            "frr": 1.0,
+            "false_accepts": 0,
+            "false_rejects": 9,
+            "impostor_trials": 72,
+            "genuine_trials": 9
+          },
+          "dev": {
+            "far": 0.013888888888888888,
+            "frr": 0.8888888888888888,
+            "false_accepts": 1,
+            "false_rejects": 8,
+            "impostor_trials": 72,
+            "genuine_trials": 9
+          }
+        }
+      }
+    },
+    "condition_means": {
+      "dev_eer_descriptive": 0.3194444444444444,
+      "operating_points": {
+        "0.01": {
+          "threshold_selected_on_training_calibration": -0.23101700661597574,
+          "train_calibration": {
+            "far": 0.0,
+            "frr": 1.0,
+            "false_accepts": 0,
+            "false_rejects": 9,
+            "impostor_trials": 72,
+            "genuine_trials": 9
+          },
+          "dev": {
+            "far": 0.0,
+            "frr": 1.0,
+            "false_accepts": 0,
+            "false_rejects": 9,
+            "impostor_trials": 72,
+            "genuine_trials": 9
+          }
+        },
+        "0.001": {
+          "threshold_selected_on_training_calibration": -0.23101700661597574,
+          "train_calibration": {
+            "far": 0.0,
+            "frr": 1.0,
+            "false_accepts": 0,
+            "false_rejects": 9,
+            "impostor_trials": 72,
+            "genuine_trials": 9
+          },
+          "dev": {
+            "far": 0.0,
+            "frr": 1.0,
+            "false_accepts": 0,
+            "false_rejects": 9,
+            "impostor_trials": 72,
+            "genuine_trials": 9
+          }
+        }
+      }
+    },
+    "full_rt_accuracy_profile": {
+      "dev_eer_descriptive": 0.2777777777777778,
+      "operating_points": {
+        "0.01": {
+          "threshold_selected_on_training_calibration": -0.5532821138348424,
+          "train_calibration": {
+            "far": 0.0,
+            "frr": 0.6666666666666666,
+            "false_accepts": 0,
+            "false_rejects": 6,
+            "impostor_trials": 72,
+            "genuine_trials": 9
+          },
+          "dev": {
+            "far": 0.027777777777777776,
+            "frr": 0.7777777777777778,
+            "false_accepts": 2,
+            "false_rejects": 7,
+            "impostor_trials": 72,
+            "genuine_trials": 9
+          }
+        },
+        "0.001": {
+          "threshold_selected_on_training_calibration": -0.5532821138348424,
+          "train_calibration": {
+            "far": 0.0,
+            "frr": 0.6666666666666666,
+            "false_accepts": 0,
+            "false_rejects": 6,
+            "impostor_trials": 72,
+            "genuine_trials": 9
+          },
+          "dev": {
+            "far": 0.027777777777777776,
+            "frr": 0.7777777777777778,
+            "false_accepts": 2,
+            "false_rejects": 7,
+            "impostor_trials": 72,
+            "genuine_trials": 9
+          }
+        }
+      }
+    },
+    "learned_full_profile_rf": {
+      "dev_eer_descriptive": 0.3055555555555556,
+      "operating_points": {
+        "0.01": {
+          "threshold_selected_on_training_calibration": 0.6916570522197153,
+          "train_calibration": {
+            "far": 0.0,
+            "frr": 0.8888888888888888,
+            "false_accepts": 0,
+            "false_rejects": 8,
+            "impostor_trials": 72,
+            "genuine_trials": 9
+          },
+          "dev": {
+            "far": 0.041666666666666664,
+            "frr": 0.8888888888888888,
+            "false_accepts": 3,
+            "false_rejects": 8,
+            "impostor_trials": 72,
+            "genuine_trials": 9
+          }
+        },
+        "0.001": {
+          "threshold_selected_on_training_calibration": 0.6916570522197153,
+          "train_calibration": {
+            "far": 0.0,
+            "frr": 0.8888888888888888,
+            "false_accepts": 0,
+            "false_rejects": 8,
+            "impostor_trials": 72,
+            "genuine_trials": 9
+          },
+          "dev": {
+            "far": 0.041666666666666664,
+            "frr": 0.8888888888888888,
+            "false_accepts": 3,
+            "false_rejects": 8,
+            "impostor_trials": 72,
+            "genuine_trials": 9
+          }
+        }
+      }
+    }
+  }
+}

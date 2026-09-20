@@ -1,0 +1,567 @@
+{
+  "plan": {
+    "created_at_utc": "2026-09-20T02:05:48.588782+00:00",
+    "canonical_paths": {
+      "features": "/home/ananthakrishnan/code/hackathon/datasets/hmog/dev_features_v1.npz",
+      "tap_features": "/home/ananthakrishnan/code/hackathon/datasets/hmog/dev_tap_features_v1.npz",
+      "tap_report": "/home/ananthakrishnan/code/hackathon/research/benchmarks/hmog/dev_tap_extraction_results_v1.json",
+      "paired_dir": "/home/ananthakrishnan/code/hackathon/research/benchmarks/hmog/tap_paired_train_v2",
+      "selection_dir": "/home/ananthakrishnan/code/hackathon/research/benchmarks/hmog/selection_v1",
+      "failure_report": "/home/ananthakrishnan/code/hackathon/research/benchmarks/hmog/tap_selection_v1/selection_complete.json",
+      "protocol": "/home/ananthakrishnan/code/hackathon/research/benchmarks/hmog/tap_dev_evaluation_protocol_v1.json",
+      "output": "/home/ananthakrishnan/code/hackathon/research/benchmarks/hmog/tap_dev_v1"
+    },
+    "input_sha256": {
+      "research/benchmarks/hmog/tap_dev_evaluation_protocol_v1.json": "fa198593579a92a90d8b120333c8ec14880ec8eccbe5a3858f8953470233995f",
+      "datasets/hmog/dev_features_v1.npz": "05f94bd9166d81096d9c667fffcd2bcd9032c1760174b7edd716026c2546b7d5",
+      "datasets/hmog/dev_tap_features_v1.npz": "0ef25cad8edfeeabe742a5c81708f64caa51187ebfaf60f4d78ddc8b8af487b4",
+      "research/benchmarks/hmog/dev_tap_extraction_results_v1.json": "402acd5668a17a9a7fa3735454b6ae16772406c8e3320b16192c1efbb412d367",
+      "research/benchmarks/hmog/tap_selection_v1/selection_complete.json": "18185298eca56571b16b6a379b17071ea1e622d4823b75b613742372a45794d2",
+      "research/benchmarks/hmog/tap_paired_train_v2/paired_train_complete.json": "eeca14f08e746f7bf672935b8bdcd82ce85cb59d703c684242358c9741bd5340",
+      "research/benchmarks/hmog/selection_v1/selected_checkpoint.pt": "c2b01b9cb8cd9e76d7401ccead27efa906eeb119915a82b1a35c8987b5e6d9eb",
+      "research/benchmarks/hmog/validation_v1/validation_complete.json": "1ad1dd6a9898c176c880768d1a8999ff5d877cfa8aac941032779ea7b11f9175"
+    },
+    "source_sha256": {
+      "hmog_tap_dev.py": "b6960f008e7aa2f7f010b89aedb317c1f06354bf121e4064e6096e7fedc6ed0b",
+      "hmog_tap_dev_metrics.py": "d78fc5174b3448b8e1d90d8dbdb6b0cbf09e729787649262d9dbbfee73288b5e",
+      "hmog_tap_selection.py": "f93180ab1fe134e320a8bb7790b5d28223959d7e047eba165a87bea4f9c52c11",
+      "hmog_tap_selection_metrics.py": "0e2243ca8eb1ee52736555c1115d6e9023bbf9cf82c911ddaaa12bc443592c0e",
+      "hmog_select.py": "ddb916d8170e93ae9fa8cdc9034d22bab941b6f4e487a4cea8e131e639007a46",
+      "hmog_training_core.py": "140635450d451711fdd31fdbd333018bc9d7c27c89a6d64355bd424338f67ee8",
+      "hmog_verification.py": "397242a64e6764129c74508607a83fc171aafed75c242d99fd543ecb259e5926",
+      "hmog_tap_benchmark.py": "cfe58b97c7c941d498033ef3dc13567e1d4e57441f452b169542397ee4bc5418",
+      "hmog_tap_reference.py": "afd46173ba7173e23170c35592a9ff301f29f3f4efe7be96ea1050d64b914846",
+      "hmog_score_fusion.py": "5db5710191ead6db6bea18a7bfe88a3dcc9bc4320639e7aeeb330fd406c1c841"
+    },
+    "checkpoint_sha256": "c2b01b9cb8cd9e76d7401ccead27efa906eeb119915a82b1a35c8987b5e6d9eb",
+    "thresholds": {
+      "tap11": {
+        "0.001": 0.36331167633783384,
+        "0.01": 0.6169334239487297,
+        "0.05": 1.2499803764276805
+      },
+      "key": {
+        "0.001": 0.551678204166251,
+        "0.01": 0.6134313721560506,
+        "0.05": 0.7189660470931168
+      },
+      "imu": {
+        "0.001": 1.2079285871611674,
+        "0.01": 1.4651832813994006,
+        "0.05": 2.146476209760448
+      },
+      "joint": {
+        "0.001": 0.4862202896856707,
+        "0.01": 0.7622568736004572,
+        "0.05": 1.1719467722248393
+      },
+      "key_imu_tap11": {
+        "0.001": 0.36224878723236115,
+        "0.01": 0.4035484725394873,
+        "0.05": 0.4736886304172241
+      },
+      "joint_tap11": {
+        "0.001": 0.29566897020522154,
+        "0.01": 0.32505126163703324,
+        "0.05": 0.40085828797493744
+      }
+    },
+    "scales": {
+      "key_imu_tap11": [
+        1.6081149619285342,
+        6.111103538159156,
+        5.338063647351799
+      ],
+      "joint_tap11": [
+        3.1930087667531506,
+        5.338063647351799
+      ]
+    },
+    "accounts": [
+      "219303",
+      "556357",
+      "737973",
+      "777078"
+    ],
+    "methods": [
+      "tap11",
+      "key",
+      "imu",
+      "joint",
+      "key_imu_tap11",
+      "joint_tap11"
+    ],
+    "evaluation_only": true,
+    "no_method_ranking_or_promotion": true,
+    "selection_status": "no_useful_discrimination",
+    "cpu_threads": 2,
+    "batch_size": 8,
+    "scope_caveats": [
+      "This is validation of a negativeexperiment, not a selectedsuccessfulmethod.",
+      "DEVcohort andwindow outcomes already used in priorencoder evaluation; touchcomparison is subsequentprotocol extension, not pristineholdout. No newmethoddesign or tuningfromthisDEVrun.",
+      "Fit calibration used encodertrainedidentities and differsfromnovelpersonalDEVgalleries; transferredFAR may exceed nominaltarget.",
+      "Only2of4accounts supplygenuineprobes, and93maximumimpostorclaims givesabout1.08%FARsteps; no populationlowFARguarantee.",
+      "Allmetrics conditiononexisting68basewindows fromsize-selected12subjectpilot; reportupstreammissing-session/extractioncoverage separately."
+    ],
+    "known_inspected_candidate_probes": 154,
+    "upstream_coverage": {
+      "219303": {
+        "train_support": {
+          "candidate_windows": 36,
+          "eligible_windows": 24,
+          "missing_windows": 12,
+          "coverage": 0.6666666666666666,
+          "denominator_scope": "inspected metadata-nonempty sessions only",
+          "excluded_sessions": {
+            "2": {
+              "reason": "empty_keypress",
+              "basis": "archive_metadata",
+              "activity_contents_inspected": false,
+              "candidate_windows": null,
+              "eligible_windows": null
+            },
+            "4": {
+              "reason": "empty_keypress",
+              "basis": "archive_metadata",
+              "activity_contents_inspected": false,
+              "candidate_windows": null,
+              "eligible_windows": null
+            },
+            "5": {
+              "reason": "empty_keypress",
+              "basis": "archive_metadata",
+              "activity_contents_inspected": false,
+              "candidate_windows": null,
+              "eligible_windows": null
+            },
+            "7": {
+              "reason": "empty_keypress",
+              "basis": "archive_metadata",
+              "activity_contents_inspected": false,
+              "candidate_windows": null,
+              "eligible_windows": null
+            },
+            "8": {
+              "reason": "empty_keypress",
+              "basis": "archive_metadata",
+              "activity_contents_inspected": false,
+              "candidate_windows": null,
+              "eligible_windows": null
+            }
+          },
+          "excluded_session_candidate_windows": null
+        },
+        "dev_probe": {
+          "candidate_windows": 29,
+          "eligible_windows": 7,
+          "missing_windows": 22,
+          "coverage": 0.2413793103448276,
+          "denominator_scope": "inspected metadata-nonempty sessions only",
+          "excluded_sessions": {
+            "9": {
+              "reason": "empty_keypress",
+              "basis": "archive_metadata",
+              "activity_contents_inspected": false,
+              "candidate_windows": null,
+              "eligible_windows": null
+            },
+            "11": {
+              "reason": "empty_keypress",
+              "basis": "archive_metadata",
+              "activity_contents_inspected": false,
+              "candidate_windows": null,
+              "eligible_windows": null
+            },
+            "12": {
+              "reason": "empty_keypress",
+              "basis": "archive_metadata",
+              "activity_contents_inspected": false,
+              "candidate_windows": null,
+              "eligible_windows": null
+            },
+            "14": {
+              "reason": "empty_keypress",
+              "basis": "archive_metadata",
+              "activity_contents_inspected": false,
+              "candidate_windows": null,
+              "eligible_windows": null
+            },
+            "16": {
+              "reason": "empty_keypress",
+              "basis": "archive_metadata",
+              "activity_contents_inspected": false,
+              "candidate_windows": null,
+              "eligible_windows": null
+            }
+          },
+          "excluded_session_candidate_windows": null
+        }
+      },
+      "556357": {
+        "train_support": {
+          "candidate_windows": 36,
+          "eligible_windows": 1,
+          "missing_windows": 35,
+          "coverage": 0.027777777777777776,
+          "denominator_scope": "inspected metadata-nonempty sessions only",
+          "excluded_sessions": {
+            "1": {
+              "reason": "empty_keypress",
+              "basis": "archive_metadata",
+              "activity_contents_inspected": false,
+              "candidate_windows": null,
+              "eligible_windows": null
+            },
+            "2": {
+              "reason": "empty_keypress",
+              "basis": "archive_metadata",
+              "activity_contents_inspected": false,
+              "candidate_windows": null,
+              "eligible_windows": null
+            },
+            "3": {
+              "reason": "empty_keypress",
+              "basis": "archive_metadata",
+              "activity_contents_inspected": false,
+              "candidate_windows": null,
+              "eligible_windows": null
+            },
+            "4": {
+              "reason": "empty_keypress",
+              "basis": "archive_metadata",
+              "activity_contents_inspected": false,
+              "candidate_windows": null,
+              "eligible_windows": null
+            },
+            "6": {
+              "reason": "empty_keypress",
+              "basis": "archive_metadata",
+              "activity_contents_inspected": false,
+              "candidate_windows": null,
+              "eligible_windows": null
+            },
+            "7": {
+              "reason": "empty_keypress",
+              "basis": "archive_metadata",
+              "activity_contents_inspected": false,
+              "candidate_windows": null,
+              "eligible_windows": null
+            }
+          },
+          "excluded_session_candidate_windows": null
+        },
+        "dev_probe": {
+          "candidate_windows": 60,
+          "eligible_windows": 0,
+          "missing_windows": 60,
+          "coverage": 0.0,
+          "denominator_scope": "inspected metadata-nonempty sessions only",
+          "excluded_sessions": {
+            "9": {
+              "reason": "empty_keypress",
+              "basis": "archive_metadata",
+              "activity_contents_inspected": false,
+              "candidate_windows": null,
+              "eligible_windows": null
+            },
+            "10": {
+              "reason": "empty_keypress",
+              "basis": "archive_metadata",
+              "activity_contents_inspected": false,
+              "candidate_windows": null,
+              "eligible_windows": null
+            },
+            "14": {
+              "reason": "empty_keypress",
+              "basis": "archive_metadata",
+              "activity_contents_inspected": false,
+              "candidate_windows": null,
+              "eligible_windows": null
+            }
+          },
+          "excluded_session_candidate_windows": null
+        }
+      },
+      "737973": {
+        "train_support": {
+          "candidate_windows": 32,
+          "eligible_windows": 1,
+          "missing_windows": 31,
+          "coverage": 0.03125,
+          "denominator_scope": "inspected metadata-nonempty sessions only",
+          "excluded_sessions": {
+            "3": {
+              "reason": "empty_keypress",
+              "basis": "archive_metadata",
+              "activity_contents_inspected": false,
+              "candidate_windows": null,
+              "eligible_windows": null
+            },
+            "4": {
+              "reason": "empty_keypress",
+              "basis": "archive_metadata",
+              "activity_contents_inspected": false,
+              "candidate_windows": null,
+              "eligible_windows": null
+            },
+            "6": {
+              "reason": "empty_keypress",
+              "basis": "archive_metadata",
+              "activity_contents_inspected": false,
+              "candidate_windows": null,
+              "eligible_windows": null
+            },
+            "7": {
+              "reason": "empty_keypress",
+              "basis": "archive_metadata",
+              "activity_contents_inspected": false,
+              "candidate_windows": null,
+              "eligible_windows": null
+            },
+            "8": {
+              "reason": "empty_keypress",
+              "basis": "archive_metadata",
+              "activity_contents_inspected": false,
+              "candidate_windows": null,
+              "eligible_windows": null
+            }
+          },
+          "excluded_session_candidate_windows": null
+        },
+        "dev_probe": {
+          "candidate_windows": 24,
+          "eligible_windows": 0,
+          "missing_windows": 24,
+          "coverage": 0.0,
+          "denominator_scope": "inspected metadata-nonempty sessions only",
+          "excluded_sessions": {
+            "9": {
+              "reason": "empty_keypress",
+              "basis": "archive_metadata",
+              "activity_contents_inspected": false,
+              "candidate_windows": null,
+              "eligible_windows": null
+            },
+            "10": {
+              "reason": "empty_keypress",
+              "basis": "archive_metadata",
+              "activity_contents_inspected": false,
+              "candidate_windows": null,
+              "eligible_windows": null
+            },
+            "13": {
+              "reason": "empty_keypress",
+              "basis": "archive_metadata",
+              "activity_contents_inspected": false,
+              "candidate_windows": null,
+              "eligible_windows": null
+            },
+            "15": {
+              "reason": "empty_keypress",
+              "basis": "archive_metadata",
+              "activity_contents_inspected": false,
+              "candidate_windows": null,
+              "eligible_windows": null
+            },
+            "16": {
+              "reason": "empty_keypress",
+              "basis": "archive_metadata",
+              "activity_contents_inspected": false,
+              "candidate_windows": null,
+              "eligible_windows": null
+            }
+          },
+          "excluded_session_candidate_windows": null
+        }
+      },
+      "777078": {
+        "train_support": {
+          "candidate_windows": 30,
+          "eligible_windows": 11,
+          "missing_windows": 19,
+          "coverage": 0.36666666666666664,
+          "denominator_scope": "inspected metadata-nonempty sessions only",
+          "excluded_sessions": {
+            "3": {
+              "reason": "empty_keypress",
+              "basis": "archive_metadata",
+              "activity_contents_inspected": false,
+              "candidate_windows": null,
+              "eligible_windows": null
+            },
+            "4": {
+              "reason": "empty_keypress",
+              "basis": "archive_metadata",
+              "activity_contents_inspected": false,
+              "candidate_windows": null,
+              "eligible_windows": null
+            },
+            "5": {
+              "reason": "empty_keypress",
+              "basis": "archive_metadata",
+              "activity_contents_inspected": false,
+              "candidate_windows": null,
+              "eligible_windows": null
+            },
+            "6": {
+              "reason": "empty_keypress",
+              "basis": "archive_metadata",
+              "activity_contents_inspected": false,
+              "candidate_windows": null,
+              "eligible_windows": null
+            },
+            "7": {
+              "reason": "empty_keypress",
+              "basis": "archive_metadata",
+              "activity_contents_inspected": false,
+              "candidate_windows": null,
+              "eligible_windows": null
+            },
+            "8": {
+              "reason": "empty_keypress",
+              "basis": "archive_metadata",
+              "activity_contents_inspected": false,
+              "candidate_windows": null,
+              "eligible_windows": null
+            }
+          },
+          "excluded_session_candidate_windows": null
+        },
+        "dev_probe": {
+          "candidate_windows": 41,
+          "eligible_windows": 24,
+          "missing_windows": 17,
+          "coverage": 0.5853658536585366,
+          "denominator_scope": "inspected metadata-nonempty sessions only",
+          "excluded_sessions": {
+            "11": {
+              "reason": "empty_keypress",
+              "basis": "archive_metadata",
+              "activity_contents_inspected": false,
+              "candidate_windows": null,
+              "eligible_windows": null
+            },
+            "12": {
+              "reason": "empty_keypress",
+              "basis": "archive_metadata",
+              "activity_contents_inspected": false,
+              "candidate_windows": null,
+              "eligible_windows": null
+            },
+            "13": {
+              "reason": "empty_keypress",
+              "basis": "archive_metadata",
+              "activity_contents_inspected": false,
+              "candidate_windows": null,
+              "eligible_windows": null
+            },
+            "14": {
+              "reason": "empty_keypress",
+              "basis": "archive_metadata",
+              "activity_contents_inspected": false,
+              "candidate_windows": null,
+              "eligible_windows": null
+            },
+            "15": {
+              "reason": "empty_keypress",
+              "basis": "archive_metadata",
+              "activity_contents_inspected": false,
+              "candidate_windows": null,
+              "eligible_windows": null
+            }
+          },
+          "excluded_session_candidate_windows": null
+        }
+      }
+    }
+  },
+  "coverage": {
+    "accounts": {
+      "219303": {
+        "train_support": {
+          "original_windows": 24,
+          "tap_scorable_windows": 24,
+          "tap_vectors": 2344
+        },
+        "dev_probe": {
+          "original_windows": 7,
+          "tap_scorable_windows": 7,
+          "tap_vectors": 729
+        }
+      },
+      "556357": {
+        "train_support": {
+          "original_windows": 1,
+          "tap_scorable_windows": 1,
+          "tap_vectors": 77
+        },
+        "dev_probe": {
+          "original_windows": 0,
+          "tap_scorable_windows": 0,
+          "tap_vectors": 0
+        }
+      },
+      "737973": {
+        "train_support": {
+          "original_windows": 1,
+          "tap_scorable_windows": 1,
+          "tap_vectors": 80
+        },
+        "dev_probe": {
+          "original_windows": 0,
+          "tap_scorable_windows": 0,
+          "tap_vectors": 0
+        }
+      },
+      "777078": {
+        "train_support": {
+          "original_windows": 11,
+          "tap_scorable_windows": 11,
+          "tap_vectors": 686
+        },
+        "dev_probe": {
+          "original_windows": 24,
+          "tap_scorable_windows": 24,
+          "tap_vectors": 1535
+        }
+      }
+    },
+    "original_windows": 68,
+    "support_windows": 37,
+    "probe_windows": 31,
+    "shared_gallery_windows": 37,
+    "scope": "Existing original68windows only; upstream extraction/session losses remain separate"
+  },
+  "profile_diagnostics": {
+    "219303": {
+      "enrollment_taps": 2344,
+      "enrollment_windows": 24
+    },
+    "556357": {
+      "enrollment_taps": 77,
+      "enrollment_windows": 1,
+      "missing_reason": "fewer_than_80_enrollment_taps"
+    },
+    "737973": {
+      "enrollment_taps": 80,
+      "enrollment_windows": 1
+    },
+    "777078": {
+      "enrollment_taps": 686,
+      "enrollment_windows": 11
+    }
+  },
+  "missing_gallery_accounts": [
+    "556357"
+  ],
+  "missing_probe_accounts": [
+    "556357",
+    "737973"
+  ],
+  "evaluation_only": true,
+  "no_method_ranking_or_promotion": true,
+  "test_measurements_read": false,
+  "status": "infeasible",
+  "reason": "Missing required personal support gallery",
+  "metrics": {}
+}

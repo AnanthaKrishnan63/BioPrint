@@ -1,0 +1,32 @@
+{
+  "status": "infeasible",
+  "selected": "wait_missing_error_profile__scaled_l1",
+  "checked_blocks": 60,
+  "invalid_blocks": [
+    {
+      "subject": "LWS",
+      "round": 2,
+      "level": "l",
+      "member": "Cal_LWS_LlT2.mat",
+      "role": "training_enrollment_support",
+      "status": "invalid",
+      "error": "Expected five trials with optional trailing padding",
+      "shapes": {
+        "imageT": [
+          50
+        ],
+        "keyT": [
+          50
+        ],
+        "CorrectAns": [
+          50
+        ]
+      }
+    }
+  ],
+  "metrics": {},
+  "test_accessed": false,
+  "parser_changed": false,
+  "subset_scored": false,
+  "original_execution_exit_code": 1
+}

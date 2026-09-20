@@ -1,0 +1,123 @@
+{
+  "source": "Google TSI UIST2024",
+  "selected_model": "random_forest",
+  "methods": {
+    "selected": {
+      "dev_eer_descriptive": 0.34448416751787536,
+      "operating_points": {
+        "0.01": {
+          "threshold_selected_on_training_calibration": 0.7125914031497926,
+          "train_calibration": {
+            "far": 0.009595959595959595,
+            "frr": 0.9111111111111111,
+            "false_accepts": 19,
+            "false_rejects": 164,
+            "impostor_trials": 1980,
+            "genuine_trials": 180
+          },
+          "dev": {
+            "far": 0.009959141981613892,
+            "frr": 0.9185393258426966,
+            "false_accepts": 39,
+            "false_rejects": 327,
+            "impostor_trials": 3916,
+            "genuine_trials": 356
+          }
+        },
+        "0.001": {
+          "threshold_selected_on_training_calibration": 0.7425392482643596,
+          "train_calibration": {
+            "far": 0.000505050505050505,
+            "frr": 0.9833333333333333,
+            "false_accepts": 1,
+            "false_rejects": 177,
+            "impostor_trials": 1980,
+            "genuine_trials": 180
+          },
+          "dev": {
+            "far": 0.0015321756894790602,
+            "frr": 0.9719101123595506,
+            "false_accepts": 6,
+            "false_rejects": 346,
+            "impostor_trials": 3916,
+            "genuine_trials": 356
+          }
+        }
+      }
+    },
+    "landing_baseline": {
+      "dev_eer_descriptive": 0.3674668028600613,
+      "operating_points": {
+        "0.01": {
+          "threshold_selected_on_training_calibration": -0.30039647407523373,
+          "train_calibration": {
+            "far": 0.009595959595959595,
+            "frr": 0.9722222222222222,
+            "false_accepts": 19,
+            "false_rejects": 175,
+            "impostor_trials": 1980,
+            "genuine_trials": 180
+          },
+          "dev": {
+            "far": 0.009959141981613892,
+            "frr": 0.9550561797752809,
+            "false_accepts": 39,
+            "false_rejects": 340,
+            "impostor_trials": 3916,
+            "genuine_trials": 356
+          }
+        },
+        "0.001": {
+          "threshold_selected_on_training_calibration": -0.13954693487854664,
+          "train_calibration": {
+            "far": 0.000505050505050505,
+            "frr": 1.0,
+            "false_accepts": 1,
+            "false_rejects": 180,
+            "impostor_trials": 1980,
+            "genuine_trials": 180
+          },
+          "dev": {
+            "far": 0.0007660878447395301,
+            "frr": 1.0,
+            "false_accepts": 3,
+            "false_rejects": 356,
+            "impostor_trials": 3916,
+            "genuine_trials": 356
+          }
+        }
+      }
+    }
+  },
+  "dev_trials": 356,
+  "dev_participants": 12,
+  "dev_exclusions": [
+    [
+      "user03",
+      "task3",
+      4,
+      "dev_probe"
+    ],
+    [
+      "user06",
+      "task3",
+      24,
+      "dev_probe"
+    ],
+    [
+      "user06",
+      "task3",
+      29,
+      "dev_probe"
+    ]
+  ],
+  "test_accessed": false,
+  "limitations": [
+    "Not scrambled keypad",
+    "Not cognitive reaction time",
+    "No release/hold durations",
+    "No touch heatmap or ellipse classifier",
+    "Not a reproduction of biometric SOTA: original paper studies keyboard decoding",
+    "Single visit with task blocks, not longitudinal days"
+  ]
+}

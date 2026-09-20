@@ -1,0 +1,170 @@
+{
+  "status": "train_fit_schema_audit_complete",
+  "collections": {
+    "games": {
+      "authorized_document_counts": {
+        "[\"objectid\",\"5b5b5e94ed261d61ede3d99e\"]": 2,
+        "[\"objectid\",\"5b7d4b7572d1912ad878aedd\"]": 2,
+        "[\"objectid\",\"5b7d4b7172d1912ad878ae14\"]": 2,
+        "[\"objectid\",\"5ba29d0dfb41c45baebf79db\"]": 1,
+        "[\"objectid\",\"5bfd00ba417969d891dcef01\"]": 64,
+        "[\"objectid\",\"5bfe4e74417969d891dcfe88\"]": 27,
+        "[\"objectid\",\"5c02e78d417969d891dd1e79\"]": 3
+      },
+      "top_level_field_types": {
+        "_id": {
+          "ObjectId": 101
+        },
+        "corrects_number": {
+          "int": 101
+        },
+        "wrongs_number": {
+          "int": 101
+        },
+        "user_id": {
+          "ObjectId": 101
+        },
+        "device_id": {
+          "str": 101
+        },
+        "stage": {
+          "str": 101
+        },
+        "base": {
+          "int": 101
+        },
+        "game_type": {
+          "str": 101
+        },
+        "game": {
+          "int": 101
+        },
+        "stars": {
+          "int": 74,
+          "float": 27
+        },
+        "t_start": {
+          "float": 101
+        },
+        "t_stop": {
+          "float": 101
+        },
+        "experience_earned": {
+          "int": 101
+        },
+        "__v": {
+          "int": 101
+        }
+      },
+      "list_schema": {},
+      "missing_selected_users": [
+        "[\"objectid\",\"5bf807e5293a990ba1fb2eac\"]"
+      ]
+    },
+    "gestures": {
+      "authorized_document_counts": {
+        "[\"objectid\",\"5b5b5e94ed261d61ede3d99e\"]": 221,
+        "[\"objectid\",\"5b7d4b7572d1912ad878aedd\"]": 66,
+        "[\"objectid\",\"5b7d4b7172d1912ad878ae14\"]": 85,
+        "[\"objectid\",\"5ba29d0dfb41c45baebf79db\"]": 27,
+        "[\"objectid\",\"5bfd00ba417969d891dcef01\"]": 256,
+        "[\"objectid\",\"5bfe4e74417969d891dcfe88\"]": 256,
+        "[\"objectid\",\"5c02e78d417969d891dd1e79\"]": 71
+      },
+      "top_level_field_types": {
+        "_id": {
+          "ObjectId": 982
+        },
+        "data": {
+          "list": 982
+        },
+        "device_id": {
+          "str": 982
+        },
+        "session_id": {
+          "str": 982
+        },
+        "screen": {
+          "str": 982
+        },
+        "type": {
+          "str": 982
+        },
+        "t_start": {
+          "float": 979,
+          "int": 3
+        },
+        "t_stop": {
+          "float": 976,
+          "int": 6
+        },
+        "__v": {
+          "int": 982
+        }
+      },
+      "list_schema": {
+        "data": {
+          "lengths": {
+            "1": 518,
+            "36": 1,
+            "0": 6,
+            "18": 7,
+            "7": 69,
+            "4": 51,
+            "6": 87,
+            "37": 2,
+            "9": 29,
+            "11": 16,
+            "8": 39,
+            "10": 14,
+            "5": 64,
+            "13": 8,
+            "16": 3,
+            "19": 4,
+            "3": 11,
+            "14": 7,
+            "12": 12,
+            "2": 8,
+            "30": 1,
+            "61": 1,
+            "22": 1,
+            "65": 1,
+            "20": 5,
+            "15": 2,
+            "25": 3,
+            "27": 1,
+            "21": 3,
+            "28": 2,
+            "31": 1,
+            "106": 1,
+            "143": 1,
+            "26": 1,
+            "41": 1,
+            "51": 1
+          },
+          "element_types": {
+            "dict": 1884
+          },
+          "dict_keys": {
+            "dx": 1884,
+            "dy": 1884,
+            "moveX": 1884,
+            "moveY": 1884,
+            "vx": 1884,
+            "vy": 1884,
+            "x0": 1884,
+            "y0": 1884
+          }
+        }
+      },
+      "missing_selected_users": [
+        "[\"objectid\",\"5bf807e5293a990ba1fb2eac\"]"
+      ]
+    }
+  },
+  "recognition_metrics": {},
+  "selection_calibration_dev_test_observations_decoded": false,
+  "limitations": [
+    "Bounded archive-order sample; not session-eligibility evidence"
+  ]
+}

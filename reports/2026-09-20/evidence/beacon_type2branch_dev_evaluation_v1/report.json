@@ -1,0 +1,858 @@
+{
+  "status": "paired_dev_evaluation_complete",
+  "evaluation_split": "dev",
+  "subjects": [
+    "P012",
+    "P015",
+    "P022"
+  ],
+  "claims": 243,
+  "results": {
+    "typenet": {
+      "pooled": {
+        "eer_diagnostic": 0.35802469135802467,
+        "genuine_comparisons": 81,
+        "impostor_comparisons": 162,
+        "operating_points": {
+          "far_1pct": {
+            "frr": 1.0,
+            "far": 0.0,
+            "false_rejections": 81,
+            "false_acceptances": 0
+          },
+          "far_5pct": {
+            "frr": 0.9753086419753086,
+            "far": 0.006172839506172839,
+            "false_rejections": 79,
+            "false_acceptances": 1
+          },
+          "eer": {
+            "frr": 0.30864197530864196,
+            "far": 0.3950617283950617,
+            "false_rejections": 25,
+            "false_acceptances": 64
+          }
+        }
+      },
+      "by_probe_identity": {
+        "P012": {
+          "eer_diagnostic": 0.20930232558139536,
+          "genuine_comparisons": 43,
+          "impostor_comparisons": 86,
+          "operating_points": {
+            "far_1pct": {
+              "frr": 1.0,
+              "far": 0.0,
+              "false_rejections": 43,
+              "false_acceptances": 0
+            },
+            "far_5pct": {
+              "frr": 0.9534883720930233,
+              "far": 0.0,
+              "false_rejections": 41,
+              "false_acceptances": 0
+            },
+            "eer": {
+              "frr": 0.13953488372093023,
+              "far": 0.26744186046511625,
+              "false_rejections": 6,
+              "false_acceptances": 23
+            }
+          }
+        },
+        "P015": {
+          "eer_diagnostic": 0.4782608695652174,
+          "genuine_comparisons": 23,
+          "impostor_comparisons": 46,
+          "operating_points": {
+            "far_1pct": {
+              "frr": 1.0,
+              "far": 0.0,
+              "false_rejections": 23,
+              "false_acceptances": 0
+            },
+            "far_5pct": {
+              "frr": 1.0,
+              "far": 0.021739130434782608,
+              "false_rejections": 23,
+              "false_acceptances": 1
+            },
+            "eer": {
+              "frr": 0.391304347826087,
+              "far": 0.5434782608695652,
+              "false_rejections": 9,
+              "false_acceptances": 25
+            }
+          }
+        },
+        "P022": {
+          "eer_diagnostic": 0.6,
+          "genuine_comparisons": 15,
+          "impostor_comparisons": 30,
+          "operating_points": {
+            "far_1pct": {
+              "frr": 1.0,
+              "far": 0.0,
+              "false_rejections": 15,
+              "false_acceptances": 0
+            },
+            "far_5pct": {
+              "frr": 1.0,
+              "far": 0.0,
+              "false_rejections": 15,
+              "false_acceptances": 0
+            },
+            "eer": {
+              "frr": 0.6666666666666666,
+              "far": 0.5333333333333333,
+              "false_rejections": 10,
+              "false_acceptances": 16
+            }
+          }
+        }
+      }
+    },
+    "sapimouse": {
+      "pooled": {
+        "eer_diagnostic": 0.5925925925925926,
+        "genuine_comparisons": 81,
+        "impostor_comparisons": 162,
+        "operating_points": {
+          "far_1pct": {
+            "frr": 0.5679012345679012,
+            "far": 0.6666666666666666,
+            "false_rejections": 46,
+            "false_acceptances": 108
+          },
+          "far_5pct": {
+            "frr": 0.5555555555555556,
+            "far": 0.7160493827160493,
+            "false_rejections": 45,
+            "false_acceptances": 116
+          },
+          "eer": {
+            "frr": 0.5555555555555556,
+            "far": 0.7098765432098766,
+            "false_rejections": 45,
+            "false_acceptances": 115
+          }
+        }
+      },
+      "by_probe_identity": {
+        "P012": {
+          "eer_diagnostic": 0.9302325581395349,
+          "genuine_comparisons": 43,
+          "impostor_comparisons": 86,
+          "operating_points": {
+            "far_1pct": {
+              "frr": 1.0,
+              "far": 0.7790697674418605,
+              "false_rejections": 43,
+              "false_acceptances": 67
+            },
+            "far_5pct": {
+              "frr": 1.0,
+              "far": 0.8372093023255814,
+              "false_rejections": 43,
+              "false_acceptances": 72
+            },
+            "eer": {
+              "frr": 1.0,
+              "far": 0.8255813953488372,
+              "false_rejections": 43,
+              "false_acceptances": 71
+            }
+          }
+        },
+        "P015": {
+          "eer_diagnostic": 0.43478260869565216,
+          "genuine_comparisons": 23,
+          "impostor_comparisons": 46,
+          "operating_points": {
+            "far_1pct": {
+              "frr": 0.0,
+              "far": 0.4782608695652174,
+              "false_rejections": 0,
+              "false_acceptances": 22
+            },
+            "far_5pct": {
+              "frr": 0.0,
+              "far": 0.5,
+              "false_rejections": 0,
+              "false_acceptances": 23
+            },
+            "eer": {
+              "frr": 0.0,
+              "far": 0.5,
+              "false_rejections": 0,
+              "false_acceptances": 23
+            }
+          }
+        },
+        "P022": {
+          "eer_diagnostic": 0.4,
+          "genuine_comparisons": 15,
+          "impostor_comparisons": 30,
+          "operating_points": {
+            "far_1pct": {
+              "frr": 0.2,
+              "far": 0.6333333333333333,
+              "false_rejections": 3,
+              "false_acceptances": 19
+            },
+            "far_5pct": {
+              "frr": 0.13333333333333333,
+              "far": 0.7,
+              "false_rejections": 2,
+              "false_acceptances": 21
+            },
+            "eer": {
+              "frr": 0.13333333333333333,
+              "far": 0.7,
+              "false_rejections": 2,
+              "false_acceptances": 21
+            }
+          }
+        }
+      }
+    },
+    "handcrafted_behavior": {
+      "pooled": {
+        "eer_diagnostic": 0.42901234567901236,
+        "genuine_comparisons": 81,
+        "impostor_comparisons": 162,
+        "operating_points": {
+          "far_1pct": {
+            "frr": 0.9753086419753086,
+            "far": 0.024691358024691357,
+            "false_rejections": 79,
+            "false_acceptances": 4
+          },
+          "far_5pct": {
+            "frr": 0.5185185185185185,
+            "far": 0.2962962962962963,
+            "false_rejections": 42,
+            "false_acceptances": 48
+          },
+          "eer": {
+            "frr": 0.5185185185185185,
+            "far": 0.2839506172839506,
+            "false_rejections": 42,
+            "false_acceptances": 46
+          }
+        }
+      },
+      "by_probe_identity": {
+        "P012": {
+          "eer_diagnostic": 0.36627906976744184,
+          "genuine_comparisons": 43,
+          "impostor_comparisons": 86,
+          "operating_points": {
+            "far_1pct": {
+              "frr": 1.0,
+              "far": 0.011627906976744186,
+              "false_rejections": 43,
+              "false_acceptances": 1
+            },
+            "far_5pct": {
+              "frr": 0.6046511627906976,
+              "far": 0.18604651162790697,
+              "false_rejections": 26,
+              "false_acceptances": 16
+            },
+            "eer": {
+              "frr": 0.6046511627906976,
+              "far": 0.1744186046511628,
+              "false_rejections": 26,
+              "false_acceptances": 15
+            }
+          }
+        },
+        "P015": {
+          "eer_diagnostic": 0.5326086956521738,
+          "genuine_comparisons": 23,
+          "impostor_comparisons": 46,
+          "operating_points": {
+            "far_1pct": {
+              "frr": 0.9565217391304348,
+              "far": 0.0,
+              "false_rejections": 22,
+              "false_acceptances": 0
+            },
+            "far_5pct": {
+              "frr": 0.6086956521739131,
+              "far": 0.391304347826087,
+              "false_rejections": 14,
+              "false_acceptances": 18
+            },
+            "eer": {
+              "frr": 0.6086956521739131,
+              "far": 0.3695652173913043,
+              "false_rejections": 14,
+              "false_acceptances": 17
+            }
+          }
+        },
+        "P022": {
+          "eer_diagnostic": 0.25,
+          "genuine_comparisons": 15,
+          "impostor_comparisons": 30,
+          "operating_points": {
+            "far_1pct": {
+              "frr": 0.9333333333333333,
+              "far": 0.1,
+              "false_rejections": 14,
+              "false_acceptances": 3
+            },
+            "far_5pct": {
+              "frr": 0.13333333333333333,
+              "far": 0.4666666666666667,
+              "false_rejections": 2,
+              "false_acceptances": 14
+            },
+            "eer": {
+              "frr": 0.13333333333333333,
+              "far": 0.4666666666666667,
+              "false_rejections": 2,
+              "false_acceptances": 14
+            }
+          }
+        }
+      }
+    },
+    "old_dual_neural": {
+      "pooled": {
+        "eer_diagnostic": 0.5925925925925926,
+        "genuine_comparisons": 81,
+        "impostor_comparisons": 162,
+        "operating_points": {
+          "far_1pct": {
+            "frr": 0.5925925925925926,
+            "far": 0.5493827160493827,
+            "false_rejections": 48,
+            "false_acceptances": 89
+          },
+          "far_5pct": {
+            "frr": 0.5555555555555556,
+            "far": 0.654320987654321,
+            "false_rejections": 45,
+            "false_acceptances": 106
+          },
+          "eer": {
+            "frr": 0.5308641975308642,
+            "far": 0.7160493827160493,
+            "false_rejections": 43,
+            "false_acceptances": 116
+          }
+        }
+      },
+      "by_probe_identity": {
+        "P012": {
+          "eer_diagnostic": 0.8837209302325582,
+          "genuine_comparisons": 43,
+          "impostor_comparisons": 86,
+          "operating_points": {
+            "far_1pct": {
+              "frr": 1.0,
+              "far": 0.6162790697674418,
+              "false_rejections": 43,
+              "false_acceptances": 53
+            },
+            "far_5pct": {
+              "frr": 1.0,
+              "far": 0.7558139534883721,
+              "false_rejections": 43,
+              "false_acceptances": 65
+            },
+            "eer": {
+              "frr": 0.9534883720930233,
+              "far": 0.8255813953488372,
+              "false_rejections": 41,
+              "false_acceptances": 71
+            }
+          }
+        },
+        "P015": {
+          "eer_diagnostic": 0.43478260869565216,
+          "genuine_comparisons": 23,
+          "impostor_comparisons": 46,
+          "operating_points": {
+            "far_1pct": {
+              "frr": 0.08695652173913043,
+              "far": 0.4782608695652174,
+              "false_rejections": 2,
+              "false_acceptances": 22
+            },
+            "far_5pct": {
+              "frr": 0.0,
+              "far": 0.5,
+              "false_rejections": 0,
+              "false_acceptances": 23
+            },
+            "eer": {
+              "frr": 0.0,
+              "far": 0.5,
+              "false_rejections": 0,
+              "false_acceptances": 23
+            }
+          }
+        },
+        "P022": {
+          "eer_diagnostic": 0.45,
+          "genuine_comparisons": 15,
+          "impostor_comparisons": 30,
+          "operating_points": {
+            "far_1pct": {
+              "frr": 0.2,
+              "far": 0.4666666666666667,
+              "false_rejections": 3,
+              "false_acceptances": 14
+            },
+            "far_5pct": {
+              "frr": 0.13333333333333333,
+              "far": 0.6,
+              "false_rejections": 2,
+              "false_acceptances": 18
+            },
+            "eer": {
+              "frr": 0.13333333333333333,
+              "far": 0.7333333333333333,
+              "false_rejections": 2,
+              "false_acceptances": 22
+            }
+          }
+        }
+      }
+    },
+    "old_hybrid": {
+      "pooled": {
+        "eer_diagnostic": 0.38271604938271603,
+        "genuine_comparisons": 81,
+        "impostor_comparisons": 162,
+        "operating_points": {
+          "far_1pct": {
+            "frr": 0.30864197530864196,
+            "far": 0.4567901234567901,
+            "false_rejections": 25,
+            "false_acceptances": 74
+          },
+          "far_5pct": {
+            "frr": 0.19753086419753085,
+            "far": 0.6481481481481481,
+            "false_rejections": 16,
+            "false_acceptances": 105
+          },
+          "eer": {
+            "frr": 0.2345679012345679,
+            "far": 0.5802469135802469,
+            "false_rejections": 19,
+            "false_acceptances": 94
+          }
+        }
+      },
+      "by_probe_identity": {
+        "P012": {
+          "eer_diagnostic": 0.4418604651162791,
+          "genuine_comparisons": 43,
+          "impostor_comparisons": 86,
+          "operating_points": {
+            "far_1pct": {
+              "frr": 0.3953488372093023,
+              "far": 0.4883720930232558,
+              "false_rejections": 17,
+              "false_acceptances": 42
+            },
+            "far_5pct": {
+              "frr": 0.27906976744186046,
+              "far": 0.6395348837209303,
+              "false_rejections": 12,
+              "false_acceptances": 55
+            },
+            "eer": {
+              "frr": 0.3488372093023256,
+              "far": 0.6046511627906976,
+              "false_rejections": 15,
+              "false_acceptances": 52
+            }
+          }
+        },
+        "P015": {
+          "eer_diagnostic": 0.42391304347826086,
+          "genuine_comparisons": 23,
+          "impostor_comparisons": 46,
+          "operating_points": {
+            "far_1pct": {
+              "frr": 0.2608695652173913,
+              "far": 0.5434782608695652,
+              "false_rejections": 6,
+              "false_acceptances": 25
+            },
+            "far_5pct": {
+              "frr": 0.08695652173913043,
+              "far": 0.717391304347826,
+              "false_rejections": 2,
+              "false_acceptances": 33
+            },
+            "eer": {
+              "frr": 0.08695652173913043,
+              "far": 0.6304347826086957,
+              "false_rejections": 2,
+              "false_acceptances": 29
+            }
+          }
+        },
+        "P022": {
+          "eer_diagnostic": 0.25,
+          "genuine_comparisons": 15,
+          "impostor_comparisons": 30,
+          "operating_points": {
+            "far_1pct": {
+              "frr": 0.13333333333333333,
+              "far": 0.23333333333333334,
+              "false_rejections": 2,
+              "false_acceptances": 7
+            },
+            "far_5pct": {
+              "frr": 0.13333333333333333,
+              "far": 0.5666666666666667,
+              "false_rejections": 2,
+              "false_acceptances": 17
+            },
+            "eer": {
+              "frr": 0.13333333333333333,
+              "far": 0.43333333333333335,
+              "false_rejections": 2,
+              "false_acceptances": 13
+            }
+          }
+        }
+      }
+    },
+    "type2branch": {
+      "pooled": {
+        "eer_diagnostic": 0.43209876543209874,
+        "genuine_comparisons": 81,
+        "impostor_comparisons": 162,
+        "operating_points": {
+          "far_1pct": {
+            "frr": 0.8024691358024691,
+            "far": 0.11728395061728394,
+            "false_rejections": 65,
+            "false_acceptances": 19
+          },
+          "far_5pct": {
+            "frr": 0.7530864197530864,
+            "far": 0.13580246913580246,
+            "false_rejections": 61,
+            "false_acceptances": 22
+          },
+          "eer": {
+            "frr": 0.43209876543209874,
+            "far": 0.4444444444444444,
+            "false_rejections": 35,
+            "false_acceptances": 72
+          }
+        }
+      },
+      "by_probe_identity": {
+        "P012": {
+          "eer_diagnostic": 0.4418604651162791,
+          "genuine_comparisons": 43,
+          "impostor_comparisons": 86,
+          "operating_points": {
+            "far_1pct": {
+              "frr": 1.0,
+              "far": 0.10465116279069768,
+              "false_rejections": 43,
+              "false_acceptances": 9
+            },
+            "far_5pct": {
+              "frr": 0.9767441860465116,
+              "far": 0.12790697674418605,
+              "false_rejections": 42,
+              "false_acceptances": 11
+            },
+            "eer": {
+              "frr": 0.46511627906976744,
+              "far": 0.3953488372093023,
+              "false_rejections": 20,
+              "false_acceptances": 34
+            }
+          }
+        },
+        "P015": {
+          "eer_diagnostic": 0.2608695652173913,
+          "genuine_comparisons": 23,
+          "impostor_comparisons": 46,
+          "operating_points": {
+            "far_1pct": {
+              "frr": 0.34782608695652173,
+              "far": 0.06521739130434782,
+              "false_rejections": 8,
+              "false_acceptances": 3
+            },
+            "far_5pct": {
+              "frr": 0.30434782608695654,
+              "far": 0.08695652173913043,
+              "false_rejections": 7,
+              "false_acceptances": 4
+            },
+            "eer": {
+              "frr": 0.21739130434782608,
+              "far": 0.5217391304347826,
+              "false_rejections": 5,
+              "false_acceptances": 24
+            }
+          }
+        },
+        "P022": {
+          "eer_diagnostic": 0.5166666666666666,
+          "genuine_comparisons": 15,
+          "impostor_comparisons": 30,
+          "operating_points": {
+            "far_1pct": {
+              "frr": 0.9333333333333333,
+              "far": 0.23333333333333334,
+              "false_rejections": 14,
+              "false_acceptances": 7
+            },
+            "far_5pct": {
+              "frr": 0.8,
+              "far": 0.23333333333333334,
+              "false_rejections": 12,
+              "false_acceptances": 7
+            },
+            "eer": {
+              "frr": 0.6666666666666666,
+              "far": 0.4666666666666667,
+              "false_rejections": 10,
+              "false_acceptances": 14
+            }
+          }
+        }
+      }
+    },
+    "type2branch_pointer": {
+      "pooled": {
+        "eer_diagnostic": 0.5925925925925926,
+        "genuine_comparisons": 81,
+        "impostor_comparisons": 162,
+        "operating_points": {
+          "far_1pct": {
+            "frr": 0.5925925925925926,
+            "far": 0.6481481481481481,
+            "false_rejections": 48,
+            "false_acceptances": 105
+          },
+          "far_5pct": {
+            "frr": 0.5679012345679012,
+            "far": 0.7283950617283951,
+            "false_rejections": 46,
+            "false_acceptances": 118
+          },
+          "eer": {
+            "frr": 0.5555555555555556,
+            "far": 0.7407407407407407,
+            "false_rejections": 45,
+            "false_acceptances": 120
+          }
+        }
+      },
+      "by_probe_identity": {
+        "P012": {
+          "eer_diagnostic": 0.9127906976744186,
+          "genuine_comparisons": 43,
+          "impostor_comparisons": 86,
+          "operating_points": {
+            "far_1pct": {
+              "frr": 1.0,
+              "far": 0.7674418604651163,
+              "false_rejections": 43,
+              "false_acceptances": 66
+            },
+            "far_5pct": {
+              "frr": 1.0,
+              "far": 0.8488372093023255,
+              "false_rejections": 43,
+              "false_acceptances": 73
+            },
+            "eer": {
+              "frr": 1.0,
+              "far": 0.8604651162790697,
+              "false_rejections": 43,
+              "false_acceptances": 74
+            }
+          }
+        },
+        "P015": {
+          "eer_diagnostic": 0.43478260869565216,
+          "genuine_comparisons": 23,
+          "impostor_comparisons": 46,
+          "operating_points": {
+            "far_1pct": {
+              "frr": 0.08695652173913043,
+              "far": 0.5,
+              "false_rejections": 2,
+              "false_acceptances": 23
+            },
+            "far_5pct": {
+              "frr": 0.043478260869565216,
+              "far": 0.5,
+              "false_rejections": 1,
+              "false_acceptances": 23
+            },
+            "eer": {
+              "frr": 0.0,
+              "far": 0.5,
+              "false_rejections": 0,
+              "false_acceptances": 23
+            }
+          }
+        },
+        "P022": {
+          "eer_diagnostic": 0.45,
+          "genuine_comparisons": 15,
+          "impostor_comparisons": 30,
+          "operating_points": {
+            "far_1pct": {
+              "frr": 0.2,
+              "far": 0.5333333333333333,
+              "false_rejections": 3,
+              "false_acceptances": 16
+            },
+            "far_5pct": {
+              "frr": 0.13333333333333333,
+              "far": 0.7333333333333333,
+              "false_rejections": 2,
+              "false_acceptances": 22
+            },
+            "eer": {
+              "frr": 0.13333333333333333,
+              "far": 0.7666666666666667,
+              "false_rejections": 2,
+              "false_acceptances": 23
+            }
+          }
+        }
+      }
+    },
+    "type2branch_hybrid": {
+      "pooled": {
+        "eer_diagnostic": 0.4074074074074074,
+        "genuine_comparisons": 81,
+        "impostor_comparisons": 162,
+        "operating_points": {
+          "far_1pct": {
+            "frr": 0.6790123456790124,
+            "far": 0.24691358024691357,
+            "false_rejections": 55,
+            "false_acceptances": 40
+          },
+          "far_5pct": {
+            "frr": 0.6419753086419753,
+            "far": 0.25925925925925924,
+            "false_rejections": 52,
+            "false_acceptances": 42
+          },
+          "eer": {
+            "frr": 0.5802469135802469,
+            "far": 0.30246913580246915,
+            "false_rejections": 47,
+            "false_acceptances": 49
+          }
+        }
+      },
+      "by_probe_identity": {
+        "P012": {
+          "eer_diagnostic": 0.46511627906976744,
+          "genuine_comparisons": 43,
+          "impostor_comparisons": 86,
+          "operating_points": {
+            "far_1pct": {
+              "frr": 0.9534883720930233,
+              "far": 0.23255813953488372,
+              "false_rejections": 41,
+              "false_acceptances": 20
+            },
+            "far_5pct": {
+              "frr": 0.9302325581395349,
+              "far": 0.23255813953488372,
+              "false_rejections": 40,
+              "false_acceptances": 20
+            },
+            "eer": {
+              "frr": 0.8837209302325582,
+              "far": 0.26744186046511625,
+              "false_rejections": 38,
+              "false_acceptances": 23
+            }
+          }
+        },
+        "P015": {
+          "eer_diagnostic": 0.3804347826086957,
+          "genuine_comparisons": 23,
+          "impostor_comparisons": 46,
+          "operating_points": {
+            "far_1pct": {
+              "frr": 0.43478260869565216,
+              "far": 0.34782608695652173,
+              "false_rejections": 10,
+              "false_acceptances": 16
+            },
+            "far_5pct": {
+              "frr": 0.391304347826087,
+              "far": 0.3695652173913043,
+              "false_rejections": 9,
+              "false_acceptances": 17
+            },
+            "eer": {
+              "frr": 0.30434782608695654,
+              "far": 0.43478260869565216,
+              "false_rejections": 7,
+              "false_acceptances": 20
+            }
+          }
+        },
+        "P022": {
+          "eer_diagnostic": 0.18333333333333335,
+          "genuine_comparisons": 15,
+          "impostor_comparisons": 30,
+          "operating_points": {
+            "far_1pct": {
+              "frr": 0.26666666666666666,
+              "far": 0.13333333333333333,
+              "false_rejections": 4,
+              "false_acceptances": 4
+            },
+            "far_5pct": {
+              "frr": 0.2,
+              "far": 0.16666666666666666,
+              "false_rejections": 3,
+              "false_acceptances": 5
+            },
+            "eer": {
+              "frr": 0.13333333333333333,
+              "far": 0.2,
+              "false_rejections": 2,
+              "false_acceptances": 6
+            }
+          }
+        }
+      }
+    }
+  },
+  "frozen_sha256": "fb612db18d0d2635506df53d470b06cc9b5e4115efdc8731293a44a37367a1fe",
+  "pairs_sha256": "31fd8368dfd80ffe4c050f48a6145d57c785f003d1d0ba76c6d9c2c521c9ef53",
+  "scores_sha256": "312e55ea81329d2366037bb4eecbb9f7daf68a9489eb1344ed24772f266cd4a6",
+  "windows": 140,
+  "below25_windows": 81,
+  "test_observations_decoded": false,
+  "prior_dev_exposure": true,
+  "model_updates": 0,
+  "limitations": [
+    "Small independent identity count",
+    "Gameplay rather than login",
+    "Source transfer and residual adaptation, not exact published SOTA reproduction",
+    "Two behavioral modalities; does not fulfill all-feature paired validation"
+  ]
+}

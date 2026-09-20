@@ -477,13 +477,35 @@ function endStepUp() {
   renderFoot();
 }
 
-// One more typing for a pending step-up. The first two are only collected; the
-// third sends all three to the server, which adds the original attempt's score
-// and judges the median of the four.
+// Verify each repetition before retaining it. The final batch still evaluates
+// all three correct-password samples, including unusual typing, together.
 async function doStepUpRep(creds) {
+  const phase = stepUp;
   await settle();
   const sample = await buildSample();
   resetCapture();
+  const checked = await api('/api/login/stepup/check', { ...creds, sample });
+  // Navigation or a username change may abandon this phase during the request.
+  if (stepUp !== phase) return;
+  if (!checked.ok) {
+    if (checked.status === 409) {
+      endStepUp();
+      showResult({ tone: 'other', icon: 'info', heading: 'That step-up has lapsed',
+        body: 'Sign in again and we will pick it up from there.' });
+    } else {
+      hint.className = 'hint-row warn';
+      hint.textContent = 'Could not check this repetition. Try again; your earlier repetitions are saved.';
+      password.focus();
+    }
+    return;
+  }
+  if (checked.data.accepted !== true) {
+    hint.className = 'hint-row warn';
+    hint.textContent = checked.data.reason || 'Repeat this entry; your earlier repetitions are saved.';
+    submit.textContent = stepUpButtonLabel();
+    password.focus();
+    return;
+  }
   stepUp.samples.push(sample);
   const line = $('stepup-progress');
   if (line) line.textContent = stepUpLine();

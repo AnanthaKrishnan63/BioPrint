@@ -311,6 +311,28 @@ def _pending_step_up(conn, user_id: int, decision: str = "step_up"):
     return None if settled else row
 
 
+@app.post("/api/login/stepup/check")
+def check_step_up_repetition(body: AttemptIn) -> dict:
+    """Check one repetition immediately without advancing or rescoring step-up.
+
+    Only credentials and sample usability are checked here. Correct-password
+    behavioral outliers remain in the final batch, whose bot and identity checks
+    are unchanged. Never store the supplied password or grant a session here.
+    """
+    with db.connect() as conn:
+        u = _user(conn, body.username)
+        if not u or not db.check_password(body.password, u["pw_salt"], u["pw_hash"]):
+            return {"accepted": False, "reason": "Incorrect password. Repeat this entry."}
+        if not _pending_step_up(conn, u["id"]) or u["keystroke_model"] is None:
+            raise HTTPException(409, "no step-up is pending for this account; sign in again")
+        model = scorer.Model.from_dict(json.loads(u["keystroke_model"]))
+        template = features.template_codes(FeatureVector(names=model.names, values=model.center))
+        why = features.needs_retype(body.sample, template)
+        if why:
+            return {"accepted": False, "reason": f"{why}. Repeat only this entry; your earlier repetitions are saved."}
+        return {"accepted": True}
+
+
 @app.post("/api/login/stepup")
 def login_step_up(body: StepUpIn, request: Request, response: Response) -> LoginOut:
     """Answer to a "step_up" decision: STEP_UP_SAMPLES more typings of the password.

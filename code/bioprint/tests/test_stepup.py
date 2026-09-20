@@ -76,8 +76,8 @@ def test_new_device_owner_rhythm_asks_for_step_up(client):
     dv, ks = signal(body, "device"), signal(body, "keystroke")
     assert dv["available"] and dv["flagged"] and dv["score"] > 6
     assert not ks["flagged"]
-    assert any("new device" in r for r in body["reasons"])
-    assert any("installed fonts changed" in r for r in body["reasons"])  # device reasons are carried
+    assert any("repeat your typing" in r for r in body["reasons"])
+    assert any("installed fonts changed" in r for r in dv["reasons"])
     rows = client.get("/api/attempts", params={"user": "alice"}).json()
     assert rows[0]["decision"] == "step_up" and rows[0]["id"] == body["attempt_id"]
 

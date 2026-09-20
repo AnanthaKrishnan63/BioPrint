@@ -9,7 +9,7 @@ uses typing first, with trained pointer verification when additional behavioral
 evidence is needed. Touch devices use the keypad path. There are no OTPs or
 external authenticator services.
 
-[Six-page report](reports/2026-09-20/bioprint-report-draft/bioprint-report.pdf) ·
+[Six-page report](reports/2026-09-20/BioPrint_Report.pdf) ·
 [Dataset results](reports/2026-09-20/DATASET_RESULTS.md) ·
 [Experiment setup](docs/DATASETS.md) ·
 [Model assets](models/README.md)
@@ -176,7 +176,7 @@ is installed. Node and Playwright browser binaries are not required to run the a
 ## ROOT 36 submission
 
 This repository contains the website implementation and commit history, the
-[final six-page report](reports/2026-09-20/bioprint-report-draft/bioprint-report.pdf),
+[final six-page report](reports/2026-09-20/BioPrint_Report.pdf),
 and the localhost setup and demo instructions above. `launch.py` is the runnable
 website entry point; this submission uses a website rather than a Chrome extension.
 The live demonstration is enrollment → genuine login → an impostor using the same

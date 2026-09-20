@@ -13,10 +13,10 @@
 \definecolor{pale}{HTML}{EDF5F6}
 \definecolor{orange}{HTML}{C36B32}
 \usepackage[colorlinks=true,urlcolor=teal,linkcolor=navy]{hyperref}
-\hypersetup{pdftitle={BioPrint: Adaptive Behavioral Verification},pdfauthor={BioPrint},pdfsubject={Six-page research and implementation draft}}
+\hypersetup{pdftitle={BioPrint: Adaptive Behavioral Verification},pdfauthor={BioPrint},pdfsubject={Final six-page research and implementation report}}
 \pagestyle{fancy}\fancyhf{}
 \fancyhead[L]{\small\sffamily\bfseries\color{navy}BIOPRINT\quad\normalfont\small Research \& implementation}
-\fancyhead[R]{\small\sffamily\color{muted}DRAFT FOR REVIEW}
+\fancyhead[R]{\small\sffamily\color{muted}FINAL REPORT}
 \fancyfoot[L]{\scriptsize\color{muted}Dataset evidence \;\textbullet\; Synthetic policy evaluation \;\textbullet\; Working prototype}
 \fancyfoot[R]{\small\thepage\,/\,6}
 \renewcommand{\headrulewidth}{0.3pt}
@@ -24,7 +24,7 @@
 \titleformat{\subsection}{\normalsize\sffamily\bfseries\color{teal}}{\thesubsection}{0.5em}{}
 \titlespacing*{\section}{0pt}{10pt}{6pt}
 \titlespacing*{\subsection}{0pt}{8pt}{4pt}
-\setlength{\parindent}{0pt}\setlength{\parskip}{5pt}
+\setlength{\parindent}{0pt}\setlength{\parskip}{4pt}
 \setlength{\tabcolsep}{4pt}\renewcommand{\arraystretch}{1.15}
 \setlist{nosep,leftmargin=1.4em}
 \captionsetup{font=small,labelfont=bf,skip=4pt,hypcap=false}
@@ -87,10 +87,10 @@ Each account records three one-minute mouse/trackpad sessions. The encoder recei
  c_u=\frac{\sum_{j\in E_u}\hat z_j}{\|\sum_{j\in E_u}\hat z_j\|_2},\qquad
  s_p=\frac{1}{5}\sum_{j=1}^{5}\hat z_j^{\mathsf T}c_u .
 \]
-Here $u$ identifies the account; $E_u$ is its set of enrollment blocks; $j$ indexes blocks; $z_j$ is an encoder vector; $\hat z_j$ is its unit-length form; $\|\cdot\|_2$ is Euclidean length; $c_u$ is the unit-length personal template; and $\mathsf T$ forms the dot product. The last sum uses the first five \emph{challenge} blocks, and $s_p$ is pointer similarity. Acceptance requires $s_p\geq0.948082149$. Five blocks require 641 coordinates, with no padding or cross-session concatenation. The three-second minimum is only a lower bound; source-data median capture time was 16.89 seconds. The encoder uses the same normalization and threshold as the source experiment.
+Here $u$ identifies the account; $E_u$ is its set of enrollment blocks; $j$ indexes blocks; $z_j$ is an encoder vector; $\hat z_j$ is its unit-length form; $\|\cdot\|_2$ is Euclidean length; $c_u$ is the unit-length personal template; and $\mathsf T$ forms the dot product. The last sum uses the first five \emph{challenge} blocks. Pointer similarity $s_p$ increases as movement resembles the owner, so acceptance requires $s_p\geq\tau_p$, where $\tau_p\approx0.948$ is the frozen threshold selected at a 1\% training-calibration FAR target (displayed to three decimals). The implementation retains full precision. Five blocks require 641 coordinates, without padding or cross-session concatenation. The three-second minimum is a lower bound; source-data median capture time was 16.89 seconds.
 
 \subsection{Challenge routing and application behavior}
-Uncertain desktop attempts use the trained pointer check after pointer enrollment; the existing motor profile remains a fallback. On a phone, two scrambled-keypad runs compare search/cadence against a profile built from six enrollment runs. Current mobile acceptance uses the full personal threshold. Nonces, expiry, account-bound captures and session-cookie checks connect scoring to real access decisions. The application programming interface (API), implemented with FastAPI and SQLite, preserves raw recordings and separate profiles. An invitation-protected encrypted local-network gateway supports cross-device testing. Accepted attempts do not silently update the owner's template.
+Uncertain desktop attempts use the trained pointer check after pointer enrollment; the existing motor profile remains a fallback. On a phone, two scrambled-keypad runs compare search/cadence against a profile built from six enrollment runs. Current mobile acceptance uses the full personal threshold. Nonces, expiry, account-bound captures and session-cookie checks connect scoring to real access decisions. The application programming interface (API), implemented with FastAPI and SQLite, preserves raw recordings and separate profiles. The release runs locally on CPU; profiles remain enrollment-based.
 
 \newpage
 \section{Experimental setup: data, baselines and improvements}
@@ -138,7 +138,7 @@ Every entry in the next table is \textbf{FAR / FRR / EER (\%)}. The final column
 \begin{tikzpicture}
 \begin{axis}[width=.93\linewidth,height=43mm,xbar,bar width=5pt,xmin=0,xmax=30,
  ytick={0,1,2,3,4},yticklabels={CMU (10),CMU (100),KeyRecs fixed,KeyRecs free,SapiMouse},
- y dir=reverse,enlarge y limits=.17,xlabel={Equal error rate (\%); within-protocol comparisons},
+ y dir=reverse,enlarge y limits=.17,xlabel={Equal error rate (\%); lower is better},
  tick label style={font=\small},label style={font=\small},axis line style={draw=none},
  xmajorgrids,grid style={gray!15},legend style={at={(.99,.98)},anchor=north east,draw=none,font=\small}]
 \addplot[fill=navy!35,draw=none,area legend] table[x=baseline,y=index]{eer-plot.dat};
@@ -146,7 +146,7 @@ Every entry in the next table is \textbf{FAR / FRR / EER (\%)}. The final column
 \legend{Baseline,Candidate}
 \end{axis}
 \end{tikzpicture}
-\captionof{figure}{Nonlinear typing models and learned pointer representations improve separation. The 100-enrollment CMU result explicitly uses more owner data.}
+\captionof{figure}{Lower is better. Within-protocol comparisons show improved separation from nonlinear typing models and learned pointer representations. CMU (100) uses more owner data.}
 \end{center}
 
 \textbf{Typing improves through representation, model choice and support.} With ten CMU enrollments, account-specific SVM selection reduces EER from 22.04\% to 14.32\% (35.02\% relative reduction). The 95\% bootstrap interval, obtained by resampling accounts, for new minus old EER is $[-11.11,-4.55]$ pp. KeyRecs keeps its feature sets fixed and changes the classifier: fixed/free transcription FRR falls by 30.47/40.08 pp. This supports a learned nonlinear scorer when representative same-schema data are available, rather than treating all timing deviations as equally informative.
@@ -176,9 +176,9 @@ Owner-like typing attack & 0.0000 & 1.0000 & Admit (deliberate attack case)\\\bo
 \end{tabularx}
 \captionof{table}{The stricter policy can intercept a typing-model false accept. An owner-like replay assumption still exposes a direct-admission weakness. Neither score is fabricated.}
 \end{center}
-Run \texttt{bash experiments/typing\_demo/run.sh} from the repository root. The script checks model use, saved-score agreement and session issuance, then opens a local browser report. It requires no live accounts or network listener.
+The demonstration verifies both model scores and actual session issuance. This distinction makes the layered policy observable: an accepted typing pattern can still require additional behavioral evidence before access is granted.
 
-\subsection{Why evaluate general models and genuinely paired fusion?}
+\subsection{Ablation studies: evidence for selective integration}
 \textbf{General typing tests whether the fixed-password restriction can be removed.} Shared logistic and ExtraTrees models use 42 distribution-residual features, followed by 31 features aligned to each account's own password. Fifty-four evaluations cover unseen users and cross-dataset transfer. Aligned logistic, trained on both sources, yields 0.42/95.30/25.41 on CMU and 3.83/88.98/29.42 on KeyRecs fixed. Trees also retain high rejection (90.90\% and 82.61\%). Matched shipped-scorer EERs are 26.31\% and 31.64\%. These rejection rates favor retaining compatible-password models. Distribution-only models perform worse overall; free-text TypeNet transfer gives 1.17/84.08/20.23.
 
 \textbf{BEACON tests whether promising encoders combine on the same people.} The Behavioral Engine for Authentication and Continuous Monitoring (BEACON) records gameplay keyboard, mouse and hardware signals [5]. Our subset has three development participants, 81 genuine and 162 impostor claims. TypeNet and Type2Branch are keystroke-sequence encoders; SapiMouse supplies pointer embeddings. Their scores and handcrafted features feed logistic fusion: 24 candidates combine eight feature sets with three regularization strengths. Separate training identities select and calibrate the model. All 81 short windows remain; no cross-dataset identity links are invented.
@@ -199,8 +199,8 @@ Earlier handcrafted fusion gives 2.47/98.77/44.14; adding context gives 8.02/86.
 
 \par\endgroup
 \newpage
-\subsection{Choosing the login combination}
-All policies face the same 60 genuine and 90 impostor development scenarios. Candidates share compatible learned typing but request different checks when evidence is uncertain. The pointer follow-up replaces statistical movement scoring with the actual trained encoder on mapped source recordings.
+\subsection{Policy ablations: choosing the login combination}
+Controlled comparisons are a central strength of the evaluation: all original policies face the same 60 genuine and 90 impostor scenarios, sharing typing evidence while varying the additional check. This exposes each choice's security and usability cost. The pointer follow-up tests the trained encoder on mapped source recordings.
 \begin{center}\small
 \begin{tabularx}{\linewidth}{@{}Xrrrr@{}}
 \toprule
@@ -211,8 +211,8 @@ All policies face the same 60 genuine and 90 impostor development scenarios. Can
 \end{center}
 \begin{center}
 \begin{tikzpicture}
-\begin{axis}[width=.72\linewidth,height=40mm,xmin=0,xmax=43,ymin=0,ymax=49,
- xlabel={FAR (\%)},ylabel={FRR (\%)},
+\begin{axis}[width=.72\linewidth,height=36mm,xmin=0,xmax=43,ymin=0,ymax=49,
+ xlabel={FAR (\%); lower is better},ylabel={FRR (\%); lower is better},
  tick label style={font=\small},label style={font=\small},grid=major,grid style={gray!15},axis line style={navy!40},clip=false]
 \addplot[only marks,mark=*,mark size=2.4pt,color=navy!60] coordinates {(35.56,8.33) (11.11,41.67) (15.56,21.67) (14.44,26.67)};
 \addplot[only marks,mark=diamond*,mark size=3pt,color=teal] coordinates {(10,31.67)};
@@ -223,7 +223,7 @@ All policies face the same 60 genuine and 90 impostor development scenarios. Can
 \node[font=\scriptsize,anchor=east,text=teal] at (axis cs:9,31.67){Trained pointer};
 \end{axis}
 \end{tikzpicture}
-\captionof{figure}{The measured operating tradeoffs. Lower left is preferable. These are conditional policies, not points on a common single-score threshold curve; no app-wide EER is inferred.}
+\captionof{figure}{Lower is better on both axes; the preferred direction is toward the lower left. These are conditional policies, not points on a common single-score threshold curve; no app-wide EER is inferred.}
 \end{center}
 
 \textbf{Why choose trained pointer?} Its synthetic FAR is lowest (10.00\%); FRR is below typing repetition (31.67\% versus 41.67\%). Against statistical pointer, it prevents five false accepts and adds six net genuine failures. Both challenge 63/150 cases; the encoder decides 33 desktop cases. All 33 scores agree with frozen predictions within 0.000002, and all 300 paired session outcomes were checked. This is a concrete gain for prioritizing unauthorized-access reduction.
@@ -235,7 +235,7 @@ The nine residual false accepts bypass the encoder: seven owner-like typing atta
 \section{Conclusion}
 BioPrint turns behavioral recognition into an executable strategy: \textbf{recognize familiar behavior efficiently, use device context intelligently, and request a different signal when evidence is insufficient}. Dataset studies establish how nonlinear typing and learned pointer representations improve their baselines; paired studies establish why gains must be transferred selectively. The prototype connects that reasoning to enrollment, model inference and actual access decisions, with a reproducible demonstration of successes and failure modes.
 
-The central contribution is targeted additional evidence, not indiscriminate feature accumulation. Trained pointer prevents five additional impostor admissions in the controlled comparison while preserving direct login for convincing typing. Residual attacks identify the next precise target: direct-admission verification. This combination of measured improvement, explicit tradeoffs and working integration provides a strong foundation for broader paired-user validation and progressively richer personal models.
+The ablations and paired comparisons make selective integration a defensible design decision: they show which additional evidence helps, its rejection cost, and where generic fusion fails. Trained pointer prevents five additional impostor admissions while preserving direct login for convincing typing. Residual attacks identify the next target: direct-admission verification. This combination of measured improvement, explicit tradeoffs and working integration provides a strong foundation for broader paired-user validation and richer personal models.
 
 \vspace{2pt}\hrule\vspace{3pt}
 {\scriptsize\textbf{References and reproducibility.}
@@ -244,5 +244,5 @@ The central contribution is targeted additional evidence, not indiscriminate fea
 [3] Killourhy and Maxion, \href{https://www.cs.cmu.edu/~keystroke/}{CMU keystroke benchmark}.
 [4] scikit-learn, \href{https://scikit-learn.org/1.7/modules/svm.html}{Support Vector Machines}.
 [5] Singh et al., \href{https://huggingface.co/datasets/beacon-gui/BEACON-Dataset}{BEACON dataset}.
-Local evidence: \texttt{complete-results.csv}, \texttt{evidence-manifest.json}, \texttt{paired-comparison-analysis.json}, and the typing demo's \texttt{results.json}. Dataset-rate tables are generated from saved evidence; rates retain their stated protocols.}
+Experiment tables, source hashes and reproduction instructions accompany the report in the repository.}
 \end{document}

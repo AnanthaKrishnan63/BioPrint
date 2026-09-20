@@ -160,7 +160,7 @@ def test_owner_on_a_phone_is_allowed_on_cognitive_score_alone(client):
     assert kp["available"] and not kp["flagged"]
     assert not km["available"]  # enrolled on a mouse, answered by a thumb
     assert signal(body, "device")["flagged"]
-    assert kp["score"] <= 0.75 * kp["threshold"]
+    assert kp["score"] <= kp["threshold"]
     assert client.cookies.get(COOKIE)
     assert client.get("/api/session").json()["username"] == "alice"
     rows = client.get("/api/attempts", params={"user": "alice"}).json()

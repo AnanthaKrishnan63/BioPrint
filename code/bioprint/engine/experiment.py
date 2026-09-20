@@ -100,6 +100,7 @@ def decide_keypad(signals, mobile=False):
         return 'block', ['Target checks cannot override strongly inconsistent typing']
     name = 'keypad_motor' if MODE == 'typing-pointer' and not mobile else 'keypad'
     evidence = by.get(name)
-    if ratio(evidence) <= CONFIG['keypad_ratio']:
+    limit = CONFIG.get('mobile_keypad_ratio', CONFIG['keypad_ratio']) if mobile else CONFIG['keypad_ratio']
+    if ratio(evidence) <= limit:
         return 'allow', ['Target movement matched the enrolled profile' if name == 'keypad_motor' else 'Keypad timing matched the enrolled profile']
     return 'block', ['Insufficient or inconsistent target movement' if name == 'keypad_motor' else 'Keypad timing did not establish the account holder']

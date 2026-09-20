@@ -29,6 +29,23 @@ def test_repeat_typing_cannot_loop_or_accept_absent_evidence():
     assert policy.decide(signals(typing=1.),after_step_up=True)[0]=='allow'
 
 
+@pytest.mark.parametrize('score,decision', [(1.4, 'allow'), (1.7, 'allow'), (1.701, 'block')])
+def test_mobile_keypad_uses_full_profile_limit(monkeypatch, score, decision):
+    monkeypatch.setattr(policy, 'MODE', 'typing-pointer')
+    s = signals(typing=None) + [SignalResult(name='keypad', score=score, threshold=1.7),
+                               SignalResult(name='keypad_motor', score=score, threshold=1.7)]
+    assert policy.decide_keypad(s, mobile=True)[0] == decision
+    assert policy.decide_keypad(s, mobile=False)[0] == 'block'
+    s[2].flagged = True
+    assert policy.decide_keypad(s, mobile=True)[0] == 'block'
+
+
+def test_mobile_leeway_never_overrides_missing_evidence_or_bad_typing():
+    assert policy.decide_keypad(signals(typing=None), mobile=True)[0] == 'block'
+    s = signals(typing=3) + [SignalResult(name='keypad', score=.5, threshold=1.7)]
+    assert policy.decide_keypad(s, mobile=True)[0] == 'block'
+
+
 def test_motor_and_cognitive_branches_use_different_evidence(monkeypatch):
     s = signals(typing=1.2)+[SignalResult(name='keypad',score=.4,threshold=1.),
                            SignalResult(name='keypad_motor',score=1.4,threshold=1.)]

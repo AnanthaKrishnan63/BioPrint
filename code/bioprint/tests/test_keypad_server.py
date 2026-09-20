@@ -109,7 +109,7 @@ def test_phone_with_keypad_profile_is_routed_to_keypad(client):
     keypad_enrolled(client)
     body = login(client, PHONE).json()
     assert body["decision"] == "keypad", body
-    assert any("no key timing" in r for r in body["reasons"])
+    assert not signal(body, "keystroke")["available"]
     assert signal(body, "device")["flagged"]
     assert not client.cookies.get(COOKIE)
 
@@ -118,14 +118,14 @@ def test_new_device_class_with_good_rhythm_is_routed_to_keypad(client):
     keypad_enrolled(client)
     body = login(client, make_sample(seed=99, env=PHONE_ENV)).json()
     assert body["decision"] == "keypad", body
-    assert any("different kind of device" in r for r in body["reasons"])
+    assert signal(body, "device")["flagged"]
     assert not signal(body, "keystroke")["flagged"]
 
 
-def test_new_device_same_class_with_good_rhythm_is_still_typing_step_up(client):
+def test_new_device_same_class_with_good_rhythm_is_routed_to_target_check(client):
     keypad_enrolled(client)
     body = login(client, make_sample(seed=99, env=OTHER)).json()
-    assert body["decision"] == "step_up", body
+    assert body["decision"] == "keypad", body
 
 
 def test_new_device_bad_rhythm_blocks_before_any_keypad(client):
@@ -160,7 +160,7 @@ def test_owner_on_a_phone_is_allowed_on_cognitive_score_alone(client):
     assert kp["available"] and not kp["flagged"]
     assert not km["available"]  # enrolled on a mouse, answered by a thumb
     assert signal(body, "device")["flagged"]
-    assert any("keypad behaviour alone" in x for x in body["reasons"])
+    assert kp["score"] <= kp["threshold"]
     assert client.cookies.get(COOKIE)
     assert client.get("/api/session").json()["username"] == "alice"
     rows = client.get("/api/attempts", params={"user": "alice"}).json()

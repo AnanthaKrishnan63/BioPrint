@@ -13,12 +13,12 @@ import {
 
 const POLL_MS = 2000;
 const NS = 'http://www.w3.org/2000/svg';
-const SERIES = ['keystroke', 'pointer', 'bot', 'device', 'keypad', 'keypad_motor'];
+const SERIES = ['keystroke', 'pointer', 'bot', 'device', 'keypad', 'keypad_motor', 'pointer_neural'];
 // Bars in the attempts table: the three that every attempt has, plus whatever
 // else that attempt actually carries. Six bars on every row would be noise.
 const MINI_BASE = ['keystroke', 'pointer', 'bot'];
 const miniNames = (signals = []) =>
-  MINI_BASE.concat(['device', 'keypad', 'keypad_motor'].filter((n) => signals.some((s) => s.name === n)));
+  MINI_BASE.concat(['device', 'keypad', 'keypad_motor', 'pointer_neural'].filter((n) => signals.some((s) => s.name === n)));
 // The chart labels each line at its right-hand end, so those names must be short.
 const CHART_LABEL = { keypad: 'Keypad', keypad_motor: 'Keypad move' };
 const chartLabel = (n) => CHART_LABEL[n] || SIGNAL_LABEL[n] || n;

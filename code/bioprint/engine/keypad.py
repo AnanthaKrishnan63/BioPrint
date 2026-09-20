@@ -125,8 +125,6 @@ MIN_MOTOR_RUNS = 3         # fewer matching-class runs than this: no motor model
 MIN_MOTOR_VECTORS = 8      # ... nor with fewer reach samples than this
 
 # --- bot rules (see bot_check) ----------------------------------------------
-FAST_TAP_MS = 120.0        # a new scramble cannot be searched faster than this
-FAST_TAP_MIN_N = 2         # ... and one tap is a coincidence; two is a machine
 FIRST_TAP_MS = 200.0       # first tap that soon after the layout appeared: suspicious
 IDENTICAL_TOL_MS = 0.5     # "every interval the same": within timer resolution
 IDENTICAL_MIN_N = 3
@@ -620,29 +618,20 @@ def _kp_trust(runs: list[KeypadRun], acc: bot._Acc) -> None:
 
 
 def _kp_intervals(runs: list[KeypadRun], acc: bot._Acc) -> None:
-    """A freshly scrambled layout has to be *looked at*. Sub-FAST_TAP_MS taps mean
-    the digit's position was read from the DOM, not found by eye.
+    """Check mechanical repetition, not presumed visual-search speed.
 
-    Exemptions, so a human is never caught: the first tap of a run has its own,
-    gentler rule below, and a repeat of the SAME digit needs no new search — the
-    finger is already there — so it is allowed to be fast.
+    The whole target and layout remain visible for a run. A person can plan
+    later taps during earlier holds, so release-to-next-press gaps are not
+    independent reaction times and cannot establish automation by being short.
     """
-    fast: list[float] = []
     all_intervals: list[float] = []
     for run in runs:
         prev: KeypadTap | None = None
-        for i, tap in enumerate(run.taps):
+        for tap in run.taps:
             if prev is not None:
                 gap = tap.t_down - _release(prev)
                 all_intervals.append(gap)
-                if i > 0 and _is_digit(tap) and gap < FAST_TAP_MS and tap.digit != prev.digit:
-                    fast.append(gap)
             prev = tap
-    if len(fast) >= FAST_TAP_MIN_N:
-        acc.add("keypad_impossible_search", bot.STRONG,
-                f"{len(fast)} keys on a freshly scrambled keypad were found in under "
-                f"{FAST_TAP_MS:.0f} ms (min {min(fast):.0f} ms): the layout was read, not seen",
-                min(fast), FAST_TAP_MS)
     if len(all_intervals) >= IDENTICAL_MIN_N and \
             max(all_intervals) - min(all_intervals) <= IDENTICAL_TOL_MS:
         acc.add("keypad_identical_intervals", bot.STRONG,

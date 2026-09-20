@@ -28,7 +28,8 @@ from contracts import (KEYPAD_BLANK, KEYPAD_CHALLENGE_TTL_S, KEYPAD_COLS, KEYPAD
                        AttemptIn, EnrollOut, FeatureVector, KeypadChallenge, KeypadEnrollOut, KeypadIn, KeypadRun,
                        LoginOut, RegisterIn, SignalResult, StepUpIn)
 from engine import bot, device, features, keypad, pointer, scorer
-from engine.decide import decide, decide_keypad
+from engine.experiment import decide, decide_keypad, typing_signal
+import pointer_neural
 
 ENROLL_TARGET = 10  # counted repetitions
 # The first repetition is a practice run: stored raw (still useful for replay
@@ -40,6 +41,11 @@ MIN_POINTER_SAMPLES = 5  # fit a pointer model only if this many enrollments use
 
 db.init_db()
 app = FastAPI(title="BioPrint")
+
+@app.get("/api/experiment")
+def experiment_status():
+    return json.loads((Path(__file__).parent / "experiment.json").read_text())
+
 
 # ---------------------------------------------------------------- session cookie
 # An "allow" becomes a real login: a signed, HttpOnly cookie. Stdlib only.
@@ -209,7 +215,7 @@ def _record(conn, response: Response, t0: float, user, sample_id: int | None, us
     Only an allow signs the browser in. A block also signs it out: whoever is at
     this keyboard just failed the behaviour check, so any session they inherited
     (unlocked laptop, stolen cookie) ends here. Everything else, step_up included,
-    leaves the cookie alone.
+    revokes the cookie in experiment branches until verification completes.
     """
     latency = (time.perf_counter() - t0) * 1000
     cur = conn.execute(
@@ -220,7 +226,7 @@ def _record(conn, response: Response, t0: float, user, sample_id: int | None, us
     )
     if decision == "allow":
         start_session(response, username)
-    elif decision == "block":
+    elif decision != "allow":
         end_session(response)
     return LoginOut(decision=decision, reasons=reasons, signals=signals, latency_ms=latency, attempt_id=cur.lastrowid)
 
@@ -247,6 +253,11 @@ def login(body: AttemptIn, request: Request, response: Response) -> LoginOut:
         u = _user(conn, body.username)
 
         def finish(decision, reasons) -> LoginOut:
+            if (decision == 'keypad' and u and _env_class(body.sample.env) != 'touch'
+                    and pointer_neural.enrolled(conn, u['id'])):
+                signals.append(SignalResult(name='pointer_neural', available=False,
+                    reasons=['Complete the trained pointer movement check']))
+                reasons = ['Move naturally to complete your pointer identity check']
             return _record(conn, response, t0, u, sample_id, body.username, decision, reasons, signals)
 
         if not u:
@@ -276,15 +287,17 @@ def login(body: AttemptIn, request: Request, response: Response) -> LoginOut:
         if signals[-1].flagged:
             return finish(*decide(signals))
         routing = _keypad_routing(u, body.sample.env)
+        if _env_class(body.sample.env) == 'mouse' and pointer_neural.enrolled(conn, u['id']):
+            routing['keypad_enrolled'] = True  # a trained pointer challenge is available
         if retype:
-            if features.is_virtual_keyboard(body.sample) and routing["keypad_enrolled"] and signals[0].flagged:
+            if features.is_virtual_keyboard(body.sample) and routing["keypad_enrolled"]:
                 # A touch keyboard gives no timing, but the keypad works on any
                 # device: route there instead of asking for a retype that cannot help.
                 signals.append(SignalResult(name="keystroke", available=False, reasons=[retype]))
                 return finish(*decide(signals, **routing))
             return finish("retype", [retype])
 
-        signals.append(scorer.score(ks_model, kv.values, "keystroke"))
+        signals.append(typing_signal(conn, u, kv))
         signals.append(_pointer_signal(u, pv))
 
         return finish(*decide(signals, **routing))
@@ -304,6 +317,28 @@ def _pending_step_up(conn, user_id: int, decision: str = "step_up"):
         "SELECT 1 FROM attempts WHERE user_id = ? AND id > ? AND decision IN ('allow', 'block') LIMIT 1",
         (user_id, row["id"])).fetchone()
     return None if settled else row
+
+
+@app.post("/api/login/stepup/check")
+def check_step_up_repetition(body: AttemptIn) -> dict:
+    """Check one repetition immediately without advancing or rescoring step-up.
+
+    Only credentials and sample usability are checked here. Correct-password
+    behavioral outliers remain in the final batch, whose bot and identity checks
+    are unchanged. Never store the supplied password or grant a session here.
+    """
+    with db.connect() as conn:
+        u = _user(conn, body.username)
+        if not u or not db.check_password(body.password, u["pw_salt"], u["pw_hash"]):
+            return {"accepted": False, "reason": "Incorrect password. Repeat this entry."}
+        if not _pending_step_up(conn, u["id"]) or u["keystroke_model"] is None:
+            raise HTTPException(409, "no step-up is pending for this account; sign in again")
+        model = scorer.Model.from_dict(json.loads(u["keystroke_model"]))
+        template = features.template_codes(FeatureVector(names=model.names, values=model.center))
+        why = features.needs_retype(body.sample, template)
+        if why:
+            return {"accepted": False, "reason": f"{why}. Repeat only this entry; your earlier repetitions are saved."}
+        return {"accepted": True}
 
 
 @app.post("/api/login/stepup")
@@ -357,7 +392,7 @@ def login_step_up(body: StepUpIn, request: Request, response: Response) -> Login
             if retype:
                 retypes.append(retype)
             else:
-                scored.append(scorer.score(ks_model, kv.values, "keystroke"))
+                scored.append(typing_signal(conn, u, kv))
             if pv:
                 pvs.append(pv)
 
@@ -373,7 +408,7 @@ def login_step_up(body: StepUpIn, request: Request, response: Response) -> Login
 
         scores = [float(first["score"])] + [s.score for s in scored]
         median = float(statistics.median(scores))
-        thr = ks_model.threshold
+        thr = float(first["threshold"])
         # Explain with the sample nearest the median: its contributions are the
         # ones the verdict rests on.
         nearest = min(scored, key=lambda s: abs(s.score - median))
@@ -544,6 +579,8 @@ def login_keypad(body: KeypadIn, request: Request, response: Response) -> LoginO
         pending = _pending_step_up(conn, u["id"], "keypad")
         if not pending or u["keypad_model"] is None:
             raise HTTPException(409, "no keypad check is pending for this account; sign in first")
+        if pointer_neural.required(pending):
+            raise HTTPException(409, 'This login requires the trained pointer check, not the legacy keypad')
         if len(body.runs) != KEYPAD_STEPUP_RUNS:
             raise HTTPException(400, f"{KEYPAD_STEPUP_RUNS} keypad runs are needed")
 
@@ -554,7 +591,7 @@ def login_keypad(body: KeypadIn, request: Request, response: Response) -> LoginO
         signals.append(keypad.bot_check(body.runs))
         if signals[-1].flagged:
             ids = [_store_run(conn, u["id"], "stepup", r)[0] for r in body.runs]
-            return finish(*decide_keypad(signals), ids)
+            return finish(*decide_keypad(signals, mobile=_env_class(body.runs[-1].env) == "touch"), ids)
 
         bad = [why for r in body.runs if (why := _check_run(conn, body.username, r))]
         if bad:
@@ -565,7 +602,7 @@ def login_keypad(body: KeypadIn, request: Request, response: Response) -> LoginO
         profile = keypad.Profile.from_dict(json.loads(u["keypad_model"]))
         cog, motor = keypad.score_runs(profile, body.runs)
         signals += [cog, motor] + carried
-        return finish(*decide_keypad(signals), ids)
+        return finish(*decide_keypad(signals, mobile=_env_class(body.runs[-1].env) == "touch"), ids)
 
 
 @app.get("/api/session")
@@ -654,4 +691,5 @@ def user_status(username: str) -> dict:
             "keypad_target": KEYPAD_ENROLL_RUNS, "keypad_device_class": kp_class}
 
 
+pointer_neural.install(app, db, read_session, _pending_step_up, _record)
 app.mount("/", StaticFiles(directory=Path(__file__).parent / "static", html=True), name="static")

@@ -1,0 +1,932 @@
+{
+  "protocol_sha256": "55c40527d8e8c310d70d76529e8ef87050e36b83a482f416c7b90b65f117e0e1",
+  "version": "v2",
+  "stationary_coordinate_fix": true,
+  "server_sha256": "aed29e5a06b6816c16bb2ae73b7faf4a2a363ef1863cd76dbd0f170af400dd32",
+  "pointer_module_sha256": "d67f7a586975bb247890a0bf1276f1f8430a4e22511e4812b0c0b315127f6dd2",
+  "script_sha256": "49e38490a652a340c9a602148675789616db655899ed3df582c9e7bcdc0089e0",
+  "cohort_sha256": "8b1038a3a4d0a5140e5fbdb6a9db9387a11af771170697a32ceb17dd655ddecb",
+  "source_scores_sha256": "8b5da669d7cbb0c3b1db3e71ff8214995edaf72f9c5c44989238e7bbfdebd86c",
+  "mapping": {
+    "s018": "user21",
+    "s019": "user50",
+    "s027": "user105",
+    "s028": "user46",
+    "s032": "user51",
+    "s038": "user47",
+    "s039": "user40",
+    "s040": "user57",
+    "s041": "user18",
+    "s046": "user74",
+    "s047": "user69",
+    "s052": "user106",
+    "s054": "user100",
+    "s055": "user78",
+    "s057": "user25"
+  },
+  "pairings": {
+    "s057-genuine_same_device": {
+      "owner": "user25",
+      "actual": "user25",
+      "column": 26,
+      "score": 0.9636241793632507
+    },
+    "s057-genuine_new_device": {
+      "owner": "user25",
+      "actual": "user25",
+      "column": 26,
+      "score": 0.9636241793632507
+    },
+    "s057-genuine_mobile": {
+      "owner": "user25",
+      "actual": "user25",
+      "column": 28,
+      "score": 0.9568305015563965
+    },
+    "s057-genuine_drift": {
+      "owner": "user25",
+      "actual": "user25",
+      "column": 28,
+      "score": 0.9568305015563965
+    },
+    "s057-impostor_same_device": {
+      "owner": "user25",
+      "actual": "user21",
+      "column": 24,
+      "score": 0.8747135996818542
+    },
+    "s057-impostor_new_device": {
+      "owner": "user25",
+      "actual": "user21",
+      "column": 24,
+      "score": 0.8747135996818542
+    },
+    "s057-impostor_mobile": {
+      "owner": "user25",
+      "actual": "user21",
+      "column": 22,
+      "score": 0.8524072766304016
+    },
+    "s057-typing_match_attack": {
+      "owner": "user25",
+      "actual": "user21",
+      "column": 25,
+      "score": 0.8815506100654602
+    },
+    "s057-keypad_match_attack": {
+      "owner": "user25",
+      "actual": "user25",
+      "column": 28,
+      "score": 0.9568305015563965
+    },
+    "s057-scripted_attack": {
+      "owner": "user25",
+      "actual": "user21",
+      "column": 22,
+      "score": 0.8524072766304016
+    },
+    "s032-genuine_same_device": {
+      "owner": "user51",
+      "actual": "user51",
+      "column": 46,
+      "score": 0.9605836868286133
+    },
+    "s032-genuine_new_device": {
+      "owner": "user51",
+      "actual": "user51",
+      "column": 46,
+      "score": 0.9605836868286133
+    },
+    "s032-genuine_mobile": {
+      "owner": "user51",
+      "actual": "user51",
+      "column": 46,
+      "score": 0.9605836868286133
+    },
+    "s032-genuine_drift": {
+      "owner": "user51",
+      "actual": "user51",
+      "column": 46,
+      "score": 0.9605836868286133
+    },
+    "s032-impostor_same_device": {
+      "owner": "user51",
+      "actual": "user47",
+      "column": 40,
+      "score": 0.9143098592758179
+    },
+    "s032-impostor_new_device": {
+      "owner": "user51",
+      "actual": "user47",
+      "column": 41,
+      "score": 0.9243100881576538
+    },
+    "s032-impostor_mobile": {
+      "owner": "user51",
+      "actual": "user47",
+      "column": 41,
+      "score": 0.9243100881576538
+    },
+    "s032-typing_match_attack": {
+      "owner": "user51",
+      "actual": "user47",
+      "column": 40,
+      "score": 0.9143098592758179
+    },
+    "s032-keypad_match_attack": {
+      "owner": "user51",
+      "actual": "user51",
+      "column": 46,
+      "score": 0.9605836868286133
+    },
+    "s032-scripted_attack": {
+      "owner": "user51",
+      "actual": "user47",
+      "column": 40,
+      "score": 0.9143098592758179
+    },
+    "s019-genuine_same_device": {
+      "owner": "user50",
+      "actual": "user50",
+      "column": 43,
+      "score": 0.966833770275116
+    },
+    "s019-genuine_new_device": {
+      "owner": "user50",
+      "actual": "user50",
+      "column": 42,
+      "score": 0.9625032544136047
+    },
+    "s019-genuine_mobile": {
+      "owner": "user50",
+      "actual": "user50",
+      "column": 42,
+      "score": 0.9625032544136047
+    },
+    "s019-genuine_drift": {
+      "owner": "user50",
+      "actual": "user50",
+      "column": 45,
+      "score": 0.964194655418396
+    },
+    "s019-impostor_same_device": {
+      "owner": "user50",
+      "actual": "user105",
+      "column": 11,
+      "score": 0.8756429553031921
+    },
+    "s019-impostor_new_device": {
+      "owner": "user50",
+      "actual": "user105",
+      "column": 6,
+      "score": 0.8359037637710571
+    },
+    "s019-impostor_mobile": {
+      "owner": "user50",
+      "actual": "user105",
+      "column": 7,
+      "score": 0.8401077389717102
+    },
+    "s019-typing_match_attack": {
+      "owner": "user50",
+      "actual": "user105",
+      "column": 11,
+      "score": 0.8756429553031921
+    },
+    "s019-keypad_match_attack": {
+      "owner": "user50",
+      "actual": "user50",
+      "column": 42,
+      "score": 0.9625032544136047
+    },
+    "s019-scripted_attack": {
+      "owner": "user50",
+      "actual": "user105",
+      "column": 8,
+      "score": 0.8162118196487427
+    },
+    "s039-genuine_same_device": {
+      "owner": "user40",
+      "actual": "user40",
+      "column": 34,
+      "score": 0.880814254283905
+    },
+    "s039-genuine_new_device": {
+      "owner": "user40",
+      "actual": "user40",
+      "column": 34,
+      "score": 0.880814254283905
+    },
+    "s039-genuine_mobile": {
+      "owner": "user40",
+      "actual": "user40",
+      "column": 34,
+      "score": 0.880814254283905
+    },
+    "s039-genuine_drift": {
+      "owner": "user40",
+      "actual": "user40",
+      "column": 34,
+      "score": 0.880814254283905
+    },
+    "s039-impostor_same_device": {
+      "owner": "user40",
+      "actual": "user57",
+      "column": 47,
+      "score": 0.9210155606269836
+    },
+    "s039-impostor_new_device": {
+      "owner": "user40",
+      "actual": "user57",
+      "column": 48,
+      "score": 0.9150704145431519
+    },
+    "s039-impostor_mobile": {
+      "owner": "user40",
+      "actual": "user57",
+      "column": 47,
+      "score": 0.9210155606269836
+    },
+    "s039-typing_match_attack": {
+      "owner": "user40",
+      "actual": "user57",
+      "column": 48,
+      "score": 0.9150704145431519
+    },
+    "s039-keypad_match_attack": {
+      "owner": "user40",
+      "actual": "user40",
+      "column": 34,
+      "score": 0.880814254283905
+    },
+    "s039-scripted_attack": {
+      "owner": "user40",
+      "actual": "user57",
+      "column": 50,
+      "score": 0.9048798680305481
+    },
+    "s038-genuine_same_device": {
+      "owner": "user47",
+      "actual": "user47",
+      "column": 40,
+      "score": 0.9674776196479797
+    },
+    "s038-genuine_new_device": {
+      "owner": "user47",
+      "actual": "user47",
+      "column": 40,
+      "score": 0.9674776196479797
+    },
+    "s038-genuine_mobile": {
+      "owner": "user47",
+      "actual": "user47",
+      "column": 40,
+      "score": 0.9674776196479797
+    },
+    "s038-genuine_drift": {
+      "owner": "user47",
+      "actual": "user47",
+      "column": 41,
+      "score": 0.9816510081291199
+    },
+    "s038-impostor_same_device": {
+      "owner": "user47",
+      "actual": "user40",
+      "column": 36,
+      "score": 0.6233497262001038
+    },
+    "s038-impostor_new_device": {
+      "owner": "user47",
+      "actual": "user40",
+      "column": 36,
+      "score": 0.6233497262001038
+    },
+    "s038-impostor_mobile": {
+      "owner": "user47",
+      "actual": "user40",
+      "column": 35,
+      "score": 0.5898436307907104
+    },
+    "s038-typing_match_attack": {
+      "owner": "user47",
+      "actual": "user40",
+      "column": 35,
+      "score": 0.5898436307907104
+    },
+    "s038-keypad_match_attack": {
+      "owner": "user47",
+      "actual": "user47",
+      "column": 41,
+      "score": 0.9816510081291199
+    },
+    "s038-scripted_attack": {
+      "owner": "user47",
+      "actual": "user40",
+      "column": 35,
+      "score": 0.5898436307907104
+    },
+    "s055-genuine_same_device": {
+      "owner": "user78",
+      "actual": "user78",
+      "column": 65,
+      "score": 0.9286956787109375
+    },
+    "s055-genuine_new_device": {
+      "owner": "user78",
+      "actual": "user78",
+      "column": 66,
+      "score": 0.9563480615615845
+    },
+    "s055-genuine_mobile": {
+      "owner": "user78",
+      "actual": "user78",
+      "column": 65,
+      "score": 0.9286956787109375
+    },
+    "s055-genuine_drift": {
+      "owner": "user78",
+      "actual": "user78",
+      "column": 66,
+      "score": 0.9563480615615845
+    },
+    "s055-impostor_same_device": {
+      "owner": "user78",
+      "actual": "user25",
+      "column": 28,
+      "score": 0.913133978843689
+    },
+    "s055-impostor_new_device": {
+      "owner": "user78",
+      "actual": "user25",
+      "column": 26,
+      "score": 0.8858663439750671
+    },
+    "s055-impostor_mobile": {
+      "owner": "user78",
+      "actual": "user25",
+      "column": 28,
+      "score": 0.913133978843689
+    },
+    "s055-typing_match_attack": {
+      "owner": "user78",
+      "actual": "user25",
+      "column": 28,
+      "score": 0.913133978843689
+    },
+    "s055-keypad_match_attack": {
+      "owner": "user78",
+      "actual": "user78",
+      "column": 66,
+      "score": 0.9563480615615845
+    },
+    "s055-scripted_attack": {
+      "owner": "user78",
+      "actual": "user25",
+      "column": 26,
+      "score": 0.8858663439750671
+    },
+    "s040-genuine_same_device": {
+      "owner": "user57",
+      "actual": "user57",
+      "column": 50,
+      "score": 0.9636361002922058
+    },
+    "s040-genuine_new_device": {
+      "owner": "user57",
+      "actual": "user57",
+      "column": 50,
+      "score": 0.9636361002922058
+    },
+    "s040-genuine_mobile": {
+      "owner": "user57",
+      "actual": "user57",
+      "column": 50,
+      "score": 0.9636361002922058
+    },
+    "s040-genuine_drift": {
+      "owner": "user57",
+      "actual": "user57",
+      "column": 47,
+      "score": 0.9719911813735962
+    },
+    "s040-impostor_same_device": {
+      "owner": "user57",
+      "actual": "user18",
+      "column": 21,
+      "score": 0.8901437520980835
+    },
+    "s040-impostor_new_device": {
+      "owner": "user57",
+      "actual": "user18",
+      "column": 21,
+      "score": 0.8901437520980835
+    },
+    "s040-impostor_mobile": {
+      "owner": "user57",
+      "actual": "user18",
+      "column": 21,
+      "score": 0.8901437520980835
+    },
+    "s040-typing_match_attack": {
+      "owner": "user57",
+      "actual": "user18",
+      "column": 21,
+      "score": 0.8901437520980835
+    },
+    "s040-keypad_match_attack": {
+      "owner": "user57",
+      "actual": "user57",
+      "column": 47,
+      "score": 0.9719911813735962
+    },
+    "s040-scripted_attack": {
+      "owner": "user57",
+      "actual": "user18",
+      "column": 21,
+      "score": 0.8901437520980835
+    },
+    "s046-genuine_same_device": {
+      "owner": "user74",
+      "actual": "user74",
+      "column": 59,
+      "score": 0.9585084915161133
+    },
+    "s046-genuine_new_device": {
+      "owner": "user74",
+      "actual": "user74",
+      "column": 58,
+      "score": 0.9570520520210266
+    },
+    "s046-genuine_mobile": {
+      "owner": "user74",
+      "actual": "user74",
+      "column": 59,
+      "score": 0.9585084915161133
+    },
+    "s046-genuine_drift": {
+      "owner": "user74",
+      "actual": "user74",
+      "column": 56,
+      "score": 0.9585716128349304
+    },
+    "s046-impostor_same_device": {
+      "owner": "user74",
+      "actual": "user69",
+      "column": 51,
+      "score": 0.8203855752944946
+    },
+    "s046-impostor_new_device": {
+      "owner": "user74",
+      "actual": "user69",
+      "column": 51,
+      "score": 0.8203855752944946
+    },
+    "s046-impostor_mobile": {
+      "owner": "user74",
+      "actual": "user69",
+      "column": 53,
+      "score": 0.7870219349861145
+    },
+    "s046-typing_match_attack": {
+      "owner": "user74",
+      "actual": "user69",
+      "column": 51,
+      "score": 0.8203855752944946
+    },
+    "s046-keypad_match_attack": {
+      "owner": "user74",
+      "actual": "user74",
+      "column": 54,
+      "score": 0.9303692579269409
+    },
+    "s046-scripted_attack": {
+      "owner": "user74",
+      "actual": "user69",
+      "column": 51,
+      "score": 0.8203855752944946
+    },
+    "s047-genuine_same_device": {
+      "owner": "user69",
+      "actual": "user69",
+      "column": 51,
+      "score": 0.9667673110961914
+    },
+    "s047-genuine_new_device": {
+      "owner": "user69",
+      "actual": "user69",
+      "column": 51,
+      "score": 0.9667673110961914
+    },
+    "s047-genuine_mobile": {
+      "owner": "user69",
+      "actual": "user69",
+      "column": 51,
+      "score": 0.9667673110961914
+    },
+    "s047-genuine_drift": {
+      "owner": "user69",
+      "actual": "user69",
+      "column": 52,
+      "score": 0.955535888671875
+    },
+    "s047-impostor_same_device": {
+      "owner": "user69",
+      "actual": "user106",
+      "column": 13,
+      "score": 0.9113849401473999
+    },
+    "s047-impostor_new_device": {
+      "owner": "user69",
+      "actual": "user106",
+      "column": 12,
+      "score": 0.8694556951522827
+    },
+    "s047-impostor_mobile": {
+      "owner": "user69",
+      "actual": "user106",
+      "column": 12,
+      "score": 0.8694556951522827
+    },
+    "s047-typing_match_attack": {
+      "owner": "user69",
+      "actual": "user106",
+      "column": 12,
+      "score": 0.8694556951522827
+    },
+    "s047-keypad_match_attack": {
+      "owner": "user69",
+      "actual": "user69",
+      "column": 52,
+      "score": 0.955535888671875
+    },
+    "s047-scripted_attack": {
+      "owner": "user69",
+      "actual": "user106",
+      "column": 12,
+      "score": 0.8694556951522827
+    },
+    "s018-genuine_same_device": {
+      "owner": "user21",
+      "actual": "user21",
+      "column": 24,
+      "score": 0.958173930644989
+    },
+    "s018-genuine_new_device": {
+      "owner": "user21",
+      "actual": "user21",
+      "column": 22,
+      "score": 0.9419452548027039
+    },
+    "s018-genuine_mobile": {
+      "owner": "user21",
+      "actual": "user21",
+      "column": 23,
+      "score": 0.9757701754570007
+    },
+    "s018-genuine_drift": {
+      "owner": "user21",
+      "actual": "user21",
+      "column": 24,
+      "score": 0.958173930644989
+    },
+    "s018-impostor_same_device": {
+      "owner": "user21",
+      "actual": "user50",
+      "column": 45,
+      "score": 0.8565009832382202
+    },
+    "s018-impostor_new_device": {
+      "owner": "user21",
+      "actual": "user50",
+      "column": 45,
+      "score": 0.8565009832382202
+    },
+    "s018-impostor_mobile": {
+      "owner": "user21",
+      "actual": "user50",
+      "column": 42,
+      "score": 0.8592648506164551
+    },
+    "s018-typing_match_attack": {
+      "owner": "user21",
+      "actual": "user50",
+      "column": 43,
+      "score": 0.862047016620636
+    },
+    "s018-keypad_match_attack": {
+      "owner": "user21",
+      "actual": "user21",
+      "column": 25,
+      "score": 0.9645547866821289
+    },
+    "s018-scripted_attack": {
+      "owner": "user21",
+      "actual": "user50",
+      "column": 45,
+      "score": 0.8565009832382202
+    },
+    "s027-genuine_same_device": {
+      "owner": "user105",
+      "actual": "user105",
+      "column": 10,
+      "score": 0.9439502954483032
+    },
+    "s027-genuine_new_device": {
+      "owner": "user105",
+      "actual": "user105",
+      "column": 8,
+      "score": 0.922802746295929
+    },
+    "s027-genuine_mobile": {
+      "owner": "user105",
+      "actual": "user105",
+      "column": 10,
+      "score": 0.9439502954483032
+    },
+    "s027-genuine_drift": {
+      "owner": "user105",
+      "actual": "user105",
+      "column": 8,
+      "score": 0.922802746295929
+    },
+    "s027-impostor_same_device": {
+      "owner": "user105",
+      "actual": "user46",
+      "column": 38,
+      "score": 0.7334704399108887
+    },
+    "s027-impostor_new_device": {
+      "owner": "user105",
+      "actual": "user46",
+      "column": 37,
+      "score": 0.7768682241439819
+    },
+    "s027-impostor_mobile": {
+      "owner": "user105",
+      "actual": "user46",
+      "column": 39,
+      "score": 0.775872528553009
+    },
+    "s027-typing_match_attack": {
+      "owner": "user105",
+      "actual": "user46",
+      "column": 38,
+      "score": 0.7334704399108887
+    },
+    "s027-keypad_match_attack": {
+      "owner": "user105",
+      "actual": "user105",
+      "column": 8,
+      "score": 0.922802746295929
+    },
+    "s027-scripted_attack": {
+      "owner": "user105",
+      "actual": "user46",
+      "column": 37,
+      "score": 0.7768682241439819
+    },
+    "s028-genuine_same_device": {
+      "owner": "user46",
+      "actual": "user46",
+      "column": 37,
+      "score": 0.9650714993476868
+    },
+    "s028-genuine_new_device": {
+      "owner": "user46",
+      "actual": "user46",
+      "column": 37,
+      "score": 0.9650714993476868
+    },
+    "s028-genuine_mobile": {
+      "owner": "user46",
+      "actual": "user46",
+      "column": 39,
+      "score": 0.962481677532196
+    },
+    "s028-genuine_drift": {
+      "owner": "user46",
+      "actual": "user46",
+      "column": 38,
+      "score": 0.9508588910102844
+    },
+    "s028-impostor_same_device": {
+      "owner": "user46",
+      "actual": "user51",
+      "column": 46,
+      "score": 0.9215676188468933
+    },
+    "s028-impostor_new_device": {
+      "owner": "user46",
+      "actual": "user51",
+      "column": 46,
+      "score": 0.9215676188468933
+    },
+    "s028-impostor_mobile": {
+      "owner": "user46",
+      "actual": "user51",
+      "column": 46,
+      "score": 0.9215676188468933
+    },
+    "s028-typing_match_attack": {
+      "owner": "user46",
+      "actual": "user51",
+      "column": 46,
+      "score": 0.9215676188468933
+    },
+    "s028-keypad_match_attack": {
+      "owner": "user46",
+      "actual": "user46",
+      "column": 38,
+      "score": 0.9508588910102844
+    },
+    "s028-scripted_attack": {
+      "owner": "user46",
+      "actual": "user51",
+      "column": 46,
+      "score": 0.9215676188468933
+    },
+    "s052-genuine_same_device": {
+      "owner": "user106",
+      "actual": "user106",
+      "column": 13,
+      "score": 0.9455653429031372
+    },
+    "s052-genuine_new_device": {
+      "owner": "user106",
+      "actual": "user106",
+      "column": 12,
+      "score": 0.8968082666397095
+    },
+    "s052-genuine_mobile": {
+      "owner": "user106",
+      "actual": "user106",
+      "column": 12,
+      "score": 0.8968082666397095
+    },
+    "s052-genuine_drift": {
+      "owner": "user106",
+      "actual": "user106",
+      "column": 12,
+      "score": 0.8968082666397095
+    },
+    "s052-impostor_same_device": {
+      "owner": "user106",
+      "actual": "user100",
+      "column": 3,
+      "score": 0.8610668182373047
+    },
+    "s052-impostor_new_device": {
+      "owner": "user106",
+      "actual": "user100",
+      "column": 4,
+      "score": 0.8578807711601257
+    },
+    "s052-impostor_mobile": {
+      "owner": "user106",
+      "actual": "user100",
+      "column": 4,
+      "score": 0.8578807711601257
+    },
+    "s052-typing_match_attack": {
+      "owner": "user106",
+      "actual": "user100",
+      "column": 5,
+      "score": 0.836958110332489
+    },
+    "s052-keypad_match_attack": {
+      "owner": "user106",
+      "actual": "user106",
+      "column": 12,
+      "score": 0.8968082666397095
+    },
+    "s052-scripted_attack": {
+      "owner": "user106",
+      "actual": "user100",
+      "column": 3,
+      "score": 0.8610668182373047
+    },
+    "s054-genuine_same_device": {
+      "owner": "user100",
+      "actual": "user100",
+      "column": 5,
+      "score": 0.957190215587616
+    },
+    "s054-genuine_new_device": {
+      "owner": "user100",
+      "actual": "user100",
+      "column": 5,
+      "score": 0.957190215587616
+    },
+    "s054-genuine_mobile": {
+      "owner": "user100",
+      "actual": "user100",
+      "column": 3,
+      "score": 0.9551213979721069
+    },
+    "s054-genuine_drift": {
+      "owner": "user100",
+      "actual": "user100",
+      "column": 3,
+      "score": 0.9551213979721069
+    },
+    "s054-impostor_same_device": {
+      "owner": "user100",
+      "actual": "user78",
+      "column": 64,
+      "score": 0.7954370379447937
+    },
+    "s054-impostor_new_device": {
+      "owner": "user100",
+      "actual": "user78",
+      "column": 65,
+      "score": 0.8420341610908508
+    },
+    "s054-impostor_mobile": {
+      "owner": "user100",
+      "actual": "user78",
+      "column": 65,
+      "score": 0.8420341610908508
+    },
+    "s054-typing_match_attack": {
+      "owner": "user100",
+      "actual": "user78",
+      "column": 65,
+      "score": 0.8420341610908508
+    },
+    "s054-keypad_match_attack": {
+      "owner": "user100",
+      "actual": "user100",
+      "column": 4,
+      "score": 0.9657392501831055
+    },
+    "s054-scripted_attack": {
+      "owner": "user100",
+      "actual": "user78",
+      "column": 66,
+      "score": 0.7673729062080383
+    },
+    "s041-genuine_same_device": {
+      "owner": "user18",
+      "actual": "user18",
+      "column": 20,
+      "score": 0.9547160267829895
+    },
+    "s041-genuine_new_device": {
+      "owner": "user18",
+      "actual": "user18",
+      "column": 21,
+      "score": 0.9332672357559204
+    },
+    "s041-genuine_mobile": {
+      "owner": "user18",
+      "actual": "user18",
+      "column": 20,
+      "score": 0.9547160267829895
+    },
+    "s041-genuine_drift": {
+      "owner": "user18",
+      "actual": "user18",
+      "column": 21,
+      "score": 0.9332672357559204
+    },
+    "s041-impostor_same_device": {
+      "owner": "user18",
+      "actual": "user74",
+      "column": 57,
+      "score": 0.8434196710586548
+    },
+    "s041-impostor_new_device": {
+      "owner": "user18",
+      "actual": "user74",
+      "column": 55,
+      "score": 0.812955379486084
+    },
+    "s041-impostor_mobile": {
+      "owner": "user18",
+      "actual": "user74",
+      "column": 59,
+      "score": 0.830208420753479
+    },
+    "s041-typing_match_attack": {
+      "owner": "user18",
+      "actual": "user74",
+      "column": 56,
+      "score": 0.8358681797981262
+    },
+    "s041-keypad_match_attack": {
+      "owner": "user18",
+      "actual": "user18",
+      "column": 21,
+      "score": 0.9332672357559204
+    },
+    "s041-scripted_attack": {
+      "owner": "user18",
+      "actual": "user74",
+      "column": 54,
+      "score": 0.8292684555053711
+    }
+  },
+  "synthetic_cross_dataset_people": true,
+  "production_database_accessed": false,
+  "test_accessed": false
+}

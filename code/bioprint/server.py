@@ -28,7 +28,7 @@ from contracts import (KEYPAD_BLANK, KEYPAD_CHALLENGE_TTL_S, KEYPAD_COLS, KEYPAD
                        AttemptIn, EnrollOut, FeatureVector, KeypadChallenge, KeypadEnrollOut, KeypadIn, KeypadRun,
                        LoginOut, RegisterIn, SignalResult, StepUpIn)
 from engine import bot, device, features, keypad, pointer, scorer
-from engine.decide import decide, decide_keypad
+from engine.experiment import decide, decide_keypad, typing_signal
 
 ENROLL_TARGET = 10  # counted repetitions
 # The first repetition is a practice run: stored raw (still useful for replay
@@ -40,6 +40,11 @@ MIN_POINTER_SAMPLES = 5  # fit a pointer model only if this many enrollments use
 
 db.init_db()
 app = FastAPI(title="BioPrint")
+
+@app.get("/api/experiment")
+def experiment_status():
+    return json.loads((Path(__file__).parent / "experiment.json").read_text())
+
 
 # ---------------------------------------------------------------- session cookie
 # An "allow" becomes a real login: a signed, HttpOnly cookie. Stdlib only.
@@ -209,7 +214,7 @@ def _record(conn, response: Response, t0: float, user, sample_id: int | None, us
     Only an allow signs the browser in. A block also signs it out: whoever is at
     this keyboard just failed the behaviour check, so any session they inherited
     (unlocked laptop, stolen cookie) ends here. Everything else, step_up included,
-    leaves the cookie alone.
+    revokes the cookie in experiment branches until verification completes.
     """
     latency = (time.perf_counter() - t0) * 1000
     cur = conn.execute(
@@ -220,7 +225,7 @@ def _record(conn, response: Response, t0: float, user, sample_id: int | None, us
     )
     if decision == "allow":
         start_session(response, username)
-    elif decision == "block":
+    elif decision != "allow":
         end_session(response)
     return LoginOut(decision=decision, reasons=reasons, signals=signals, latency_ms=latency, attempt_id=cur.lastrowid)
 
@@ -277,14 +282,14 @@ def login(body: AttemptIn, request: Request, response: Response) -> LoginOut:
             return finish(*decide(signals))
         routing = _keypad_routing(u, body.sample.env)
         if retype:
-            if features.is_virtual_keyboard(body.sample) and routing["keypad_enrolled"] and signals[0].flagged:
+            if features.is_virtual_keyboard(body.sample) and routing["keypad_enrolled"]:
                 # A touch keyboard gives no timing, but the keypad works on any
                 # device: route there instead of asking for a retype that cannot help.
                 signals.append(SignalResult(name="keystroke", available=False, reasons=[retype]))
                 return finish(*decide(signals, **routing))
             return finish("retype", [retype])
 
-        signals.append(scorer.score(ks_model, kv.values, "keystroke"))
+        signals.append(typing_signal(conn, u, kv))
         signals.append(_pointer_signal(u, pv))
 
         return finish(*decide(signals, **routing))
@@ -357,7 +362,7 @@ def login_step_up(body: StepUpIn, request: Request, response: Response) -> Login
             if retype:
                 retypes.append(retype)
             else:
-                scored.append(scorer.score(ks_model, kv.values, "keystroke"))
+                scored.append(typing_signal(conn, u, kv))
             if pv:
                 pvs.append(pv)
 
@@ -373,7 +378,7 @@ def login_step_up(body: StepUpIn, request: Request, response: Response) -> Login
 
         scores = [float(first["score"])] + [s.score for s in scored]
         median = float(statistics.median(scores))
-        thr = ks_model.threshold
+        thr = float(first["threshold"])
         # Explain with the sample nearest the median: its contributions are the
         # ones the verdict rests on.
         nearest = min(scored, key=lambda s: abs(s.score - median))
@@ -554,7 +559,7 @@ def login_keypad(body: KeypadIn, request: Request, response: Response) -> LoginO
         signals.append(keypad.bot_check(body.runs))
         if signals[-1].flagged:
             ids = [_store_run(conn, u["id"], "stepup", r)[0] for r in body.runs]
-            return finish(*decide_keypad(signals), ids)
+            return finish(*decide_keypad(signals, mobile=_env_class(body.runs[-1].env) == "touch"), ids)
 
         bad = [why for r in body.runs if (why := _check_run(conn, body.username, r))]
         if bad:
@@ -565,7 +570,7 @@ def login_keypad(body: KeypadIn, request: Request, response: Response) -> LoginO
         profile = keypad.Profile.from_dict(json.loads(u["keypad_model"]))
         cog, motor = keypad.score_runs(profile, body.runs)
         signals += [cog, motor] + carried
-        return finish(*decide_keypad(signals), ids)
+        return finish(*decide_keypad(signals, mobile=_env_class(body.runs[-1].env) == "touch"), ids)
 
 
 @app.get("/api/session")

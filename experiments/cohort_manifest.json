@@ -1,0 +1,23 @@
+{
+  "seed": 20260920,
+  "people": 39,
+  "attempts": 390,
+  "roles": {
+    "train": 12,
+    "calibration": 12,
+    "dev": 15
+  },
+  "source_sha256": "b11d23538b1865fa6ecf4e8b78567caa312e9c1027604bb022fcc6ad7eaa7a33",
+  "generator_sha256": "75e89b7e1c6ee078c0030d1889fcdede57d9d56ea89f9dea4c485a8a0f2f2e71",
+  "files": {
+    "background.json": "290ca91fc9e7c68f950d1dd0e310f491c617d20047c13184a76495827c42d1fe",
+    "cohort.json.gz": "8b1038a3a4d0a5140e5fbdb6a9db9387a11af771170697a32ceb17dd655ddecb"
+  },
+  "limitations": [
+    "Typing is real CMU; keypad, motor, device and trust fields are simulated.",
+    "No measured cross-modal human correlation; no independent all-feature EER.",
+    "Previously explored CMU; synthetic DEV is not pristine final test.",
+    "Mobile enrollment assumes prior physical-keyboard enrollment; mobile-only signup is not solved."
+  ],
+  "test_observations_parsed": false
+}

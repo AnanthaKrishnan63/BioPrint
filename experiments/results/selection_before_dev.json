@@ -1,0 +1,38 @@
+{
+  "objective": "minimize FRR subject to synthetic calibration FAR <= 1%",
+  "candidates": [
+    {
+      "mode": "login-control",
+      "far": 0.3055555555555556,
+      "frr": 0.20833333333333334,
+      "config_sha256": "e7a45606c6fce7aa26517e73e3ed18c8142f0eb700af20381fc3993e1b9ef367",
+      "report_sha256": "9c11518f20d5c19a1ea3f10a6d0e200245d51891ad1dab14715c281b182bd250"
+    },
+    {
+      "mode": "typing-stepup",
+      "far": 0.16666666666666666,
+      "frr": 0.3541666666666667,
+      "config_sha256": "2c14b8ad4ce33745a66cf2444f8c1c3932332f4b94664c5acdb31675407b739e",
+      "report_sha256": "cfbf286881759c7059da0cfec5a5e5de40fa1877a1467ce4c947a137da2b3a0e"
+    },
+    {
+      "mode": "typing-pointer",
+      "far": 0.18055555555555555,
+      "frr": 0.1875,
+      "config_sha256": "3651862cfd0c9fa5bfd7b2dde0af9c201f94f32677177245e601291b0562d30c",
+      "report_sha256": "c8d0934527a1b7e8b0ca1067aafa2d215cdacdb0e16cf7259523d969a90c0ed0"
+    },
+    {
+      "mode": "typing-keypad",
+      "far": 0.18055555555555555,
+      "frr": 0.1875,
+      "config_sha256": "b3b4de3a090a70131fdea5ddc985af6c6c9227c684ce8ef2710b79a99fef8af9",
+      "report_sha256": "120d243df1c7ee5ba002fc29b7a4e57b3fb1f81ddab9a7824cd3e8839e5a090c"
+    }
+  ],
+  "selected": null,
+  "promotion": "none: all exceed the low-FAR gate",
+  "prior_v2_dev_exposure": true,
+  "v3_dev_not_yet_scored": true,
+  "thresholds_changed_after_v2_dev": false
+}

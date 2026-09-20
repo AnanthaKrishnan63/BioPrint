@@ -1,0 +1,61 @@
+{
+  "scope": "UI with mocked API; not biometric validation",
+  "results": [
+    {
+      "mode": "login-control",
+      "mobile": false,
+      "typing_and_clicks": "passed",
+      "stepup_ui": "not exercised",
+      "page_errors": []
+    },
+    {
+      "mode": "login-control",
+      "mobile": true,
+      "typing_and_clicks": "passed",
+      "stepup_ui": "not exercised",
+      "page_errors": []
+    },
+    {
+      "mode": "typing-stepup",
+      "mobile": false,
+      "typing_and_clicks": "passed",
+      "stepup_ui": "passed",
+      "page_errors": []
+    },
+    {
+      "mode": "typing-stepup",
+      "mobile": true,
+      "typing_and_clicks": "passed",
+      "stepup_ui": "passed",
+      "page_errors": []
+    },
+    {
+      "mode": "typing-pointer",
+      "mobile": false,
+      "typing_and_clicks": "passed",
+      "stepup_ui": "passed",
+      "page_errors": []
+    },
+    {
+      "mode": "typing-pointer",
+      "mobile": true,
+      "typing_and_clicks": "passed",
+      "stepup_ui": "passed",
+      "page_errors": []
+    },
+    {
+      "mode": "typing-keypad",
+      "mobile": false,
+      "typing_and_clicks": "passed",
+      "stepup_ui": "passed",
+      "page_errors": []
+    },
+    {
+      "mode": "typing-keypad",
+      "mobile": true,
+      "typing_and_clicks": "passed",
+      "stepup_ui": "passed",
+      "page_errors": []
+    }
+  ]
+}

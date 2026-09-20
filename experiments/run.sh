@@ -18,4 +18,7 @@ export BIOPRINT_BACKGROUND="$cohort_dir/background.json"
 export BIOPRINT_BACKGROUND_SHA256="$("$python_bin" -c 'import json,sys; print(json.load(open(sys.argv[1]))["files"]["background.json"])' "$cohort_dir/manifest.json")"
 experiment_port="${1:-8006}"
 cd "$checkout_dir/code/bioprint"
+if [[ -n "${LAN_HOST:-}" ]]; then
+  exec bash ./run-lan.sh
+fi
 exec "$python_bin" -m uvicorn server:app --host 127.0.0.1 --port "$experiment_port"

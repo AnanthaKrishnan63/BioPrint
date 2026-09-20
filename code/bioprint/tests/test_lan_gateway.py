@@ -31,6 +31,14 @@ def test_private_routes_and_proxy_spoofing(lan):
     assert lan.post('/api/attempts/1/label', json={'label': 'genuine'}).status_code == 404
 
 
+def test_pointer_interface_is_available_but_requires_account(lan):
+    for path in ['/neural-pointer.js', '/pointer-enroll.html', '/pointer-enroll.js', '/api/experiment']:
+        assert lan.get(path).status_code == 200
+    assert lan.get('/api/pointer/status').status_code == 401
+    assert lan.post('/api/pointer/challenge', json={'kind': 'enroll'}).status_code == 401
+    assert lan.post('/api/pointer/capture', json={}).status_code == 422
+
+
 def test_enrollment_status_and_request_limits(lan):
     response = lan.post('/api/register', json={'username': 'lan-user', 'password': 'DemoOnly123!'})
     assert response.status_code == 200, response.text

@@ -10,6 +10,8 @@ The source CMU password is `.tie5Roanl`; only an exact feature-schema match acti
 
 ## Trained pointer enrollment
 
+For invited LAN participants, run `LAN_HOST=<your-Wi-Fi-IP> bash experiments/run.sh`. This uses the restricted HTTPS gateway on port 8443, the same isolated branch database, and the same trained models. The invitation username is `participant`; its password is stored locally in `code/bioprint/.lan/invite-password`. The launcher prints the certificate fingerprint. Private dashboard and administrative routes remain inaccessible through this gateway.
+
 Desktop accounts are guided to `/pointer-enroll.html` after a successful login if they lack a neural pointer profile. Complete three one-minute mouse recordings; progress and raw movement data are saved per account. The launcher loads the checksum-pinned SapiMouse encoder through `BIOPRINT_POINTER_ENCODER`. Enrolled desktop accounts use its cosine profile during pointer step-up. Accounts without that profile retain the previous motor scorer; mobile retains keypad verification. Direct typing admission is unchanged.
 
 See [the actual encoder comparison](NEURAL_POINTER_RESULTS.md) for the paired synthetic FAR/FRR results and limitations. No real user's enrollment was fabricated.

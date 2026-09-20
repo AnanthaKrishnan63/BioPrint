@@ -64,11 +64,13 @@ class LanGateway:
 
         path, method = scope['path'], scope['method']
         assets = {'/', '/index.html', '/welcome.html', '/styles.css', '/app.js',
-                  '/welcome.js', '/ui.js', '/capture.js', '/pointer.js', '/probe.js', '/keypad.js'}
+                  '/welcome.js', '/ui.js', '/capture.js', '/pointer.js', '/probe.js', '/keypad.js',
+                  '/neural-pointer.js', '/pointer-enroll.html', '/pointer-enroll.js'}
         posts = {'/api/register', '/api/enroll', '/api/login', '/api/login/stepup',
-                 '/api/keypad/challenge', '/api/enroll/keypad', '/api/login/keypad', '/api/logout'}
+                 '/api/keypad/challenge', '/api/enroll/keypad', '/api/login/keypad', '/api/logout',
+                 '/api/pointer/challenge', '/api/pointer/capture'}
         allowed = (method in {'GET', 'HEAD'} and path in assets) or (method == 'POST' and path in posts)
-        allowed |= method == 'GET' and path in {'/api/session', '/api/attempts'}
+        allowed |= method == 'GET' and path in {'/api/session', '/api/attempts', '/api/pointer/status', '/api/experiment'}
         allowed |= method == 'GET' and path.startswith('/api/users/')
         if not allowed:
             return await reject(404, 'Not available on the participant interface')
@@ -86,7 +88,7 @@ class LanGateway:
                 if message['type'] == 'http.disconnect':
                     return
                 body.extend(message.get('body', b''))
-                if len(body) > 1_048_576:
+                if len(body) > (4_194_304 if path == '/api/pointer/capture' else 1_048_576):
                     return await reject(413, 'Request too large')
                 if not message.get('more_body', False):
                     break

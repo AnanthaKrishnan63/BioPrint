@@ -54,10 +54,10 @@ export const DECISION = {
   block: { tone: 'block', icon: 'block', word: 'Blocked', title: 'Blocked — that is not how this account types' },
   retype: { tone: 'retype', icon: 'retype', word: 'Retype', title: 'Please type your password again' },
   // Not a verdict: the rhythm matched but the device is new, so more typings are asked for.
-  step_up: { tone: 'stepup', icon: 'fingerprint', word: 'More rhythm', title: 'New device — let’s hear a bit more of your rhythm' },
+  step_up: { tone: 'stepup', icon: 'fingerprint', word: 'More rhythm', title: 'Let’s hear a bit more of your rhythm' },
   // Also not a verdict: the rhythm cannot settle it (new device class, or a score
   // too close to its limit), so the scrambled keypad is asked for instead.
-  keypad: { tone: 'stepup', icon: 'fingerprint', word: 'Keypad check', title: 'New device — two quick keypad checks will settle it' },
+  keypad: { tone: 'stepup', icon: 'fingerprint', word: 'Keypad check', title: 'Two quick target checks' },
   wrong_password: { tone: 'other', icon: 'info', word: 'Wrong password', title: 'That password is not right' },
   unknown_user: { tone: 'other', icon: 'info', word: 'No such account', title: 'No account with that name' },
   not_enrolled: { tone: 'other', icon: 'info', word: 'Not enrolled', title: 'This account has not finished enrolling' },

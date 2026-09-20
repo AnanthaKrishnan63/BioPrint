@@ -297,10 +297,10 @@ function renderLogin(data, rtt) {
   const info = decisionInfo(data.decision);
   const user = username.value.trim();
   const bodies = {
-    allow: 'Your typing rhythm matched the profile enrolled for this account.',
+    allow: 'Your identity checks matched the profile enrolled for this account.',
     block: 'The password was correct, but the behaviour was not. BioPrint blocked this on behaviour alone — no code, no second device.',
-    step_up: `Your rhythm matched, but this browser does not look like the one you enrolled on. Type your password ${STEP_UP_SAMPLES} more times below so we can hear more of it — the decision is made from typing alone.`,
-    keypad: `This browser is new, and typing alone cannot settle it. Solve ${KEYPAD_STEPUP_RUNS} scrambled keypads below — how you hunt for a digit and reach it travels between devices in a way a password's rhythm does not.`,
+    step_up: `We need more typing evidence. Type your password ${STEP_UP_SAMPLES} more times below to complete the check.`,
+    keypad: `We need additional evidence. Complete ${KEYPAD_STEPUP_RUNS} target checks below at your normal pace.`,
     retype: 'There is nothing to compare when the password is corrected mid-way. Type it again, straight through.',
     wrong_password: 'Check the password and try again.',
     unknown_user: 'Create the account first, then enroll your rhythm.',
@@ -534,7 +534,7 @@ const KEYPAD_COPY = {
   },
   login: {
     title: 'Two quick keypad checks',
-    sub: 'This browser is new. Tap the digits shown: how you hunt for each one is the check, and it works the same on a phone.',
+    sub: 'Tap the digits shown to complete your identity check.',
     note: 'No code and no second device — this is still you, measured.',
   },
 };
@@ -780,3 +780,9 @@ fetch('/api/session')
     if (mode === 'login') renderFoot();
   })
   .catch(() => {});
+
+// Identify the experiment for testers without changing the login interaction.
+fetch('/api/experiment').then((r) => r.json()).then((e) => {
+  const label = document.querySelector('.brand small');
+  if (label) label.textContent = 'Experiment: ' + e.mode.replaceAll('-', ' ');
+}).catch(() => {});

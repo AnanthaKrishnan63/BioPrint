@@ -1,0 +1,9 @@
+{
+  "version": 1,
+  "mode": "typing-keypad",
+  "direct_ratio": 0.75,
+  "final_ratio": 1.0,
+  "hard_ratio": 2.0,
+  "keypad_ratio": 0.75,
+  "status": "experimental; not calibrated for real-person population FAR"
+}
